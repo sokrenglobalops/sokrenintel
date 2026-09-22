@@ -2225,14 +2225,40 @@ function connectAis() {
   let ws;
   try { ws = new WebSocket(AIS_WS); } catch (e) { state.layerStatus.ships = "error"; renderLayerChips(); return; }
   state.ais.ws = ws; state.ais.boxesKey = bk;
-  state.ais.msgs = 0; state.ais.diag = "connecting"; renderLayerChips();
+  try { ws.binaryType = "arraybuffer"; } catch (e) { /* ignore */ }
+  state.ais.msgs = 0; state.ais.frames = 0; state.ais.diag = "connecting"; renderLayerChips();
   ws.onopen = () => {
     try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData"] })); }
     catch (e) { /* ignore */ }
     state.ais.diag = "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
+    setTimeout(() => { if (state.ais.ws === ws && !state.ais.msgs) { state.ais.diag = "connected · " + (state.ais.frames || 0) + " frames in 20s, none parsed as AIS"; renderLayerChips(); } }, 20000);
   };
   ws.onmessage = ev => {
-    let m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+    state.ais.frames = (state.ais.frames || 0) + 1;
+    let txt = ev.data;
+    if (txt instanceof ArrayBuffer) { try { txt = new TextDecoder().decode(txt); } catch (e) { txt = ""; } }
+    else if (txt && typeof txt !== "string" && typeof txt.text === "function") { txt.text().then(t => handleAisText(ws, t)).catch(() => {}); return; }
+    handleAisText(ws, txt);
+  };
+  ws.onerror = () => { state.ais.diag = "connection failed (network or service down)"; state.layerStatus.ships = "error"; renderLayerChips(); };
+  ws.onclose = ev => {
+    if (state.ais.ws === ws) {
+      state.ais.ws = null;
+      if (state.layerStatus.ships === "loading") { state.layerStatus.ships = "error"; state.ais.diag = "closed before data (code " + (ev && ev.code) + ") \u2014 key invalid?"; }
+      else if (state.layerStatus.ships === "live") state.ais.diag = "disconnected \u00b7 will reconnect";
+      renderLayerChips();
+    }
+  };
+}
+
+function handleAisText(ws, txt) {
+  if (state.ais.ws !== ws) return;
+  {
+    let m; try { m = JSON.parse(txt); }
+    catch (e) {
+      if (state.ais.frames <= 3) { state.ais.diag = "frames arriving but not JSON: " + String(txt).slice(0, 60); renderLayerChips(); }
+      return;
+    }
     if (m && m.error) {
       state.ais.diag = "server rejected: " + String(m.error).slice(0, 80);
       state.layerStatus.ships = "error"; renderLayerChips(); return;
@@ -2259,16 +2285,7 @@ function connectAis() {
     }
     state.ais.lastMsg = Date.now();
     if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; renderLayerChips(); }
-  };
-  ws.onerror = () => { state.ais.diag = "connection failed (network or service down)"; state.layerStatus.ships = "error"; renderLayerChips(); };
-  ws.onclose = ev => {
-    if (state.ais.ws === ws) {
-      state.ais.ws = null;
-      if (state.layerStatus.ships === "loading") { state.layerStatus.ships = "error"; state.ais.diag = "closed before data (code " + (ev && ev.code) + ") — key invalid?"; }
-      else if (state.layerStatus.ships === "live") state.ais.diag = "disconnected · will reconnect";
-      renderLayerChips();
-    }
-  };
+  }
 }
 
 function shipTypeLabel(t) {
