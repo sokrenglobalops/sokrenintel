@@ -1507,7 +1507,7 @@ const state = {
   airSource: "",
   ships: {},
   shipTrails: {},
-  ais: { ws: null, boxesKey: "", lastMsg: 0 },
+  ais: { ws: null, boxesKey: "", lastMsg: 0, msgs: 0, diag: "" },
   areaFor: null,
   tab: "home",
   sitQ: "",
@@ -2225,13 +2225,21 @@ function connectAis() {
   let ws;
   try { ws = new WebSocket(AIS_WS); } catch (e) { state.layerStatus.ships = "error"; renderLayerChips(); return; }
   state.ais.ws = ws; state.ais.boxesKey = bk;
+  state.ais.msgs = 0; state.ais.diag = "connecting"; renderLayerChips();
   ws.onopen = () => {
     try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData"] })); }
     catch (e) { /* ignore */ }
+    state.ais.diag = "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
   };
   ws.onmessage = ev => {
     let m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+    if (m && m.error) {
+      state.ais.diag = "server rejected: " + String(m.error).slice(0, 80);
+      state.layerStatus.ships = "error"; renderLayerChips(); return;
+    }
     if (!m || !m.MetaData) return;
+    state.ais.msgs++;
+    if (state.ais.msgs === 1 || state.ais.msgs % 50 === 0) { state.ais.diag = "receiving · " + state.ais.msgs + " messages"; renderLayerChips(); }
     const md = m.MetaData, mmsi = String(md.MMSI || "");
     if (!mmsi) return;
     const rec = state.ships[mmsi] || (state.ships[mmsi] = { mmsi, name: "", lat: NaN, lon: NaN, cog: 0, sog: 0, type: 0, t: 0 });
@@ -2252,9 +2260,14 @@ function connectAis() {
     state.ais.lastMsg = Date.now();
     if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; renderLayerChips(); }
   };
-  ws.onerror = () => { state.layerStatus.ships = "error"; renderLayerChips(); };
-  ws.onclose = () => {
-    if (state.ais.ws === ws) { state.ais.ws = null; if (state.layerStatus.ships === "loading") state.layerStatus.ships = "error"; renderLayerChips(); }
+  ws.onerror = () => { state.ais.diag = "connection failed (network or service down)"; state.layerStatus.ships = "error"; renderLayerChips(); };
+  ws.onclose = ev => {
+    if (state.ais.ws === ws) {
+      state.ais.ws = null;
+      if (state.layerStatus.ships === "loading") { state.layerStatus.ships = "error"; state.ais.diag = "closed before data (code " + (ev && ev.code) + ") — key invalid?"; }
+      else if (state.layerStatus.ships === "live") state.ais.diag = "disconnected · will reconnect";
+      renderLayerChips();
+    }
   };
 }
 
@@ -2274,6 +2287,7 @@ function refreshShips() {
   const cutoff = Date.now() - 30 * 60 * 1000;
   Object.keys(state.ships).forEach(k => { if (state.ships[k].t < cutoff) { delete state.ships[k]; delete state.shipTrails[k]; } });
   state.layerData.ships = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon)).slice(0, 4000);
+  if (state.layerData.ships.length && state.layerStatus.ships !== "live" && state.ais.ws) state.layerStatus.ships = "live";
   if (state.layers.ships) { renderLayerChips(); renderOverlay(); renderDetail(); }
 }
 
@@ -2320,6 +2334,7 @@ function renderLayerChips() {
       else if (st === "ok") tag = l.id === "cables" ? String(state.layerData.cables.length) + " systems" : String(state.layerData[l.id].length);
       else if (st === "fallback") tag = "corridors only · add cables.json";
       else if (st === "live") tag = String(state.layerData.ships.length) + " live";
+      if (l.id === "ships" && st === "loading" && state.ais.diag.startsWith("connected")) tag = "connected · waiting";
     }
     const dot = on ? ({ aircraft: "#35C4D7", cables: "var(--p1)", ships: "#7FB3D5" }[l.id] || "var(--accent-lt)") : "var(--line-lt)";
     const gear = l.id === "ships" ? ` <span class="st" data-akey title="AISStream key">⚙</span>` : "";
@@ -2332,7 +2347,12 @@ function renderLayerChips() {
   const lab = $("mb-layers-lab");
   if (lab) lab.textContent = String(LAYERS.filter(l => state.layers[l.id]).length) + " on";
   const dg = $("air-diag");
-  if (dg) dg.textContent = state.layers.aircraft && state.airDiag ? "Aircraft sources \u2014 " + state.airDiag : "";
+  if (dg) {
+    const parts = [];
+    if (state.layers.aircraft && state.airDiag) parts.push("Aircraft \u2014 " + state.airDiag);
+    if (state.layers.ships) parts.push("AIS \u2014 " + (aisKey() ? (state.ais.diag || "idle") : "no key saved"));
+    dg.textContent = parts.join("   |   ");
+  }
 }
 
 /* project a short heading vector ahead of an aircraft (≈4 min of travel) */
