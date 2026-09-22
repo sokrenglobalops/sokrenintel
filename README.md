@@ -32,6 +32,16 @@ Toggle from the **Layers** dropdown on the map bar (choices are remembered per b
 | Air Tracker | military aircraft worldwide (airplanes.live, adsb.lol) plus all traffic within 250 nm of the selected situation; OpenSky Network as fallback (military by ICAO hex allocation, refreshed every 20 min to respect its anonymous limit) | 60 s |
 | Ships (AIS) | AISStream.io live AIS via WebSocket (free key, ⚙ on the chip) — waters around every chokepoint plus the selected situation | live |
 
+**Vessel filter (Layers ▾ → Vessels):** All / Military / Coast guard-LE / Tankers / Cargo / Small craft / AIS gaps.
+Classes come from the AIS ship-type code each vessel broadcasts (35 = military, 51/55 = SAR & law enforcement,
+80–89 tanker, 70–79 cargo, 30–37 & 52–57 fishing/tugs/pilot/dredgers). Class B transponders (the cheap units on
+craft under 300 GT that are not required to carry AIS) are also subscribed and shown as small craft.
+
+**AIS gaps ("dark ships"):** a vessel is flagged with a pulsing red ring when it was heard on this connection,
+was underway (≥3 kt), sits inside the subscribed waters (not near an edge), and has now been silent for 12+ minutes
+while the feed itself is still healthy. It is a cue to look, not proof of anything — AIS coverage from shore/satellite
+receivers is patchy and ships do drop out for innocent reasons. Flags clear the moment the vessel is heard again.
+
 ### Adding the cable file (one time)
 
 Open <https://www.submarinecablemap.com/api/v3/cable/cable-geo.json> in your browser, save it as `cables.json`,

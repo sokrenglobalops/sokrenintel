@@ -225,7 +225,16 @@
   .ovpt { position: absolute; pointer-events: auto; cursor: pointer; }
   .cp-d { width: 9px; height: 9px; border: 1.5px solid var(--accent-lt); background: rgba(11,14,19,0.6); transform: rotate(45deg); }
   .sh-d { width: 7px; height: 7px; background: #7FB3D5; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); opacity: 0.9; }
-  .sh-d.mil { background: #35C4D7; }
+  .sh-d.mil { background: #35C4D7; width: 8px; height: 8px; }
+  .sh-d.law { background: #C9A227; }
+  .sh-d.tanker { background: #D98E4A; }
+  .sh-d.small { width: 5px; height: 5px; opacity: 0.75; }
+  .sh-dark { width: 12px; height: 12px; border: 1.5px solid var(--p1); border-radius: 50%; background: rgba(217,83,79,0.15); animation: pulse 2s ease-in-out infinite; }
+  .sh-dark::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: var(--p1); }
+  .sh-dark { position: relative; }
+  #ship-filter { display: none; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  #ship-filter.on { display: flex; }
+  .sf-lab { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); font-family: 'JetBrains Mono', monospace; width: 100%; }
   .ac-d { width: 0; height: 0; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-bottom: 11px solid #35C4D7; filter: drop-shadow(0 0 3px rgba(53,196,215,0.55)); }
   .ac-d.emg { border-bottom-color: var(--p1); filter: drop-shadow(0 0 4px rgba(217,83,79,0.8)); }
   .ac-d.civ { border-left-width: 3.5px; border-right-width: 3.5px; border-bottom: 8px solid #8C96A3; filter: none; opacity: 0.85; }
@@ -454,6 +463,7 @@
     <div class="pop-wrap">
       <button class="mb-btn" id="mb-layers" data-pop="pop-layers">Layers <b id="mb-layers-lab">0</b> ▾</button>
       <div class="pop" id="pop-layers"><div class="pop-title">Map layers</div><div id="layer-chips"></div>
+        <div id="ship-filter"><span class="sf-lab">Vessels</span></div>
         <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS (AISStream key). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div>
         <div class="pop-note" id="air-diag" style="color:var(--mut)"></div></div>
     </div>
@@ -1507,7 +1517,8 @@ const state = {
   airSource: "",
   ships: {},
   shipTrails: {},
-  ais: { ws: null, boxesKey: "", lastMsg: 0, msgs: 0, diag: "" },
+  ais: { ws: null, boxesKey: "", lastMsg: 0, msgs: 0, diag: "", connectedAt: 0, boxes: [] },
+  shipFilter: "all",
   areaFor: null,
   tab: "home",
   sitQ: "",
@@ -2220,7 +2231,12 @@ function connectAis() {
   const boxes = aisBoxes();
   const bk = JSON.stringify(boxes);
   if (state.ais.ws && state.ais.boxesKey === bk && state.ais.ws.readyState <= 1) return;
+  const wasHealthy = state.ais.ws && state.ais.ws.readyState === 1 && Date.now() - state.ais.lastMsg < 60 * 1000;
   disconnectAis();
+  Object.keys(state.ships).forEach(k => {
+    const v = state.ships[k];
+    if (!boxes.some(b => v.lat >= b[0][0] && v.lat <= b[1][0] && v.lon >= b[0][1] && v.lon <= b[1][1])) { delete state.ships[k]; delete state.shipTrails[k]; }
+  });
   state.layerStatus.ships = "loading"; renderLayerChips();
   let ws;
   try { ws = new WebSocket(AIS_WS); } catch (e) { state.layerStatus.ships = "error"; renderLayerChips(); return; }
@@ -2228,7 +2244,11 @@ function connectAis() {
   try { ws.binaryType = "arraybuffer"; } catch (e) { /* ignore */ }
   state.ais.msgs = 0; state.ais.frames = 0; state.ais.diag = "connecting"; renderLayerChips();
   ws.onopen = () => {
-    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData"] })); }
+    // A resubscribe while the feed was healthy (e.g. selecting a situation) keeps the gap-detector baseline;
+    // only a genuine reconnect after silence resets it.
+    if (!wasHealthy || !state.ais.connectedAt) state.ais.connectedAt = Date.now();
+    state.ais.boxes = boxes;
+    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReportA", "StaticDataReportB"] })); }
     catch (e) { /* ignore */ }
     state.ais.diag = "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
     setTimeout(() => { if (state.ais.ws === ws && !state.ais.msgs) { state.ais.diag = "connected · " + (state.ais.frames || 0) + " frames in 20s, none parsed as AIS"; renderLayerChips(); } }, 20000);
@@ -2270,8 +2290,10 @@ function handleAisText(ws, txt) {
     if (!mmsi) return;
     const rec = state.ships[mmsi] || (state.ships[mmsi] = { mmsi, name: "", lat: NaN, lon: NaN, cog: 0, sog: 0, type: 0, t: 0 });
     if (md.ShipName) rec.name = String(md.ShipName).trim();
-    if (m.MessageType === "PositionReport" && m.Message && m.Message.PositionReport) {
-      const pr = m.Message.PositionReport;
+    const mt = m.MessageType;
+    const pr = m.Message && (m.Message.PositionReport || m.Message.StandardClassBPositionReport || m.Message.ExtendedClassBPositionReport);
+    if (pr && (mt === "PositionReport" || mt === "StandardClassBPositionReport" || mt === "ExtendedClassBPositionReport")) {
+      if (mt !== "PositionReport") rec.classB = true;
       const lat = Number(pr.Latitude != null ? pr.Latitude : md.latitude), lon = Number(pr.Longitude != null ? pr.Longitude : md.longitude);
       if (!isFinite(lat) || !isFinite(lon)) return;
       rec.lat = lat; rec.lon = lon;
@@ -2280,13 +2302,63 @@ function handleAisText(ws, txt) {
       const tr = state.shipTrails[mmsi] || (state.shipTrails[mmsi] = []);
       const last = tr[tr.length - 1];
       if (!last || Math.abs(last[0] - lon) > 0.01 || Math.abs(last[1] - lat) > 0.01) { tr.push([lon, lat]); if (tr.length > 14) tr.shift(); }
-    } else if (m.MessageType === "ShipStaticData" && m.Message && m.Message.ShipStaticData) {
+      if (rec.dark) { rec.dark = false; rec.reappeared = Date.now(); }
+    } else if (mt === "ShipStaticData" && m.Message && m.Message.ShipStaticData) {
       rec.type = Number(m.Message.ShipStaticData.Type) || rec.type;
+    } else if (mt === "StaticDataReportB" && m.Message && m.Message.StaticDataReportB) {
+      const rb = m.Message.StaticDataReportB.ReportB || m.Message.StaticDataReportB;
+      rec.type = Number(rb.ShipType) || rec.type; rec.classB = true;
+    } else if (mt === "StaticDataReportA" && m.Message && m.Message.StaticDataReportA) {
+      const ra = m.Message.StaticDataReportA.ReportA || m.Message.StaticDataReportA;
+      if (ra.Name) rec.name = String(ra.Name).trim(); rec.classB = true;
     }
     state.ais.lastMsg = Date.now();
     if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; refreshShips(); }
     else if (state.ais.msgs <= 20 || state.ais.msgs % 25 === 0) { if (!state.ais.refreshQueued) { state.ais.refreshQueued = true; setTimeout(() => { state.ais.refreshQueued = false; refreshShips(); }, 1500); } }
   }
+}
+
+/* vessel class from AIS ship type (Class B small craft when static data is Class B or absent) */
+function shipClass(v) { return v.dark ? "dark" : shipBaseClass(v); }
+function shipBaseClass(v) {
+  const t = v.type || 0;
+  if (t === 35) return "military";
+  if (t === 51 || t === 55) return "law";
+  if (t >= 80 && t <= 89) return "tanker";
+  if (t >= 70 && t <= 79) return "cargo";
+  if (t >= 60 && t <= 69) return "passenger";
+  if (t === 30 || t === 31 || t === 32 || t === 36 || t === 37 || t === 52 || t === 53 || t === 54 || t === 56 || t === 57) return "small";
+  if (v.classB) return "small";
+  return "other";
+}
+const SHIP_FILTERS = [["all", "All"], ["military", "Military"], ["law", "Coast guard / LE"], ["tanker", "Tankers"], ["cargo", "Cargo"], ["small", "Small craft"], ["dark", "AIS gaps"]];
+function shipVisible(v) {
+  const f = state.shipFilter;
+  if (f === "all") return true;
+  if (f === "dark") return !!v.dark;
+  return shipBaseClass(v) === f; // a type filter keeps its dark members visible (a warship going dark is the point)
+}
+
+/* AIS-gap ("dark ship") detection: underway, inside a subscribed area, heard
+   since this connection opened, then silent for 12+ minutes while vessels
+   around it keep reporting. Excludes ships near an area edge (they probably
+   just left coverage). */
+function insideBoxes(lat, lon, margin) {
+  return state.ais.boxes.some(b => lat >= b[0][0] + margin && lat <= b[1][0] - margin && lon >= b[0][1] + margin && lon <= b[1][1] - margin);
+}
+function detectDark() {
+  const now = Date.now();
+  const healthy = state.ais.ws && state.ais.ws.readyState === 1 && now - state.ais.lastMsg < 60 * 1000;
+  Object.values(state.ships).forEach(v => {
+    if (!isFinite(v.lat)) return;
+    const silent = now - v.t;
+    if (silent < 12 * 60 * 1000) { v.dark = false; return; }
+    if (!healthy) return;                                // can't judge gaps while our own feed is down
+    if (v.t < state.ais.connectedAt + 60 * 1000) return; // only vessels heard on this connection
+    if (v.sog < 3) return;                               // anchored / moored ships report slowly
+    if (!insideBoxes(v.lat, v.lon, 0.4)) return;         // near an edge: probably sailed out of coverage
+    if (!v.dark) { v.dark = true; v.darkAt = v.t; }
+  });
 }
 
 function shipTypeLabel(t) {
@@ -2302,8 +2374,13 @@ function shipTypeLabel(t) {
 }
 
 function refreshShips() {
-  const cutoff = Date.now() - 30 * 60 * 1000;
-  Object.keys(state.ships).forEach(k => { if (state.ships[k].t < cutoff) { delete state.ships[k]; delete state.shipTrails[k]; } });
+  detectDark();
+  const now = Date.now();
+  Object.keys(state.ships).forEach(k => {
+    const v = state.ships[k];
+    const keep = v.dark ? 90 * 60 * 1000 : 30 * 60 * 1000;
+    if (now - v.t > keep) { delete state.ships[k]; delete state.shipTrails[k]; }
+  });
   state.layerData.ships = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon)).slice(0, 4000);
   if (state.layerData.ships.length && state.layerStatus.ships !== "live" && state.ais.ws) state.layerStatus.ships = "live";
   if (state.layers.ships) { renderLayerChips(); renderOverlay(); renderDetail(); }
@@ -2351,7 +2428,7 @@ function renderLayerChips() {
       else if (st === "empty") tag = l.id === "area" ? "airspace empty" : "0";
       else if (st === "ok") tag = l.id === "cables" ? String(state.layerData.cables.length) + " systems" : String(state.layerData[l.id].length);
       else if (st === "fallback") tag = "corridors only · add cables.json";
-      else if (st === "live") tag = String(state.layerData.ships.length) + " live";
+      else if (st === "live") { const dk = state.layerData.ships.filter(v => v.dark).length; tag = String(state.layerData.ships.length) + " live" + (dk ? " · " + dk + " dark" : ""); }
       if (l.id === "ships" && st === "loading" && state.ais.diag.startsWith("connected")) tag = "connected · waiting";
     }
     const dot = on ? ({ aircraft: "#35C4D7", cables: "var(--p1)", ships: "#7FB3D5" }[l.id] || "var(--accent-lt)") : "var(--line-lt)";
@@ -2364,6 +2441,15 @@ function renderLayerChips() {
   }));
   const lab = $("mb-layers-lab");
   if (lab) lab.textContent = String(LAYERS.filter(l => state.layers[l.id]).length) + " on";
+  const sf = $("ship-filter");
+  if (sf) {
+    sf.classList.toggle("on", !!state.layers.ships);
+    const counts = {};
+    state.layerData.ships.forEach(v => { const c = shipBaseClass(v); counts[c] = (counts[c] || 0) + 1; if (v.dark) counts.dark = (counts.dark || 0) + 1; });
+    sf.innerHTML = `<span class="sf-lab">Vessels · ${state.layerData.ships.length} tracked</span>` + SHIP_FILTERS.map(([id, label]) =>
+      `<button class="chip ${state.shipFilter === id ? "on" : ""}" data-sf="${id}">${label}${id === "all" ? "" : ` <span style="opacity:.7">${counts[id] || 0}</span>`}</button>`).join("");
+    sf.querySelectorAll("[data-sf]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); state.shipFilter = b.dataset.sf; renderLayerChips(); renderOverlay(); }));
+  }
   const dg = $("air-diag");
   if (dg) {
     const parts = [];
@@ -2404,6 +2490,7 @@ function renderOverlay() {
   }
   if (state.layers.ships) {
     state.layerData.ships.forEach(v => {
+      if (!shipVisible(v)) return;
       const tr = state.shipTrails[v.mmsi];
       if (tr && tr.length > 1) {
         const d = tr.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
@@ -2432,7 +2519,11 @@ function renderOverlay() {
   }
   if (state.layers.ships) {
     state.layerData.ships.forEach((v, i) => {
-      html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:11;"><div class="sh-d${v.type === 35 ? " mil" : ""}" style="transform:rotate(${v.cog}deg)"></div></div>`;
+      if (!shipVisible(v)) return;
+      if (v.dark) { html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:13;"><div class="sh-dark"></div></div>`; return; }
+      const c = shipClass(v);
+      const cls = c === "military" ? " mil" : c === "law" ? " law" : c === "tanker" ? " tanker" : c === "small" ? " small" : "";
+      html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:11;"><div class="sh-d${cls}" style="transform:rotate(${v.cog}deg)"></div></div>`;
     });
   }
   if (state.layers.aircraft) {
@@ -2462,7 +2553,9 @@ function renderOverlay() {
   pts.querySelectorAll("[data-sh]").forEach(el => {
     const v = state.layerData.ships[Number(el.dataset.sh)];
     if (!v) return;
-    const h = () => tip(`<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`);
+    const h = () => tip(v.dark
+      ? `<span style="font-size:11px; color:var(--p1)">AIS GAP · ${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">last heard ${timeAgo(new Date(v.t))} · was underway ${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}°</span>`
+      : `<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : (v.classB ? " · class B" : "")}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`);
     el.addEventListener("mouseenter", h);
     el.addEventListener("mouseleave", hide);
     el.addEventListener("click", e => { e.stopPropagation(); h(); setTimeout(hide, 2500); });
@@ -2521,13 +2614,18 @@ function renderSignals(ev) {
   if (state.layers.ships) {
     const st = state.layerStatus.ships;
     let v = "—";
-    if (st === "live") {
+    if (st === "live" || (st === "loading" && state.layerData.ships.length)) {
       const near = state.layerData.ships.filter(x => kmBetween(ev.lon, ev.lat, x.lon, x.lat) <= 450);
-      const tk = near.filter(x => x.type >= 80 && x.type <= 89).length;
-      v = String(near.length) + (tk ? " (" + tk + " tankers)" : "");
+      const tk = near.filter(x => !x.dark && shipClass(x) === "tanker").length;
+      const ml = near.filter(x => !x.dark && shipClass(x) === "military").length;
+      v = String(near.filter(x => !x.dark).length) + (tk ? " · " + tk + " tankers" : "") + (ml ? " · " + ml + " mil" : "");
+      const dk = near.filter(x => x.dark).length;
+      rows.push(["Vessels ≤450km (AIS)", v]);
+      rows.push(["AIS gaps ≤450km (went dark underway)", dk ? String(dk) : "0"]);
+      v = null;
     } else if (st === "nokey") v = "add key";
     else if (st === "loading") v = "···";
-    rows.push(["Vessels ≤450km (AIS)", v]);
+    if (v !== null) rows.push(["Vessels ≤450km (AIS)", v]);
   }
   const cps = CHOKEPOINTS.filter(c => c.ev === ev.id).map(c => c.name);
   if (cps.length) rows.push(["Chokepoints in scope", cps.length === 1 ? cps[0] : String(cps.length)]);
