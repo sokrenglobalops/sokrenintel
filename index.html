@@ -2265,7 +2265,7 @@ function handleAisText(ws, txt) {
     }
     if (!m || !m.MetaData) return;
     state.ais.msgs++;
-    if (state.ais.msgs === 1 || state.ais.msgs % 50 === 0) { state.ais.diag = "receiving · " + state.ais.msgs + " messages"; renderLayerChips(); }
+    if (state.ais.msgs === 1 || state.ais.msgs % 50 === 0) { state.ais.diag = "receiving · " + state.ais.msgs + " messages · " + Object.values(state.ships).filter(v => isFinite(v.lat)).length + " vessels positioned"; renderLayerChips(); }
     const md = m.MetaData, mmsi = String(md.MMSI || "");
     if (!mmsi) return;
     const rec = state.ships[mmsi] || (state.ships[mmsi] = { mmsi, name: "", lat: NaN, lon: NaN, cog: 0, sog: 0, type: 0, t: 0 });
@@ -2284,7 +2284,8 @@ function handleAisText(ws, txt) {
       rec.type = Number(m.Message.ShipStaticData.Type) || rec.type;
     }
     state.ais.lastMsg = Date.now();
-    if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; renderLayerChips(); }
+    if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; refreshShips(); }
+    else if (state.ais.msgs <= 20 || state.ais.msgs % 25 === 0) { if (!state.ais.refreshQueued) { state.ais.refreshQueued = true; setTimeout(() => { state.ais.refreshQueued = false; refreshShips(); }, 1500); } }
   }
 }
 
@@ -3174,7 +3175,7 @@ setInterval(loadWire, 2 * 60 * 1000);
 setInterval(advanceWire, 6000);
 setInterval(() => { if (state.layers.aircraft) loadFlights(); }, 60 * 1000);
 setInterval(() => { if (state.layers.aircraft && state.selected) loadArea(); }, 60 * 1000);
-setInterval(refreshShips, 20 * 1000);
+setInterval(refreshShips, 5 * 1000);
 setInterval(() => { if (state.layers.ships && aisKey() && (!state.ais.ws || state.ais.ws.readyState > 1)) connectAis(); }, 90 * 1000);
 
 $("ak-close").addEventListener("click", closeAkey);
