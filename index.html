@@ -454,7 +454,8 @@
     <div class="pop-wrap">
       <button class="mb-btn" id="mb-layers" data-pop="pop-layers">Layers <b id="mb-layers-lab">0</b> ▾</button>
       <div class="pop" id="pop-layers"><div class="pop-title">Map layers</div><div id="layer-chips"></div>
-        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS (AISStream key). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div></div>
+        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS (AISStream key). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div>
+        <div class="pop-note" id="air-diag" style="color:var(--mut)"></div></div>
     </div>
   </div>
 </div></div>
@@ -1664,6 +1665,8 @@ function applyView() {
   });
   $("z-reset").style.display = v.k > 1 ? "block" : "none";
   $("map-wrap").classList.toggle("zoomed", v.k >= 1.8);
+  const cp = $("cable-path");
+  if (cp) { cp.setAttribute("stroke-width", v.k >= 2.5 ? "1.4" : "0.8"); cp.setAttribute("opacity", v.k >= 2.5 ? "0.85" : "0.6"); }
   $("map-wrap").style.cursor = v.k > 1 ? "grab" : "default";
 }
 
@@ -2034,10 +2037,13 @@ async function loadFlights() {
   state.layerStatus.flights = "loading"; renderLayerChips();
   try {
     let raw, src = "adsb";
+    state.airDiag = "";
     try {
       const r = await fetchJSONDirect(["https://api.airplanes.live/v2/mil", "https://api.adsb.lol/v2/mil"]);
       raw = r.data.ac || r.data.aircraft || (Array.isArray(r.data) ? r.data : []);
+      state.airDiag = "ADS-B: " + (r.url.includes("airplanes") ? "airplanes.live" : "adsb.lol");
     } catch (e1) {
+      state.airDiag = "ADS-B blocked (" + String(e1 && e1.message || e1).slice(0, 40) + ")";
       // OpenSky: keyless and browser-reachable, but rate limited, so only every 20 min
       const stale = Date.now() - (state.openskyAt || 0) < 19 * 60 * 1000;
       if (stale && state.layerData.flights.length) { state.layerStatus.flights = "ok"; renderLayerChips(); return; }
@@ -2046,7 +2052,9 @@ async function loadFlights() {
         state.openskyAt = Date.now();
         raw = (r.data.states || []).map(fromOpenSky).filter(a => a && a.mil);
         src = "opensky";
+        state.airDiag += " · OpenSky ok";
       } catch (e2) {
+        state.airDiag += " · OpenSky " + (e2 && e2.limited ? "rate limited" : "blocked (" + String(e2 && e2.message || e2).slice(0, 40) + ")");
         state.layerStatus.flights = e2 && e2.limited ? "limited" : "error";
         renderLayerChips(); renderOverlay(); renderDetail(); return;
       }
@@ -2323,6 +2331,8 @@ function renderLayerChips() {
   }));
   const lab = $("mb-layers-lab");
   if (lab) lab.textContent = String(LAYERS.filter(l => state.layers[l.id]).length) + " on";
+  const dg = $("air-diag");
+  if (dg) dg.textContent = state.layers.aircraft && state.airDiag ? "Aircraft sources \u2014 " + state.airDiag : "";
 }
 
 /* project a short heading vector ahead of an aircraft (≈4 min of travel) */
@@ -2346,7 +2356,7 @@ function renderOverlay() {
       state.layerData.cables.forEach(c => {
         c.segs.forEach(sg => { d += sg.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join(""); });
       });
-      svg += `<path d="${d}" fill="none" stroke="#E0564F" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>`;
+      svg += `<path id="cable-path" d="${d}" fill="none" stroke="#E0564F" stroke-width="${state.view.k >= 2.5 ? 1.4 : 0.8}" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" opacity="${state.view.k >= 2.5 ? 0.85 : 0.6}"/>`;
     } else {
       CABLES.forEach(c => {
         const d = c.pts.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
@@ -2718,8 +2728,14 @@ function renderCk() {
        <span class="ck-s">${esc(x.sub || "")}</span>
      </div>`).join("");
   list.querySelectorAll("[data-i]").forEach(el => {
-    el.addEventListener("mouseenter", () => { state.ck.idx = Number(el.dataset.i); renderCk(); });
-    el.addEventListener("click", () => ckRun(Number(el.dataset.i)));
+    el.addEventListener("mouseenter", () => {
+      const i = Number(el.dataset.i);
+      if (i === state.ck.idx) return;
+      state.ck.idx = i;
+      list.querySelectorAll(".ck-item").forEach(x => x.classList.toggle("sel", Number(x.dataset.i) === i));
+    });
+    el.addEventListener("mousedown", e => { e.preventDefault(); ckRun(Number(el.dataset.i)); });
+    el.addEventListener("touchend", e => { e.preventDefault(); ckRun(Number(el.dataset.i)); }, { passive: false });
   });
   const sel = list.querySelector(".ck-item.sel");
   if (sel && sel.scrollIntoView) sel.scrollIntoView({ block: "nearest" });
