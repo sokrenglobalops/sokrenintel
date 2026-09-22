@@ -65,6 +65,96 @@
     color: var(--accent-lt); border: 1px solid var(--line); border-radius: 5px; padding: 6px 10px;
   }
   #refresh:disabled { color: var(--dim); }
+
+  /* header nav + search */
+  .hdr-in { flex-wrap: wrap; row-gap: 8px; }
+  #nav { display: flex; gap: 2px; }
+  .nav-btn { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: var(--mut); padding: 6px 10px; border-radius: 5px; }
+  .nav-btn:hover { color: var(--ink); }
+  .nav-btn.on { color: var(--ink); background: var(--raised); }
+  .hdr-right { display: flex; align-items: center; gap: 10px; }
+  #hdr-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; color: var(--dim); font-size: 11px; min-width: 250px; cursor: text; text-align: left; }
+  #hdr-search:hover { border-color: var(--line-lt); }
+  .hs-k { margin-left: auto; font-size: 9px; border: 1px solid var(--line); border-radius: 3px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace; }
+  @media (max-width: 760px) {
+    #nav { order: 3; width: 100%; justify-content: space-between; }
+    .nav-btn { padding: 6px 6px; }
+    #hdr-search { min-width: 0; padding: 6px 8px; }
+    .hs-text, .hs-k { display: none; }
+  }
+
+  /* views */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* monitor bar dropdowns */
+  .mb-ctl { display: flex; align-items: center; gap: 8px; }
+  .pop-wrap { position: relative; }
+  .mb-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace; color: var(--mut); border: 1px solid var(--line); border-radius: 5px; padding: 5px 10px; }
+  .mb-btn:hover, .mb-btn.on { color: var(--ink); border-color: var(--line-lt); }
+  .mb-btn b { color: var(--accent-lt); font-weight: 500; }
+  .pop { display: none; position: absolute; top: calc(100% + 6px); right: 0; z-index: 60; background: var(--surface); border: 1px solid var(--line-lt); border-radius: 8px; padding: 10px; min-width: 240px; max-width: min(440px, calc(100vw - 28px)); box-shadow: 0 18px 44px rgba(0,0,0,0.5); }
+  .pop.open { display: block; }
+  .pop-title { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--dim); font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; }
+  .pop-note { font-size: 10px; color: var(--dim); margin-top: 8px; line-height: 1.5; }
+
+  /* detail drawer */
+  #drawer-bg { display: none; position: fixed; inset: 0; z-index: 110; background: rgba(7,9,13,0.55); }
+  @media (max-width: 900px) { #drawer-bg.open { display: block; } }
+  .d-side { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .d-side > div { margin-top: 0 !important; }
+  .d-side #d-signals { grid-column: 1 / -1; }
+  @media (max-width: 560px) { .d-side { grid-template-columns: 1fr; } }
+  .d-foot { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; gap: 10px; }
+  .d-foot button { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: var(--accent-lt); border: 1px solid var(--line); border-radius: 5px; padding: 6px 10px; }
+
+  /* situations view */
+  .sit-wrap { max-width: 1180px; margin: 0 auto; padding: 18px 20px 30px; }
+  .sit-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .sit-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--mut); font-family: 'JetBrains Mono', monospace; }
+  .sit-count { font-size: 10px; color: var(--dim); font-family: 'JetBrains Mono', monospace; margin-left: 8px; }
+  .sit-sec { margin-top: 18px; }
+  .sit-sec-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px; }
+  .sit-sec-sub { font-size: 10px; color: var(--dim); text-transform: none; letter-spacing: 0; }
+  .sit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 10px; }
+  .sit-card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--surface); cursor: pointer; text-align: left; }
+  .sit-card:hover { border-color: var(--line-lt); }
+  .sc-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .sc-name { font-size: 13px; color: var(--ink); line-height: 1.35; }
+  .sc-sti { font-size: 13px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+  .sc-tags { margin-top: 7px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .sc-brief { font-size: 11px; color: var(--mut); margin-top: 8px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .sc-out { font-size: 10px; color: var(--dim); margin-top: 8px; font-family: 'JetBrains Mono', monospace; line-height: 1.5; }
+  .sc-out b { color: var(--accent-lt); font-weight: 500; }
+  .sit-empty { padding: 30px; text-align: center; font-size: 12px; color: var(--dim); }
+
+  /* about view */
+  .about { max-width: 820px; margin: 0 auto; padding: 24px 20px 40px; }
+  .about h2 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; margin: 24px 0 8px; font-weight: 500; }
+  .about h2:first-child { margin-top: 0; }
+  .about p { font-size: 13px; color: var(--mut); line-height: 1.7; }
+  .about p + p { margin-top: 8px; }
+  .about ul { margin: 6px 0 0 16px; }
+  .about li { font-size: 12px; color: var(--mut); line-height: 1.7; }
+  .about li b { color: var(--ink); font-weight: 500; }
+  .about a { color: var(--accent-lt); text-decoration: underline; }
+  .about #sti-key { padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); margin-top: 10px; }
+
+  /* ad-hoc live coverage search */
+  #adhoc { display: none; border: 1px solid var(--line-lt); border-radius: 8px; padding: 12px 14px; margin-bottom: 18px; background: var(--surface); }
+  #adhoc.open { display: block; }
+  .ah-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .ah-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; }
+  .ah-q { font-size: 13px; color: var(--ink); }
+  .ah-meta { font-size: 10px; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+  .ah-close { margin-left: auto; font-size: 10px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; }
+  #ah-domains { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  #ah-list .fi:last-child { border-bottom: none; }
+  @media (max-width: 560px) {
+    .hdr-in { padding: 10px 14px; }
+    .brand-sub, #updated { display: none; }
+    .mb-in, .mb-row2 { padding-left: 14px; padding-right: 14px; }
+  }
   .spin { display: inline-block; animation: spin 1s linear infinite; }
   @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
@@ -92,6 +182,7 @@
     font-family: 'JetBrains Mono', monospace;
   }
   .marker.sel .marker-label { color: var(--ink); border-color: var(--line-lt); }
+  @media (max-width: 640px) { #map-wrap:not(.zoomed) .marker:not(.sel) .marker-label { display: none; } }
   #tooltip {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
     background: rgba(22,28,37,0.96); border: 1px solid var(--line-lt); border-radius: 5px;
@@ -118,10 +209,61 @@
   .mb-in { max-width: 1180px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .mb-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--mut); font-family: 'JetBrains Mono', monospace; }
   #map-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .mb-row2 { max-width: 1180px; margin: 0 auto; padding: 0 20px 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .mb-lab { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+  #layer-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lchip { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 3px 9px; border-radius: 4px; border: 1px solid var(--line); color: var(--mut); font-family: 'JetBrains Mono', monospace; }
+  .lchip i { width: 6px; height: 6px; border-radius: 50%; background: var(--line-lt); display: inline-block; }
+  .lchip.on { color: var(--ink); border-color: var(--line-lt); background: var(--surface); }
+  .lchip .st { font-size: 8px; color: var(--dim); }
+  .kbd { font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; }
+
+  /* map overlay */
+  #ov { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  #ov-pts { position: absolute; inset: 0; pointer-events: none; }
+  .ovpt { position: absolute; pointer-events: auto; cursor: pointer; }
+  .cp-d { width: 9px; height: 9px; border: 1.5px solid var(--accent-lt); background: rgba(11,14,19,0.6); transform: rotate(45deg); }
+  .sh-d { width: 7px; height: 7px; background: #7FB3D5; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); opacity: 0.9; }
+  .sh-d.mil { background: #35C4D7; }
+  .ac-d { width: 0; height: 0; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-bottom: 11px solid #35C4D7; filter: drop-shadow(0 0 3px rgba(53,196,215,0.55)); }
+  .ac-d.emg { border-bottom-color: var(--p1); filter: drop-shadow(0 0 4px rgba(217,83,79,0.8)); }
+  .ac-d.civ { border-left-width: 3.5px; border-right-width: 3.5px; border-bottom: 8px solid #8C96A3; filter: none; opacity: 0.85; }
+  #akey { display: none; position: fixed; inset: 0; z-index: 210; background: rgba(7,9,13,0.72); backdrop-filter: blur(3px); }
+  #akey.open { display: block; }
+  .fk-body { padding: 14px 16px; font-size: 12px; color: var(--mut); line-height: 1.55; }
+  .fk-body a { color: var(--accent-lt); text-decoration: underline; }
+  .fk-row { display: flex; gap: 8px; margin-top: 12px; }
+  #ak-input { flex: 1; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--bg); }
+  .fk-btn { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--line); color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; }
+
+  /* command palette */
+  #cmdk { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(7,9,13,0.72); backdrop-filter: blur(3px); }
+  #cmdk.open { display: block; }
+  .ck-box { max-width: 620px; margin: 10vh auto 0; background: var(--surface); border: 1px solid var(--line-lt); border-radius: 10px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+  .ck-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  #ck-input { flex: 1; font-size: 15px; }
+  .ck-list { max-height: 54vh; overflow-y: auto; }
+  .ck-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; cursor: pointer; border-left: 2px solid transparent; }
+  .ck-item.sel { background: var(--raised); border-left-color: var(--accent); }
+  .ck-k { font-size: 8px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 3px; padding: 2px 5px; flex-shrink: 0; width: 74px; text-align: center; }
+  .ck-n { font-size: 13px; color: var(--ink); min-width: 0; flex: 1; }
+  .ck-s { font-size: 10px; color: var(--dim); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+  .ck-empty { padding: 26px; text-align: center; font-size: 12px; color: var(--dim); }
+  .ck-foot { padding: 8px 16px; border-top: 1px solid var(--line); font-size: 9px; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+
+  /* live signals in detail */
+  #d-signals { border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-top: 10px; background: var(--raised); }
+  .sg-lab { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mut); font-family: 'JetBrains Mono', monospace; }
+  .sg-row { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; margin-top: 7px; }
+  .sg-n { font-size: 11px; color: var(--mut); }
+  .sg-v { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--ink); flex-shrink: 0; }
+  .sg-note { font-size: 9px; color: var(--dim); margin-top: 9px; line-height: 1.5; }
 
   /* intel panels */
   #intel { border-bottom: 1px solid var(--line); }
-  #intel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 16px; padding-bottom: 16px; }
+  #intel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 16px; padding-bottom: 20px; }
+  @media (max-width: 900px) { #intel-grid { grid-template-columns: 1fr; } }
   .ipanel { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--surface); }
   .ip-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; }
   .ip-sub { font-size: 10px; color: var(--dim); margin: 2px 0 6px; }
@@ -142,15 +284,10 @@
   .sk-grad { height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--p4) 0%, var(--p4) 49%, var(--p3) 50%, var(--p3) 64%, var(--p2) 65%, var(--p2) 79%, var(--p1) 80%, var(--p1) 100%); }
   .sk-bands { display: flex; margin-top: 4px; font-size: 8px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
   .sk-bands span { text-align: center; }
-  @media (min-width: 1620px) {
-    #sti-key { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); width: 200px; max-width: none; margin: 0; padding: 14px; display: block; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); z-index: 40; }
-    .sk-desc { margin: 8px 0 12px; }
-    .sk-scale { width: 100%; }
-  }
+
 
   /* detail assessment */
-  .d-grid { display: grid; grid-template-columns: 1fr 250px; gap: 20px; margin-top: 14px; }
-  @media (max-width: 700px) { .d-grid { grid-template-columns: 1fr; } }
+  .d-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
   .as-row { padding: 7px 0; border-top: 1px solid var(--line); }
   .as-row:first-child { border-top: none; }
   .as-lab { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; }
@@ -174,8 +311,7 @@
   .an-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
   .an-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mut); font-family: 'JetBrains Mono', monospace; }
   .an-method { font-size: 8px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; }
-  .an-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
-  @media (max-width: 820px) { .an-grid { grid-template-columns: 1fr; } }
+  .an-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 14px; }
   .an-sec-title { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-lt); font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; }
   .ach-row { margin-bottom: 9px; }
   .ach-top { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; }
@@ -230,8 +366,9 @@
   #net-note .maxw { padding: 12px 20px; font-size: 11px; color: var(--mut); }
 
   /* detail */
-  #detail { display: none; border-bottom: 1px solid var(--line); background: var(--surface); }
-  #detail .maxw { padding: 20px; }
+  #detail { position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh; width: min(620px, 100vw); background: var(--surface); border-left: 1px solid var(--line-lt); overflow-y: auto; -webkit-overflow-scrolling: touch; z-index: 120; transform: translateX(105%); transition: transform 0.25s ease; box-shadow: -24px 0 60px rgba(0,0,0,0.45); }
+  #detail.open { transform: translateX(0); }
+  #detail .maxw { padding: 18px 20px 40px; max-width: none; }
   .d-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
   .d-title { font-size: 16px; font-weight: 500; }
   .d-tags { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 2px; }
@@ -244,7 +381,6 @@
   #d-domains { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .dom { font-size: 10px; padding: 2px 8px; border-radius: 3px; background: var(--raised); border: 1px solid var(--line); color: var(--mut); font-family: 'JetBrains Mono', monospace; }
   #d-articles { margin-top: 12px; display: grid; grid-template-columns: 1fr; gap: 0 24px; }
-  @media (min-width: 720px) { #d-articles { grid-template-columns: 1fr 1fr; } }
   .art { display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
   .art-title { font-size: 12px; line-height: 1.45; }
   .art:hover .art-title { text-decoration: underline; }
@@ -291,28 +427,44 @@
       <img class="brand-lockup" alt="SOKREN" src="data:image/png;base64,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"/>
       <span class="brand-sub">Global Operations</span>
     </div>
-    <div style="display:flex; align-items:center; gap:12px;">
+    <nav id="nav">
+      <button class="nav-btn on" data-tab="home">Monitor</button>
+      <button class="nav-btn" data-tab="feed">Feed</button>
+      <button class="nav-btn" data-tab="situations">Situations</button>
+      <button class="nav-btn" data-tab="about">About</button>
+    </nav>
+    <div class="hdr-right">
+      <button id="hdr-search" aria-label="Search">⌕ <span class="hs-text">Search countries, situations, headlines</span><span class="hs-k">⌘K</span></button>
       <span id="updated"></span>
       <button id="refresh"><span id="refresh-icon">⟳</span><span id="refresh-text">Refresh</span></button>
     </div>
   </div>
 </div>
 
-<div id="wire-bar"><div id="wire-in">
-  <span class="wire-tag"><span class="wire-dot"></span>Wire</span>
-  <a id="wire-headline" href="#" target="_blank" rel="noopener noreferrer"></a>
-  <span id="wire-src"></span>
-</div></div>
+<div id="view-home" class="view active">
 
 <div id="monitor-bar"><div class="mb-in">
   <span class="mb-title">Global Conflict Monitor</span>
-  <div id="map-chips"></div>
+  <div class="mb-ctl">
+    <div class="pop-wrap">
+      <button class="mb-btn" id="mb-filter" data-pop="pop-filter">Filter <b id="mb-filter-lab">ALL</b> ▾</button>
+      <div class="pop" id="pop-filter"><div class="pop-title">Show situations by category</div><div id="map-chips"></div>
+        <div class="pop-note">None hides all situation markers so only map layers (chokepoints, cables, aircraft, ships) remain.</div></div>
+    </div>
+    <div class="pop-wrap">
+      <button class="mb-btn" id="mb-layers" data-pop="pop-layers">Layers <b id="mb-layers-lab">0</b> ▾</button>
+      <div class="pop" id="pop-layers"><div class="pop-title">Map layers</div><div id="layer-chips"></div>
+        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS (AISStream key). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div></div>
+    </div>
+  </div>
 </div></div>
 
 <div id="map-wrap">
   <div id="map-layer">
     <svg id="basemap" viewBox="0 0 360 180" preserveAspectRatio="none"></svg>
     <div id="basemap-msg">loading basemap…</div>
+    <svg id="ov" viewBox="0 0 360 180" preserveAspectRatio="none"></svg>
+    <div id="ov-pts"></div>
     <div id="markers"></div>
   </div>
   <div id="tooltip"></div>
@@ -330,58 +482,34 @@
   </div>
 </div>
 
+<div id="intel"><div class="maxw-wide" id="intel-grid">
+  <div class="ipanel"><div class="ip-title">Active Conflicts</div><div class="ip-sub">what's happening now</div><div class="ip-list" id="ip-active"></div></div>
+  <div class="ipanel"><div class="ip-title">Emerging Flashpoints</div><div class="ip-sub">deteriorating, not yet major</div><div class="ip-list" id="ip-emerging"></div></div>
+  <div class="ipanel"><div class="ip-title">Analytic Outlook</div><div class="ip-sub">assessed likely developments</div><div class="ip-list" id="ip-outlook"></div></div>
+</div></div>
+</div>
+
+<div id="view-feed" class="view">
+<div id="wire-bar"><div id="wire-in">
+  <span class="wire-tag"><span class="wire-dot"></span>Wire</span>
+  <a id="wire-headline" href="#" target="_blank" rel="noopener noreferrer"></a>
+  <span id="wire-src"></span>
+</div></div>
+
 <div id="net-note"><div class="maxw">
   ⚠ Live refresh isn't reaching GDELT from this environment, so you're seeing the bundled snapshot — real articles
   with real sources, gathered Sep 4, 2026. Opened in Safari or Chrome on your own device, live coverage loads
   automatically on top of it.
 </div></div>
 
-<div id="intel"><div class="maxw-wide" id="intel-grid">
-  <div class="ipanel"><div class="ip-title">Active Conflicts</div><div class="ip-sub">what's happening now</div><div class="ip-list" id="ip-active"></div></div>
-  <div class="ipanel"><div class="ip-title">Emerging Flashpoints</div><div class="ip-sub">deteriorating, not yet major</div><div class="ip-list" id="ip-emerging"></div></div>
-  <div class="ipanel"><div class="ip-title">Global Threat Activity</div><div class="ip-sub">cyber, terror, maritime, air</div><div class="ip-list" id="ip-threat"></div></div>
-  <div class="ipanel"><div class="ip-title">Analytic Outlook</div><div class="ip-sub">assessed likely developments</div><div class="ip-list" id="ip-outlook"></div></div>
-</div>
-<div id="sti-key">
-  <div class="sk-head"><span class="sk-title">STI</span><span class="sk-sub">SOKREN Threat Index</span></div>
-  <div class="sk-desc">A 0&ndash;100 composite instability score per situation, drawn from kinetic activity, military posture, cyber activity, political instability and humanitarian indicators.</div>
-  <div class="sk-scale">
-    <div class="sk-grad"></div>
-    <div class="sk-bands">
-      <span style="width:50%; color:var(--p4)">LOW &lt;50</span><span style="width:15%; color:var(--p3)">MED 50</span><span style="width:15%; color:var(--p2)">HIGH 65</span><span style="width:20%; color:var(--p1)">CRIT 80</span>
-    </div>
+<div class="maxw" style="padding-top:18px">
+  <div id="adhoc">
+    <div class="ah-head"><span class="ah-title">Live coverage search</span><span class="ah-q" id="ah-q"></span><span class="ah-meta" id="ah-meta"></span><button class="ah-close" id="ah-close">Close</button></div>
+    <div id="ah-domains"></div>
+    <div id="ah-list"></div>
   </div>
-</div>
 </div>
 
-<div id="detail"><div class="maxw">
-  <div class="d-top">
-    <div style="min-width:0">
-      <div class="d-tags">
-        <span class="d-title" id="d-name"></span>
-        <span class="tag" id="d-prio"></span>
-        <span class="tag" id="d-emg" style="display:none; color:#35C4D7; border-color:#35C4D7;">EMERGING</span>
-        <span class="tag" id="d-cat"></span>
-      </div>
-      <p class="d-brief" id="d-brief"></p>
-    </div>
-    <button id="d-close">✕</button>
-  </div>
-  <div class="d-grid">
-    <div id="d-assess"></div>
-    <div>
-      <div id="d-sti"></div>
-      <div id="d-outlook"></div>
-    </div>
-  </div>
-  <div id="d-analysis"></div>
-  <div class="d-cov-head">
-    <span class="d-cov-title">Live coverage</span>
-    <span class="d-cov-meta" id="d-meta"></span>
-  </div>
-  <div id="d-domains"></div>
-  <div id="d-articles"></div>
-</div></div>
 
 <div id="feed-sec"><div class="maxw">
   <div class="feed-head">
@@ -409,15 +537,114 @@
     <div id="sources-grid"></div>
   </div>
 </div></div>
+</div>
+
+<div id="view-situations" class="view"><div class="sit-wrap">
+  <div class="sit-head">
+    <div><span class="sit-title">Situations</span><span class="sit-count" id="sit-count"></span></div>
+    <div class="search-box">⌕ <input id="sit-search" placeholder="Filter by name, country, category" style="width:220px"/></div>
+  </div>
+  <div class="sit-sec"><div class="sit-sec-title">Active Conflicts <span class="sit-sec-sub">armed conflict under way</span></div><div class="sit-grid" id="sit-active"></div></div>
+  <div class="sit-sec"><div class="sit-sec-title">Global Threat Activity <span class="sit-sec-sub">cyber, terror, maritime, military pressure</span></div><div class="sit-grid" id="sit-threat"></div></div>
+  <div class="sit-sec"><div class="sit-sec-title">Emerging Flashpoints <span class="sit-sec-sub">deteriorating, not yet major</span></div><div class="sit-grid" id="sit-emerging"></div></div>
+  <div class="sit-empty" id="sit-empty" style="display:none">No situations match.</div>
+</div></div>
+
+<div id="view-about" class="view"><div class="about">
+  <h2>What this is</h2>
+  <p>SOKREN Global Operations is an open situational-awareness platform. The monitor plots tracked situations on a world
+  map by intelligence priority, layers live signals over them, and pairs each situation with a structured analytic
+  assessment: what is happening, why, and what is likely next. Anyone can use it. Nothing requires an account.</p>
+  <h2>How to read it</h2>
+  <ul>
+    <li><b>Priority</b> is the editorial tier of a situation: P1 Critical, P2 High, P3 Medium, P4 Low. Cyan-ringed markers are emerging flashpoints.</li>
+    <li><b>Layers</b> add live context: military aircraft worldwide, all traffic within 250 nm of a selected situation, live AIS vessel positions around chokepoints and the selected situation, maritime chokepoints, and the world's submarine cable systems.</li>
+    <li><b>Live signals</b> inside a situation are proximity counts from those layers. Co-location is a cue to look, not corroboration.</li>
+    <li><b>Search</b> (⌘K / Ctrl+K) finds countries, situations, chokepoints, cables, and current headlines, and can run a live coverage search on any topic.</li>
+  </ul>
+  <h2>SOKREN Threat Index</h2>
+  <div id="sti-key">
+    <div class="sk-head"><span class="sk-title">STI</span><span class="sk-sub">SOKREN Threat Index</span></div>
+    <div class="sk-desc">A 0&ndash;100 composite instability score per situation, drawn from kinetic activity, military posture, cyber activity, political instability and humanitarian indicators.</div>
+    <div class="sk-scale">
+      <div class="sk-grad"></div>
+      <div class="sk-bands">
+        <span style="width:50%; color:var(--p4)">LOW &lt;50</span><span style="width:15%; color:var(--p3)">MED 50</span><span style="width:15%; color:var(--p2)">HIGH 65</span><span style="width:20%; color:var(--p1)">CRIT 80</span>
+      </div>
+    </div>
+  </div>
+  <h2>Methods</h2>
+  <p>Each situation carries an Analysis of Competing Hypotheses with a stated discriminator, linchpin (key-assumption)
+  analysis with explicit failure consequences, and a situation-adapted SWOT (stabilizing factors, vulnerabilities,
+  de-escalation paths, escalation drivers). Probabilities are structured analyst judgments consistent with ICD 203
+  estimative language, not model outputs. Assessments are dated and revised as situations move.</p>
+  <h2>Data sources</h2>
+  <ul>
+    <li><b>Coverage:</b> the GDELT Project (global news aggregation, ~15-minute refresh) plus direct wire feeds from Al Jazeera, BBC World, CISA, and The Record. Every item links to its original publisher.</li>
+    <li><b>Aircraft:</b> airplanes.live and adsb.lol (community ADS-B receivers), with OpenSky Network as fallback; military identification is by transponder database flag, or by ICAO hex allocation when only OpenSky is available.</li>
+    <li><b>Ships:</b> AISStream.io (live AIS, user-supplied free key). <b>Cables:</b> TeleGeography Submarine Cable Map (CC BY-NC-SA). <b>Basemap:</b> Natural Earth.</li>
+  </ul>
+  <h2>Limits</h2>
+  <p>Situation briefs, priority tiers, and index scores are editorial and can lag fast-moving events. Live layers depend on
+  public feeds and community relays and can be intermittent. Cable routes are TeleGeography's public map geometry, which is
+  indicative rather than survey-accurate; when it cannot be reached, a small set of curated trunk corridors is shown instead. This is an open tool for awareness, not a substitute for professional intelligence
+  support. Not affiliated with any government.</p>
+  <p style="margin-top:16px; color:var(--dim); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.1em;">PREDICT · PREPARE · PROTECT</p>
+</div></div>
 
 <footer><div class="maxw">
-  <p>
-    Open-source situational awareness. Coverage aggregated live from the GDELT Project (~15 min refresh) and
-    direct wire feeds from Al Jazeera, BBC World, CISA, and The Record; every item links to its original
-    publisher. Event briefs and priority tiers are editorial. Not affiliated with any government.
-    Predict · Prepare · Protect.
-  </p>
+  <p>Open-source situational awareness. Coverage from GDELT and primary wire feeds; every item links to its publisher.
+  Briefs and priorities are editorial. Not affiliated with any government. Predict · Prepare · Protect.</p>
 </div></footer>
+
+<div id="drawer-bg"></div>
+<div id="detail"><div class="maxw">
+  <div class="d-top">
+    <div style="min-width:0">
+      <div class="d-tags">
+        <span class="d-title" id="d-name"></span>
+        <span class="tag" id="d-prio"></span>
+        <span class="tag" id="d-emg" style="display:none; color:#35C4D7; border-color:#35C4D7;">EMERGING</span>
+        <span class="tag" id="d-cat"></span>
+      </div>
+      <p class="d-brief" id="d-brief"></p>
+    </div>
+    <button id="d-close">✕</button>
+  </div>
+  <div class="d-grid">
+    <div id="d-assess"></div>
+    <div class="d-side">
+      <div id="d-sti"></div>
+      <div id="d-outlook"></div>
+      <div id="d-signals"></div>
+    </div>
+  </div>
+  <div id="d-analysis"></div>
+  <div class="d-cov-head">
+    <span class="d-cov-title">Live coverage</span>
+    <span class="d-cov-meta" id="d-meta"></span>
+  </div>
+  <div id="d-domains"></div>
+  <div id="d-articles"></div>
+  <div class="d-foot"><button id="d-close2">Close</button><button id="d-feed">Open in feed</button></div>
+</div></div>
+
+<div id="cmdk"><div class="ck-box">
+  <div class="ck-top"><span class="mb-lab">Search</span><input id="ck-input" placeholder="Country, situation, chokepoint, headline — or any topic" autocomplete="off"/></div>
+  <div class="ck-list" id="ck-list"></div>
+  <div class="ck-foot">↑↓ navigate · ↵ open · esc close</div>
+</div></div>
+
+<div id="akey"><div class="ck-box">
+  <div class="ck-top"><span class="mb-lab">AIS ship tracking key</span><span style="flex:1"></span><button class="fk-btn" id="ak-close">Close</button></div>
+  <div class="fk-body">
+    Live vessel positions come from AISStream.io, which requires a free API key (sign in with GitHub at
+    <a href="https://aisstream.io" target="_blank" rel="noopener noreferrer">aisstream.io</a>, create a key, paste it below).
+    It is stored only in this browser. The layer subscribes to the waters around every chokepoint plus the selected situation.
+    <div class="fk-row"><input id="ak-input" placeholder="AISStream API key" autocomplete="off"/><button class="fk-btn" id="ak-save">Save</button><button class="fk-btn" id="ak-clear">Clear</button></div>
+  </div>
+</div></div>
+
 
 <script>
 /* ========================= configuration ========================= */
@@ -448,6 +675,7 @@ const CAT_DEFS = {
 const MAP_GROUPS = [
   ["all", "ALL"], ["armed", "CONFLICT"], ["military", "MILITARY"], ["terror", "TERROR"],
   ["unrest", "UNREST"], ["cyber", "CYBER"], ["geopol", "GEOPOLITICAL"], ["emerging", "EMERGING"],
+  ["none", "NONE"],
 ];
 
 function stiColor(v) {
@@ -1019,6 +1247,73 @@ const SEED = {
   ]),
 };
 
+
+/* ========================= map layers =========================
+   Chokepoints and cable trunk routes are curated and bundled so they always
+   render. Aircraft, ships and the full cable map are live. Oil-transit figures are EIA
+   order-of-magnitude values for context, not live measurements. */
+const CHOKEPOINTS = [
+  { id: "hormuz",   name: "Strait of Hormuz",      lon: 56.4,  lat: 26.6,  ev: "iran",    note: "~20M bbl/d oil transit · no practical bypass for most Gulf crude" },
+  { id: "bab",      name: "Bab el-Mandeb",         lon: 43.4,  lat: 12.6,  ev: "redsea",  note: "Red Sea southern gate · Suez feeder route" },
+  { id: "suez",     name: "Suez Canal",            lon: 32.35, lat: 30.6,  ev: "redsea",  note: "Europe–Asia shortcut · alternative is the Cape, +10–14 days" },
+  { id: "malacca",  name: "Strait of Malacca",     lon: 100.8, lat: 2.9,   ev: "taiwan",  note: "Principal Indian Ocean–Pacific artery · China energy dependency" },
+  { id: "taiwanst", name: "Taiwan Strait",         lon: 119.6, lat: 24.4,  ev: "taiwan",  note: "Majority of global container traffic transits annually" },
+  { id: "bosporus", name: "Turkish Straits",       lon: 29.1,  lat: 41.1,  ev: "ru-ua",   note: "Black Sea outlet · Montreux Convention governs warship transit" },
+  { id: "kerch",    name: "Kerch Strait",          lon: 36.6,  lat: 45.3,  ev: "ru-ua",   note: "Azov Sea access · contested throughout the war" },
+  { id: "panama",   name: "Panama Canal",          lon: -79.7, lat: 9.1,   ev: null,      note: "Drought-driven transit restrictions in recent years" },
+  { id: "danish",   name: "Danish Straits",        lon: 12.7,  lat: 55.9,  ev: "baltic",  note: "Baltic outlet · shadow-fleet tanker transits monitored here" },
+  { id: "gibraltar",name: "Strait of Gibraltar",   lon: -5.6,  lat: 35.9,  ev: null,      note: "Mediterranean gate · dense naval and cable presence" },
+  { id: "hurmuzb",  name: "Gulf of Aden",          lon: 47.5,  lat: 12.2,  ev: "redsea",  note: "Counter-piracy and escort corridor" },
+  { id: "luzon",    name: "Luzon Strait",          lon: 121.0, lat: 20.6,  ev: "scs",     note: "PLA Pacific breakout route · dense cable crossing" },
+];
+
+/* Indicative trunk routes for major submarine cable corridors — simplified
+   paths between real landing areas, not survey-accurate cable positions. */
+const CABLES = [
+  { id: "cl1",  name: "C-Lion1 (Helsinki–Rostock)", ev: "baltic", pts: [[24.9,60.2],[22.5,59.0],[19.5,57.0],[16.0,55.4],[12.1,54.1]] },
+  { id: "bcs",  name: "BCS East–West (Sweden–Lithuania)", ev: "baltic", pts: [[18.1,57.3],[20.5,56.5],[21.0,55.9]] },
+  { id: "ee",   name: "Estlink corridor (Finland–Estonia)", ev: "baltic", pts: [[25.0,60.1],[24.8,59.4]] },
+  { id: "smw",  name: "SEA-ME-WE corridor (Europe–Asia)", ev: "redsea", pts: [[5.4,43.3],[18.0,35.5],[29.9,31.2],[32.6,29.9],[35.0,27.5],[38.5,21.0],[43.4,12.6],[51.5,12.5],[60.0,17.0],[72.8,18.9]] },
+  { id: "smw2", name: "Asia trunk (India–Singapore)", ev: "taiwan", pts: [[72.8,18.9],[80.3,13.1],[92.0,9.0],[98.0,4.5],[103.8,1.3]] },
+  { id: "ea",   name: "East Asia trunk (Singapore–Japan)", ev: "taiwan", pts: [[103.8,1.3],[110.0,10.0],[116.0,17.0],[121.0,22.0],[124.0,26.0],[132.0,33.0],[139.6,35.3]] },
+  { id: "matsu",name: "Taiwan–Matsu links", ev: "taiwan", pts: [[120.2,25.2],[119.95,26.15]] },
+  { id: "tat",  name: "Transatlantic corridor (US–UK)", ev: null, pts: [[-74.0,40.6],[-60.0,43.0],[-45.0,47.0],[-30.0,50.0],[-15.0,51.5],[-5.0,50.3]] },
+  { id: "tat2", name: "Transatlantic south (US–Iberia)", ev: null, pts: [[-75.5,36.8],[-55.0,38.5],[-35.0,39.5],[-18.0,39.0],[-9.1,38.7]] },
+  { id: "afr",  name: "West Africa corridor", ev: null, pts: [[-9.1,38.7],[-16.0,28.0],[-17.4,14.7],[-13.0,6.0],[3.4,6.4],[9.4,4.0],[13.2,-8.8],[18.4,-33.9]] },
+  { id: "eafr", name: "East Africa corridor", ev: "redsea", pts: [[43.4,12.6],[45.0,2.0],[39.7,-4.0],[39.3,-6.8],[32.6,-25.9],[31.0,-29.9],[18.4,-33.9]] },
+  { id: "tpw",  name: "Transpacific west (Japan–mid-Pacific)", ev: null, pts: [[139.6,35.3],[150.0,35.0],[165.0,33.0],[179.5,30.0]] },
+  { id: "tpe",  name: "Transpacific east (mid-Pacific–US)", ev: null, pts: [[-179.5,30.0],[-165.0,28.0],[-145.0,30.0],[-125.0,34.0],[-118.5,33.9]] },
+  { id: "aus",  name: "Australia corridor", ev: null, pts: [[103.8,1.3],[110.0,-8.0],[115.0,-20.0],[115.8,-31.9]] },
+];
+
+const LAYERS = [
+  { id: "chokepoints", label: "Chokepoints",   live: false },
+  { id: "cables",      label: "Cables",        live: true  },
+  { id: "aircraft",    label: "Air Tracker",   live: true  },
+  { id: "ships",       label: "Ships (AIS)",   live: true  },
+];
+
+/* Full submarine-cable geometry: TeleGeography's public Submarine Cable Map
+   API (CC BY-NC-SA). The curated CABLES corridors are the offline fallback. */
+const CABLE_GEO_URL = "https://www.submarinecablemap.com/api/v3/cable/cable-geo.json";
+
+/* Ships: AISStream.io live AIS over WebSocket. Needs a free API key
+   (GitHub sign-in at aisstream.io), stored only in this browser. */
+const AIS_WS = "wss://stream.aisstream.io/v0/stream";
+function aisKey() { try { return (localStorage.getItem("sokren_ais_key") || "").trim(); } catch (e) { return ""; } }
+
+function loadLayerPrefs() {
+  try {
+    const raw = localStorage.getItem("sokren_layers");
+    if (!raw) return null;
+    const o = JSON.parse(raw);
+    return (o && typeof o === "object") ? o : null;
+  } catch (e) { return null; }
+}
+function saveLayerPrefs() {
+  try { localStorage.setItem("sokren_layers", JSON.stringify(state.layers)); } catch (e) { /* ignore */ }
+}
+
 /* Structured analytic assessments per situation.
    ach: competing hypotheses [text, probability] (sum 100)
    disc: most diagnostic discriminator between hypotheses
@@ -1205,6 +1500,20 @@ const state = {
   cat: "all",
   prio: 0,
   mapFilter: "all",
+  layers: { chokepoints: true, cables: false, aircraft: true, ships: false },
+  layerData: { flights: [], area: [], cables: [], ships: [] },
+  layerStatus: { flights: "idle", area: "idle", cables: "idle", ships: "idle" },
+  airSource: "",
+  ships: {},
+  shipTrails: {},
+  ais: { ws: null, boxesKey: "", lastMsg: 0 },
+  areaFor: null,
+  tab: "home",
+  sitQ: "",
+  adhoc: { q: "", status: "idle", items: [] },
+  trails: {},
+  trailSeen: {},
+  ck: { open: false, q: "", idx: 0, results: [] },
   sort: "priority",
   query: "",
   domainFilter: null,
@@ -1350,7 +1659,11 @@ function applyView() {
   document.querySelectorAll("#markers .marker").forEach(m => {
     m.style.transform = `translate(-50%,-50%) scale(${inv})`;
   });
+  document.querySelectorAll("#ov-pts .ovpt").forEach(m => {
+    m.style.transform = `translate(-50%,-50%) scale(${inv})`;
+  });
   $("z-reset").style.display = v.k > 1 ? "block" : "none";
+  $("map-wrap").classList.toggle("zoomed", v.k >= 1.8);
   $("map-wrap").style.cursor = v.k > 1 ? "grab" : "default";
 }
 
@@ -1640,6 +1953,794 @@ async function loadAll() {
   renderAll();
 }
 
+
+/* ========================= map layers ========================= */
+const svgX = lon => (lon + 180).toFixed(2);
+const svgY = lat => (90 - lat).toFixed(2);
+
+/* Direct requests only, no public relays: relays are slow and unreliable,
+   and every aircraft source below allows direct browser access or fails fast. */
+async function fetchJSONDirect(urls, ms) {
+  let lastErr = new Error("fetch failed");
+  for (const u of urls) {
+    try {
+      const c = new AbortController();
+      const t = setTimeout(() => c.abort(), ms || 9000);
+      let r;
+      try { r = await fetch(u, { signal: c.signal }); } finally { clearTimeout(t); }
+      if (r.status === 429) { const e = new Error("rate limited"); e.limited = true; throw e; }
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const data = await r.json();
+      if (data && typeof data === "object") return { data, url: u };
+      throw new Error("unexpected payload");
+    } catch (e) { lastErr = e; if (e.limited) break; }
+  }
+  throw lastErr;
+}
+
+/* Approximate military ICAO hex allocations (used only when the source has no
+   military flag, i.e. OpenSky). Ranges follow the tar1090 convention. */
+const MIL_HEX = [
+  [0xADF7C8, 0xAFFFFF], [0x010070, 0x01008F], [0x0A4000, 0x0A4FFF], [0x33FF00, 0x33FFFF], [0x350000, 0x37FFFF],
+  [0x3A8000, 0x3AFFFF], [0x3B0000, 0x3BFFFF], [0x3E8000, 0x3EBFFF], [0x3F4000, 0x3FBFFF], [0x400000, 0x40003F],
+  [0x43C000, 0x43CFFF], [0x444000, 0x446FFF], [0x44F000, 0x44FFFF], [0x457000, 0x457FFF], [0x45F400, 0x45F4FF],
+  [0x468000, 0x4683FF], [0x473C00, 0x473C0F], [0x478100, 0x4781FF], [0x480000, 0x480FFF], [0x48D800, 0x48D87F],
+  [0x497C00, 0x497CFF], [0x498420, 0x49842F], [0x4B7000, 0x4B7FFF], [0x4B8200, 0x4B82FF], [0x506F00, 0x506FFF],
+  [0x70C070, 0x70C07F], [0x710258, 0x71028F], [0x710380, 0x71039F], [0x738A00, 0x738AFF], [0x7CF800, 0x7CFAFF],
+  [0x800200, 0x8002FF], [0xC20000, 0xC3FFFF], [0xE40000, 0xE41FFF],
+];
+function isMilHex(hex) {
+  const n = parseInt(hex, 16);
+  if (!isFinite(n)) return false;
+  for (let i = 0; i < MIL_HEX.length; i++) if (n >= MIL_HEX[i][0] && n <= MIL_HEX[i][1]) return true;
+  return false;
+}
+/* OpenSky state vector -> the same aircraft shape used everywhere else */
+function fromOpenSky(sv) {
+  const lon = Number(sv[5]), lat = Number(sv[6]);
+  if (!isFinite(lat) || !isFinite(lon)) return null;
+  const hex = String(sv[0] || "").toLowerCase();
+  const ac = {
+    hex, lat, lon,
+    flight: String(sv[1] || "").trim(), type: "", reg: "",
+    alt: sv[8] ? 0 : Math.round((Number(sv[7]) || 0) * 3.28084),
+    gs: Math.round((Number(sv[9]) || 0) * 1.94384),
+    track: Number(sv[10]) || 0,
+    squawk: String(sv[14] || ""),
+    mil: isMilHex(hex),
+  };
+  ac.emg = ac.squawk === "7500" || ac.squawk === "7600" || ac.squawk === "7700";
+  return ac;
+}
+
+async function fetchJSONAny(urls) {
+  let lastErr = new Error("fetch failed");
+  for (const url of urls) {
+    for (const u of proxied(url)) {
+      try {
+        const raw = unwrapAllOrigins(await fetchTextTimed(u, 12000));
+        const data = JSON.parse(raw);
+        if (data && typeof data === "object") return data;
+        throw new Error("unexpected payload");
+      } catch (e) { lastErr = e; }
+    }
+  }
+  throw lastErr;
+}
+
+/* live military aircraft — keyless, two independent providers */
+async function loadFlights() {
+  if (!state.layers.aircraft) return;
+  state.layerStatus.flights = "loading"; renderLayerChips();
+  try {
+    let raw, src = "adsb";
+    try {
+      const r = await fetchJSONDirect(["https://api.airplanes.live/v2/mil", "https://api.adsb.lol/v2/mil"]);
+      raw = r.data.ac || r.data.aircraft || (Array.isArray(r.data) ? r.data : []);
+    } catch (e1) {
+      // OpenSky: keyless and browser-reachable, but rate limited, so only every 20 min
+      const stale = Date.now() - (state.openskyAt || 0) < 19 * 60 * 1000;
+      if (stale && state.layerData.flights.length) { state.layerStatus.flights = "ok"; renderLayerChips(); return; }
+      try {
+        const r = await fetchJSONDirect(["https://opensky-network.org/api/states/all"], 20000);
+        state.openskyAt = Date.now();
+        raw = (r.data.states || []).map(fromOpenSky).filter(a => a && a.mil);
+        src = "opensky";
+      } catch (e2) {
+        state.layerStatus.flights = e2 && e2.limited ? "limited" : "error";
+        renderLayerChips(); renderOverlay(); renderDetail(); return;
+      }
+    }
+    state.airSource = src;
+    const out = [];
+    raw.forEach(a => {
+      const lat = Number(a.lat), lon = Number(a.lon);
+      if (!isFinite(lat) || !isFinite(lon)) return;
+      const alt = (a.alt_baro === "ground" || a.alt_geom === "ground") ? 0 : Number(a.alt_baro || a.alt_geom || 0);
+      const hex = String(a.hex || a.icao || Math.random());
+      const ac = {
+        hex, lat, lon,
+        flight: String(a.flight || a.call || "").trim(),
+        type: String(a.t || a.type_code || "").trim(),
+        reg: String(a.r || a.registration || "").trim(),
+        alt: isFinite(alt) ? alt : 0,
+        gs: Number(a.gs || a.speed || 0) || 0,
+        track: Number(a.track || a.true_heading || a.heading || 0) || 0,
+        squawk: String(a.squawk || ""),
+      };
+      ac.emg = ac.squawk === "7500" || ac.squawk === "7600" || ac.squawk === "7700";
+      out.push(ac);
+      const t = state.trails[hex] || (state.trails[hex] = []);
+      const last = t[t.length - 1];
+      if (!last || Math.abs(last[0] - lon) > 0.02 || Math.abs(last[1] - lat) > 0.02) {
+        t.push([lon, lat]);
+        if (t.length > 24) t.shift();
+      }
+      state.trailSeen[hex] = Date.now();
+    });
+    // prune trails for aircraft not seen in 30 minutes
+    const cutoff = Date.now() - 30 * 60 * 1000;
+    Object.keys(state.trailSeen).forEach(h => {
+      if (state.trailSeen[h] < cutoff) { delete state.trailSeen[h]; delete state.trails[h]; }
+    });
+    state.layerData.flights = out;
+    state.layerStatus.flights = out.length ? "ok" : "empty";
+  } catch (e) {
+    state.layerStatus.flights = "error";
+  }
+  renderLayerChips(); renderOverlay(); renderDetail();
+}
+
+/* all traffic within 250 nm of the selected situation — civil + military.
+   An unusually empty circle over an active conflict zone is itself a signal. */
+function mapAircraft(a) {
+  const lat = Number(a.lat), lon = Number(a.lon);
+  if (!isFinite(lat) || !isFinite(lon)) return null;
+  const alt = (a.alt_baro === "ground" || a.alt_geom === "ground") ? 0 : Number(a.alt_baro || a.alt_geom || 0);
+  const ac = {
+    hex: String(a.hex || a.icao || Math.random()), lat, lon,
+    flight: String(a.flight || a.call || "").trim(),
+    type: String(a.t || a.type_code || "").trim(),
+    reg: String(a.r || a.registration || "").trim(),
+    alt: isFinite(alt) ? alt : 0,
+    gs: Number(a.gs || a.speed || 0) || 0,
+    track: Number(a.track || a.true_heading || a.heading || 0) || 0,
+    squawk: String(a.squawk || ""),
+    mil: !!(Number(a.dbFlags || 0) & 1),
+  };
+  ac.emg = ac.squawk === "7500" || ac.squawk === "7600" || ac.squawk === "7700";
+  return ac;
+}
+
+async function loadArea() {
+  if (!state.layers.aircraft) return;
+  if (!state.selected) { state.layerData.area = []; state.areaFor = null; state.layerStatus.area = "idle"; renderLayerChips(); renderOverlay(); return; }
+  const ev = byId[state.selected];
+  state.layerStatus.area = "loading"; renderLayerChips();
+  const lat = ev.lat.toFixed(4), lon = ev.lon.toFixed(4);
+  try {
+    let list;
+    try {
+      const r = await fetchJSONDirect([
+        "https://api.airplanes.live/v2/point/" + lat + "/" + lon + "/250",
+        "https://api.adsb.lol/v2/point/" + lat + "/" + lon + "/250",
+      ]);
+      const raw = r.data.ac || r.data.aircraft || (Array.isArray(r.data) ? r.data : []);
+      list = raw.map(mapAircraft).filter(Boolean);
+    } catch (e1) {
+      const stale = Date.now() - (state.openskyAreaAt || 0) < 9 * 60 * 1000 && state.areaFor === ev.id;
+      if (stale) { state.layerStatus.area = state.layerData.area.length ? "ok" : "empty"; renderLayerChips(); return; }
+      const dl = 4 / Math.max(0.2, Math.cos(ev.lat * Math.PI / 180));
+      const r = await fetchJSONDirect(["https://opensky-network.org/api/states/all?lamin=" + (ev.lat - 4).toFixed(2) + "&lomin=" + (ev.lon - dl).toFixed(2) + "&lamax=" + (ev.lat + 4).toFixed(2) + "&lomax=" + (ev.lon + dl).toFixed(2)], 20000);
+      state.openskyAreaAt = Date.now();
+      list = (r.data.states || []).map(fromOpenSky).filter(Boolean);
+    }
+    state.layerData.area = list;
+    state.areaFor = ev.id;
+    state.layerStatus.area = state.layerData.area.length ? "ok" : "empty";
+  } catch (e) {
+    state.layerStatus.area = "error";
+  }
+  renderLayerChips(); renderOverlay(); renderDetail();
+}
+
+
+
+
+
+
+/* ---- full cable map ---- */
+function splitAntimeridian(coords) {
+  const segs = []; let cur = [];
+  for (let i = 0; i < coords.length; i++) {
+    const c = coords[i];
+    if (cur.length && Math.abs(c[0] - cur[cur.length - 1][0]) > 180) { segs.push(cur); cur = []; }
+    cur.push(c);
+  }
+  if (cur.length > 1) segs.push(cur);
+  return segs;
+}
+
+async function loadCables() {
+  if (!state.layers.cables) return;
+  if (state.layerData.cables.length) { renderOverlay(); return; }
+  state.layerStatus.cables = "loading"; renderLayerChips(); renderOverlay();
+  try {
+    let d;
+    try { d = (await fetchJSONDirect(["./cables.json"], 15000)).data; }
+    catch (e0) { d = await fetchJSONAny([CABLE_GEO_URL]); }
+    const out = [];
+    (d.features || []).forEach(f => {
+      const g = f.geometry || {}; const pr = f.properties || {};
+      const lines = g.type === "MultiLineString" ? g.coordinates : g.type === "LineString" ? [g.coordinates] : [];
+      const segs = [];
+      lines.forEach(l => splitAntimeridian(l.filter(c => Array.isArray(c) && isFinite(c[0]) && isFinite(c[1]))).forEach(sg => segs.push(sg)));
+      if (segs.length) out.push({ id: String(pr.id || f.id || out.length), name: String(pr.name || "Cable"), segs, first: segs[0][0] });
+    });
+    if (!out.length) throw new Error("empty");
+    state.layerData.cables = out;
+    state.layerStatus.cables = "ok";
+  } catch (e) {
+    state.layerData.cables = [];
+    state.layerStatus.cables = "fallback";
+  }
+  renderLayerChips(); renderOverlay(); renderDetail();
+}
+
+/* ---- ships (AISStream) ---- */
+function aisBoxes() {
+  const boxes = CHOKEPOINTS.map(c => [[c.lat - 3, c.lon - 3], [c.lat + 3, c.lon + 3]]);
+  if (state.selected && byId[state.selected]) {
+    const ev = byId[state.selected];
+    boxes.push([[ev.lat - 4, ev.lon - 4], [ev.lat + 4, ev.lon + 4]]);
+  }
+  return boxes.map(b => [[Math.max(-90, b[0][0]), Math.max(-180, b[0][1])], [Math.min(90, b[1][0]), Math.min(180, b[1][1])]]);
+}
+
+function disconnectAis() {
+  const ws = state.ais.ws;
+  state.ais.ws = null; state.ais.boxesKey = "";
+  if (ws) { try { ws.onclose = null; ws.close(); } catch (e) { /* ignore */ } }
+  if (state.layerStatus.ships === "live" || state.layerStatus.ships === "loading") state.layerStatus.ships = "idle";
+}
+
+function connectAis() {
+  if (!state.layers.ships) return;
+  const key = aisKey();
+  if (!key) { state.layerStatus.ships = "nokey"; renderLayerChips(); return; }
+  if (typeof WebSocket === "undefined") { state.layerStatus.ships = "error"; renderLayerChips(); return; }
+  const boxes = aisBoxes();
+  const bk = JSON.stringify(boxes);
+  if (state.ais.ws && state.ais.boxesKey === bk && state.ais.ws.readyState <= 1) return;
+  disconnectAis();
+  state.layerStatus.ships = "loading"; renderLayerChips();
+  let ws;
+  try { ws = new WebSocket(AIS_WS); } catch (e) { state.layerStatus.ships = "error"; renderLayerChips(); return; }
+  state.ais.ws = ws; state.ais.boxesKey = bk;
+  ws.onopen = () => {
+    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData"] })); }
+    catch (e) { /* ignore */ }
+  };
+  ws.onmessage = ev => {
+    let m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+    if (!m || !m.MetaData) return;
+    const md = m.MetaData, mmsi = String(md.MMSI || "");
+    if (!mmsi) return;
+    const rec = state.ships[mmsi] || (state.ships[mmsi] = { mmsi, name: "", lat: NaN, lon: NaN, cog: 0, sog: 0, type: 0, t: 0 });
+    if (md.ShipName) rec.name = String(md.ShipName).trim();
+    if (m.MessageType === "PositionReport" && m.Message && m.Message.PositionReport) {
+      const pr = m.Message.PositionReport;
+      const lat = Number(pr.Latitude != null ? pr.Latitude : md.latitude), lon = Number(pr.Longitude != null ? pr.Longitude : md.longitude);
+      if (!isFinite(lat) || !isFinite(lon)) return;
+      rec.lat = lat; rec.lon = lon;
+      rec.cog = Number(pr.Cog) || 0; rec.sog = Number(pr.Sog) || 0; rec.nav = Number(pr.NavigationalStatus);
+      rec.t = Date.now();
+      const tr = state.shipTrails[mmsi] || (state.shipTrails[mmsi] = []);
+      const last = tr[tr.length - 1];
+      if (!last || Math.abs(last[0] - lon) > 0.01 || Math.abs(last[1] - lat) > 0.01) { tr.push([lon, lat]); if (tr.length > 14) tr.shift(); }
+    } else if (m.MessageType === "ShipStaticData" && m.Message && m.Message.ShipStaticData) {
+      rec.type = Number(m.Message.ShipStaticData.Type) || rec.type;
+    }
+    state.ais.lastMsg = Date.now();
+    if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; renderLayerChips(); }
+  };
+  ws.onerror = () => { state.layerStatus.ships = "error"; renderLayerChips(); };
+  ws.onclose = () => {
+    if (state.ais.ws === ws) { state.ais.ws = null; if (state.layerStatus.ships === "loading") state.layerStatus.ships = "error"; renderLayerChips(); }
+  };
+}
+
+function shipTypeLabel(t) {
+  if (t >= 70 && t <= 79) return "cargo";
+  if (t >= 80 && t <= 89) return "tanker";
+  if (t >= 60 && t <= 69) return "passenger";
+  if (t === 35) return "military";
+  if (t === 30) return "fishing";
+  if (t === 31 || t === 32 || t === 52) return "tug";
+  if (t === 51) return "SAR";
+  if (t === 55) return "law enforcement";
+  return t ? "type " + t : "";
+}
+
+function refreshShips() {
+  const cutoff = Date.now() - 30 * 60 * 1000;
+  Object.keys(state.ships).forEach(k => { if (state.ships[k].t < cutoff) { delete state.ships[k]; delete state.shipTrails[k]; } });
+  state.layerData.ships = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon)).slice(0, 4000);
+  if (state.layers.ships) { renderLayerChips(); renderOverlay(); renderDetail(); }
+}
+
+function openAkey() {
+  $("ak-input").value = aisKey();
+  $("akey").classList.add("open");
+  $("ak-input").focus();
+}
+function closeAkey() { $("akey").classList.remove("open"); }
+
+function refreshLayer(id) {
+  if (id === "aircraft") { loadFlights(); loadArea(); }
+  else if (id === "cables") loadCables();
+  else if (id === "ships") connectAis();
+  else { renderOverlay(); }
+}
+
+function toggleLayer(id) {
+  state.layers[id] = !state.layers[id];
+  saveLayerPrefs();
+  if (state.layers[id]) refreshLayer(id);
+  else {
+    if (id === "aircraft") { state.layerData.area = []; state.areaFor = null; state.layerData.flights = []; }
+    if (id === "ships") disconnectAis();
+    renderOverlay(); renderDetail();
+  }
+  renderLayerChips();
+}
+
+function renderLayerChips() {
+  const el = $("layer-chips");
+  if (!el) return;
+  el.innerHTML = LAYERS.map(l => {
+    const on = state.layers[l.id];
+    const st = l.live ? (l.id === "aircraft" ? state.layerStatus.flights : state.layerStatus[l.id]) : "";
+    let tag = "";
+    if (on && l.live) {
+      if (l.id === "aircraft" && st === "ok") tag = String(state.layerData.flights.length) + " mil" + (state.airSource === "opensky" ? " · OpenSky" : "") + (state.selected && state.areaFor === state.selected ? " · " + state.layerData.area.length + " nearby" : "");
+      else if (l.id === "aircraft" && st === "limited") tag = "rate limited";
+      else if (st === "loading") tag = "···";
+      else if (st === "nokey") tag = "add key";
+      else if (st === "error") tag = "unreachable";
+      else if (st === "empty") tag = l.id === "area" ? "airspace empty" : "0";
+      else if (st === "ok") tag = l.id === "cables" ? String(state.layerData.cables.length) + " systems" : String(state.layerData[l.id].length);
+      else if (st === "fallback") tag = "corridors only · add cables.json";
+      else if (st === "live") tag = String(state.layerData.ships.length) + " live";
+    }
+    const dot = on ? ({ aircraft: "#35C4D7", cables: "var(--p1)", ships: "#7FB3D5" }[l.id] || "var(--accent-lt)") : "var(--line-lt)";
+    const gear = l.id === "ships" ? ` <span class="st" data-akey title="AISStream key">⚙</span>` : "";
+    return `<button class="lchip ${on ? "on" : ""}" data-ly="${l.id}"><i style="background:${dot}"></i>${l.label}${tag ? ` <span class="st">${tag}</span>` : ""}${gear}</button>`;
+  }).join("");
+  el.querySelectorAll("[data-ly]").forEach(b => b.addEventListener("click", e => {
+    if (e.target && e.target.hasAttribute && e.target.hasAttribute("data-akey")) { e.stopPropagation(); openAkey(); return; }
+    toggleLayer(b.dataset.ly);
+  }));
+  const lab = $("mb-layers-lab");
+  if (lab) lab.textContent = String(LAYERS.filter(l => state.layers[l.id]).length) + " on";
+}
+
+/* project a short heading vector ahead of an aircraft (≈4 min of travel) */
+function aheadPoint(ac) {
+  const nm = Math.max(6, (ac.gs || 300) * 0.066);
+  const r = ac.track * Math.PI / 180;
+  const dLat = (nm / 60) * Math.cos(r);
+  const cosL = Math.cos(ac.lat * Math.PI / 180) || 0.2;
+  const dLon = (nm / 60) * Math.sin(r) / cosL;
+  return [ac.lon + dLon, ac.lat + dLat];
+}
+
+function renderOverlay() {
+  const ov = $("ov"), pts = $("ov-pts");
+  if (!ov || !pts) return;
+  let svg = "", html = "";
+
+  if (state.layers.cables) {
+    if (state.layerData.cables.length) {
+      let d = "";
+      state.layerData.cables.forEach(c => {
+        c.segs.forEach(sg => { d += sg.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join(""); });
+      });
+      svg += `<path d="${d}" fill="none" stroke="#E0564F" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>`;
+    } else {
+      CABLES.forEach(c => {
+        const d = c.pts.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#D9534F" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity="0.7"/>`;
+      });
+    }
+  }
+  if (state.layers.ships) {
+    state.layerData.ships.forEach(v => {
+      const tr = state.shipTrails[v.mmsi];
+      if (tr && tr.length > 1) {
+        const d = tr.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#7FB3D5" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.3"/>`;
+      }
+    });
+  }
+
+  if (state.layers.aircraft) {
+    state.layerData.flights.forEach(ac => {
+      const t = state.trails[ac.hex];
+      if (t && t.length > 1) {
+        const d = t.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#35C4D7" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.35"/>`;
+      }
+      const a = aheadPoint(ac);
+      svg += `<path d="M${svgX(ac.lon)},${svgY(ac.lat)}L${svgX(a[0])},${svgY(a[1])}" fill="none" stroke="${ac.emg ? "#D9534F" : "#35C4D7"}" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.7"/>`;
+    });
+  }
+  ov.innerHTML = svg;
+
+  if (state.layers.chokepoints) {
+    CHOKEPOINTS.forEach(c => {
+      html += `<div class="ovpt" data-cp="${c.id}" style="left:${projX(c.lon)}%; top:${projY(c.lat)}%; z-index:12;"><div class="cp-d"></div></div>`;
+    });
+  }
+  if (state.layers.ships) {
+    state.layerData.ships.forEach((v, i) => {
+      html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:11;"><div class="sh-d${v.type === 35 ? " mil" : ""}" style="transform:rotate(${v.cog}deg)"></div></div>`;
+    });
+  }
+  if (state.layers.aircraft) {
+    state.layerData.flights.forEach((ac, i) => {
+      html += `<div class="ovpt" data-ac="${i}" style="left:${projX(ac.lon)}%; top:${projY(ac.lat)}%; z-index:14;"><div class="ac-d${ac.emg ? " emg" : ""}" style="transform:rotate(${ac.track}deg)"></div></div>`;
+    });
+  }
+  if (state.layers.aircraft && state.selected && state.areaFor === state.selected) {
+    const milHex = new Set(state.layers.aircraft ? state.layerData.flights.map(a => a.hex) : []);
+    state.layerData.area.forEach((ac, i) => {
+      if (milHex.has(ac.hex)) return;
+      const cls = ac.emg ? "ac-d emg" : (ac.mil ? "ac-d" : "ac-d civ");
+      html += `<div class="ovpt" data-ar="${i}" style="left:${projX(ac.lon)}%; top:${projY(ac.lat)}%; z-index:13;"><div class="${cls}" style="transform:rotate(${ac.track}deg)"></div></div>`;
+    });
+  }
+  pts.innerHTML = html;
+  applyView();
+
+  const tip = (h) => { const tt = $("tooltip"); tt.innerHTML = h; tt.style.display = "block"; };
+  const hide = () => { $("tooltip").style.display = "none"; };
+  pts.querySelectorAll("[data-cp]").forEach(el => {
+    const c = CHOKEPOINTS.find(x => x.id === el.dataset.cp);
+    el.addEventListener("mouseenter", () => tip(`<span style="font-size:11px">${esc(c.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${esc(c.note)}</span>`));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); if (!mapDrag.moved && c.ev) setSelected(c.ev); });
+  });
+  pts.querySelectorAll("[data-sh]").forEach(el => {
+    const v = state.layerData.ships[Number(el.dataset.sh)];
+    if (!v) return;
+    const h = () => tip(`<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`);
+    el.addEventListener("mouseenter", h);
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); h(); setTimeout(hide, 2500); });
+  });
+  const acTip = a =>
+    `<span style="font-size:11px">${esc(a.flight || a.reg || a.hex.toUpperCase())}${a.type ? " · " + esc(a.type) : ""}${a.mil ? " · MIL" : ""}</span>` +
+    `<span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${a.alt ? Math.round(a.alt).toLocaleString() + " ft" : "ground"} · ${Math.round(a.gs)} kt · hdg ${Math.round(a.track)}°${a.emg ? " · SQUAWK " + esc(a.squawk) : ""}</span>`;
+  pts.querySelectorAll("[data-ac]").forEach(el => {
+    const a = state.layerData.flights[Number(el.dataset.ac)];
+    if (!a) return;
+    el.addEventListener("mouseenter", () => tip(acTip(a)));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); tip(acTip(a)); setTimeout(hide, 2500); });
+  });
+  pts.querySelectorAll("[data-ar]").forEach(el => {
+    const a = state.layerData.area[Number(el.dataset.ar)];
+    if (!a) return;
+    el.addEventListener("mouseenter", () => tip(acTip(a)));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); tip(acTip(a)); setTimeout(hide, 2500); });
+  });
+  // tap support for chokepoints
+  pts.querySelectorAll("[data-cp]").forEach(el => {
+    el.addEventListener("touchstart", () => { el.dispatchEvent(new Event("mouseenter")); setTimeout(hide, 2500); }, { passive: true });
+  });
+}
+
+/* ========================= convergence: live signals near an event ========================= */
+function kmBetween(lon1, lat1, lon2, lat2) {
+  const R = 6371, t = Math.PI / 180;
+  const dLat = (lat2 - lat1) * t, dLon = (lon2 - lon1) * t;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * t) * Math.cos(lat2 * t) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
+}
+
+function renderSignals(ev) {
+  const el = $("d-signals");
+  if (!el) return;
+  const on = state.layers.aircraft || state.layers.aircraft || state.layers.ships;
+  const R = 600;
+  const rows = [];
+  if (state.layers.aircraft) {
+    const near = state.layerData.flights.filter(a => kmBetween(ev.lon, ev.lat, a.lon, a.lat) <= R);
+    const emg = near.filter(a => a.emg).length;
+    rows.push(["Military aircraft ≤600km", (state.layerStatus.flights === "error" || state.layerStatus.flights === "limited") ? "—" : String(near.length) + (emg ? " (" + emg + " emergency)" : "")]);
+  }
+  if (state.layers.aircraft) {
+    const st = state.layerStatus.area;
+    let v = "—";
+    if (state.areaFor === ev.id && (st === "ok" || st === "empty")) {
+      const n = state.layerData.area.length, m = state.layerData.area.filter(a => a.mil).length;
+      v = n === 0 ? "0 · airspace empty" : String(n) + (m ? " (" + m + " mil)" : "");
+    } else if (st === "loading") v = "···";
+    rows.push(["All aircraft ≤250nm", v]);
+  }
+  if (state.layers.ships) {
+    const st = state.layerStatus.ships;
+    let v = "—";
+    if (st === "live") {
+      const near = state.layerData.ships.filter(x => kmBetween(ev.lon, ev.lat, x.lon, x.lat) <= 450);
+      const tk = near.filter(x => x.type >= 80 && x.type <= 89).length;
+      v = String(near.length) + (tk ? " (" + tk + " tankers)" : "");
+    } else if (st === "nokey") v = "add key";
+    else if (st === "loading") v = "···";
+    rows.push(["Vessels ≤450km (AIS)", v]);
+  }
+  const cps = CHOKEPOINTS.filter(c => c.ev === ev.id).map(c => c.name);
+  if (cps.length) rows.push(["Chokepoints in scope", cps.length === 1 ? cps[0] : String(cps.length)]);
+  const cbl = CABLES.filter(c => c.ev === ev.id).length;
+  if (cbl) rows.push(["Cable corridors in scope", String(cbl)]);
+
+  if (!rows.length) {
+    el.innerHTML = `<div class="sg-lab">Live signals</div>
+      <div class="sg-note">Turn on a map layer (Air Tracker, Ships) to correlate live activity against this situation.</div>`;
+    return;
+  }
+  el.innerHTML = `<div class="sg-lab">Live signals</div>` +
+    rows.map(r => `<div class="sg-row"><span class="sg-n">${esc(r[0])}</span><span class="sg-v">${esc(r[1])}</span></div>`).join("") +
+    (on ? `<div class="sg-note">Proximity counts only. Co-location is not corroboration — treat as a cue to look, not as evidence.</div>` : "");
+}
+
+/* ========================= country index =========================
+   [name, lon, lat, linked situation ids, aliases]. Centroids are approximate. */
+const COUNTRIES = [
+  ["Afghanistan",66,34,["afghanistan"],["kabul"]],["Albania",20,41,[],[]],["Algeria",3,28,[],[]],["Angola",17.5,-12.5,[],[]],
+  ["Argentina",-64,-34,[],[]],["Armenia",45,40,[],["yerevan"]],["Australia",134,-25,[],[]],["Austria",14,47.5,[],[]],
+  ["Azerbaijan",47.5,40.5,[],["baku"]],["Bahrain",50.5,26,["iran"],[]],["Bangladesh",90,24,[],["dhaka"]],["Belarus",28,53,["ru-ua"],["minsk"]],
+  ["Belgium",4.5,50.8,[],[]],["Benin",2.3,9.5,["sahel"],[]],["Bolivia",-64,-17,[],[]],["Bosnia and Herzegovina",17.8,44,["balkans"],["bosnia","sarajevo","republika srpska"]],
+  ["Brazil",-53,-10,[],[]],["Bulgaria",25,42.7,[],[]],["Burkina Faso",-1.5,12.3,["sahel"],["ouagadougou"]],["Burundi",29.9,-3.4,["drc"],[]],
+  ["Cambodia",105,12.5,[],[]],["Cameroon",12.5,5.5,["nigeria"],[]],["Canada",-100,60,[],[]],["Central African Republic",20.9,6.6,[],["car","bangui"]],
+  ["Chad",18.7,15.4,["sudan","sahel"],["ndjamena"]],["Chile",-71,-33,[],[]],["China",104,35,["taiwan","cn-cyber","scs"],["beijing","prc"]],["Colombia",-73.5,4.5,["colombia","venezuela"],["bogota"]],
+  ["Costa Rica",-84,10,[],[]],["Croatia",16,45.5,[],[]],["Cuba",-79.5,21.5,["cuba"],["havana"]],["Cyprus",33.4,35.1,[],[]],
+  ["Czechia",15.5,49.8,[],["czech republic"]],["Democratic Republic of the Congo",23.6,-2.9,["drc"],["drc","congo","kinshasa","goma","kivu"]],["Denmark",10,56,["baltic"],[]],["Djibouti",42.6,11.8,["redsea"],[]],
+  ["Dominican Republic",-70.2,18.9,["haiti"],[]],["Ecuador",-78.5,-1.5,["ecuador"],["quito","guayaquil"]],["Egypt",30,26.5,["gaza","redsea"],["cairo","sinai"]],["El Salvador",-88.9,13.8,[],[]],
+  ["Eritrea",39,15.2,["ethiopia"],["asmara"]],["Estonia",25.5,58.7,["baltic"],["tallinn"]],["Ethiopia",39.5,9,["ethiopia"],["addis ababa","tigray","amhara"]],["Finland",26,64,["baltic"],["helsinki"]],
+  ["France",2.5,46.5,[],["paris"]],["Georgia",43.5,42,[],["tbilisi"]],["Germany",10.5,51,["baltic"],["berlin"]],["Ghana",-1.2,7.9,["sahel"],[]],
+  ["Greece",22,39,[],[]],["Guatemala",-90.4,15.8,[],[]],["Guinea",-11,10,[],[]],["Guyana",-58.9,4.9,["venezuela"],["essequibo"]],
+  ["Haiti",-72.7,19,["haiti"],["port-au-prince"]],["Honduras",-86.6,14.8,[],[]],["Hungary",19.5,47.2,[],[]],["India",79,22,["kashmir"],["new delhi"]],
+  ["Indonesia",118,-2,[],["jakarta"]],["Iran",53.7,32.4,["iran"],["tehran","persia"]],["Iraq",43.7,33.2,["iran"],["baghdad"]],["Ireland",-8,53.3,[],[]],
+  ["Israel",35,31.4,["gaza","iran","lebanon"],["tel aviv","jerusalem"]],["Italy",12.5,42.5,[],[]],["Ivory Coast",-5.5,7.5,["sahel"],["cote d'ivoire"]],["Japan",138,36.5,["korea","taiwan"],["tokyo"]],
+  ["Jordan",36.5,31,["gaza","iran"],["amman"]],["Kazakhstan",67,48,[],[]],["Kenya",37.9,0.5,["somalia"],["nairobi"]],["Kosovo",20.9,42.6,["balkans"],["pristina"]],
+  ["Kuwait",47.5,29.3,["iran"],[]],["Kyrgyzstan",74.5,41.2,[],[]],["Laos",103,18,[],[]],["Latvia",24.6,56.9,["baltic"],["riga"]],
+  ["Lebanon",35.8,33.9,["lebanon"],["beirut","hezbollah"]],["Libya",17.5,27,["libya"],["tripoli","benghazi"]],["Lithuania",23.9,55.2,["baltic"],["vilnius"]],["Madagascar",47,-20,[],[]],
+  ["Malaysia",109.5,3.5,["scs"],[]],["Mali",-2,17.5,["sahel"],["bamako"]],["Mauritania",-10.5,20.5,["sahel"],[]],["Mexico",-102.5,23.5,["mexico"],["sinaloa","cartel"]],
+  ["Moldova",28.5,47.2,["ru-ua"],["transnistria","chisinau"]],["Mongolia",104,46.5,[],[]],["Montenegro",19.3,42.7,["balkans"],[]],["Morocco",-6,32,[],[]],
+  ["Mozambique",35.5,-18.5,["mozambique"],["cabo delgado","maputo"]],["Myanmar",96.5,19.5,["myanmar"],["burma","rangoon","naypyidaw"]],["Nepal",84,28.2,[],[]],["Netherlands",5.5,52.2,[],[]],
+  ["New Zealand",172,-41,[],[]],["Nicaragua",-85,12.9,[],[]],["Niger",9,17.5,["sahel"],["niamey"]],["Nigeria",8,9.5,["nigeria"],["abuja","lagos","borno"]],
+  ["North Korea",127,40,["korea","dprk-cyber"],["dprk","pyongyang"]],["North Macedonia",21.7,41.6,["balkans"],[]],["Norway",9,62,["baltic"],[]],["Oman",56,21,["iran"],["muscat"]],
+  ["Pakistan",69.5,30.5,["pakistan","kashmir","afghanistan"],["islamabad","balochistan"]],["Panama",-80,8.5,[],["panama canal"]],["Papua New Guinea",145,-6,[],[]],["Paraguay",-58,-23,[],[]],
+  ["Peru",-76,-10,[],[]],["Philippines",122,12.5,["scs"],["manila"]],["Poland",19.5,52,["ru-ua","baltic"],["warsaw"]],["Portugal",-8,39.5,[],[]],
+  ["Qatar",51.2,25.3,["iran"],["doha"]],["Romania",25,45.8,["ru-ua"],["bucharest"]],["Russia",100,60,["ru-ua","baltic"],["moscow","kremlin"]],["Rwanda",29.9,-2,["drc"],["kigali"]],
+  ["Saudi Arabia",45,24,["iran","redsea"],["riyadh"]],["Senegal",-14.5,14.5,[],[]],["Serbia",21,44,["balkans"],["belgrade"]],["Sierra Leone",-11.8,8.5,[],[]],
+  ["Singapore",103.8,1.3,[],[]],["Slovakia",19.5,48.7,[],[]],["Somalia",46,5.5,["somalia"],["mogadishu","puntland","al-shabaab"]],["South Africa",25,-29,[],[]],
+  ["South Korea",127.8,36.5,["korea"],["seoul","rok"]],["South Sudan",30,7,["ssudan"],["juba"]],["Spain",-3.7,40.2,[],[]],["Sri Lanka",80.7,7.8,[],[]],
+  ["Sudan",30,15.5,["sudan"],["khartoum","darfur","rsf"]],["Sweden",17,62,["baltic"],["stockholm","gotland"]],["Switzerland",8.2,46.8,[],[]],["Syria",38.5,35,["syria"],["damascus","aleppo"]],
+  ["Taiwan",121,23.7,["taiwan"],["taipei","formosa"]],["Tajikistan",71,38.9,[],[]],["Tanzania",35,-6.4,[],[]],["Thailand",101,15.5,[],[]],
+  ["Togo",1,8.5,["sahel"],[]],["Tunisia",9.5,34,[],[]],["Turkey",35.2,39,["syria","ru-ua"],["ankara","istanbul","turkiye"]],["Turkmenistan",59.5,39,[],[]],
+  ["Uganda",32.3,1.3,["drc","ssudan"],["kampala"]],["Ukraine",32,49,["ru-ua"],["kyiv","kiev","donbas","crimea","kharkiv","odesa"]],["United Arab Emirates",54,24,["iran"],["uae","dubai","abu dhabi"]],["United Kingdom",-2.5,54,[],["uk","britain","london"]],
+  ["United States",-98,39,["ransomware","cn-cyber"],["usa","us","america","washington"]],["Uruguay",-56,-33,[],[]],["Uzbekistan",63.5,41.5,[],[]],["Venezuela",-66.5,7.5,["venezuela"],["caracas","maduro"]],
+  ["Vietnam",106,16,["scs"],["hanoi"]],["Yemen",47.5,15.5,["redsea"],["houthi","sanaa","aden","hodeidah"]],["Zambia",27.8,-13.5,[],[]],["Zimbabwe",29.8,-19,[],[]],
+];
+
+/* ========================= views ========================= */
+const VIEWS = ["home", "feed", "situations", "about"];
+function switchView(name) {
+  if (!VIEWS.includes(name)) name = "home";
+  state.tab = name;
+  VIEWS.forEach(v => { const el = $("view-" + v); if (el) el.classList.toggle("active", v === name); });
+  document.querySelectorAll("#nav [data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
+  closePops();
+  if (name === "home") { state.fireK = 0; applyView(); renderOverlay(); }
+  if (name === "situations") renderSituations();
+  try { history.replaceState(null, "", "#" + name); } catch (e) { /* ignore */ }
+  window.scrollTo(0, 0);
+}
+
+function focusMap(lon, lat, k) {
+  const el = $("map-wrap");
+  if (!el) return;
+  k = Math.min(8, Math.max(1, k || 3));
+  const w = el.clientWidth, h = el.clientHeight;
+  const c = clampView(w / 2 - (projX(lon) / 100) * w * k, h / 2 - (projY(lat) / 100) * h * k, k);
+  state.view = { k, x: c.x, y: c.y };
+  applyView();
+}
+
+function closePops() {
+  document.querySelectorAll(".pop.open").forEach(p => p.classList.remove("open"));
+  document.querySelectorAll(".mb-btn.on").forEach(b => b.classList.remove("on"));
+}
+function togglePop(btn) {
+  const pop = $(btn.dataset.pop);
+  const open = pop.classList.contains("open");
+  closePops();
+  if (!open) { pop.classList.add("open"); btn.classList.add("on"); }
+}
+
+/* ========================= situations view ========================= */
+function sitCard(ev) {
+  const p = PRIORITY[ev.priority];
+  return `<button class="sit-card" data-sit="${ev.id}">
+    <div class="sc-top"><span class="sc-name">${esc(ev.name)}</span><span class="sc-sti" style="color:${stiColor(ev.sti)}">STI ${ev.sti}</span></div>
+    <div class="sc-tags">
+      <span class="tag" style="color:${p.raw}; border-color:${p.raw}">P${ev.priority} · ${p.label}</span>
+      ${ev.emerging ? `<span class="tag" style="color:#35C4D7; border-color:#35C4D7">EMERGING</span>` : ""}
+      ${(ev.cats || []).slice(0, 3).map(c => `<span class="tag">${CAT_DEFS[c].short}</span>`).join("")}
+    </div>
+    <div class="sc-brief">${esc(ev.brief)}</div>
+    <div class="sc-out"><b>${ev.outlook.p}%</b> ${esc(ev.outlook.line)} — ${esc(ev.outlook.window)}</div>
+  </button>`;
+}
+
+function countryNamesFor(evId) {
+  return COUNTRIES.filter(c => c[3].includes(evId)).map(c => (c[0] + " " + c[4].join(" ")).toLowerCase()).join(" ");
+}
+
+function renderSituations() {
+  const q = state.sitQ.trim().toLowerCase();
+  const match = ev => !q || (ev.name + " " + ev.brief + " " + (ev.cats || []).map(c => CAT_DEFS[c].label).join(" ") + " " + countryNamesFor(ev.id)).toLowerCase().includes(q);
+  const bySti = (a, b) => b.sti - a.sti;
+  const active = EVENTS.filter(e => e.cats.includes("armed") && !e.emerging && match(e)).sort(bySti);
+  const threat = EVENTS.filter(e => !e.emerging && !e.cats.includes("armed") && match(e)).sort(bySti);
+  const emerging = EVENTS.filter(e => e.emerging && match(e)).sort(bySti);
+  const fill = (id, list) => {
+    const el = $(id); if (!el) return;
+    el.innerHTML = list.map(sitCard).join("");
+    el.parentElement.style.display = list.length ? "block" : "none";
+  };
+  fill("sit-active", active); fill("sit-threat", threat); fill("sit-emerging", emerging);
+  const n = active.length + threat.length + emerging.length;
+  $("sit-count").textContent = n + " of " + EVENTS.length;
+  $("sit-empty").style.display = n ? "none" : "block";
+  document.querySelectorAll("#view-situations [data-sit]").forEach(b => b.addEventListener("click", () => setSelected(b.dataset.sit)));
+}
+
+/* ========================= ad-hoc live coverage search ========================= */
+function cleanQuery(q) {
+  return q.replace(/[^\p{L}\p{N}\s'"-]/gu, " ").replace(/\s+/g, " ").trim().slice(0, 80);
+}
+
+async function runAdhoc(q) {
+  q = cleanQuery(q);
+  if (q.length < 2) return;
+  state.adhoc = { q, status: "loading", items: [] };
+  switchView("feed");
+  renderAdhoc();
+  try {
+    const items = await fetchEventNews({ id: "adhoc", query: q });
+    state.adhoc = { q, status: items.length ? "ok" : "empty", items };
+  } catch (e) {
+    state.adhoc = { q, status: "error", items: [] };
+  }
+  renderAdhoc();
+}
+
+function renderAdhoc() {
+  const box = $("adhoc"); if (!box) return;
+  const a = state.adhoc;
+  if (!a.q || a.status === "idle") { box.classList.remove("open"); return; }
+  box.classList.add("open");
+  $("ah-q").textContent = "\u201c" + a.q + "\u201d";
+  const domains = Array.from(new Set(a.items.map(x => x.domain))).filter(Boolean);
+  $("ah-meta").textContent = a.status === "loading" ? "searching GDELT\u2026" : a.status === "error" ? "live search unreachable from here" :
+    a.status === "empty" ? "no coverage found in the last 3 days" : a.items.length + " articles \u00b7 " + domains.length + " sources \u00b7 last 3 days";
+  $("ah-domains").innerHTML = domains.slice(0, 14).map(d => `<span class="dom">${esc(d)}</span>`).join("");
+  $("ah-list").innerHTML = a.items.slice(0, 25).map(x =>
+    `<div class="fi"><div class="fi-body">
+       <a class="fi-title" href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener noreferrer">${esc(x.title)} <span style="color:var(--dim); font-size:10px;">\u2197</span></a>
+       <div class="fi-meta"><span class="fi-src">${esc(x.domain)} \u00b7 ${timeAgo(x.date)}</span></div>
+     </div></div>`).join("");
+}
+
+/* ========================= command palette ========================= */
+function ckResults(q) {
+  const s = q.trim().toLowerCase();
+  const out = [];
+  const add = (kind, name, sub, fn) => out.push({ kind, name, sub, fn });
+  if (s.length >= 2) {
+    COUNTRIES.forEach(c => {
+      const names = [c[0]].concat(c[4]).map(x => x.toLowerCase());
+      const hit = names.some(n => n.startsWith(s)) || (s.length >= 4 && names.some(n => n.includes(s)));
+      if (!hit) return;
+      const evs = c[3].map(id => byId[id]).filter(Boolean);
+      add("Country", c[0], evs.length ? evs.map(e => e.name).join(" \u00b7 ") : "no tracked situation \u2014 focus map", () => {
+        switchView("home");
+        focusMap(c[1], c[2], evs.length ? 3 : 3.5);
+        if (evs.length) setSelected(evs[0].id); else setSelected(null);
+      });
+    });
+  }
+  EVENTS.forEach(ev => {
+    const hay = (ev.name + " " + ev.brief + " " + (ev.cats || []).map(c => CAT_DEFS[c].label).join(" ") + " " + countryNamesFor(ev.id)).toLowerCase();
+    if (!s || hay.includes(s)) add("Situation", ev.name, "P" + ev.priority + " \u00b7 STI " + ev.sti, () => setSelected(ev.id));
+  });
+  CHOKEPOINTS.forEach(c => {
+    if (!s || c.name.toLowerCase().includes(s) || c.note.toLowerCase().includes(s))
+      add("Chokepoint", c.name, c.ev ? byId[c.ev].name : "no linked situation", () => {
+        state.layers.chokepoints = true; renderLayerChips(); renderOverlay();
+        if (c.ev) setSelected(c.ev);
+      });
+  });
+  if (state.layerData.cables.length) {
+    if (s.length >= 3) state.layerData.cables.forEach(c => {
+      if (c.name.toLowerCase().includes(s))
+        add("Cable", c.name, "submarine cable system", () => {
+          state.layers.cables = true; saveLayerPrefs(); renderLayerChips();
+          switchView("home"); focusMap(c.first[0], c.first[1], 3); renderOverlay();
+        });
+    });
+  } else {
+    CABLES.forEach(c => {
+      if (!s || c.name.toLowerCase().includes(s))
+        add("Cable", c.name, "trunk corridor", () => {
+          state.layers.cables = true; saveLayerPrefs(); renderLayerChips(); renderOverlay();
+          if (c.ev) setSelected(c.ev);
+        });
+    });
+  }
+  if (s) {
+    filteredItems().slice(0, 40).forEach(a => {
+      if (a.title.toLowerCase().includes(s) || (a.domain || "").toLowerCase().includes(s))
+        add("Headline", a.title, a.domain, () => window.open(safeUrl(a.url), "_blank", "noopener"));
+    });
+  }
+  const res = out.slice(0, 22);
+  if (s.length >= 2) {
+    const live = { kind: "Live search", name: "Search live coverage for \u201c" + q.trim() + "\u201d", sub: "GDELT \u00b7 last 3 days", fn: () => runAdhoc(q) };
+    if (res.length) res.push(live); else res.unshift(live);
+  }
+  return res;
+}
+
+function renderCk() {
+  const list = $("ck-list");
+  const r = state.ck.results;
+  if (!r.length) { list.innerHTML = `<div class="ck-empty">No matches.</div>`; return; }
+  list.innerHTML = r.map((x, i) =>
+    `<div class="ck-item ${i === state.ck.idx ? "sel" : ""}" data-i="${i}">
+       <span class="ck-k">${esc(x.kind)}</span>
+       <span class="ck-n">${esc(x.name)}</span>
+       <span class="ck-s">${esc(x.sub || "")}</span>
+     </div>`).join("");
+  list.querySelectorAll("[data-i]").forEach(el => {
+    el.addEventListener("mouseenter", () => { state.ck.idx = Number(el.dataset.i); renderCk(); });
+    el.addEventListener("click", () => ckRun(Number(el.dataset.i)));
+  });
+  const sel = list.querySelector(".ck-item.sel");
+  if (sel && sel.scrollIntoView) sel.scrollIntoView({ block: "nearest" });
+}
+
+function ckOpen() {
+  state.ck.open = true; state.ck.q = ""; state.ck.idx = 0;
+  state.ck.results = ckResults("");
+  $("cmdk").classList.add("open");
+  $("ck-input").value = "";
+  renderCk();
+  $("ck-input").focus();
+  setTimeout(() => $("ck-input").focus(), 30);
+}
+function ckClose() { state.ck.open = false; $("cmdk").classList.remove("open"); }
+function ckRun(i) {
+  const x = state.ck.results[i];
+  ckClose();
+  if (x && x.fn) x.fn();
+}
+
 /* ========================= rendering ========================= */
 function renderMapChips() {
   const el = $("map-chips");
@@ -1651,6 +2752,8 @@ function renderMapChips() {
     renderMapChips();
     renderMarkerCounts();
   }));
+  const lab = $("mb-filter-lab");
+  if (lab) { const g = MAP_GROUPS.find(x => x[0] === state.mapFilter); lab.textContent = g ? g[1] : "ALL"; }
 }
 
 function renderHeader() {
@@ -1665,6 +2768,7 @@ function renderHeader() {
 function markerVisible(ev) {
   const f = state.mapFilter;
   if (f === "all") return true;
+  if (f === "none") return false;
   if (f === "emerging") return !!ev.emerging;
   return (ev.cats || []).includes(f);
 }
@@ -1691,11 +2795,11 @@ function renderMarkerCounts() {
 
 function renderDetail() {
   const d = $("detail");
-  if (!state.selected) { d.style.display = "none"; return; }
+  if (!state.selected) { d.classList.remove("open"); $("drawer-bg").classList.remove("open"); return; }
   const ev = byId[state.selected];
   const feed = state.feeds[ev.id];
   const p = PRIORITY[ev.priority];
-  d.style.display = "block";
+  d.classList.add("open"); $("drawer-bg").classList.add("open");
   $("d-name").textContent = ev.name;
   const prio = $("d-prio");
   prio.textContent = "P" + ev.priority + " · " + p.label;
@@ -1719,6 +2823,8 @@ function renderDetail() {
   $("d-outlook").innerHTML =
     `<div class="ol-lab">Outlook</div>
      <div class="ol-line"><b>${ev.outlook.p}%</b> likelihood of ${esc(ev.outlook.line)} \u2014 ${esc(ev.outlook.window)}</div>`;
+
+  renderSignals(ev);
 
   const an = ANALYSIS[ev.id];
   $("d-analysis").innerHTML = !an ? "" :
@@ -1855,7 +2961,7 @@ function renderPanels() {
 
   $("ip-active").innerHTML = active.map(e => panelRow(e, "STI " + e.sti)).join("");
   $("ip-emerging").innerHTML = emerging.map(e => panelRow(e, "STI " + e.sti, e.flash)).join("");
-  $("ip-threat").innerHTML = threat.map(e => panelRow(e, "STI " + e.sti, CAT_DEFS[e.cats[0]].label + " \u00b7 " + state.feeds[e.id].items.length + " items")).join("");
+  if ($("ip-threat")) $("ip-threat").innerHTML = threat.map(e => panelRow(e, "STI " + e.sti, CAT_DEFS[e.cats[0]].label + " \u00b7 " + state.feeds[e.id].items.length + " items")).join("");
   $("ip-outlook").innerHTML = outlook.map(e =>
     `<div class="ip-item" data-ip="${e.id}">
       <span class="ip-name">${esc(e.name)}<span class="ip-line">${esc(e.outlook.line)} \u2014 ${esc(e.outlook.window)}</span></span>
@@ -1956,13 +3062,19 @@ function renderAll() {
   renderDetail();
   renderChips();
   renderFeed();
+  renderOverlay();
 }
 
 function setSelected(id) {
   state.selected = id;
   state.limit = 30;
+  if (state.layers.aircraft) {
+    if (id) loadArea();
+    else { state.layerData.area = []; state.areaFor = null; state.layerStatus.area = "idle"; renderLayerChips(); }
+  }
+  if (state.layers.ships && aisKey()) connectAis();
   renderAll();
-  if (id) $("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  if (id) $("detail").scrollTop = 0;
 }
 
 /* ========================= wire up ========================= */
@@ -1975,18 +3087,76 @@ $("sort-btn").addEventListener("click", () => {
 $("search").addEventListener("input", e => { state.query = e.target.value; state.limit = 30; renderFeed(); });
 $("load-more").addEventListener("click", () => { state.limit += 30; renderFeed(); });
 $("d-close").addEventListener("click", () => setSelected(null));
+$("hdr-search").addEventListener("click", ckOpen);
+document.querySelectorAll("#nav [data-tab]").forEach(b => b.addEventListener("click", () => switchView(b.dataset.tab)));
+document.querySelectorAll(".mb-btn[data-pop]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); togglePop(b); }));
+document.querySelectorAll(".pop").forEach(p => p.addEventListener("click", e => e.stopPropagation()));
+document.addEventListener("click", closePops);
+$("drawer-bg").addEventListener("click", () => setSelected(null));
+$("d-close2").addEventListener("click", () => setSelected(null));
+$("d-feed").addEventListener("click", () => { switchView("feed"); });
+$("ah-close").addEventListener("click", () => { state.adhoc = { q: "", status: "idle", items: [] }; renderAdhoc(); });
+$("sit-search").addEventListener("input", e => { state.sitQ = e.target.value; renderSituations(); });
+$("cmdk").addEventListener("click", e => { if (e.target.id === "cmdk") ckClose(); });
+$("ck-input").addEventListener("input", e => {
+  state.ck.q = e.target.value; state.ck.idx = 0;
+  state.ck.results = ckResults(state.ck.q);
+  renderCk();
+});
+document.addEventListener("keydown", e => {
+  const k = (e.key || "").toLowerCase();
+  if ((e.metaKey || e.ctrlKey) && k === "k") { e.preventDefault(); state.ck.open ? ckClose() : ckOpen(); return; }
+  if (!state.ck.open) {
+    if (e.key === "Escape" && state.selected) { setSelected(null); }
+    return;
+  }
+  if (e.key === "Escape") { e.preventDefault(); ckClose(); }
+  else if (e.key === "ArrowDown") { e.preventDefault(); state.ck.idx = Math.min(state.ck.results.length - 1, state.ck.idx + 1); renderCk(); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); state.ck.idx = Math.max(0, state.ck.idx - 1); renderCk(); }
+  else if (e.key === "Enter") { e.preventDefault(); ckRun(state.ck.idx); }
+});
 setInterval(() => renderHeader(), 60000);
 setInterval(loadAll, 5 * 60 * 1000);
 setInterval(loadWire, 2 * 60 * 1000);
 setInterval(advanceWire, 6000);
+setInterval(() => { if (state.layers.aircraft) loadFlights(); }, 60 * 1000);
+setInterval(() => { if (state.layers.aircraft && state.selected) loadArea(); }, 60 * 1000);
+setInterval(refreshShips, 20 * 1000);
+setInterval(() => { if (state.layers.ships && aisKey() && (!state.ais.ws || state.ais.ws.readyState > 1)) connectAis(); }, 90 * 1000);
+
+$("ak-close").addEventListener("click", closeAkey);
+$("akey").addEventListener("click", e => { if (e.target.id === "akey") closeAkey(); });
+$("ak-save").addEventListener("click", () => {
+  try { localStorage.setItem("sokren_ais_key", $("ak-input").value.trim()); } catch (e) { /* ignore */ }
+  closeAkey();
+  disconnectAis();
+  if (state.layers.ships) connectAis(); else toggleLayer("ships");
+});
+$("ak-clear").addEventListener("click", () => {
+  try { localStorage.removeItem("sokren_ais_key"); } catch (e) { /* ignore */ }
+  $("ak-input").value = "";
+  disconnectAis(); state.layerStatus.ships = state.layers.ships ? "nokey" : "idle"; renderLayerChips();
+});
+$("ak-input").addEventListener("keydown", e => { if (e.key === "Enter") $("ak-save").click(); });
+
+(function initLayerPrefs() {
+  const saved = loadLayerPrefs();
+  if (saved) LAYERS.forEach(l => { if (typeof saved[l.id] === "boolean") state.layers[l.id] = saved[l.id]; });
+})();
 
 drawBasemap();
 buildMarkers();
 renderMapChips();
+renderLayerChips();
 initMap();
+switchView((location.hash || "").slice(1));
 applyView();
+renderOverlay();
 loadAll();
 loadWire();
+if (state.layers.aircraft) loadFlights();
+if (state.layers.cables) loadCables();
+if (state.layers.ships) connectAis();
 </script>
 </body>
 </html>
