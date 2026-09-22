@@ -2248,7 +2248,7 @@ function connectAis() {
     // only a genuine reconnect after silence resets it.
     if (!wasHealthy || !state.ais.connectedAt) state.ais.connectedAt = Date.now();
     state.ais.boxes = boxes;
-    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReportA", "StaticDataReportB"] })); }
+    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReport"] })); }
     catch (e) { /* ignore */ }
     state.ais.diag = "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
     setTimeout(() => { if (state.ais.ws === ws && !state.ais.msgs) { state.ais.diag = "connected · " + (state.ais.frames || 0) + " frames in 20s, none parsed as AIS"; renderLayerChips(); } }, 20000);
@@ -2305,12 +2305,13 @@ function handleAisText(ws, txt) {
       if (rec.dark) { rec.dark = false; rec.reappeared = Date.now(); }
     } else if (mt === "ShipStaticData" && m.Message && m.Message.ShipStaticData) {
       rec.type = Number(m.Message.ShipStaticData.Type) || rec.type;
-    } else if (mt === "StaticDataReportB" && m.Message && m.Message.StaticDataReportB) {
-      const rb = m.Message.StaticDataReportB.ReportB || m.Message.StaticDataReportB;
-      rec.type = Number(rb.ShipType) || rec.type; rec.classB = true;
-    } else if (mt === "StaticDataReportA" && m.Message && m.Message.StaticDataReportA) {
-      const ra = m.Message.StaticDataReportA.ReportA || m.Message.StaticDataReportA;
-      if (ra.Name) rec.name = String(ra.Name).trim(); rec.classB = true;
+    } else if (mt === "StaticDataReport" && m.Message && m.Message.StaticDataReport) {
+      // AIS message 24 (Class B static data) — part A carries the name, part B the ship type
+      const sd = m.Message.StaticDataReport;
+      const ra = sd.ReportA, rb = sd.ReportB;
+      if (ra && ra.Name && (ra.Valid !== false)) rec.name = String(ra.Name).trim();
+      if (rb && (rb.Valid !== false) && Number(rb.ShipType)) rec.type = Number(rb.ShipType);
+      rec.classB = true;
     }
     state.ais.lastMsg = Date.now();
     if (state.layerStatus.ships !== "live") { state.layerStatus.ships = "live"; refreshShips(); }
