@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+tests/out/
+.wrangler/
+.dev.vars
+sokren-relay/node_modules/

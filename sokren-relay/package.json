@@ -1,0 +1,14 @@
+{
+  "name": "sokren-relay",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cloudflare Worker relay for SOKREN Global Operations: shared AIS feed, ADS-B and news pass-through",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "secret": "wrangler secret put AISSTREAM_KEY"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

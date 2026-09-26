@@ -1,0 +1,21 @@
+import { chromium } from 'playwright';
+import fs from 'fs';
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const b = await chromium.launch(); const page = await b.newPage({ viewport: { width: 1400, height: 900 } });
+const errs=[]; page.on('pageerror', e => errs.push(e.message));
+await page.route('**/*', r => r.request().url() === 'http://localhost/' ? r.fulfill({ status: 200, contentType: 'text/html', body: HTML }) : r.abort());
+await page.goto('http://localhost/'); await page.waitForTimeout(1200);
+// real mouse: open search, type, hover the 2nd result, click it
+await page.click('#hdr-search'); await page.waitForTimeout(150);
+await page.keyboard.type('sudan'); await page.waitForTimeout(200);
+const items = await page.$$('#ck-list .ck-item');
+const texts = await page.$$eval('#ck-list .ck-item', els => els.map(e => e.innerText.replace(/\s+/g,' ').trim()));
+const target = items[1]; const box = await target.boundingBox();
+await page.mouse.move(box.x + 40, box.y + box.height/2); await page.waitForTimeout(80);
+await page.mouse.move(box.x + 60, box.y + box.height/2 + 2); await page.waitForTimeout(80);
+await page.mouse.down(); await page.mouse.up(); await page.waitForTimeout(500);
+console.log('results:', texts.slice(0,3));
+console.log('after real click on #2 -> selected=', await page.evaluate(() => state.selected), 'palette open=', await page.evaluate(() => state.ck.open), 'drawer=', await page.$eval('#detail', el => el.classList.contains('open')));
+console.log('air diag text:', await page.$eval('#air-diag', el => el.textContent));
+console.log('errors:', errs.length ? errs : 'none');
+await b.close();

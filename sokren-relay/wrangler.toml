@@ -1,0 +1,21 @@
+# SOKREN relay — Cloudflare Worker + Durable Object
+# Deploy:  npx wrangler deploy        (after: npx wrangler login, npx wrangler secret put AISSTREAM_KEY)
+name = "sokren-relay"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# One shared AISStream connection lives in this Durable Object and fans out to every visitor.
+[durable_objects]
+bindings = [{ name = "AIS_HUB", class_name = "AisHub" }]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AisHub"]
+
+[vars]
+# Browsers on these origins may use the relay. Add "http://localhost:8080" while developing locally.
+ALLOWED_ORIGINS = "https://www.sokren.com,https://sokren.com,https://sokrenglobalops.github.io"
+# Upstream AIS source. Leave as is.
+AIS_UPSTREAM = "wss://stream.aisstream.io/v0/stream"
+
+# Secrets (never in this file):  AISSTREAM_KEY  → npx wrangler secret put AISSTREAM_KEY

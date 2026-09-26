@@ -484,7 +484,7 @@
       <button class="mb-btn" id="mb-layers" data-pop="pop-layers">Layers <b id="mb-layers-lab">0</b> ▾</button>
       <div class="pop" id="pop-layers"><div class="pop-title">Map layers</div><div id="layer-chips"></div>
         <div id="ship-filter"><span class="sf-lab">Vessels</span></div>
-        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS (AISStream key). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div>
+        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (airplanes.live / adsb.lol, OpenSky fallback). Ships: live AIS via AISStream (shared through the SOKREN relay when configured). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div>
         <div class="pop-note" id="air-diag" style="color:var(--mut)"></div></div>
     </div>
   </div>
@@ -1329,10 +1329,24 @@ const LAYERS = [
    API (CC BY-NC-SA). The curated CABLES corridors are the offline fallback. */
 const CABLE_GEO_URL = "https://www.submarinecablemap.com/api/v3/cable/cable-geo.json";
 
-/* Ships: AISStream.io live AIS over WebSocket. Needs a free API key
-   (GitHub sign-in at aisstream.io), stored only in this browser. */
-const AIS_WS = "wss://stream.aisstream.io/v0/stream";
-function aisKey() { try { return (localStorage.getItem("sokren_ais_key") || "").trim(); } catch (e) { return ""; } }
+/* ===== SOKREN relay (Cloudflare Worker) =====
+   Paste the worker URL here once deployed, e.g. "https://sokren-relay.yourname.workers.dev".
+   With it set: every visitor sees live ships (the AISStream key lives on the worker, never in
+   this file), and aircraft/news requests go through the relay's cache instead of straight to
+   the providers. Leave empty to fall back to per-browser API keys. */
+const RELAY_BASE = "";
+const RELAY = RELAY_BASE.replace(/\/+$/, "");
+const relayUrl = path => RELAY ? RELAY + path : "";
+
+/* Ships: without a relay, AISStream.io direct over WebSocket with a key stored only in this browser. */
+const AIS_WS = RELAY ? RELAY.replace(/^http/, "ws") + "/ais" : "wss://stream.aisstream.io/v0/stream";
+function aisKey() { if (RELAY) return "relay"; try { return (localStorage.getItem("sokren_ais_key") || "").trim(); } catch (e) { return ""; } }
+function aisTime(md) {
+  // AISStream MetaData.time_utc looks like "2024-05-01 12:34:56.123456789 +0000 UTC"
+  const t = md && md.time_utc ? Date.parse(String(md.time_utc).slice(0, 19).replace(" ", "T") + "Z") : NaN;
+  const now = Date.now();
+  return (isFinite(t) && t < now + 5 * 60000 && t > now - 24 * 3600000) ? t : now;
+}
 
 function loadLayerPrefs() {
   try {
@@ -1812,7 +1826,7 @@ function unwrapAllOrigins(text) {
 }
 
 async function fetchEventNews(ev) {
-  const attempts = proxied(gdeltUrl(ev.query));
+  const attempts = (RELAY ? [relayUrl("/news?q=" + encodeURIComponent(ev.query) + "&max=10")] : []).concat(proxied(gdeltUrl(ev.query)));
   let lastErr = new Error("fetch failed");
   for (const u of attempts) {
     try {
@@ -2072,9 +2086,9 @@ async function loadFlights() {
     let raw, src = "adsb";
     state.airDiag = "";
     try {
-      const r = await fetchJSONDirect(["https://api.airplanes.live/v2/mil", "https://api.adsb.lol/v2/mil"]);
+      const r = await fetchJSONDirect([relayUrl("/air/mil"), "https://api.airplanes.live/v2/mil", "https://api.adsb.lol/v2/mil"].filter(Boolean));
       raw = r.data.ac || r.data.aircraft || (Array.isArray(r.data) ? r.data : []);
-      state.airDiag = "ADS-B: " + (r.url.includes("airplanes") ? "airplanes.live" : "adsb.lol");
+      state.airDiag = "ADS-B: " + (RELAY && r.url.startsWith(RELAY) ? "via relay" : r.url.includes("airplanes") ? "airplanes.live" : "adsb.lol");
     } catch (e1) {
       state.airDiag = "ADS-B blocked (" + String(e1 && e1.message || e1).slice(0, 40) + ")";
       // OpenSky: keyless and browser-reachable, but rate limited, so only every 20 min
@@ -2163,9 +2177,10 @@ async function loadArea() {
     let list;
     try {
       const r = await fetchJSONDirect([
+        relayUrl("/air/point/" + lat + "/" + lon + "/250"),
         "https://api.airplanes.live/v2/point/" + lat + "/" + lon + "/250",
         "https://api.adsb.lol/v2/point/" + lat + "/" + lon + "/250",
-      ]);
+      ].filter(Boolean));
       const raw = r.data.ac || r.data.aircraft || (Array.isArray(r.data) ? r.data : []);
       list = raw.map(mapAircraft).filter(Boolean);
     } catch (e1) {
@@ -2229,6 +2244,11 @@ async function loadCables() {
 }
 
 /* ---- ships (AISStream) ---- */
+function extraBoxes() {
+  if (!(state.selected && byId[state.selected])) return [];
+  const ev = byId[state.selected];
+  return [[[Math.max(-90, ev.lat - 4), Math.max(-180, ev.lon - 4)], [Math.min(90, ev.lat + 4), Math.min(180, ev.lon + 4)]]];
+}
 function aisBoxes() {
   const boxes = CHOKEPOINTS.map(c => [[c.lat - 3, c.lon - 3], [c.lat + 3, c.lon + 3]]);
   if (state.selected && byId[state.selected]) {
@@ -2253,9 +2273,15 @@ function connectAis() {
   const boxes = aisBoxes();
   const bk = JSON.stringify(boxes);
   if (state.ais.ws && state.ais.boxesKey === bk && state.ais.ws.readyState <= 1) return;
+  if (RELAY && state.ais.ws && state.ais.ws.readyState === 1) {
+    // relay keeps the chokepoint feed running; we only tell it which extra area we're looking at
+    state.ais.boxesKey = bk; state.ais.boxes = boxes;
+    try { state.ais.ws.send(JSON.stringify({ boxes: extraBoxes() })); } catch (e) { /* ignore */ }
+    return;
+  }
   const wasHealthy = state.ais.ws && state.ais.ws.readyState === 1 && Date.now() - state.ais.lastMsg < 60 * 1000;
   disconnectAis();
-  Object.keys(state.ships).forEach(k => {
+  if (!RELAY) Object.keys(state.ships).forEach(k => {
     const v = state.ships[k];
     if (!boxes.some(b => v.lat >= b[0][0] && v.lat <= b[1][0] && v.lon >= b[0][1] && v.lon <= b[1][1])) { delete state.ships[k]; delete state.shipTrails[k]; }
   });
@@ -2270,9 +2296,11 @@ function connectAis() {
     // only a genuine reconnect after silence resets it.
     if (!wasHealthy || !state.ais.connectedAt) state.ais.connectedAt = Date.now();
     state.ais.boxes = boxes;
-    try { ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReport"] })); }
-    catch (e) { /* ignore */ }
-    state.ais.diag = "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
+    try {
+      if (RELAY) ws.send(JSON.stringify({ boxes: extraBoxes() }));
+      else ws.send(JSON.stringify({ APIKey: key, BoundingBoxes: boxes, FilterMessageTypes: ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReport"] }));
+    } catch (e) { /* ignore */ }
+    state.ais.diag = RELAY ? "connected to relay · waiting for data" : "connected · subscribed to " + boxes.length + " areas · waiting for data"; renderLayerChips();
     setTimeout(() => { if (state.ais.ws === ws && !state.ais.msgs) { state.ais.diag = "connected · " + (state.ais.frames || 0) + " frames in 20s, none parsed as AIS"; renderLayerChips(); } }, 20000);
   };
   ws.onmessage = ev => {
@@ -2282,7 +2310,7 @@ function connectAis() {
     else if (txt && typeof txt !== "string" && typeof txt.text === "function") { txt.text().then(t => handleAisText(ws, t)).catch(() => {}); return; }
     handleAisText(ws, txt);
   };
-  ws.onerror = () => { state.ais.diag = "connection failed (network or service down)"; state.layerStatus.ships = "error"; renderLayerChips(); };
+  ws.onerror = () => { state.ais.diag = RELAY ? "relay unreachable (worker down or origin not allowed)" : "connection failed (network or service down)"; state.layerStatus.ships = "error"; renderLayerChips(); };
   ws.onclose = ev => {
     if (state.ais.ws === ws) {
       state.ais.ws = null;
@@ -2295,11 +2323,21 @@ function connectAis() {
 
 function handleAisText(ws, txt) {
   if (state.ais.ws !== ws) return;
+  let m; try { m = JSON.parse(txt); }
+  catch (e) {
+    if (state.ais.frames <= 3) { state.ais.diag = "frames arriving but not JSON: " + String(txt).slice(0, 60); renderLayerChips(); }
+    return;
+  }
+  if (Array.isArray(m)) { m.forEach(x => handleAisMessage(ws, x)); return; }   // relay snapshot chunk
+  handleAisMessage(ws, m);
+}
+function handleAisMessage(ws, m) {
   {
-    let m; try { m = JSON.parse(txt); }
-    catch (e) {
-      if (state.ais.frames <= 3) { state.ais.diag = "frames arriving but not JSON: " + String(txt).slice(0, 60); renderLayerChips(); }
-      return;
+    if (m && m.MessageType === "RelayStatus") {
+      state.ais.relay = m;
+      const up = m.upstream === "open" ? "feed live" : m.upstream === "connecting" ? "feed connecting" : m.upstream === "idle" ? "feed starting" : "feed problem";
+      state.ais.diag = "relay · " + up + (m.diag ? " · " + m.diag : "") + " · " + (m.clients || 0) + " viewer" + (m.clients === 1 ? "" : "s") + " · " + (m.vessels || 0) + " vessels held";
+      renderLayerChips(); return;
     }
     if (m && m.error) {
       state.ais.diag = "server rejected: " + String(m.error).slice(0, 80);
@@ -2318,9 +2356,11 @@ function handleAisText(ws, txt) {
       if (mt !== "PositionReport") rec.classB = true;
       const lat = Number(pr.Latitude != null ? pr.Latitude : md.latitude), lon = Number(pr.Longitude != null ? pr.Longitude : md.longitude);
       if (!isFinite(lat) || !isFinite(lon)) return;
+      const at = aisTime(md);
+      if (rec.t && at < rec.t) return;               // out-of-order (snapshot after live) — keep the newer fix
       rec.lat = lat; rec.lon = lon;
       rec.cog = Number(pr.Cog) || 0; rec.sog = Number(pr.Sog) || 0; rec.nav = Number(pr.NavigationalStatus);
-      rec.t = Date.now();
+      rec.t = at;
       const tr = state.shipTrails[mmsi] || (state.shipTrails[mmsi] = []);
       const last = tr[tr.length - 1];
       if (!last || Math.abs(last[0] - lon) > 0.01 || Math.abs(last[1] - lat) > 0.01) { tr.push([lon, lat]); if (tr.length > 14) tr.shift(); }
@@ -2527,7 +2567,7 @@ function renderLayerChips() {
       if (l.id === "ships" && st === "loading" && state.ais.diag.startsWith("connected")) tag = "connected · waiting";
     }
     const dot = on ? ({ aircraft: "#35C4D7", cables: "var(--p1)", ships: "#7FB3D5" }[l.id] || "var(--accent-lt)") : "var(--line-lt)";
-    const gear = l.id === "ships" ? ` <span class="st" data-akey title="AISStream key">⚙</span>` : "";
+    const gear = (l.id === "ships" && !RELAY) ? ` <span class="st" data-akey title="AISStream key">⚙</span>` : "";
     return `<button class="lchip ${on ? "on" : ""}" data-ly="${l.id}"><i style="background:${dot}"></i>${l.label}${tag ? ` <span class="st">${tag}</span>` : ""}${gear}</button>`;
   }).join("");
   el.querySelectorAll("[data-ly]").forEach(b => b.addEventListener("click", e => {

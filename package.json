@@ -1,0 +1,19 @@
+{
+  "name": "sokrenintel",
+  "private": true,
+  "version": "2.0.0",
+  "description": "SOKREN Global Operations — open OSINT conflict monitor (single-file static site on GitHub Pages)",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "test:one": "node",
+    "serve": "python3 -m http.server 8080",
+    "syntax": "node tests/syntax.mjs",
+    "relay:dev": "cd sokren-relay && npx wrangler dev --port 8787",
+    "relay:deploy": "cd sokren-relay && npx wrangler deploy"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0",
+    "ws": "^8.18.0"
+  }
+}
