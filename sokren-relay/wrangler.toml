@@ -6,11 +6,15 @@ compatibility_date = "2025-09-01"
 
 # One shared AISStream connection lives in this Durable Object and fans out to every visitor.
 [durable_objects]
-bindings = [{ name = "AIS_HUB", class_name = "AisHub" }]
+bindings = [{ name = "AIS_HUB", class_name = "AisHub" }, { name = "AIR_HUB", class_name = "AirHub" }]
 
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["AisHub"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["AirHub"]
 
 [vars]
 # Browsers on these origins may use the relay. Add "http://localhost:8080" while developing locally.
@@ -18,4 +22,4 @@ ALLOWED_ORIGINS = "https://www.sokren.com,https://sokren.com,https://sokrengloba
 # Upstream AIS source. Leave as is.
 AIS_UPSTREAM = "wss://stream.aisstream.io/v0/stream"
 
-# Secrets (never in this file):  AISSTREAM_KEY  → npx wrangler secret put AISSTREAM_KEY
+# Secrets (never in this file):  AISSTREAM_KEY, OPENSKY_CLIENT_ID, OPENSKY_CLIENT_SECRET  → npx wrangler secret put NAME

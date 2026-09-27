@@ -4,7 +4,8 @@
                     fans out to every visitor. New visitors get a snapshot of every vessel the
                     hub has heard in the last 90 minutes, so the map fills instantly.
     /ais/status     JSON health line for the hub.
-    /air/mil        ADS-B military aircraft worldwide (adsb.fi, adsb.lol fallback), cached 15 s.
+    /air/mil        military aircraft worldwide: shared OpenSky snapshot (AirHub), ADS-B feeds as fallback.
+    /air/status     AirHub health (snapshot age, OpenSky credits left).
     /air/point/LAT/LON/NM   all traffic within NM nautical miles, cached 15 s.
     /news?q=...     GDELT article search, cached 5 min.
     ------------------------------------------------------------------
@@ -134,11 +135,20 @@ export default {
 
     if (!allowed) return json({ error: "origin not allowed" }, 403);
 
+    // Aircraft: one shared OpenSky snapshot (AirHub) first — the community ADS-B feeds refuse
+    // Cloudflare (airplanes.live 403 without approval, adsb.fi 403, adsb.lol 429). They stay as fallback.
+    let m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
+    if ((url.pathname === "/air/mil" || url.pathname === "/air/status" || m) && env.AIR_HUB && env.OPENSKY_CLIENT_ID) {
+      const resp = await env.AIR_HUB.get(env.AIR_HUB.idFromName("global")).fetch(request);
+      if (resp.ok || url.pathname === "/air/status") {
+        const h = new Headers(resp.headers);
+        Object.entries(corsHeaders(origin, allowed)).forEach(([k, v]) => h.set(k, v));
+        return new Response(resp.body, { status: resp.status, headers: h });
+      }
+    }
     if (url.pathname === "/air/mil") {
-      // adsb.fi first: airplanes.live now needs approval (403) and adsb.lol rate-limits Cloudflare (429)
       return cachedJSON(request, ["https://opendata.adsb.fi/api/v2/mil", "https://api.adsb.lol/v2/mil"], 15, ctx, origin, allowed);
     }
-    let m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
     if (m) {
       const lat = Number(m[1]).toFixed(3), lon = Number(m[2]).toFixed(3), nm = Math.min(250, Number(m[3]));
       return cachedJSON(request, ["https://opendata.adsb.fi/api/v2/lat/" + lat + "/lon/" + lon + "/dist/" + nm, "https://api.adsb.lol/v2/point/" + lat + "/" + lon + "/" + nm], 15, ctx, origin, allowed);
@@ -154,6 +164,108 @@ export default {
     return new Response("not found", { status: 404 });
   },
 };
+
+/* ======================= Air hub (Durable Object) =======================
+   One worldwide OpenSky snapshot, shared by every visitor and every colo, refreshed at most
+   every AIR_SNAP_TTL and only while someone asks. Standard account = 4000 credits/day; a
+   global /states/all costs 4, so 120 s ≈ 2900/day. /air/point is cut from the same snapshot
+   (no extra credits). Output uses readsb's {ac:[...]} shape so the site reads it unchanged. */
+const AIR_SNAP_TTL = 120 * 1000;
+const OPENSKY_TOKEN_URL = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token";
+// Military ICAO hex allocations — same list as MIL_HEX in index.html
+const MIL_HEX = [
+  [0xADF7C8, 0xAFFFFF], [0x010070, 0x01008F], [0x0A4000, 0x0A4FFF], [0x33FF00, 0x33FFFF], [0x350000, 0x37FFFF],
+  [0x3A8000, 0x3AFFFF], [0x3B0000, 0x3BFFFF], [0x3E8000, 0x3EBFFF], [0x3F4000, 0x3FBFFF], [0x400000, 0x40003F],
+  [0x43C000, 0x43CFFF], [0x444000, 0x446FFF], [0x44F000, 0x44FFFF], [0x457000, 0x457FFF], [0x45F400, 0x45F4FF],
+  [0x468000, 0x4683FF], [0x473C00, 0x473C0F], [0x478100, 0x4781FF], [0x480000, 0x480FFF], [0x48D800, 0x48D87F],
+  [0x497C00, 0x497CFF], [0x498420, 0x49842F], [0x4B7000, 0x4B7FFF], [0x4B8200, 0x4B82FF], [0x506F00, 0x506FFF],
+  [0x70C070, 0x70C07F], [0x710258, 0x71028F], [0x710380, 0x71039F], [0x738A00, 0x738AFF], [0x7CF800, 0x7CFAFF],
+  [0x800200, 0x8002FF], [0xC20000, 0xC3FFFF], [0xE40000, 0xE41FFF],
+];
+function isMilHex(hex) {
+  const n = parseInt(hex, 16);
+  if (!Number.isFinite(n)) return false;
+  for (const [a, b] of MIL_HEX) if (n >= a && n <= b) return true;
+  return false;
+}
+function fromOpenSky(sv) {
+  const lon = Number(sv[5]), lat = Number(sv[6]);
+  if (sv[5] == null || sv[6] == null || !Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+  const hex = String(sv[0] || "").toLowerCase();
+  const a = { hex, flight: String(sv[1] || "").trim(), lat: +lat.toFixed(4), lon: +lon.toFixed(4),
+    alt_baro: sv[8] ? "ground" : Math.round((Number(sv[7]) || 0) * 3.28084),
+    gs: Math.round((Number(sv[9]) || 0) * 1.94384), track: Math.round(Number(sv[10]) || 0),
+    baro_rate: Math.round((Number(sv[11]) || 0) * 196.85), squawk: sv[14] ? String(sv[14]) : "", country: sv[2] || "" };
+  if (isMilHex(hex)) a.dbFlags = 1;
+  return a;
+}
+function nmBetween(lat1, lon1, lat2, lon2) {
+  const r = Math.PI / 180, dLat = (lat2 - lat1) * r, dLon = (lon2 - lon1) * r;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLon / 2) ** 2;
+  return 3440.065 * 2 * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+export class AirHub {
+  constructor(ctx, env) {
+    this.env = env; this.snap = null; this.at = 0; this.inflight = null;
+    this.token = null; this.tokenExp = 0; this.diag = "idle"; this.credits = null; this.retryAt = 0; this.pulls = 0;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    try { await this.fresh(); } catch (e) { this.diag = String(e && e.message || e); }
+    const age = this.at ? Math.round((Date.now() - this.at) / 1000) : null;
+    const meta = { source: "opensky", age, diag: this.diag, creditsLeft: this.credits };
+    if (url.pathname === "/air/status") return json({ ...meta, aircraft: this.snap ? this.snap.length : 0, pulls: this.pulls });
+    if (!this.snap) return json({ error: "OpenSky: " + this.diag }, 502);
+    if (url.pathname === "/air/mil") return json({ ...meta, ac: this.snap.filter(a => a.dbFlags) });
+    const m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
+    if (m) {
+      const lat = Number(m[1]), lon = Number(m[2]), nm = Math.min(250, Number(m[3]));
+      return json({ ...meta, ac: this.snap.filter(a => nmBetween(lat, lon, a.lat, a.lon) <= nm) });
+    }
+    return json({ error: "not found" }, 404);
+  }
+
+  async fresh() {
+    if (this.snap && Date.now() - this.at < AIR_SNAP_TTL) return;
+    if (Date.now() < this.retryAt) return;
+    // on failure back off 5 min so visitors aren't held up by a hanging upstream
+    if (!this.inflight) this.inflight = this.pull().catch(e => { this.retryAt = Math.max(this.retryAt, Date.now() + 5 * 60 * 1000); throw e; }).finally(() => { this.inflight = null; });
+    await this.inflight;
+  }
+
+  async getToken() {
+    if (this.token && Date.now() < this.tokenExp) return this.token;
+    const body = new URLSearchParams({ grant_type: "client_credentials", client_id: this.env.OPENSKY_CLIENT_ID, client_secret: this.env.OPENSKY_CLIENT_SECRET || "" });
+    const r = await fetch(OPENSKY_TOKEN_URL, { method: "POST", body, headers: { "Content-Type": "application/x-www-form-urlencoded" }, signal: AbortSignal.timeout(15000) });
+    if (!r.ok) throw new Error("login failed (HTTP " + r.status + ")");
+    const d = await r.json();
+    this.token = d.access_token;
+    this.tokenExp = Date.now() + Math.max(60, (Number(d.expires_in) || 1800) - 120) * 1000;
+    return this.token;
+  }
+
+  async pull() {
+    let tok;
+    try { tok = await this.getToken(); } catch (e) { throw new Error("login: " + (e && e.message || e)); }
+    let r;
+    try { r = await fetch("https://opensky-network.org/api/states/all", { headers: { Authorization: "Bearer " + tok }, signal: AbortSignal.timeout(30000) }); }
+    catch (e) { throw new Error("states: " + (e && e.message || e)); }
+    if (r.status === 401) { this.token = null; throw new Error("token rejected (401)"); }
+    if (r.status === 429) {
+      const wait = Number(r.headers.get("X-Rate-Limit-Retry-After-Seconds")) || 900;
+      this.retryAt = Date.now() + wait * 1000;
+      throw new Error("daily credits used up · retry in " + Math.round(wait / 60) + " min");
+    }
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const left = r.headers.get("X-Rate-Limit-Remaining"); if (left != null) this.credits = Number(left);
+    const d = await r.json();
+    this.snap = (d.states || []).map(fromOpenSky).filter(Boolean);
+    this.at = Date.now(); this.pulls++;
+    this.diag = "ok · " + this.snap.length + " aircraft";
+  }
+}
 
 /* ======================= AIS hub (Durable Object) ======================= */
 export class AisHub {
