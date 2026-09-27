@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+// Direct (per-browser key) mode: blank RELAY_BASE so tests stay offline and deterministic.
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
 const b = await chromium.launch(); const page = await b.newPage({ viewport: { width: 1400, height: 900 }, deviceScaleFactor: 2 });
 const errs = []; page.on('pageerror', e => errs.push(e.message));
 await page.route('**/*', r => { const u = r.request().url();

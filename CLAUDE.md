@@ -93,7 +93,7 @@ per-vessel forwarding to 6 s, and goes idle 3 min after the last viewer leaves. 
 cached pass-throughs (CORS locked to `ALLOWED_ORIGINS`).
 
 - Deploy: `cd sokren-relay && npm install && npx wrangler login && npx wrangler secret put AISSTREAM_KEY && npx wrangler deploy`
-- Then set `const RELAY_BASE = "https://sokren-relay.<subdomain>.workers.dev";` in `index.html`.
+- Deployed at `https://sokren-relay.sokren-relay.workers.dev`; `RELAY_BASE` in `index.html` points there.
 - Health: `<relay>/ais/status`. Local dev: `npx wrangler dev --port 8787 --var AIS_UPSTREAM:ws://127.0.0.1:9999 --var AISSTREAM_KEY:SECRET123 --var "ALLOWED_ORIGINS:http://localhost:8080"` with `node test/fake_ais.mjs` running, then `node test/client_test.mjs`; the browser e2e is `tests/relay-e2e.manual.mjs`.
 - Outbound WebSockets from Workers use `fetch("https://…", {headers:{Upgrade:"websocket"}})` — never `wss://` in fetch.
 - AISStream subscription message-type names must be exact (`StaticDataReport`, not A/B variants); a malformed subscription closes the socket with no error text.
@@ -106,7 +106,7 @@ npx playwright install chromium   # once
 npm test               # syntax + all tests/*.test.mjs, screenshots in tests/out/
 node tests/dark.test.mjs          # one test, full JSON output
 ```
-Tests serve `index.html` via Playwright route interception at `http://localhost/` and mock every network
+Tests blank `RELAY_BASE` (direct-key mode) except `relay.test.mjs`, which checks the page as deployed. Tests serve `index.html` via Playwright route interception at `http://localhost/` and mock every network
 call (GDELT, ADS-B, OpenSky, cables) — they run offline and finish in ~50 s. AIS is tested with a fake
 `window.WebSocket` class and hand-built AISStream JSON fixtures. Each test prints a JSON result block and
 `PAGE ERRORS: none`; the runner fails on any page error or non-zero exit. When you add a feature, add or
@@ -131,7 +131,7 @@ No FlightRadar24 / MarineTraffic scraping — no public API / against ToS; link 
 
 ## Backlog candidates (discussed with Tim, not yet built)
 
-- Deploy relay, set `RELAY_BASE`, remove per-browser key path once stable.
+- Remove the per-browser AIS key path once the relay has been stable for a while.
 - Alerting: notify when a P1 situation's Live Signals change sharply (many mil aircraft, new dark ships).
 - Persist vessel tracks server-side (relay) for longer trails / replay.
 - Per-situation "watchlist" of MMSIs / hex codes.

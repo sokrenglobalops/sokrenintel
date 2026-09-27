@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+// Direct (per-browser key) mode: blank RELAY_BASE so tests stay offline and deterministic.
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
 const rnd = (a,b)=>a+Math.random()*(b-a);
 const mil = { ac: Array.from({length: 40}, (_, i) => ({ hex: 'ae'+i.toString(16).padStart(4,'0'), flight: 'RCH'+(100+i), r: 'REG'+i, t: ['C17','KC135','P8'][i%3], dbFlags: 1, alt_baro: 30000, gs: 400, track: rnd(0,360), squawk: '4521', lat: rnd(-35,65), lon: rnd(-170,170) })) };
 const area = { ac: Array.from({length: 12}, (_, i) => ({ hex: '4c'+i.toString(16).padStart(4,'0'), flight: 'CIV'+i, t: 'A320', dbFlags: 0, alt_baro: 35000, gs: 450, track: rnd(0,360), squawk: '1000', lat: 49+rnd(-3,3), lon: 32+rnd(-4,4) })) };

@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace('const RELAY_BASE = "";', 'const RELAY_BASE = "http://127.0.0.1:8787/";');
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "http://127.0.0.1:8787/";');
 const b = await chromium.launch(); const page = await b.newPage({ viewport: { width: 1400, height: 900 } });
 const errs = []; page.on('pageerror', e => errs.push(e.message));
 await page.route('**/*', r => { const u = r.request().url();

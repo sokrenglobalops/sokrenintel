@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+// Direct (per-browser key) mode: blank RELAY_BASE so tests stay offline and deterministic.
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
 const cables = { type: "FeatureCollection", features: [
   { type: "Feature", properties: { id: "c1", name: "EXA Meridian" }, geometry: { type: "MultiLineString", coordinates: [[[-74.06, 40.15], [-71.06, 39.96], [-30, 45], [-5, 50.3]]] } },
   { type: "Feature", properties: { id: "c2", name: "Southern Cross NEXT" }, geometry: { type: "MultiLineString", coordinates: [[[151.2, -33.9], [175, -30], [179.9, -20], [-179.9, -19], [-160, -10], [-118.5, 33.9]]] } },

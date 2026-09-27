@@ -1334,7 +1334,7 @@ const CABLE_GEO_URL = "https://www.submarinecablemap.com/api/v3/cable/cable-geo.
    With it set: every visitor sees live ships (the AISStream key lives on the worker, never in
    this file), and aircraft/news requests go through the relay's cache instead of straight to
    the providers. Leave empty to fall back to per-browser API keys. */
-const RELAY_BASE = "";
+const RELAY_BASE = "https://sokren-relay.sokren-relay.workers.dev";
 const RELAY = RELAY_BASE.replace(/\/+$/, "");
 const relayUrl = path => RELAY ? RELAY + path : "";
 

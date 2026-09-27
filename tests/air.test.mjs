@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+// Direct (per-browser key) mode: blank RELAY_BASE so tests stay offline and deterministic.
+const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
 const opensky = { time: 1, states: [
   ["ae1234","RCH123 ","United States",1,1,30.5,50.1,9448,false,226,95,0,null,9500,"4521",false,0],   // US mil range
   ["3e8001","GAF001 ","Germany",1,1,9.7,52.4,0,true,0,10,0,null,0,"1200",false,0],                // German mil range, on ground
