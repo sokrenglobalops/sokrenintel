@@ -68,7 +68,9 @@ mutable (`selected`, `view {k,x,y}`, `layers`, `layerData`, `layerStatus`, `ship
 - `ships` — AIS. `connectAis()` opens **either** the relay (`RELAY_BASE` set → `wss://…/ais`, no key, sends
   `{boxes:[…]}` for the selected situation) **or** AISStream directly with a per-browser key. Messages →
   `handleAisText` → `handleAisMessage` (also accepts JSON arrays = relay snapshot chunks, and `RelayStatus`).
-  `refreshShips()` every 5 s prunes, runs `detectDark()`, re-renders. Vessel classes: `shipBaseClass(v)`
+  `refreshShips()` every 5 s prunes, runs `detectDark()`, re-renders. Areas = 12 chokepoint boxes + `AIS_LANES`
+  (21 shipping-lane boxes, mirrored in the relay's `BASE_BOXES` — keep in sync) + selected situation. That's 10k+ vessels;
+  `pickShips()` draws at most `SHIP_DRAW_CAP` (4000): on-screen, dark, military/law, near selection, newest. Vessel classes: `shipBaseClass(v)`
   by AIS type code (35 military; 51/55 law; 80–89 tanker; 70–79 cargo; 60–69 passenger; 30–37/52–57 or
   Class B → small). `shipVisible(v)` applies `state.shipFilter` (`SHIP_FILTERS`). Dark-ship rule in
   `detectDark()`: silent ≥12 min, feed healthy, heard on this connection, was ≥3 kt, inside boxes with
