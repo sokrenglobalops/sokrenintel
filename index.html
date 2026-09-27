@@ -1714,6 +1714,7 @@ function applyView() {
   const cp = $("cable-path");
   if (cp) { cp.setAttribute("stroke-width", v.k >= 2.5 ? "1.4" : "0.8"); cp.setAttribute("opacity", v.k >= 2.5 ? "0.85" : "0.6"); }
   $("map-wrap").style.cursor = v.k > 1 ? "grab" : "default";
+  repickShipsSoon();
 }
 
 function clampView(x, y, k) {
@@ -2249,8 +2250,33 @@ function extraBoxes() {
   const ev = byId[state.selected];
   return [[[Math.max(-90, ev.lat - 4), Math.max(-180, ev.lon - 4)], [Math.min(90, ev.lat + 4), Math.min(180, ev.lon + 4)]]];
 }
+// Main shipping lanes within reach of shore receivers ([[latMin, lonMin], [latMax, lonMax]]).
+// Same list as the relay's BASE_BOXES in sokren-relay/src/index.js — keep them in sync.
+const AIS_LANES = [
+  [[48.5, -6.0], [51.5, 2.5]],     // English Channel
+  [[51.0, 2.5], [55.0, 9.0]],      // North Sea ports (Rotterdam–Hamburg)
+  [[36.5, -10.5], [44.0, -7.5]],   // Portugal / Cape Finisterre
+  [[35.0, 10.0], [38.5, 16.0]],    // Sicily Channel / Malta
+  [[34.5, 22.0], [38.5, 28.0]],    // Aegean / Crete
+  [[31.0, 32.0], [36.5, 36.0]],    // Levant / Cyprus
+  [[15.5, 36.5], [27.6, 43.0]],    // Red Sea (between Suez and Bab el-Mandeb)
+  [[24.0, 48.0], [30.0, 53.4]],    // Persian Gulf (inner)
+  [[17.0, 70.0], [23.0, 74.0]],    // India west coast (Mumbai)
+  [[4.5, 77.0], [8.5, 83.0]],      // Sri Lanka / Dondra Head
+  [[0.5, 103.5], [6.0, 109.0]],    // Singapore → South China Sea
+  [[20.0, 112.0], [23.5, 117.0]],  // Pearl River Delta / Hong Kong
+  [[28.5, 120.0], [32.5, 124.0]],  // Shanghai / Ningbo
+  [[33.0, 126.0], [36.0, 131.0]],  // Korea Strait
+  [[33.5, 135.0], [35.8, 141.0]],  // Japan Pacific coast / Tokyo Bay
+  [[36.5, -77.0], [41.0, -71.0]],  // US East Coast (New York–Chesapeake)
+  [[27.5, -95.5], [30.5, -88.0]],  // US Gulf (Houston–Mississippi)
+  [[32.5, -121.0], [34.5, -117.0]],// Los Angeles / Long Beach
+  [[-36.0, 16.0], [-33.0, 21.0]],  // Cape of Good Hope
+  [[44.0, 28.5], [46.7, 33.0]],    // NW Black Sea (Odesa–Constanța)
+  [[59.0, 22.0], [60.8, 30.0]],    // Gulf of Finland (Primorsk / Ust-Luga)
+];
 function aisBoxes() {
-  const boxes = CHOKEPOINTS.map(c => [[c.lat - 3, c.lon - 3], [c.lat + 3, c.lon + 3]]);
+  const boxes = CHOKEPOINTS.map(c => [[c.lat - 3, c.lon - 3], [c.lat + 3, c.lon + 3]]).concat(AIS_LANES);
   if (state.selected && byId[state.selected]) {
     const ev = byId[state.selected];
     boxes.push([[ev.lat - 4, ev.lon - 4], [ev.lat + 4, ev.lon + 4]]);
@@ -2516,9 +2542,40 @@ function refreshShips() {
     const keep = v.dark ? 90 * 60 * 1000 : 30 * 60 * 1000;
     if (now - v.t > keep) { delete state.ships[k]; delete state.shipTrails[k]; }
   });
-  state.layerData.ships = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon)).slice(0, 4000);
+  const all = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon));
+  state.shipsHeard = all.length;
+  state.layerData.ships = pickShips(all);
   if (state.layerData.ships.length && state.layerStatus.ships !== "live" && state.ais.ws) state.layerStatus.ships = "live";
   if (state.layers.ships) { renderLayerChips(); renderOverlay(); renderDetail(); }
+}
+
+/* The lanes bring in 10k+ vessels; the map draws at most SHIP_DRAW_CAP. Which ones:
+   on screen first, then AIS gaps, military / law enforcement, near the selected
+   situation, then most recently heard. */
+const SHIP_DRAW_CAP = 4000;
+function viewBounds() {
+  const el = $("map-wrap"), v = state.view, w = el.clientWidth || 1, h = el.clientHeight || 1;
+  const lon = px => (px - v.x) / v.k / w * 360 - 180, lat = py => 90 - (py - v.y) / v.k / h * 180;
+  return { w: lon(0), e: lon(w), n: lat(0), s: lat(h) };
+}
+function pickShips(all) {
+  if (all.length <= SHIP_DRAW_CAP) return all;
+  const b = viewBounds(), ev = state.selected && byId[state.selected];
+  const score = v => {
+    let s = 0;
+    if (v.lon >= b.w && v.lon <= b.e && v.lat >= b.s && v.lat <= b.n) s += 8;
+    if (v.dark) s += 4;
+    const c = shipBaseClass(v); if (c === "military" || c === "law") s += 4;
+    if (ev && Math.abs(v.lat - ev.lat) <= 4 && Math.abs(v.lon - ev.lon) <= 4) s += 2;
+    return s;
+  };
+  return all.map(v => [score(v), v.t || 0, v]).sort((a, z) => z[0] - a[0] || z[1] - a[1]).slice(0, SHIP_DRAW_CAP).map(x => x[2]);
+}
+let shipRepick = 0;
+function repickShipsSoon() {
+  if (!state.layers.ships || (state.shipsHeard || 0) <= SHIP_DRAW_CAP) return;
+  clearTimeout(shipRepick);
+  shipRepick = setTimeout(() => { state.layerData.ships = pickShips(Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon))); renderLayerChips(); renderOverlay(); }, 400);
 }
 
 function openAkey() {
@@ -2581,7 +2638,7 @@ function renderLayerChips() {
     sf.classList.toggle("on", !!state.layers.ships);
     const counts = {};
     state.layerData.ships.forEach(v => { const c = shipBaseClass(v); counts[c] = (counts[c] || 0) + 1; if (v.dark) counts.dark = (counts.dark || 0) + 1; });
-    sf.innerHTML = `<span class="sf-lab">Vessels · ${state.layerData.ships.length} tracked</span>` + SHIP_FILTERS.map(([id, label]) =>
+    sf.innerHTML = `<span class="sf-lab">Vessels · ${state.layerData.ships.length} ${(state.shipsHeard || 0) > state.layerData.ships.length ? "shown of " + state.shipsHeard + " heard" : "tracked"}</span>` + SHIP_FILTERS.map(([id, label]) =>
       `<button class="chip ${state.shipFilter === id ? "on" : ""}" data-sf="${id}">${label}${id === "all" ? "" : ` <span style="opacity:.7">${counts[id] || 0}</span>`}</button>`).join("");
     sf.querySelectorAll("[data-sf]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); state.shipFilter = b.dataset.sf; renderLayerChips(); renderOverlay(); }));
   }

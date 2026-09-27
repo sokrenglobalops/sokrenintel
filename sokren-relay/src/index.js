@@ -13,7 +13,30 @@
 const BASE_BOXES = [            // ±3° around each SOKREN chokepoint — same list as the site
   [26.6, 56.4], [12.6, 43.4], [30.6, 32.35], [2.9, 100.8], [24.4, 119.6], [41.1, 29.1],
   [45.3, 36.6], [9.1, -79.7], [55.9, 12.7], [35.9, -5.6], [12.2, 47.5], [20.6, 121.0],
-].map(([lat, lon]) => [[clampLat(lat - 3), clampLon(lon - 3)], [clampLat(lat + 3), clampLon(lon + 3)]]);
+].map(([lat, lon]) => [[clampLat(lat - 3), clampLon(lon - 3)], [clampLat(lat + 3), clampLon(lon + 3)]]).concat([
+  // Main shipping lanes within reach of shore receivers — same list as AIS_LANES in index.html
+  [[48.5, -6.0], [51.5, 2.5]],     // English Channel
+  [[51.0, 2.5], [55.0, 9.0]],      // North Sea ports (Rotterdam–Hamburg)
+  [[36.5, -10.5], [44.0, -7.5]],   // Portugal / Cape Finisterre
+  [[35.0, 10.0], [38.5, 16.0]],    // Sicily Channel / Malta
+  [[34.5, 22.0], [38.5, 28.0]],    // Aegean / Crete
+  [[31.0, 32.0], [36.5, 36.0]],    // Levant / Cyprus
+  [[15.5, 36.5], [27.6, 43.0]],    // Red Sea (between Suez and Bab el-Mandeb)
+  [[24.0, 48.0], [30.0, 53.4]],    // Persian Gulf (inner)
+  [[17.0, 70.0], [23.0, 74.0]],    // India west coast (Mumbai)
+  [[4.5, 77.0], [8.5, 83.0]],      // Sri Lanka / Dondra Head
+  [[0.5, 103.5], [6.0, 109.0]],    // Singapore → South China Sea
+  [[20.0, 112.0], [23.5, 117.0]],  // Pearl River Delta / Hong Kong
+  [[28.5, 120.0], [32.5, 124.0]],  // Shanghai / Ningbo
+  [[33.0, 126.0], [36.0, 131.0]],  // Korea Strait
+  [[33.5, 135.0], [35.8, 141.0]],  // Japan Pacific coast / Tokyo Bay
+  [[36.5, -77.0], [41.0, -71.0]],  // US East Coast (New York–Chesapeake)
+  [[27.5, -95.5], [30.5, -88.0]],  // US Gulf (Houston–Mississippi)
+  [[32.5, -121.0], [34.5, -117.0]],// Los Angeles / Long Beach
+  [[-36.0, 16.0], [-33.0, 21.0]],  // Cape of Good Hope
+  [[44.0, 28.5], [46.7, 33.0]],    // NW Black Sea (Odesa–Constanța)
+  [[59.0, 22.0], [60.8, 30.0]],    // Gulf of Finland (Primorsk / Ust-Luga)
+]);
 
 const MSG_TYPES = ["PositionReport", "ShipStaticData", "StandardClassBPositionReport", "ExtendedClassBPositionReport", "StaticDataReport"];
 const SNAPSHOT_TTL = 90 * 60 * 1000;   // forget vessels silent this long
@@ -202,7 +225,7 @@ export class AisHub {
     for (const [k, v] of this.extra) if (v.until < now) this.extra.delete(k);
     // keep boxes that a live client still wants
     for (const ws of this.clients()) { const a = ws.deserializeAttachment(); if (a && a.boxes) for (const b of a.boxes) { const k = JSON.stringify(b); const e = this.extra.get(k); if (e) e.until = now + EXTRA_BOX_TTL; else this.extra.set(k, { box: b, until: now + EXTRA_BOX_TTL }); } }
-    return BASE_BOXES.concat(Array.from(this.extra.values()).map(e => e.box)).slice(0, 40);
+    return BASE_BOXES.concat(Array.from(this.extra.values()).map(e => e.box)).slice(0, 60);
   }
 
   scheduleResubscribe() {
