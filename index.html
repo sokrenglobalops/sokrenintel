@@ -2254,7 +2254,8 @@ function extraBoxes() {
 // Same list as the relay's BASE_BOXES in sokren-relay/src/index.js — keep them in sync.
 const AIS_LANES = [
   [[48.5, -6.0], [51.5, 2.5]],     // English Channel
-  [[51.0, 2.5], [55.0, 9.0]],      // North Sea ports (Rotterdam–Hamburg)
+  [[51.3, 2.5], [54.5, 4.4]],      // North Sea: Rotterdam / IJmuiden approaches (offshore only — inland NL waterways swamp the feed)
+  [[53.7, 5.5], [55.0, 8.2]],      // German Bight (Elbe / Weser approaches)
   [[36.5, -10.5], [44.0, -7.5]],   // Portugal / Cape Finisterre
   [[35.0, 10.0], [38.5, 16.0]],    // Sicily Channel / Malta
   [[34.5, 22.0], [38.5, 28.0]],    // Aegean / Crete
@@ -2542,40 +2543,48 @@ function refreshShips() {
     const keep = v.dark ? 90 * 60 * 1000 : 30 * 60 * 1000;
     if (now - v.t > keep) { delete state.ships[k]; delete state.shipTrails[k]; }
   });
-  const all = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon));
-  state.shipsHeard = all.length;
-  state.layerData.ships = pickShips(all);
+  state.layerData.ships = Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon));
+  repickShips();
   if (state.layerData.ships.length && state.layerStatus.ships !== "live" && state.ais.ws) state.layerStatus.ships = "live";
   if (state.layers.ships) { renderLayerChips(); renderOverlay(); renderDetail(); }
 }
 
-/* The lanes bring in 10k+ vessels; the map draws at most SHIP_DRAW_CAP. Which ones:
-   on screen first, then AIS gaps, military / law enforcement, near the selected
+/* The lanes bring in 10k+ vessels. layerData.ships keeps every positioned vessel (counts,
+   Live Signals, AIS gaps); state.shipsDrawn is the subset put on the map, because thousands
+   of DOM markers get Safari's tab reloaded for memory. Zoomed in: only what's on screen.
+   Over the cap, priority: AIS gaps, military / law enforcement, near the selected
    situation, then most recently heard. */
-const SHIP_DRAW_CAP = 4000;
+const SHIP_DRAW_CAP = () => (window.innerWidth < 768 ? 600 : 1500);
+const TRAIL_MIN_ZOOM = 2;
 function viewBounds() {
   const el = $("map-wrap"), v = state.view, w = el.clientWidth || 1, h = el.clientHeight || 1;
   const lon = px => (px - v.x) / v.k / w * 360 - 180, lat = py => 90 - (py - v.y) / v.k / h * 180;
   return { w: lon(0), e: lon(w), n: lat(0), s: lat(h) };
 }
 function pickShips(all) {
-  if (all.length <= SHIP_DRAW_CAP) return all;
-  const b = viewBounds(), ev = state.selected && byId[state.selected];
+  let list = all.filter(shipVisible);
+  if (state.view.k > 1) {
+    const b = viewBounds(), mx = (b.e - b.w) * 0.1, my = (b.n - b.s) * 0.1;
+    list = list.filter(v => v.lon >= b.w - mx && v.lon <= b.e + mx && v.lat >= b.s - my && v.lat <= b.n + my);
+  }
+  const cap = SHIP_DRAW_CAP();
+  if (list.length <= cap) return list;
+  const ev = state.selected && byId[state.selected];
   const score = v => {
     let s = 0;
-    if (v.lon >= b.w && v.lon <= b.e && v.lat >= b.s && v.lat <= b.n) s += 8;
     if (v.dark) s += 4;
     const c = shipBaseClass(v); if (c === "military" || c === "law") s += 4;
     if (ev && Math.abs(v.lat - ev.lat) <= 4 && Math.abs(v.lon - ev.lon) <= 4) s += 2;
     return s;
   };
-  return all.map(v => [score(v), v.t || 0, v]).sort((a, z) => z[0] - a[0] || z[1] - a[1]).slice(0, SHIP_DRAW_CAP).map(x => x[2]);
+  return list.map(v => [score(v), v.t || 0, v]).sort((a, z) => z[0] - a[0] || z[1] - a[1]).slice(0, cap).map(x => x[2]);
 }
+function repickShips() { state.shipsDrawn = pickShips(state.layerData.ships); }
 let shipRepick = 0;
 function repickShipsSoon() {
-  if (!state.layers.ships || (state.shipsHeard || 0) <= SHIP_DRAW_CAP) return;
+  if (!state.layers.ships || !state.layerData.ships) return;
   clearTimeout(shipRepick);
-  shipRepick = setTimeout(() => { state.layerData.ships = pickShips(Object.values(state.ships).filter(v => isFinite(v.lat) && isFinite(v.lon))); renderLayerChips(); renderOverlay(); }, 400);
+  shipRepick = setTimeout(() => { repickShips(); renderLayerChips(); renderOverlay(); }, 400);
 }
 
 function openAkey() {
@@ -2638,9 +2647,9 @@ function renderLayerChips() {
     sf.classList.toggle("on", !!state.layers.ships);
     const counts = {};
     state.layerData.ships.forEach(v => { const c = shipBaseClass(v); counts[c] = (counts[c] || 0) + 1; if (v.dark) counts.dark = (counts.dark || 0) + 1; });
-    sf.innerHTML = `<span class="sf-lab">Vessels · ${state.layerData.ships.length} ${(state.shipsHeard || 0) > state.layerData.ships.length ? "shown of " + state.shipsHeard + " heard" : "tracked"}</span>` + SHIP_FILTERS.map(([id, label]) =>
+    sf.innerHTML = `<span class="sf-lab">Vessels · ${state.layerData.ships.length} tracked${(state.shipsDrawn || []).length < state.layerData.ships.filter(shipVisible).length ? " · " + state.shipsDrawn.length + " on map" : ""}</span>` + SHIP_FILTERS.map(([id, label]) =>
       `<button class="chip ${state.shipFilter === id ? "on" : ""}" data-sf="${id}">${label}${id === "all" ? "" : ` <span style="opacity:.7">${counts[id] || 0}</span>`}</button>`).join("");
-    sf.querySelectorAll("[data-sf]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); state.shipFilter = b.dataset.sf; renderLayerChips(); renderOverlay(); }));
+    sf.querySelectorAll("[data-sf]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); state.shipFilter = b.dataset.sf; repickShips(); renderLayerChips(); renderOverlay(); }));
   }
   const dg = $("air-diag");
   if (dg) {
@@ -2680,9 +2689,8 @@ function renderOverlay() {
       });
     }
   }
-  if (state.layers.ships) {
-    state.layerData.ships.forEach(v => {
-      if (!shipVisible(v)) return;
+  if (state.layers.ships && state.view.k >= TRAIL_MIN_ZOOM) {
+    (state.shipsDrawn || []).forEach(v => {
       const tr = state.shipTrails[v.mmsi];
       if (tr && tr.length > 1) {
         const d = tr.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
@@ -2710,8 +2718,7 @@ function renderOverlay() {
     });
   }
   if (state.layers.ships) {
-    state.layerData.ships.forEach((v, i) => {
-      if (!shipVisible(v)) return;
+    (state.shipsDrawn || []).forEach((v, i) => {
       const sel = state.shipSel === v.mmsi ? " sel" : "";
       if (v.dark) { html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:13;"><div class="sh-dark${sel}"></div></div>`; return; }
       const c = shipClass(v);
@@ -2744,7 +2751,7 @@ function renderOverlay() {
     el.addEventListener("click", e => { e.stopPropagation(); if (!mapDrag.moved && c.ev) setSelected(c.ev); });
   });
   pts.querySelectorAll("[data-sh]").forEach(el => {
-    const v = state.layerData.ships[Number(el.dataset.sh)];
+    const v = (state.shipsDrawn || [])[Number(el.dataset.sh)];
     if (!v) return;
     const h = () => tip(v.dark
       ? `<span style="font-size:11px; color:var(--p1)">AIS GAP · ${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">last heard ${timeAgo(new Date(v.t))} · was underway ${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}°</span>`

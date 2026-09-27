@@ -40,12 +40,13 @@ await page.evaluate(() => {
   refreshShips();
 });
 await page.waitForTimeout(300);
-R.capped = await page.evaluate(() => ({ heard: state.shipsHeard, drawn: state.layerData.ships.length, warshipKept: state.layerData.ships.some(v => String(v.mmsi || '') === '422000009' || v.type === 35), markers: document.querySelectorAll('#ov-pts [data-sh]').length }));
+R.capped = await page.evaluate(() => ({ tracked: state.layerData.ships.length, drawn: state.shipsDrawn.length, warshipKept: state.shipsDrawn.some(v => v.type === 35), markers: document.querySelectorAll('#ov-pts [data-sh]').length, trailsAtWorldZoom: document.querySelectorAll('#ov path[stroke="#7FB3D5"]').length }));
 R.vesselLabel = await page.$eval('#ship-filter .sf-lab', el => el.textContent);
 // zoom into Hormuz: on-screen ships jump the queue (repick after pan/zoom)
 await page.evaluate(() => { const el = document.getElementById('map-wrap'); const w = el.clientWidth, h = el.clientHeight; zoomAt(6, (56.4 + 180) / 360 * w, (90 - 26.6) / 180 * h); });
 await page.waitForTimeout(700);
-R.hormuzFirst = await page.evaluate(() => { const v = state.layerData.ships[0]; return Math.abs(v.lat - 26.6) < 1 && Math.abs(v.lon - 56.4) < 1; });
+R.zoomedHormuz = await page.evaluate(() => ({ drawn: state.shipsDrawn.length, allNearHormuz: state.shipsDrawn.every(v => Math.abs(v.lat - 26.6) < 8 && Math.abs(v.lon - 56.4) < 15), tracked: state.layerData.ships.length }));
+R.militaryFilter = await page.evaluate(() => { state.shipFilter = 'military'; repickShips(); const n = state.shipsDrawn.length; state.shipFilter = 'all'; repickShips(); return n; });
 R.laneBoxesInDirectList = await page.evaluate(() => aisBoxes().length);
 console.log(JSON.stringify(R, null, 2)); console.log('PAGE ERRORS:', errs.length ? errs : 'none');
 assert.ok(/^https:\/\//.test(base), 'RELAY_BASE should be set to an https URL');
@@ -54,10 +55,13 @@ assert.ok(R.firstSend && Array.isArray(R.firstSend.boxes) && !('APIKey' in R.fir
 assert.strictEqual(R.gear, 0, 'no AIS key gear in relay mode');
 assert.match(R.ships, /n=2$/);
 assert.ok(Array.isArray(R.lastSend.boxes) && R.lastSend.boxes.length > 0, 'selected situation adds boxes');
-assert.strictEqual(R.capped.heard, 4503);
-assert.strictEqual(R.capped.drawn, 4000);
+assert.strictEqual(R.capped.tracked, 4503, 'every vessel stays tracked');
+assert.strictEqual(R.capped.drawn, 1500, 'desktop draw cap');
+assert.strictEqual(R.capped.markers, 1500);
+assert.strictEqual(R.capped.trailsAtWorldZoom, 0, 'no trails at world zoom');
 assert.ok(R.capped.warshipKept, 'military vessel survives the draw cap');
-assert.match(R.vesselLabel, /4000 shown of 4503 heard/);
-assert.ok(R.hormuzFirst, 'after zooming to Hormuz, on-screen ships are drawn first');
-assert.strictEqual(R.laneBoxesInDirectList, 12 + 21);
+assert.match(R.vesselLabel, /4503 tracked · 1500 on map/);
+assert.ok(R.zoomedHormuz.allNearHormuz && R.zoomedHormuz.drawn >= 1 && R.zoomedHormuz.tracked === 4503, 'zoomed in: only on-screen ships drawn, all still tracked');
+assert.strictEqual(R.militaryFilter, 1, 'type filter picks from all tracked vessels');
+assert.strictEqual(R.laneBoxesInDirectList, 12 + 22);
 await b.close();

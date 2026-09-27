@@ -16,7 +16,8 @@ const BASE_BOXES = [            // ±3° around each SOKREN chokepoint — same 
 ].map(([lat, lon]) => [[clampLat(lat - 3), clampLon(lon - 3)], [clampLat(lat + 3), clampLon(lon + 3)]]).concat([
   // Main shipping lanes within reach of shore receivers — same list as AIS_LANES in index.html
   [[48.5, -6.0], [51.5, 2.5]],     // English Channel
-  [[51.0, 2.5], [55.0, 9.0]],      // North Sea ports (Rotterdam–Hamburg)
+  [[51.3, 2.5], [54.5, 4.4]],      // North Sea: Rotterdam / IJmuiden approaches (offshore only — inland NL waterways swamp the feed)
+  [[53.7, 5.5], [55.0, 8.2]],      // German Bight (Elbe / Weser approaches)
   [[36.5, -10.5], [44.0, -7.5]],   // Portugal / Cape Finisterre
   [[35.0, 10.0], [38.5, 16.0]],    // Sicily Channel / Malta
   [[34.5, 22.0], [38.5, 28.0]],    // Aegean / Crete
