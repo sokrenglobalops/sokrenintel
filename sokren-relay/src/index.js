@@ -4,7 +4,7 @@
                     fans out to every visitor. New visitors get a snapshot of every vessel the
                     hub has heard in the last 90 minutes, so the map fills instantly.
     /ais/status     JSON health line for the hub.
-    /air/mil        ADS-B military aircraft worldwide (airplanes.live, adsb.lol fallback), cached 15 s.
+    /air/mil        ADS-B military aircraft worldwide (adsb.fi, adsb.lol fallback), cached 15 s.
     /air/point/LAT/LON/NM   all traffic within NM nautical miles, cached 15 s.
     /news?q=...     GDELT article search, cached 5 min.
     ------------------------------------------------------------------
@@ -76,7 +76,7 @@ async function cachedJSON(request, upstreams, ttlSeconds, ctx, origin, allowed) 
     h.set("X-Relay-Cache", "hit");
     return new Response(hit.body, { status: hit.status, headers: h });
   }
-  let lastErr = "no upstream";
+  const errs = [];
   for (const u of upstreams) {
     try {
       const c = new AbortController();
@@ -84,11 +84,13 @@ async function cachedJSON(request, upstreams, ttlSeconds, ctx, origin, allowed) 
       let r;
       try { r = await fetch(u, { signal: c.signal, headers: { "User-Agent": "sokren-relay/1.0 (+https://www.sokren.com)", "Accept": "application/json" } }); }
       finally { clearTimeout(t); }
-      if (!r.ok) { lastErr = "HTTP " + r.status + " from " + new URL(u).host; continue; }
-      const text = await r.text();
+      if (!r.ok) { errs.push("HTTP " + r.status + " from " + new URL(u).host); continue; }
+      let text = await r.text();
       let parsed;
-      try { parsed = JSON.parse(text); } catch (e) { lastErr = "non-JSON from " + new URL(u).host; continue; }
-      if (!parsed || typeof parsed !== "object") { lastErr = "unexpected payload"; continue; }
+      try { parsed = JSON.parse(text); } catch (e) { errs.push("non-JSON from " + new URL(u).host); continue; }
+      if (!parsed || typeof parsed !== "object") { errs.push("unexpected payload from " + new URL(u).host); continue; }
+      // adsb.fi's point endpoint calls the list "aircraft"; the site expects readsb's "ac"
+      if (Array.isArray(parsed.aircraft) && !parsed.ac) { parsed.ac = parsed.aircraft; delete parsed.aircraft; text = JSON.stringify(parsed); }
       const resp = new Response(text, { status: 200, headers: {
         "Content-Type": "application/json; charset=utf-8",
         "Cache-Control": "public, max-age=" + ttlSeconds,
@@ -99,9 +101,9 @@ async function cachedJSON(request, upstreams, ttlSeconds, ctx, origin, allowed) 
       Object.entries(corsHeaders(origin, allowed)).forEach(([k, v]) => h.set(k, v));
       h.set("X-Relay-Cache", "miss");
       return new Response(text, { status: 200, headers: h });
-    } catch (e) { lastErr = String(e && e.message || e); }
+    } catch (e) { errs.push(new URL(u).host + ": " + String(e && e.message || e)); }
   }
-  return json({ error: lastErr }, 502, corsHeaders(origin, allowed));
+  return json({ error: errs.join("; ") || "no upstream" }, 502, corsHeaders(origin, allowed));
 }
 
 export default {
@@ -133,12 +135,13 @@ export default {
     if (!allowed) return json({ error: "origin not allowed" }, 403);
 
     if (url.pathname === "/air/mil") {
-      return cachedJSON(request, ["https://api.airplanes.live/v2/mil", "https://api.adsb.lol/v2/mil"], 15, ctx, origin, allowed);
+      // adsb.fi first: airplanes.live now needs approval (403) and adsb.lol rate-limits Cloudflare (429)
+      return cachedJSON(request, ["https://opendata.adsb.fi/api/v2/mil", "https://api.adsb.lol/v2/mil"], 15, ctx, origin, allowed);
     }
     let m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
     if (m) {
       const lat = Number(m[1]).toFixed(3), lon = Number(m[2]).toFixed(3), nm = Math.min(250, Number(m[3]));
-      return cachedJSON(request, ["https://api.airplanes.live/v2/point/" + lat + "/" + lon + "/" + nm, "https://api.adsb.lol/v2/point/" + lat + "/" + lon + "/" + nm], 15, ctx, origin, allowed);
+      return cachedJSON(request, ["https://opendata.adsb.fi/api/v2/lat/" + lat + "/lon/" + lon + "/dist/" + nm, "https://api.adsb.lol/v2/point/" + lat + "/" + lon + "/" + nm], 15, ctx, origin, allowed);
     }
     if (url.pathname === "/news") {
       const q = (url.searchParams.get("q") || "").trim().slice(0, 200);
