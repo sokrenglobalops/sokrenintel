@@ -21,5 +21,8 @@ new_sqlite_classes = ["AirHub"]
 ALLOWED_ORIGINS = "https://www.sokren.com,https://sokren.com,https://sokrenglobalops.github.io"
 # Upstream AIS source. Leave as is.
 AIS_UPSTREAM = "wss://stream.aisstream.io/v0/stream"
+# OpenSky blocks Cloudflare; aircraft snapshots come through this Deno Deploy helper (air-helper/main.ts).
+# It needs secret AIR_HELPER_KEY here = HELPER_KEY in the Deno project.
+AIR_HELPER_URL = "https://serene-lemming-5927.sokrenglobalops.deno.net"
 
 # Secrets (never in this file):  AISSTREAM_KEY, OPENSKY_CLIENT_ID, OPENSKY_CLIENT_SECRET  → npx wrangler secret put NAME

@@ -8,6 +8,7 @@ const b = await chromium.launch(); const page = await b.newPage({ viewport: { wi
 const errs = []; page.on('pageerror', e => errs.push(e.message));
 await page.route('**/*', r => { const u = r.request().url();
   if (u.startsWith('http://localhost')) return r.fulfill({ status: 200, contentType: 'text/html', body: HTML });
+  if (u.includes('/air/mil')) return r.fulfill({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ source: 'opensky', age: 42, ac: [{ hex: 'ae1234', flight: 'RCH123', lat: 50.1, lon: 30.5, alt_baro: 31000, gs: 440, track: 95, dbFlags: 1 }] }) });
   return r.abort(); });
 await page.addInitScript(() => {
   window.__sent = []; window.__urls = [];
@@ -48,6 +49,9 @@ await page.waitForTimeout(700);
 R.zoomedHormuz = await page.evaluate(() => ({ drawn: state.shipsDrawn.length, allNearHormuz: state.shipsDrawn.every(v => Math.abs(v.lat - 26.6) < 8 && Math.abs(v.lon - 56.4) < 15), tracked: state.layerData.ships.length }));
 R.militaryFilter = await page.evaluate(() => { state.shipFilter = 'military'; repickShips(); const n = state.shipsDrawn.length; state.shipFilter = 'all'; repickShips(); return n; });
 R.laneBoxesInDirectList = await page.evaluate(() => aisBoxes().length);
+// aircraft from the relay's OpenSky snapshot
+await page.evaluate(() => { if (!state.layers.aircraft) toggleLayer('aircraft'); else loadFlights(); }); await page.waitForTimeout(1500);
+R.air = await page.evaluate(() => ({ n: state.layerData.flights.length, src: state.airSource, diag: state.airDiag, chip: [...document.querySelectorAll('#layer-chips .lchip')].map(e => e.textContent.trim()).find(t => t.startsWith('Air')) }));
 console.log(JSON.stringify(R, null, 2)); console.log('PAGE ERRORS:', errs.length ? errs : 'none');
 assert.ok(/^https:\/\//.test(base), 'RELAY_BASE should be set to an https URL');
 assert.strictEqual(R.wsUrl, base.replace(/\/+$/, '').replace(/^http/, 'ws') + '/ais');
@@ -64,4 +68,8 @@ assert.match(R.vesselLabel, /4503 tracked · 1500 on map/);
 assert.ok(R.zoomedHormuz.allNearHormuz && R.zoomedHormuz.drawn >= 1 && R.zoomedHormuz.tracked === 4503, 'zoomed in: only on-screen ships drawn, all still tracked');
 assert.strictEqual(R.militaryFilter, 1, 'type filter picks from all tracked vessels');
 assert.strictEqual(R.laneBoxesInDirectList, 12 + 22);
+assert.strictEqual(R.air.n, 1);
+assert.strictEqual(R.air.src, 'opensky');
+assert.match(R.air.diag, /OpenSky via relay · snapshot 42 s old/);
+assert.match(R.air.chip, /OpenSky/);
 await b.close();

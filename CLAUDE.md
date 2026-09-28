@@ -62,8 +62,8 @@ mutable (`selected`, `view {k,x,y}`, `layers`, `layerData`, `layerStatus`, `ship
 - `chokepoints` — static diamonds.
 - `cables` — `./cables.json` → TeleGeography API → curated fallback. One red `<path id="cable-path">`, width
   scales with zoom in `applyView`. Antimeridian split in `splitAntimeridian`.
-- `aircraft` ("Air Tracker") — `loadFlights()` military worldwide via relay `/air/mil` → airplanes.live →
-  adsb.lol → OpenSky fallback (`MIL_HEX` ranges); `loadArea()` all traffic 250 nm around the selected
+- `aircraft` ("Air Tracker") — `loadFlights()` military worldwide via relay `/air/mil` (OpenSky snapshot,
+  `source:"opensky"`, `MIL_HEX` ranges) → dead direct fallbacks; `loadArea()` all traffic 250 nm around the selected
   situation. Diag string in `state.airDiag`, shown in `#air-diag`.
 - `ships` — AIS. `connectAis()` opens **either** the relay (`RELAY_BASE` set → `wss://…/ais`, no key, sends
   `{boxes:[…]}` for the selected situation) **or** AISStream directly with a per-browser key. Messages →
@@ -99,6 +99,14 @@ cached pass-throughs (CORS locked to `ALLOWED_ORIGINS`).
 - Health: `<relay>/ais/status`. Local dev: `npx wrangler dev --port 8787 --var AIS_UPSTREAM:ws://127.0.0.1:9999 --var AISSTREAM_KEY:SECRET123 --var "ALLOWED_ORIGINS:http://localhost:8080"` with `node test/fake_ais.mjs` running, then `node test/client_test.mjs`; the browser e2e is `tests/relay-e2e.manual.mjs`.
 - Outbound WebSockets from Workers use `fetch("https://…", {headers:{Upgrade:"websocket"}})` — never `wss://` in fetch.
 - AISStream subscription message-type names must be exact (`StaticDataReport`, not A/B variants); a malformed subscription closes the socket with no error text.
+- **Aircraft (AirHub DO + Deno helper).** Every free ADS-B source refuses Cloudflare (airplanes.live 403 needs approval,
+  adsb.fi 403, adsb.lol 429) and OpenSky doesn't even answer it, so `air-helper/main.ts` runs on Deno Deploy
+  (playground "serene-lemming-5927", Tim's Deno org; code is pasted into the Deno editor — keep the repo copy in sync)
+  and logs in to OpenSky (env `OPENSKY_CLIENT_ID/SECRET`, `HELPER_KEY`). Relay var `AIR_HELPER_URL`, secret
+  `AIR_HELPER_KEY` (= Deno `HELPER_KEY`). AirHub pulls one worldwide `/states/all` (4 credits) at most every 120 s,
+  only while someone asks; `/air/mil` and `/air/point` are cut from it in readsb `{ac:[]}` shape with `source`/`age`.
+  4000 credits/day. Health + login probe: `<relay>/air/status?probe=1`. Helper returns errors as 200 `{error}`
+  (a 5xx body gets replaced by the edge). Test creds locally: `sokren-relay/test/opensky_login_check.sh FILE.json`.
 
 ## Testing
 
@@ -117,7 +125,7 @@ used historically; with a repo checkout, direct edits are fine.
 
 ## Data sources and licensing (keep the About page truthful)
 
-GDELT DOC 2.0 (news), airplanes.live + adsb.lol (ADS-B, community), OpenSky (fallback, rate-limited
+GDELT DOC 2.0 (news), OpenSky (aircraft, via relay + Deno helper; adsb.lol/adsb.fi fallback, rate-limited
 anonymous), AISStream.io (AIS, free key, proxy-only terms), TeleGeography Submarine Cable Map (CC BY-NC-SA —
 attribution required, commercial use needs a license), Natural Earth via world-atlas TopoJSON.
 No FlightRadar24 / MarineTraffic scraping — no public API / against ToS; link out instead.

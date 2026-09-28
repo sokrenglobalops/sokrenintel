@@ -138,7 +138,7 @@ export default {
     // Aircraft: one shared OpenSky snapshot (AirHub) first — the community ADS-B feeds refuse
     // Cloudflare (airplanes.live 403 without approval, adsb.fi 403, adsb.lol 429). They stay as fallback.
     let m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
-    if ((url.pathname === "/air/mil" || url.pathname === "/air/status" || m) && env.AIR_HUB && env.OPENSKY_CLIENT_ID) {
+    if ((url.pathname === "/air/mil" || url.pathname === "/air/status" || m) && env.AIR_HUB && (env.OPENSKY_CLIENT_ID || env.AIR_HELPER_URL)) {
       const resp = await env.AIR_HUB.get(env.AIR_HUB.idFromName("global")).fetch(request);
       if (resp.ok || url.pathname === "/air/status") {
         const h = new Headers(resp.headers);
@@ -216,7 +216,14 @@ export class AirHub {
     try { await this.fresh(); } catch (e) { this.diag = String(e && e.message || e); }
     const age = this.at ? Math.round((Date.now() - this.at) / 1000) : null;
     const meta = { source: "opensky", age, diag: this.diag, creditsLeft: this.credits };
-    if (url.pathname === "/air/status") return json({ ...meta, aircraft: this.snap ? this.snap.length : 0, pulls: this.pulls });
+    if (url.pathname === "/air/status") {
+      let helper = null;   // login-only probe of the Deno helper (no OpenSky credits)
+      if (url.searchParams.has("probe") && this.env.AIR_HELPER_URL && this.env.AIR_HELPER_KEY) {
+        try { const r = await fetch(this.env.AIR_HELPER_URL.replace(/\/+$/, "") + "/check", { headers: { "x-helper-key": String(this.env.AIR_HELPER_KEY).trim() }, signal: AbortSignal.timeout(20000) }); helper = r.status + " " + (await r.text()).slice(0, 160); }
+        catch (e) { helper = "probe failed: " + String(e && e.message || e); }
+      }
+      return json({ ...meta, aircraft: this.snap ? this.snap.length : 0, pulls: this.pulls, helper });
+    }
     if (!this.snap) return json({ error: "OpenSky: " + this.diag }, 502);
     if (url.pathname === "/air/mil") return json({ ...meta, ac: this.snap.filter(a => a.dbFlags) });
     const m = url.pathname.match(/^\/air\/point\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(\d{1,3})$/);
@@ -247,12 +254,20 @@ export class AirHub {
   }
 
   async pull() {
+    // OpenSky blocks Cloudflare, so go through the Deno helper (air-helper/main.ts) when configured
+    if (this.env.AIR_HELPER_URL && this.env.AIR_HELPER_KEY) return this.pullVia(this.env.AIR_HELPER_URL.replace(/\/+$/, "") + "/states", { "x-helper-key": String(this.env.AIR_HELPER_KEY).trim() }, "helper");
     let tok;
     try { tok = await this.getToken(); } catch (e) { throw new Error("login: " + (e && e.message || e)); }
+    return this.pullVia("https://opensky-network.org/api/states/all", { Authorization: "Bearer " + tok }, "states", () => { this.token = null; });
+  }
+
+  async pullVia(u, headers, label, on401) {
     let r;
-    try { r = await fetch("https://opensky-network.org/api/states/all", { headers: { Authorization: "Bearer " + tok }, signal: AbortSignal.timeout(30000) }); }
-    catch (e) { throw new Error("states: " + (e && e.message || e)); }
-    if (r.status === 401) { this.token = null; throw new Error("token rejected (401)"); }
+    try { r = await fetch(u, { headers, signal: AbortSignal.timeout(40000) }); }
+    catch (e) { throw new Error(label + ": " + (e && e.message || e)); }
+    if (r.status === 401) { if (on401) on401(); throw new Error(label + ": rejected (401)"); }
+    if (r.status === 403) { let t = ""; try { t = (await r.text()).slice(0, 80); } catch (x) { /* ignore */ } throw new Error(label + ": " + (t || "forbidden (403)")); }
+    if (r.status >= 500) { let t = ""; try { t = await r.text(); try { t = JSON.parse(t).error || t; } catch (x) { /* not JSON */ } } catch (x) { /* ignore */ } throw new Error(label + ": HTTP " + r.status + " " + String(t).replace(/\s+/g, " ").slice(0, 160)); }
     if (r.status === 429) {
       const wait = Number(r.headers.get("X-Rate-Limit-Retry-After-Seconds")) || 900;
       this.retryAt = Date.now() + wait * 1000;
@@ -261,9 +276,10 @@ export class AirHub {
     if (!r.ok) throw new Error("HTTP " + r.status);
     const left = r.headers.get("X-Rate-Limit-Remaining"); if (left != null) this.credits = Number(left);
     const d = await r.json();
+    if (d && d.error) throw new Error(label + ": " + d.error);
     this.snap = (d.states || []).map(fromOpenSky).filter(Boolean);
     this.at = Date.now(); this.pulls++;
-    this.diag = "ok · " + this.snap.length + " aircraft";
+    this.diag = "ok · " + this.snap.length + " aircraft" + (label === "helper" ? " · via helper" : "");
   }
 }
 
