@@ -11,6 +11,8 @@ misaligned pixels; keep the visual language consistent with what exists.
 | Path | What |
 |---|---|
 | `index.html` | **The entire app.** Vanilla HTML/CSS/JS, one file, ~250 KB, no build step, no framework, no bundler. |
+| `v2.html` | **Redesign preview** (Sep 2026): same app as an operations console on a MapLibre WebGL globe. Public but unlinked at `/v2.html` until Tim approves; then it replaces `index.html`. Keep data-code fixes in both until then. |
+| `air-helper/` | Deno Deploy helper that logs in to OpenSky for the relay (OpenSky blocks Cloudflare). |
 | `cables.json` | TeleGeography submarine-cable GeoJSON (730 systems, CC BY-NC-SA). Loaded same-origin. Refresh occasionally from `https://www.submarinecablemap.com/api/v3/cable/cable-geo.json`. |
 | `README.md` | Public-facing README (also shows on the repo page). Keep in sync when features change. |
 | `sokren-relay/` | Cloudflare Worker + Durable Object: shared AIS feed, ADS-B + news pass-through. Own README with deploy steps. |
@@ -24,7 +26,9 @@ There is no `sokren-global-ops.html` any more — `index.html` is the single sou
 1. **One file, plain JS.** Do not introduce React/Vue/bundlers/TypeScript/npm runtime deps. Everything the
    page needs is inline. External requests at runtime are only: Google Fonts, `./cables.json`, the world
    TopoJSON (`WORLD_URL`), GDELT, ADS-B providers, OpenSky, AISStream (or the relay), and the public CORS
-   relays in `proxied()` as last resort.
+   relays in `proxied()` as last resort. **Exception agreed with Tim for the v2 redesign:** MapLibre GL JS
+   (pinned `maplibre-gl@5.24.0`, jsdelivr, loaded async) and OpenFreeMap tiles/glyphs + Natural Earth relief
+   (`tiles.openfreemap.org`, free, no key, commercial OK, attribution shown). Still no build step.
 2. **Never commit secrets.** The AISStream key lives only in the relay (`wrangler secret`) or in a viewer's
    localStorage. No keys, tokens or emails in this repo. The repo is public.
 3. **Test before you push.** `npm test` must be green (see Testing). For visual changes also look at the
@@ -107,6 +111,19 @@ cached pass-throughs (CORS locked to `ALLOWED_ORIGINS`).
   only while someone asks; `/air/mil` and `/air/point` are cut from it in readsb `{ac:[]}` shape with `source`/`age`.
   4000 credits/day. Health + login probe: `<relay>/air/status?probe=1`. Helper returns errors as 200 `{error}`
   (a 5xx body gets replaced by the edge). Test creds locally: `sokren-relay/test/opensky_login_check.sh FILE.json`.
+
+## v2 map engine (v2.html)
+
+MapLibre globe (`initGlobe`, `MAP_STYLE` = custom dark style over OpenFreeMap `planet` vector tiles). All live
+layers are GeoJSON sources updated by `renderOverlay()` / `renderOverlayShips()` / `renderMarkerCounts()`:
+`situations` (glow, P1 pulse animated in `animateMap`, dot, label with zoom-stepped density), `chokepoints`,
+`cables`, `ships` (circles < z5.5, rotated hull icons above; every vessel, no cap), `ship-trails` (z ≥ 4, on
+screen), `aircraft` (plane icons, mil/civ/emg), `ac-trails`, `aoi` (250 nm ring round the selection).
+Hover/click via `hitAt()` + `describeHit()`. Old SVG functions (`applyView`, `zoomAt`, `focusMap`, …) are shims
+over the map. Layout: `#ops` full-bleed; `#rail` (layers, filters, key), `#board` (ranked situations,
+tabs), `#ops-status` (UTC + feed health, `renderStatus`). ≤ 900 px: rail = slide-in sheet, board = bottom
+sheet. Zoom expressions in MapLibre must be a top-level `step`/`interpolate` — nesting one inside `case`
+silently kills the layer. Test: `tests/v2.test.mjs` (MapLibre from node_modules, swiftshader WebGL).
 
 ## Testing
 
