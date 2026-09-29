@@ -57,6 +57,32 @@ const GDELT_OUTLETS = [
   ['rand.org', 'RAND'], ['state.gov', 'U.S. State Department'],
   ['cnn.com', 'CNN'], ['pbs.org', 'PBS (NewsHour / Frontline)'], ['wsj.com', 'The Wall Street Journal'], ['washingtonpost.com', 'The Washington Post'],
 ];
+// Only these outlets (plus every feed/outlet above) may be stored and cited. GDELT indexes tens of thousands of
+// sites, including local stations re-running wire copy; anything not on this list is dropped.
+const TRUSTED = new Set([
+  // wires, broadcasters, newspapers
+  'apnews.com', 'reuters.com', 'afp.com', 'bbc.com', 'bbc.co.uk', 'cnn.com', 'nytimes.com', 'washingtonpost.com', 'wsj.com', 'ft.com', 'economist.com',
+  'theguardian.com', 'npr.org', 'pbs.org', 'abcnews.go.com', 'abcnews.com', 'cbsnews.com', 'nbcnews.com', 'axios.com', 'politico.com', 'politico.eu',
+  'aljazeera.com', 'france24.com', 'dw.com', 'euronews.com', 'csmonitor.com', 'voanews.com', 'rferl.org', 'bloomberg.com', 'latimes.com', 'usatoday.com',
+  'timesofisrael.com', 'haaretz.com', 'al-monitor.com', 'kyivindependent.com', 'themoscowtimes.com', 'meduza.io', 'scmp.com', 'japantimes.co.jp',
+  'asia.nikkei.com', 'en.yna.co.kr', 'koreaherald.com', 'nknews.org', 'taipeitimes.com', 'focustaiwan.tw', 'rappler.com', 'inquirer.net',
+  'thehindu.com', 'indianexpress.com', 'hindustantimes.com', 'dawn.com', 'irrawaddy.com', 'thediplomat.com', 'theafricareport.com',
+  'africanews.com', 'dailymaverick.co.za', 'premiumtimesng.com', 'balkaninsight.com', 'insightcrime.org', 'kyivpost.com',
+  // defense & security press
+  'defenseone.com', 'defensenews.com', 'breakingdefense.com', 'twz.com', 'navalnews.com', 'news.usni.org', 'stripes.com', 'military.com', 'gcaptain.com',
+  'longwarjournal.org', 'bellingcat.com', 'warontherocks.com', 'lawfaremedia.org', 'justsecurity.org', 'foreignpolicy.com', 'foreignaffairs.com',
+  // think tanks & research
+  'crisisgroup.org', 'cfr.org', 'csis.org', 'understandingwar.org', 'criticalthreats.org', 'atlanticcouncil.org', 'rand.org', 'aei.org', 'stimson.org',
+  '38north.org', 'brookings.edu', 'carnegieendowment.org', 'chathamhouse.org', 'iiss.org', 'rusi.org', 'geopoliticalmonitor.com', 'washingtoninstitute.org',
+  'africacenter.org', 'securitycouncilreport.org',
+  // official & humanitarian
+  'un.org', 'news.un.org', 'reliefweb.int', 'unocha.org', 'ochaopt.org', 'icrc.org', 'hrw.org', 'amnesty.org', 'who.int', 'nato.int',
+  'state.gov', 'defense.gov', 'whitehouse.gov', 'cisa.gov', 'fbi.gov', 'ic3.gov', 'ncsc.gov.uk', 'consilium.europa.eu', 'europa.eu', 'congress.gov',
+  // cyber
+  'therecord.media', 'cyberscoop.com', 'sentinelone.com', 'cloud.google.com', 'mandiant.com', 'bleepingcomputer.com', 'securityweek.com',
+  'darkreading.com', 'krebsonsecurity.com', 'unit42.paloaltonetworks.com', 'microsoft.com', 'recordedfuture.com',
+]);
+const trusted = (domain) => { const d = String(domain || '').toLowerCase().replace(/^www\./, ''); return [...TRUSTED].some(t => d === t || d.endsWith('.' + t)); };
 const WINDOW_DAYS = 30, PER_SITUATION = 60, UA = 'SOKREN-intel/1.0 (+https://www.sokren.com)';
 
 const decode = (s) => String(s || '')
@@ -159,7 +185,10 @@ async function main() {
     }
   }
 
-  // de-duplicate (URL and near-identical headline), drop old, newest first, cap per situation
+  // de-duplicate (URL and near-identical headline), drop untrusted/old, newest first, cap per situation
+  for (const s of SOURCES) TRUSTED.add(domainOf(s.url).replace(/^(feeds?|rss|api)\./, ''));
+  for (const [d] of GDELT_OUTLETS) TRUSTED.add(d);
+  let dropped = 0;
   const cutoff = Date.now() - WINDOW_DAYS * 864e5;
   const items = {};
   for (const [id, list] of Object.entries(bucket)) {
@@ -167,6 +196,7 @@ async function main() {
     for (const it of list.sort((a, b) => (b.date || '').localeCompare(a.date || ''))) {
       const k1 = it.url.replace(/[?#].*$/, ''), k2 = it.title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 90);
       if (seen.has(k1) || seen.has(k2)) continue;
+      if (!trusted(it.domain) && !(it.src && it.src !== 'GDELT')) { dropped++; continue; }
       if (it.date && Date.parse(it.date) < cutoff) continue;
       seen.add(k1); seen.add(k2); out.push(it);
     }
@@ -174,7 +204,7 @@ async function main() {
   }
   writeJSON('news.json', { generatedAt: new Date().toISOString(), windowDays: WINDOW_DAYS, sources: SOURCES.map(({ id, name, url }) => ({ id, name, url })), items });
   const total = Object.values(items).reduce((n, l) => n + l.length, 0);
-  console.log(JSON.stringify({ total, ...report }, null, 1));
+  console.log(JSON.stringify({ total, droppedUntrusted: dropped, ...report }, null, 1));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main().catch(e => { console.error(e); process.exit(1); });

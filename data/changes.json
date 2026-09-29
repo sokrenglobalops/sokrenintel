@@ -620,6 +620,13 @@
    },
    "changes": [
     {
+     "field": "status",
+     "from": "emerging",
+     "to": "active",
+     "why": "Follows from this review's finding of a return to multi-front civil war; applied when status reclassification was enabled (Sep 29).",
+     "sources": []
+    },
+    {
      "field": "priority",
      "from": "4 (low)",
      "to": "2 (high)",

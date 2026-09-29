@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-29T02:52:17.958Z",
+ "generatedAt": "2026-09-29T03:20:51.314Z",
  "windowDays": 30,
  "sources": [
   {
@@ -675,6 +675,14 @@
   ],
   "iran": [
    {
+    "title": "Iran’s Araghchi meets Qatari mediators as US calls for nuclear talks",
+    "url": "https://www.aljazeera.com/news/2026/9/29/irans-araghchi-meets-qatari-mediators-as-us-insists-on-nuclear-talks?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T02:36:25.000Z",
+    "src": "Al Jazeera",
+    "summary": "Tehran awaits reply on Hormuz plan as a US official says there will be no deal unless nuclear issues are addressed."
+   },
+   {
     "title": "Trump doubles down on claims US will win war with Iran ‘one way or another’ as talks are in doubt – as it happened",
     "url": "https://www.theguardian.com/us-news/live/2026/sep/28/donald-trump-iran-negotiations-fuel-deportations-media-china-latest-news-updates",
     "domain": "theguardian.com",
@@ -1145,73 +1153,9 @@
     "date": "2026-09-22T20:21:00.000Z",
     "src": "Atlantic Council",
     "summary": "In this first video episode of the podcast, Alia is joined by Ibrahim Jalal, an expert on Yemen and the Gulf. Ibrahim describes the major military escalation unfolding along the Red Sea coast and the tactics used by the Houthis. The post Strait talk: Yemen, mercenaries and the Iran war appeared first on Atlantic Council ."
-   },
-   {
-    "title": "Why South Korea Has Little Room to Send Troops to Hormuz",
-    "url": "https://thediplomat.com/2026/09/why-south-korea-has-little-room-to-send-troops-to-hormuz/",
-    "domain": "thediplomat.com",
-    "date": "2026-09-22T13:20:00.000Z",
-    "src": "The Diplomat",
-    "summary": "Seoul has previously sent troops to support U.S. military operations in the Middle East. Today, both the external and domestic environments make that much harder to do."
    }
   ],
   "taiwan": [
-   {
-    "title": "Taiwan reports 3 PLA aircraft , 6 PLAN vessels operating near island",
-    "url": "http://www.newzealandstar.com/news/279339014/taiwan-reports-3-pla-aircraft-6-plan-vessels-operating-near-island",
-    "domain": "newzealandstar.com",
-    "date": "2026-09-29T02:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "China backs Cuba after Trump says island will fall",
-    "url": "http://www.chinanationalnews.com/news/279338808/china-backs-cuba-after-trump-says-island-will-fall",
-    "domain": "chinanationalnews.com",
-    "date": "2026-09-29T01:15:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "US Pacific Commander Says Deterrence Means Making Military Aggression Too Costly to Benefit From",
-    "url": "https://www.theepochtimes.com/us/us-pacific-commander-says-deterrence-means-making-military-aggression-too-costly-to-benefit-from-6095711",
-    "domain": "theepochtimes.com",
-    "date": "2026-09-29T01:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "US officials deny there are plans to sell weapons to China",
-    "url": "https://kxel.com/2026/09/28/us-officials-deny-there-are-plans-to-sell-weapons-to-china/",
-    "domain": "kxel.com",
-    "date": "2026-09-29T00:45:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "ABC Politics - WOND",
-    "url": "https://wondradio.com/abc-politics/65b92edaf329d60c5ad18fedce7502ab",
-    "domain": "wondradio.com",
-    "date": "2026-09-29T00:15:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Politics News - 1540 WADK Newport",
-    "url": "https://wadk.com/politics-news/7746dfb1510a8c89475ff7e46e626b79",
-    "domain": "wadk.com",
-    "date": "2026-09-29T00:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "North Korea issue dwarfed by more pressing concerns during Trump - Xi summit",
-    "url": "https://www.rfa.org:443/english/korea/2026/09/28/xi-trump-summit-north-korea-china/",
-    "domain": "rfa.org",
-    "date": "2026-09-29T00:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Trump disputes his ambassador account that he asked China president if he wanted to buy US arms",
-    "url": "http://www.southernminn.com/faribault_daily_news/news/nation/trump-disputes-his-ambassadors-account-that-he-asked-chinas-president-if-he-wanted-to-buy/article_2d2d9fcd-e677-5d4c-b0d9-9bc00eb5cdac.html",
-    "domain": "southernminn.com",
-    "date": "2026-09-28T23:15:00Z",
-    "src": "GDELT"
-   },
    {
     "title": "WATCH: Trump says Perdue 'was probably talking about Taiwan' in saying Trump offered Xi arms sales",
     "url": "https://www.pbs.org/newshour/politics/watch-trump-says-perdue-was-probably-talking-about-taiwan-in-saying-trump-offered-xi-arms-sales",
@@ -1351,90 +1295,6 @@
   ],
   "redsea": [
    {
-    "title": "Iran Oil Shock , Warsh Hike , Trump - Xi Truce Reshape Tech Investing After Summit",
-    "url": "https://www.techtimes.com/articles/328143/20260928/iran-oil-shock-warsh-hike-trump-xi-truce-reshape-tech-investing-after-summit.htm",
-    "domain": "techtimes.com",
-    "date": "2026-09-29T01:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain - Boston News , Weather , Sports",
-    "url": "https://whdh.com/news/mediators-are-working-to-broker-a-us-iran-deal-but-major-hurdles-remain/",
-    "domain": "whdh.com",
-    "date": "2026-09-29T00:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Netanyahu meets Emirati leader in a secret weekend trip to Abu Dhabi , and other Mideast developments",
-    "url": "https://www.2news.com/news/world/netanyahu-meets-emirati-leader-in-a-secret-weekend-trip-to-abu-dhabi-and-other-mideast/article_8884ed21-a4b4-549f-bac1-9835c95c1ca6.html",
-    "domain": "2news.com",
-    "date": "2026-09-28T23:45:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain",
-    "url": "https://www.aol.com/articles/officials-mediators-still-working-iran-122544000.html",
-    "domain": "aol.com",
-    "date": "2026-09-28T23:30:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators working to broker U . S .- Iran deal , but major hurdles remain",
-    "url": "https://japantoday.com/category/world/officials-say-mediators-are-still-working-with-iran-and-the-us-on-a-possible-deal",
-    "domain": "japantoday.com",
-    "date": "2026-09-28T23:15:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators still working with Iran and US on a deal to end fighting",
-    "url": "https://www.wgauradio.com/news/world/officials-say/CQPJZP4CWMZMVLAV2YKJIADPRI/",
-    "domain": "wgauradio.com",
-    "date": "2026-09-28T23:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Iran offers plan to reopen Strait of Hormuz",
-    "url": "http://www.afghanistansun.com/news/279333999/iran-offers-plan-to-reopen-strait-of-hormuz",
-    "domain": "afghanistansun.com",
-    "date": "2026-09-28T22:45:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators are working to broker U . S .- Iran deal even after Trump rejected latest proposal",
-    "url": "https://www.adn.com/nation-world/2026/09/28/mediators-are-working-to-broker-us-iran-deal-even-after-trump-rejected-latest-proposal/",
-    "domain": "adn.com",
-    "date": "2026-09-28T22:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators working to broker US - Iran deal even after Trump rejection",
-    "url": "https://www.wmtw.com/article/us-iran-deal-mediators-trump-rejection/73927939",
-    "domain": "wmtw.com",
-    "date": "2026-09-28T22:00:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "80 countries sign joint statement calling for reopening of Strait of Hormuz | Hellenic Shipping News Worldwide",
-    "url": "https://www.hellenicshippingnews.com/80-countries-sign-joint-statement-calling-for-reopening-of-strait-of-hormuz/",
-    "domain": "hellenicshippingnews.com",
-    "date": "2026-09-28T21:45:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Mediators working to broker US - Iran deal even after Trump rejected latest Tehran proposal - Las Vegas Sun News",
-    "url": "https://lasvegassun.com/news/2026/sep/28/mediators-working-to-broker-us-iran-deal-even-afte/",
-    "domain": "lasvegassun.com",
-    "date": "2026-09-28T21:45:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "Trump weighs response to Iran proposal",
-    "url": "https://www.2lt.com.au/trump-weighs-response-to-iran-proposal/",
-    "domain": "2lt.com.au",
-    "date": "2026-09-28T21:30:00Z",
-    "src": "GDELT"
-   },
-   {
     "title": "Scoop: NRSC pleads for $9M to defend three red seats",
     "url": "https://www.axios.com/2026/09/24/nrsc-republicans-alaska-iowa-ohio",
     "domain": "axios.com",
@@ -1528,13 +1388,6 @@
    }
   ],
   "cn-cyber": [
-   {
-    "title": "Refrigeration Failures at Military Commissaries Draw Scrutiny Over Infrastructure Security – NaturalNews . com",
-    "url": "https://www.naturalnews.com/2026-09-28-refrigeration-failures-at-military-commissaries-draw-scrutiny.html",
-    "domain": "naturalnews.com",
-    "date": "2026-09-28T17:45:00Z",
-    "src": "GDELT"
-   },
    {
     "title": "Bipartisan Senate leaders introduce bill to bolster telecom cybersecurity in response to Salt Typhoon hacks",
     "url": "https://cyberscoop.com/senate-telecom-cybersecurity-resilience-act-salt-typhoon/",
@@ -1666,15 +1519,7 @@
     "summary": "North Korea held the Ninth Congress of the Workers’ Party of Korea (WPK) in February of this ... The post Successes and Challenges of North Korea’s Five-Year Plan for Economic Development: Assessment and Outlook appeared first on 38 North ."
    }
   ],
-  "dprk-cyber": [
-   {
-    "title": "THORChain Under Fire Over Bitget , ETH Evolves Beyond Blockchain : Hodler Digest",
-    "url": "https://cointelegraph.com/magazine/thorchain-under-fire-over-bitget-hack-eth-is-beyond-blockchain-now",
-    "domain": "cointelegraph.com",
-    "date": "2026-09-28T04:15:00Z",
-    "src": "GDELT"
-   }
-  ],
+  "dprk-cyber": [],
   "sahel": [
    {
     "title": "“A Recurring Pattern”: Civilians Paying the Price in Mali’s Drone Campaign",
@@ -2773,6 +2618,257 @@
     "summary": "The Board of Peace continues efforts to assemble the International Stabilization Force for Gaza, securing commitments from Kosovo and Albania as preparations advance to implement the US-backed peace plan. While progress on the ground remains tied to Hamas's disarmament and Israel's political timetable, international planning for Gaza's future governance and security continues to move forward. The "
    }
   ],
-  "baltic": []
+  "baltic": [],
+  "ru-cyber": [
+   {
+    "title": "Learning from Ukraine’s unrivaled experience of Russian cyber warfare",
+    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/learning-from-ukraines-unrivaled-experience-of-russian-cyber-warfare/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-14T00:25:02.000Z",
+    "src": "Atlantic Council",
+    "summary": "No country in the world today knows more about Russian cyber warfare than Ukraine, but further steps are required in order to help Kyiv’s partners make the most of Ukraine’s unrivaled experience, writes Iryna Volnytska. The post Learning from Ukraine’s unrivaled experience of Russian cyber warfare appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Braw in Foreign Policy on Germany’s increasing recognition of Russian sabotage",
+    "url": "https://www.atlanticcouncil.org/commentary/braw-in-foreign-policy-on-germanys-increasing-recognition-of-russian-sabotage/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-08T16:44:43.000Z",
+    "src": "Atlantic Council",
+    "summary": "On September 8, Elisabeth Braw was published in Foreign Policy discussing how Germany, and other European countries, are increasingly willing to recognize Russian sabotage. The post Braw in Foreign Policy on Germany’s increasing recognition of Russian sabotage appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Braw in The Sun on Germany is increasingly a target for Russian sabotage",
+    "url": "https://www.atlanticcouncil.org/commentary/braw-in-the-sun-on-germany-is-increasingly-a-target-for-russian-sabotage/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-05T16:42:08.000Z",
+    "src": "Atlantic Council",
+    "summary": "On September 5, Elisabeth Braw was interviewed by The Sun to discuss how Germany is increasingly the target of Russian sabotage. The post Braw in The Sun on Germany is increasingly a target for Russian sabotage appeared first on Atlantic Council ."
+   }
+  ],
+  "iran-cyber": [],
+  "influence": [
+   {
+    "title": "Exclusive: Hegseth directs Defense Dept. to fight foreigners who \"meddle\" in U.S. elections",
+    "url": "https://www.axios.com/2026/09/28/hegseth-elections-security-order",
+    "domain": "axios.com",
+    "date": "2026-09-28T19:48:53.000Z",
+    "src": "Axios",
+    "summary": "<p>Defense Secretary <a href=\"https://www.axios.com/2026/09/15/massie-impeach-pete-hegseth-iran-war\" target=\"_blank\">Pete Hegseth</a> has assigned personnel to use \"advanced intelligence and cyber capabilities to identify, disrupt, and neutralize foreign interference\" in the upcoming elections, Axios has learned.</p><p><strong>Why it matters:</strong> The threat of foreign election interference ha"
+   },
+   {
+    "title": "Judge tosses Trump's lawsuit against Des Moines Register",
+    "url": "https://www.axios.com/2026/09/23/trump-des-moines-register-lawsuit-dismissed",
+    "domain": "axios.com",
+    "date": "2026-09-24T10:06:32.000Z",
+    "src": "Axios",
+    "summary": "<p>A district judge tossed an <a href=\"https://www.axios.com/2024/12/17/trump-iowa-poll-election-lawsuit-des-moines-register\" target=\"_blank\">election interference lawsuit</a> by President Trump against the Des Moines Register, parent company USA Today Co. (formerly Gannett) and pollster <a href=\"https://www.axios.com/local/des-moines/2025/01/08/free-speech-group-representing-j-ann-selzer-against-"
+   },
+   {
+    "title": "Syria’s military is rebuilding, but foreign influence may slow security progress",
+    "url": "https://www.longwarjournal.org/archives/2026/09/analysis-syrias-military-is-rebuilding-but-foreign-influence-may-slow-security-progress.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-17T18:46:20.000Z",
+    "src": "Long War Journal",
+    "summary": "Syria’s post-Assad military is rebuilding rapidly, but its structure and foreign dependencies could limit Damascus’s ability to advance US security interests. If security cooperation from Turkey and Russia comes with strings attached, it may jeopardize Syria’s potential as a future partner against the Islamic State and Hezbollah. The post Syria’s military is rebuilding, but foreign influence may s"
+   }
+  ],
+  "ot-cyber": [
+   {
+    "title": "Considerations for Critical Infrastructure Operators Working With Third-Party ICS Integrators",
+    "url": "https://www.cisa.gov/resources-tools/resources/considerations-critical-infrastructure-operators-working-third-party-ics-integrators",
+    "domain": "cisa.gov",
+    "date": "2026-09-23T12:00:00.000Z",
+    "src": "CISA",
+    "summary": "<h2><strong>Introduction</strong></h2> <p>The Federal Bureau of Investigation (FBI) and Cybersecurity and Infrastructure Security Agency (CISA)—hereafter referred to as the “authoring agencies”—have published this fact sheet to highlight considerations for critical infrastructure entities to reduce risk and minimize vulnerabilities when working with third-party industrial control system (ICS) inte"
+   }
+  ],
+  "iraq": [
+   {
+    "title": "After more than two decades, U.S. forces prepare to leave Iraq",
+    "url": "https://www.npr.org/2026/09/27/nx-s1-5981123/after-more-than-two-decades-u-s-forces-prepare-to-leave-iraq",
+    "domain": "npr.org",
+    "date": "2026-09-27T21:14:43.000Z",
+    "src": "NPR",
+    "summary": "The U.S. military formally ends a more than two-decade-long presence in Iraq this week."
+   },
+   {
+    "title": "Iraq agrees to Turkish base deal as militia disarmament timeline debated",
+    "url": "https://www.longwarjournal.org/archives/2026/09/iraq-agrees-to-turkish-base-deal-as-militia-disarmament-timeline-debated.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-25T13:24:55.000Z",
+    "src": "Long War Journal",
+    "summary": "Iraqi Prime Minister Ali al Zaidi has outlined a plan to disarm Iran-backed militias by June 2027 as Baghdad prepares for the withdrawal of US forces. The proposed disarmament timeline coincides with an agreement for Turkey to gradually hand over its Bashiqa-Zilkan military base to Iraq, part of wider efforts to bring armed groups and military facilities under Iraqi state control. The post Iraq ag"
+   },
+   {
+    "title": "‘Invest with Iraq’: PM sets out vision for new economic future",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168443",
+    "domain": "news.un.org",
+    "date": "2026-09-25T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "Iraq’s Prime Minister, Ali Faleh Al-Zaidi, said his country aims to exert its influence as an active economic power in the region, and as a bridge for dialogue and cooperation between its peoples."
+   },
+   {
+    "title": "Kurdistan Region of Iraq announces Peshmerga unification",
+    "url": "https://www.longwarjournal.org/archives/2026/09/kurdistan-region-of-iraq-announces-peshmerga-unification.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-23T14:00:55.000Z",
+    "src": "Long War Journal",
+    "summary": "The Kurdistan Regional Government announced the completion of a years-long process to unify the Peshmerga armed forces under the Ministry of Peshmerga Affairs, ending longstanding divisions between units linked to the Kurdistan Democratic Party (KDP) and the Patriotic Union of Kurdistan (PUK). The move comes amid the departure of US forces, pressure to disarm Iran-backed militias, and efforts to s"
+   },
+   {
+    "title": "What the End of Operation Inherent Resolve Means for Iraq and Syria",
+    "url": "https://warontherocks.com/what-the-end-of-operation-inherent-resolve-means-for-iraq-and-syria/",
+    "domain": "warontherocks.com",
+    "date": "2026-09-22T19:50:05.000Z",
+    "src": "War on the Rocks",
+    "summary": "Operation Inherent Resolve is scheduled to end on Sept. 30, as remaining U.S. troops in northern Iraq complete their withdrawal. The United States formed Combined Joint Task Force – Operation Inherent Resolve in October 2014 to bring together partners to combat the Islamic State of Iraq and the Levant (ISIL), which had seized territory in parts of Iraq and Syria. The end of Operation Inherent Reso"
+   },
+   {
+    "title": "Yazidi armed group YBS to disarm, integrate into Iraqi security forces",
+    "url": "https://www.longwarjournal.org/archives/2026/09/yazidi-armed-group-ybs-to-disarm-integrate-into-iraqi-security-forces.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-18T17:26:12.000Z",
+    "src": "Long War Journal",
+    "summary": "The Sinjar Resistance Units (YBS), a Yazidi armed group with links to the Kurdistan Workers’ Party (PKK), has agreed to disarm and integrate eligible members into Iraq’s security forces as Baghdad seeks to stabilize Sinjar and facilitate the return of displaced Yazidis. The agreement comes amid broader efforts to disarm Iranian-backed militias in Iraq and parallels integration processes involving "
+   },
+   {
+    "title": "Iraq continues investigating attack on Saudi Arabia from Iraqi territory",
+    "url": "https://www.longwarjournal.org/archives/2026/09/iraq-continues-investigating-attack-on-saudi-arabia-from-iraqi-territory.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-16T19:58:59.000Z",
+    "src": "Long War Journal",
+    "summary": "Iraq is investigating September 11 drone strikes on Saudi Arabia’s East-West Crude Oil Pipeline after confirming the attack originated from its territory. The incident comes as Baghdad faces pressure over militia activity and continued Iranian strikes on Kurdish Iranian opposition groups based in northern Iraq. The post Iraq continues investigating attack on Saudi Arabia from Iraqi territory appea"
+   },
+   {
+    "title": "Can oil deals reset US-Iraqi relations?",
+    "url": "https://www.atlanticcouncil.org/blogs/menasource/can-oil-deals-reset-us-iraqi-relations/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-15T16:43:33.000Z",
+    "src": "Atlantic Council",
+    "summary": "Iraq has a short window of time to rein in its militias and create favorable commercial conditions to improve ties with the US. The post Can oil deals reset US-Iraqi relations? appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Saudi Arabia closes its East-West pipeline after attacks from Iraq",
+    "url": "https://www.longwarjournal.org/archives/2026/09/saudi-arabia-closes-its-east-west-pipeline-after-attacks-from-iraq.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-13T15:06:38.000Z",
+    "src": "Long War Journal",
+    "summary": "Riyadh announced the closure of its East-West Crude Oil Pipeline following drone attacks emanating from Iraq. The pipeline served as a critical oil export alternative to the Persian Gulf after the closure of the Strait of Hormuz. The post Saudi Arabia closes its East-West pipeline after attacks from Iraq appeared first on FDD's Long War Journal ."
+   },
+   {
+    "title": "Ten questions (and expert answers) on the final withdrawal of US troops from Iraq",
+    "url": "https://www.atlanticcouncil.org/blogs/menasource/ten-questions-and-expert-answers-on-the-final-withdrawal-of-us-troops-from-iraq/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-09T19:51:43.000Z",
+    "src": "Atlantic Council",
+    "summary": "Atlantic Council experts unpack what the US withdrawal from Iraq means for the Middle East and beyond. The post Ten questions (and expert answers) on the final withdrawal of US troops from Iraq appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Iran continues attacks on Kurdish opposition group in northern Iraq",
+    "url": "https://www.longwarjournal.org/archives/2026/09/iran-continues-attacks-on-kurdish-opposition-group-in-northern-iraq.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-08T15:58:44.000Z",
+    "src": "Long War Journal",
+    "summary": "Iran has maintained its campaign against Kurdish Iranian opposition groups in the Kurdistan Region of northern Iraq, carrying out another drone strike on September 2 amid a US military withdrawal. The latest attack underscores the growing security challenges facing the Kurdistan Region as Iran intensifies pressure on Kurdish dissidents, and Iraq has yet to disarm Iran-backed militias. The post Ira"
+   },
+   {
+    "title": "Kurdistan Region concerned over US support amid Iran’s continued attacks",
+    "url": "https://www.longwarjournal.org/archives/2026/09/kurdistan-region-concerned-over-us-support-amid-irans-continued-attacks.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-02T19:55:19.000Z",
+    "src": "Long War Journal",
+    "summary": "The latest report that the US is cutting funding for the Kurdistan Regional Government (KRG) of Iraq’s Peshmerga military force comes as Washington prepares to withdraw forces from Iraq and Iran continues its campaign of drone and missile attacks against the KRG. The post Kurdistan Region concerned over US support amid Iran’s continued attacks appeared first on FDD's Long War Journal ."
+   }
+  ],
+  "yemen": [],
+  "thaicam": [
+   {
+    "title": "Cambodian Beauty Pageant Acknowledges Mistaken Use of Thai Historical Photograph",
+    "url": "https://thediplomat.com/2026/09/cambodian-beauty-pageant-acknowledges-mistaken-use-of-thai-historical-photograph/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-24T02:11:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The unresolved border dispute between Cambodia and Thailand has given rise to a rash of online disputes over cultural \"ownership.\""
+   },
+   {
+    "title": "Cambodia’s Online Scamming Crackdown Stops at the Top",
+    "url": "https://thediplomat.com/2026/09/cambodias-online-scamming-crackdown-stops-at-the-top/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-22T04:54:00.000Z",
+    "src": "The Diplomat",
+    "summary": "This week's international anti-scam conference is an attempt to distract global attention from Phnom Penh's abetment of criminality on an industrial scale."
+   }
+  ],
+  "coastalwa": [],
+  "moldova": [
+   {
+    "title": "Finance Minister: Moldova Mustn’t Waste EU Funds Intended for Reforms",
+    "url": "https://balkaninsight.com/2026/09/28/finance-minister-moldova-mustnt-waste-eu-funds-intended-for-reforms/bi/",
+    "domain": "balkaninsight.com",
+    "date": "2026-09-28T05:53:19.000Z",
+    "src": "Balkan Insight",
+    "summary": "Victoria Belous tells BIRN that a combination of EU funds and bold reforms will turn her post-Soviet republic into a modern European state – even if rising prices test people’s pain threshold."
+   },
+   {
+    "title": "Russia expected to intensify hybrid war on Europe",
+    "url": "https://www.dw.com/en/russia-expected-to-intensify-hybrid-war-on-europe/a-79444596?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-09-26T15:39:00.000Z",
+    "src": "DW",
+    "summary": "Drone explosions, airspace violations, arson attacks: Poland, Romania, and Moldova are now regularly targeted in Russian attacks against Ukraine. More governments are calling these attacks deliberate acts of aggression."
+   },
+   {
+    "title": "In Moldova’s Minority-Populated South, Redrawing Municipalities is a Tricky Task",
+    "url": "https://balkaninsight.com/2026/09/21/in-moldovas-minority-populated-south-redrawing-municipalities-is-a-tricky-task/bi/",
+    "domain": "balkaninsight.com",
+    "date": "2026-09-21T05:59:03.000Z",
+    "src": "Balkan Insight",
+    "summary": "As Moldova consolidates its municipalities on its path to EU membership, the minority-populated, Russian-speaking regions in the south present challenges as questions of administrative efficiency, minority identity and territorial politics clash."
+   }
+  ],
+  "arctic": [
+   {
+    "title": "At UN, Denmark says Greenland pact benefits all parties involved",
+    "url": "https://www.pbs.org/newshour/world/at-un-denmark-says-greenland-pact-benefits-all-parties-involved",
+    "domain": "pbs.org",
+    "date": "2026-09-28T22:17:11.000Z",
+    "src": "PBS NewsHour",
+    "summary": "The security agreement signed by the U.S., Denmark and Greenland last week \"strengthens the defense of Greenland, the NATO area, and the American continent.\""
+   },
+   {
+    "title": "Three things to know about Trump’s Greenland deal",
+    "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-23T15:29:55.000Z",
+    "src": "Atlantic Council",
+    "summary": "The agreement signed on the sidelines of the United Nations General Assembly makes several important changes to the status quo. The post Three things to know about Trump’s Greenland deal appeared first on Atlantic Council ."
+   },
+   {
+    "title": "\"National security\" becomes Trump's executive sledgehammer",
+    "url": "https://www.axios.com/2026/09/21/trump-national-security-executive-sledgehammer",
+    "domain": "axios.com",
+    "date": "2026-09-21T18:21:09.000Z",
+    "src": "Axios",
+    "summary": "<p>What do a <a href=\"https://www.axios.com/2026/09/18/trump-ban-cnn-ms-now-politico-white-house\" target=\"_blank\">White House ban</a> on journalists, a <a href=\"https://www.axios.com/local/washington-dc/2026/06/15/trump-arlington-arch-comment-deadline\" target=\"_blank\">250-foot arch</a> near the nation's capital and <a href=\"https://www.axios.com/2026/01/22/trump-greenland-nato-europe-winners\" targ"
+   },
+   {
+    "title": "Donald Trump drops demands to own Greenland, but the harm has been done",
+    "url": "https://www.economist.com/international/2026/09/19/donald-trump-drops-demands-to-own-greenland-but-the-harm-has-been-done",
+    "domain": "economist.com",
+    "date": "2026-09-19T19:28:05.000Z",
+    "src": "The Economist",
+    "summary": "A revised defence pact with Denmark and Greenland is a modest improvement, but annexation threats were a costly blunder"
+   },
+   {
+    "title": "What the Greenland deal means for the transatlantic alliance",
+    "url": "https://www.atlanticcouncil.org/content-series/fastthinking/what-the-greenland-deal-means-for-the-transatlantic-alliance/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-19T14:36:12.000Z",
+    "src": "Atlantic Council",
+    "summary": "Our experts unpack what we know and what to expect from the announced security deal involving the US, Denmark, and Greenland. The post What the Greenland deal means for the transatlantic alliance appeared first on Atlantic Council ."
+   }
+  ],
+  "lac": [],
+  "nile": []
  }
 }

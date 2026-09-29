@@ -15,6 +15,7 @@ const MIN_NEW_ARTICLES = 3, MAX_ARTICLES = 45, LOOKBACK_DAYS = 8;
 const args = process.argv.slice(2), flag = (f) => args.includes(f), opt = (f) => { const i = args.indexOf(f); return i >= 0 ? args[i + 1] : null; };
 
 const SYSTEM = `You maintain the analytic assessments on SOKREN Global Operations, an open-source (OSINT) conflict-monitoring site used by defense and security readers. Each tracked situation carries:
+- status: "active" (an established conflict or threat) or "emerging" (deteriorating, not yet major), with a one-line "flash" summary used while emerging;
 - priority (1 critical, 2 high, 3 medium, 4 low) and the SOKREN Threat Index (STI, 0-100) with five sub-scores;
 - a short brief and five activity lines (label + one line each);
 - an outlook: probability (%), what is likely, and the time window;
@@ -31,7 +32,7 @@ Rules:
 - Use only the supplied reporting plus the existing assessment. Do not introduce facts that are not in them. Cite supporting articles by their [number] in "cites".
 - Write in the site's register: short, plain, analytic sentences; no hype, no false precision. Proximity or co-occurrence is a cue, not corroboration. Say "reported" when a single outlet is the only source.
 - Keep lengths similar to the current text: brief ≤ 3 sentences; activity lines ≤ 20 words; SWOT items ≤ 12 words.
-- Probabilities and scores are integers. Priority changes need a clear, significant shift.
+- Probabilities and scores are integers. Priority changes need a clear, significant shift. Move an emerging situation to "active" when it has become an established conflict or major threat (e.g. sustained large-scale fighting); move to "emerging" only when a situation has clearly subsided to warning level. Keep "flash" current (≤ 10 words) either way.
 - In "changes", list every field you changed with a from/to summary (not the full text) and one sentence of why.`;
 
 const ITEM = (props, req = Object.keys(props)) => ({ type: 'object', additionalProperties: false, required: req, properties: props });
@@ -39,8 +40,10 @@ const STR = { type: 'string' }, INT = { type: 'integer' }, STRS = { type: 'array
 const SCHEMA = ITEM({
   material_change: { type: 'boolean' },
   reason: STR,
-  changes: { type: 'array', items: ITEM({ field: { type: 'string', enum: ['priority', 'sti', 'parts', 'brief', 'assess', 'outlook', 'ach', 'disc', 'pins', 'swot'] }, from: STR, to: STR, why: STR, cites: { type: 'array', items: INT } }) },
+  changes: { type: 'array', items: ITEM({ field: { type: 'string', enum: ['status', 'priority', 'sti', 'parts', 'brief', 'assess', 'outlook', 'ach', 'disc', 'pins', 'swot'] }, from: STR, to: STR, why: STR, cites: { type: 'array', items: INT } }) },
   updated: ITEM({
+    status: { type: 'string', enum: ['active', 'emerging'] },
+    flash: STR,
     priority: { type: 'integer', enum: [1, 2, 3, 4] },
     sti: INT,
     parts: { type: 'array', items: ITEM({ k: STR, v: INT }) },
@@ -58,6 +61,7 @@ const SCHEMA = ITEM({
 function toModel(cur) {
   const a = cur.analysis;
   return {
+    status: cur.emerging ? 'emerging' : 'active', flash: cur.flash || '',
     priority: cur.priority, sti: cur.sti, parts: Object.entries(cur.parts || {}).map(([k, v]) => ({ k, v })), brief: cur.brief,
     assess: (cur.assess || []).map(([label, line]) => ({ label, line })), outlook: cur.outlook,
     ach: (a.ach || []).map(([h, p]) => ({ h, p })), disc: a.disc || '', pins: (a.pins || []).map(([x, f]) => ({ a: x, f })), swot: a.swot,
@@ -72,6 +76,8 @@ function fromModel(u, cur) {
   const parts = Object.fromEntries(Object.keys(cur.parts || {}).map(k => { const m = (u.parts || []).find(x => x.k === k); return [k, clamp(m ? m.v : cur.parts[k], 0, 100)]; }));
   const sw = (x, old) => (Array.isArray(x) && x.length ? x.filter(Boolean).slice(0, 3) : old);
   return {
+    emerging: u.status ? u.status === 'emerging' : !!cur.emerging,
+    flash: (u.flash || cur.flash || '').slice(0, 90),
     priority: [1, 2, 3, 4].includes(u.priority) ? u.priority : cur.priority,
     sti: clamp(u.sti, 0, 100), parts,
     brief: u.brief || cur.brief,

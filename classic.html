@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SOKREN · Global Operations Console</title>
+<title>SOKREN · Global Operations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet" />
-<script id="ml-js" src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" async></script>
 <style>
   :root {
     --bg: #0B0E13;
@@ -448,167 +446,6 @@
   #empty { padding: 56px 0; text-align: center; font-size: 12px; color: var(--mut); display: none; }
   footer .maxw { padding: 8px 20px 32px; }
   footer p { font-size: 10px; line-height: 1.6; color: var(--dim); }
-
-  /* ================= v2 · operations console ================= */
-  :root { --hud: rgba(11,15,21,0.80); --hud-solid: #0D1219; --hud-line: rgba(150,165,185,0.14); --cyan: #35C4D7; --ok: #4CC38A; }
-  #hdr { background: rgba(8,11,15,0.94); }
-  .hdr-in { max-width: none; padding: 9px 16px; }
-  body.on-home footer { display: none; }
-  body.on-home { overflow: hidden; }
-  #ops { position: relative; height: calc(100vh - var(--hdr-h, 54px)); height: calc(100dvh - var(--hdr-h, 54px)); min-height: 440px; overflow: hidden; background: #05070A; }
-  #map { position: absolute; inset: 0; }
-  #map-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; font: 10px 'JetBrains Mono', monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
-  .hud { background: var(--hud); -webkit-backdrop-filter: blur(12px) saturate(1.2); backdrop-filter: blur(12px) saturate(1.2); border: 1px solid var(--hud-line); border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
-  .hud-h { font: 500 9px 'JetBrains Mono', monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .hud-h b { color: var(--accent-lt); font-weight: 500; letter-spacing: 0.1em; }
-
-  /* status strip */
-  #ops-status { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 22; display: flex; align-items: center; gap: 16px; padding: 7px 14px; white-space: nowrap; font: 10px 'JetBrains Mono', monospace; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mut); }
-  #ops-status .clock { display: flex; align-items: baseline; gap: 8px; color: var(--ink); }
-  #utc { font-size: 12px; letter-spacing: 0.06em; }
-  #utc-date { color: var(--dim); font-size: 9px; }
-  .st-sep { width: 1px; height: 14px; background: var(--hud-line); }
-  .st-item { display: inline-flex; align-items: center; gap: 7px; }
-  .st-item i { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
-  .st-item.ok i { background: var(--ok); box-shadow: 0 0 7px rgba(76,195,138,0.8); }
-  .st-item.warn i { background: var(--p3); animation: pulse 1.4s ease-in-out infinite; }
-  .st-item.bad i { background: var(--p1); }
-  .st-item.off { color: var(--dim); }
-
-  /* left rail: layers, situation filter, key */
-  #rail { position: absolute; top: 12px; left: 12px; bottom: 12px; width: 262px; z-index: 21; display: flex; flex-direction: column; overflow: hidden; }
-  .rail-scroll { overflow-y: auto; padding: 14px 14px 12px; flex: 1; scrollbar-width: thin; }
-  .rail-sec + .rail-sec { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--hud-line); }
-  .rail-sec .hud-h { margin-bottom: 9px; }
-  #rail #layer-chips { display: flex; flex-direction: column; gap: 4px; }
-  #rail .lchip { width: 100%; justify-content: flex-start; padding: 8px 10px; border-radius: 7px; font-size: 10.5px; border-color: transparent; background: rgba(255,255,255,0.02); }
-  #rail .lchip:hover { background: rgba(255,255,255,0.05); }
-  #rail .lchip.on { background: rgba(255,255,255,0.055); border-color: var(--hud-line); }
-  #rail .lchip i { width: 7px; height: 7px; }
-  #rail .lchip { white-space: nowrap; min-width: 0; }
-  #rail .lchip .st { margin-left: auto; font-size: 9px; color: var(--mut); text-transform: none; letter-spacing: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; padding-left: 8px; }
-  #rail #ship-filter { border-top: none; padding-top: 4px; margin-top: 8px; }
-  #rail #map-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  #rail .chip { font-size: 9px; padding: 3px 7px; }
-  .key-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
-  .key { display: flex; align-items: center; gap: 7px; font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; color: var(--mut); }
-  .key .kd { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .key .kl { width: 12px; height: 2px; flex-shrink: 0; border-radius: 1px; }
-  .key .kdi { width: 7px; height: 7px; border: 1.5px solid var(--accent-lt); transform: rotate(45deg); flex-shrink: 0; margin: 0 1px; }
-  .key .kp { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 9px solid var(--cyan); flex-shrink: 0; }
-  .rail-note { font-size: 9.5px; color: var(--dim); line-height: 1.55; }
-  .rail-note + .rail-note { margin-top: 6px; }
-  #rail-toggle, #board-tab { display: none; }
-  #rail-close, .pcol { font-size: 15px; line-height: 1; color: var(--dim); padding: 2px 6px; margin-left: 6px; border-radius: 5px; }
-  #rail-close:hover, .pcol:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
-  #rail, #board { transition: transform 0.25s ease, opacity 0.25s ease; }
-  #ops.rail-off #rail { transform: translateX(calc(-100% - 24px)); opacity: 0; pointer-events: none; }
-  #ops.board-off #board { transform: translateX(calc(100% + 24px)); opacity: 0; pointer-events: none; }
-  #ops.rail-off #rail-toggle, #ops.board-off #board-tab { display: inline-flex; }
-  #rail-toggle, #board-tab { position: absolute; top: 12px; z-index: 22; align-items: center; gap: 7px; padding: 8px 12px; font: 9.5px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
-  #rail-toggle { left: 12px; }
-  #board-tab { right: 12px; }
-  #rail-toggle b, #board-tab b { color: var(--accent-lt); font-weight: 500; }
-  #ops.board-off #zoom-ctl { right: 16px; }
-  #ops.board-off .maplibregl-ctrl-bottom-right { right: 60px; }
-  #ops #zoom-ctl button.on { color: var(--accent-lt); border-color: rgba(201,124,78,0.55); }
-  #tz-btn { cursor: pointer; padding: 2px 6px; margin: -2px -6px; border-radius: 6px; font: inherit; color: var(--ink); text-transform: none; }
-  #tz-btn:hover { background: rgba(255,255,255,0.06); }
-  .tz-caret { color: var(--dim); font-size: 8px; }
-  #tz-menu { display: none; position: absolute; top: 52px; left: 50%; transform: translateX(-50%); z-index: 45; width: 290px; max-height: min(460px, 70%); overflow-y: auto; padding: 6px; }
-  #tz-menu.open { display: block; }
-  .tz-opt { display: flex; justify-content: space-between; gap: 10px; width: 100%; padding: 7px 10px; border-radius: 6px; font-size: 12px; color: var(--mut); text-align: left; }
-  .tz-opt:hover { background: rgba(255,255,255,0.05); color: var(--ink); }
-  .tz-opt.on { color: var(--ink); background: rgba(201,124,78,0.12); }
-  .tz-opt .o { font: 10px 'JetBrains Mono', monospace; color: var(--dim); }
-  .tz-sep { height: 1px; background: var(--hud-line); margin: 5px 4px; }
-
-  /* right board: ranked situations */
-  #board { position: absolute; top: 12px; right: 12px; bottom: 12px; width: 318px; z-index: 21; display: flex; flex-direction: column; overflow: hidden; }
-  #board #intel { display: flex; flex-direction: column; min-height: 0; flex: 1; border: none; }
-  .board-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 14px 11px; border-bottom: 1px solid var(--hud-line); width: 100%; text-align: left; cursor: default; }
-  .board-head .bh-t { font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
-  .board-head .bh-n { font: 9px 'JetBrains Mono', monospace; color: var(--dim); letter-spacing: 0.08em; }
-  .board-tabs { display: flex; gap: 2px; padding: 8px 10px 0; }
-  .btab { flex: 1; font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); padding: 7px 4px; border-radius: 6px 6px 0 0; border-bottom: 2px solid transparent; }
-  .btab:hover { color: var(--mut); }
-  .btab.on { color: var(--ink); border-bottom-color: var(--accent); }
-  .board-body { overflow-y: auto; flex: 1; padding: 4px 14px 14px; scrollbar-width: thin; }
-  .bpane { display: none; }
-  .bpane.on { display: block; }
-  .bpane .ip-sub { margin: 8px 0 4px; }
-  #board .ip-item { padding: 9px 0; border-top: 1px solid var(--hud-line); align-items: center; }
-  #board .ip-item:first-child { border-top: none; }
-  #board .ip-name { font-size: 12px; line-height: 1.35; }
-  #board .ip-item:hover .ip-name { text-decoration: none; color: #fff; }
-  #board .ip-item:hover { background: linear-gradient(90deg, rgba(201,124,78,0.07), transparent); }
-  .ip-bar { display: block; height: 2px; border-radius: 1px; background: rgba(255,255,255,0.06); margin-top: 6px; }
-  .ip-bar > i { display: block; height: 2px; border-radius: 1px; }
-  .board-foot { padding: 10px 14px; border-top: 1px solid var(--hud-line); display: flex; justify-content: space-between; align-items: center; }
-  .board-foot button { font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt); }
-
-  /* automated review status + change log */
-  .d-review { display: flex; align-items: center; gap: 8px; margin-top: 10px; font: 9.5px 'JetBrains Mono', monospace; letter-spacing: 0.04em; color: var(--dim); }
-  .rv-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
-  .rv-dot.upd { background: var(--cyan); box-shadow: 0 0 6px rgba(53,196,215,0.7); }
-  .rv-dot.ok { background: var(--ok); }
-  .chg-box { margin-top: 14px; border: 1px solid rgba(53,196,215,0.35); border-radius: 8px; padding: 11px 13px; background: rgba(53,196,215,0.05); }
-  .chg-h { display: flex; justify-content: space-between; gap: 10px; font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
-  .chg-reason { font-size: 12px; color: var(--ink); margin-top: 6px; line-height: 1.5; }
-  .chg-row { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
-  .chg-f { font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt); }
-  .chg-ft { font-size: 11.5px; color: var(--mut); margin-top: 2px; line-height: 1.45; }
-  .chg-ft b { color: var(--ink); font-weight: 500; }
-  .chg-src { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-  .chg-src a { font: 9px 'JetBrains Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 3px; padding: 1px 6px; }
-  .chg-src a:hover { color: var(--accent-lt); border-color: var(--accent); }
-  .upd-pill { font: 8px 'JetBrains Mono', monospace; letter-spacing: 0.08em; color: var(--bg); background: var(--cyan); border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 1px; }
-  .btab b { color: var(--cyan); font-weight: 500; }
-  .chg-item { padding: 10px 0; border-top: 1px solid var(--hud-line); cursor: pointer; }
-  .chg-item:first-child { border-top: none; }
-  .chg-item:hover .ci-n { color: #fff; }
-  .ci-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-  .ci-n { font-size: 12px; color: var(--ink); }
-  .ci-d { font: 9px 'JetBrains Mono', monospace; color: var(--dim); flex-shrink: 0; }
-  .ci-s { font: 10px 'JetBrains Mono', monospace; margin-top: 3px; }
-  .ci-r { font-size: 11px; color: var(--mut); margin-top: 3px; line-height: 1.45; }
-  .ip-empty { font-size: 11px; color: var(--dim); line-height: 1.55; padding: 10px 0; }
-
-  /* map chrome */
-  #ops #tooltip { top: 0; left: 0; transform: none; z-index: 40; background: rgba(13,18,25,0.96); border-color: var(--hud-line); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-  #ops #zoom-ctl { left: auto; right: 342px; bottom: 16px; z-index: 22; }
-  #ops #zoom-ctl button { width: 30px; height: 30px; border-radius: 7px; background: var(--hud); border-color: var(--hud-line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
-  #ops #zoom-ctl button:hover { color: var(--ink); }
-  #ops #ship-card { left: 286px; bottom: 16px; z-index: 30; border-radius: 10px; background: rgba(12,16,22,0.96); border-color: var(--hud-line); }
-  .maplibregl-ctrl-attrib { background: rgba(8,11,15,0.7) !important; font-size: 9px; }
-  .maplibregl-ctrl-attrib a { color: var(--dim) !important; }
-  .maplibregl-ctrl-bottom-right { right: 380px; }
-  .maplibregl-ctrl-attrib-button { filter: invert(0.8); }
-
-  /* phones and small tablets: map first, panels become sheets */
-  @media (max-width: 900px) {
-    #ops-status { left: 8px; right: 8px; top: 8px; transform: none; gap: 12px; padding: 6px 10px; font-size: 9px; overflow-x: auto; scrollbar-width: none; }
-    #ops-status::-webkit-scrollbar { display: none; }
-    #utc { font-size: 11px; }
-    #utc-date, .st-sep { display: none; }
-    #rail { top: 48px; bottom: 8px; left: 8px; width: min(300px, calc(100vw - 16px)); transform: translateX(calc(-100% - 20px)); transition: transform 0.22s ease; z-index: 30; }
-    #rail.open { transform: none; }
-    #rail-toggle { display: inline-flex; top: 48px; left: 8px; padding: 7px 11px; }
-    #ops.rail-off #rail { transform: translateX(calc(-100% - 20px)); opacity: 1; }
-    #ops.board-off #board { transform: none; opacity: 1; pointer-events: auto; }
-    #ops.board-off #board-tab, #board-col { display: none; }
-    #ops.rail-off #rail.open { transform: none; pointer-events: auto; }
-    #tz-menu { top: 46px; left: 8px; transform: none; }
-    #board { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; height: 50px; transition: height 0.22s ease; }
-    #board.open { height: min(62%, 520px); }
-    .board-head { cursor: pointer; padding: 15px 14px; }
-    .board-head::after { content: "▴"; color: var(--dim); font-size: 10px; margin-left: 10px; }
-    #board.open .board-head::after { content: "▾"; }
-    #ops #zoom-ctl { right: 8px; bottom: 66px; }
-    #board.open ~ #zoom-ctl, #board.open ~ #ship-card { display: none; }
-    #ops #ship-card { left: 8px; right: 8px; bottom: 66px; width: auto; }
-    .maplibregl-ctrl-bottom-right { right: 0; bottom: 58px; }
-  }
 </style>
 </head>
 <body>
@@ -634,84 +471,54 @@
 </div>
 
 <div id="view-home" class="view active">
-<div id="ops">
-  <div id="map"></div>
-  <div id="map-msg">initialising globe…</div>
 
-  <div id="ops-status" class="hud" aria-label="Feed status">
-    <button class="clock" id="tz-btn" title="Change time zone" aria-haspopup="listbox"><span id="utc" class="mono">--:--:--Z</span><span id="utc-date" class="mono"></span><span class="tz-caret">▾</span></button>
-    <span class="st-sep"></span>
-    <span class="st-item" id="st-sit"><i></i><span></span></span>
-    <span class="st-item" id="st-ais"><i></i><span></span></span>
-    <span class="st-item" id="st-air"><i></i><span></span></span>
-    <span class="st-item" id="st-news"><i></i><span></span></span>
+<div id="monitor-bar"><div class="mb-in">
+  <span class="mb-title">Global Conflict Monitor</span>
+  <div class="mb-ctl">
+    <div class="pop-wrap">
+      <button class="mb-btn" id="mb-filter" data-pop="pop-filter">Filter <b id="mb-filter-lab">ALL</b> ▾</button>
+      <div class="pop" id="pop-filter"><div class="pop-title">Show situations by category</div><div id="map-chips"></div>
+        <div class="pop-note">None hides all situation markers so only map layers (chokepoints, cables, aircraft, ships) remain.</div></div>
+    </div>
+    <div class="pop-wrap">
+      <button class="mb-btn" id="mb-layers" data-pop="pop-layers">Layers <b id="mb-layers-lab">0</b> ▾</button>
+      <div class="pop" id="pop-layers"><div class="pop-title">Map layers</div><div id="layer-chips"></div>
+        <div id="ship-filter"><span class="sf-lab">Vessels</span></div>
+        <div class="pop-note">Air Tracker: military aircraft worldwide plus all traffic within 250 nm of the selected situation (OpenSky Network via the SOKREN relay, refreshed about every 2 min; community ADS-B feeds as fallback). Ships: live AIS via AISStream (shared through the SOKREN relay when configured). Cables: TeleGeography Submarine Cable Map, CC BY-NC-SA. Choices are remembered in this browser.</div>
+        <div class="pop-note" id="air-diag" style="color:var(--mut)"></div></div>
+    </div>
   </div>
+</div></div>
 
-  <div id="tz-menu" class="hud" role="listbox" aria-label="Time zone"></div>
-  <button id="rail-toggle" class="hud" title="Show layers panel ( [ )">☰ Layers <b id="rail-toggle-n"></b></button>
-  <button id="board-tab" class="hud" title="Show situation board ( ] )">Situation board <b>‹</b></button>
-  <aside id="rail" class="hud" aria-label="Map layers and filters"><div class="rail-scroll">
-    <div class="rail-sec">
-      <div class="hud-h"><span>Map layers</span><b id="mb-layers-lab"></b><button id="rail-close" aria-label="Collapse panel" title="Collapse panel ( [ )">‹</button></div>
-      <div id="layer-chips"></div>
-      <div id="ship-filter"><span class="sf-lab">Vessels</span></div>
-    </div>
-    <div class="rail-sec">
-      <div class="hud-h"><span>Situations</span><b id="mb-filter-lab"></b></div>
-      <div id="map-chips"></div>
-    </div>
-    <div class="rail-sec">
-      <div class="hud-h"><span>Key</span></div>
-      <div class="key-grid">
-        <span class="key"><span class="kd" style="background:var(--p1)"></span>Critical</span>
-        <span class="key"><span class="kd" style="background:var(--p2)"></span>High</span>
-        <span class="key"><span class="kd" style="background:var(--p3)"></span>Medium</span>
-        <span class="key"><span class="kd" style="background:var(--p4)"></span>Low</span>
-        <span class="key"><span class="kd" style="border:2px solid var(--cyan)"></span>Emerging</span>
-        <span class="key"><span class="kdi"></span>Chokepoint</span>
-        <span class="key"><span class="kp"></span>Mil aircraft</span>
-        <span class="key"><span class="kp" style="border-bottom-color:#7D8794"></span>Other aircraft</span>
-        <span class="key"><span class="kd" style="background:#7FB3D5; width:6px; height:6px"></span>Vessel</span>
-        <span class="key"><span class="kd" style="background:#D98E4A; width:6px; height:6px"></span>Tanker</span>
-        <span class="key"><span class="kd" style="background:var(--cyan); width:6px; height:6px"></span>Naval</span>
-        <span class="key"><span class="kd" style="border:1.5px solid var(--p1)"></span>AIS gap</span>
-        <span class="key"><span class="kl" style="background:#D9534F"></span>Subsea cable</span>
-        <span class="key"><span class="kl" style="background:none; border-top:1px dashed var(--accent-lt); height:0"></span>250 nm AOI</span>
-      </div>
-    </div>
-    <div class="rail-sec">
-      <div class="rail-note">Air: OpenSky Network via the SOKREN relay, worldwide snapshot about every 2 min; military by ICAO hex allocation. Ships: live AIS (AISStream) along chokepoints and major shipping lanes; coverage depends on shore receivers. Cables: TeleGeography, CC BY-NC-SA. Layer choices are remembered in this browser.</div>
-      <div class="rail-note" id="air-diag"></div>
-    </div>
-  </div></aside>
-
-  <aside id="board" class="hud" aria-label="Situation board"><div id="intel">
-    <div class="board-head" id="board-head"><span class="bh-t">Situation board</span><span class="bh-n" id="board-n"></span><button id="board-col" class="pcol" aria-label="Collapse panel" title="Collapse panel ( ] )">›</button></div>
-    <div class="board-tabs">
-      <button class="btab on" data-bt="active">Active</button>
-      <button class="btab" data-bt="emerging">Emerging</button>
-      <button class="btab" data-bt="outlook">Outlook</button>
-      <button class="btab" data-bt="changes">Changes <b id="chg-n"></b></button>
-    </div>
-    <div class="board-body">
-      <div class="bpane on" data-bp="active"><div class="ip-sub">armed conflict under way · ranked by STI</div><div class="ip-list" id="ip-active"></div></div>
-      <div class="bpane" data-bp="emerging"><div class="ip-sub">deteriorating, not yet major</div><div class="ip-list" id="ip-emerging"></div></div>
-      <div class="bpane" data-bp="outlook"><div class="ip-sub">assessed likely developments</div><div class="ip-list" id="ip-outlook"></div></div>
-      <div class="bpane" data-bp="changes"><div class="ip-sub">assessment changes from new reporting · last 30 days</div><div class="ip-list" id="ip-changes"></div></div>
-    </div>
-    <div class="board-foot"><button id="board-all">All situations →</button><button id="board-feed">Live feed →</button></div>
-  </div></aside>
-
+<div id="map-wrap">
+  <div id="map-layer">
+    <svg id="basemap" viewBox="0 0 360 180" preserveAspectRatio="none"></svg>
+    <div id="basemap-msg">loading basemap…</div>
+    <svg id="ov" viewBox="0 0 360 180" preserveAspectRatio="none"></svg>
+    <div id="ov-pts"></div>
+    <div id="markers"></div>
+  </div>
   <div id="tooltip"></div>
+  <div id="legend">
+    <span class="lg"><i style="background:var(--p1)"></i>Critical</span>
+    <span class="lg"><i style="background:var(--p2)"></i>High</span>
+    <span class="lg"><i style="background:var(--p3)"></i>Medium</span>
+    <span class="lg"><i style="background:var(--p4)"></i>Low</span>
+    <span class="lg"><i style="background:transparent; border:1.5px solid #35C4D7; width:7px; height:7px;"></i>Emerging</span>
+  </div>
   <div id="ship-card" role="dialog" aria-label="Vessel details"></div>
   <div id="zoom-ctl">
-    <button id="z-in" aria-label="Zoom in">+</button>
-    <button id="z-out" aria-label="Zoom out">−</button>
-    <button id="z-spin" title="Keep the globe spinning" aria-label="Spin globe">⟳</button>
-    <button id="z-proj" title="Switch to flat map" aria-label="Globe or flat map">▭</button>
-    <button id="z-reset" style="display:none; color:var(--accent-lt); font-size:11px;" aria-label="Reset view">⤢</button>
+    <button id="z-in">+</button>
+    <button id="z-out">−</button>
+    <button id="z-reset" style="display:none; color:var(--accent-lt); font-size:11px;">⤢</button>
   </div>
 </div>
+
+<div id="intel"><div class="maxw-wide" id="intel-grid">
+  <div class="ipanel"><div class="ip-title">Active Conflicts</div><div class="ip-sub">what's happening now</div><div class="ip-list" id="ip-active"></div></div>
+  <div class="ipanel"><div class="ip-title">Emerging Flashpoints</div><div class="ip-sub">deteriorating, not yet major</div><div class="ip-list" id="ip-emerging"></div></div>
+  <div class="ipanel"><div class="ip-title">Analytic Outlook</div><div class="ip-sub">assessed likely developments</div><div class="ip-list" id="ip-outlook"></div></div>
+</div></div>
 </div>
 
 <div id="view-feed" class="view">
@@ -805,7 +612,7 @@
   estimative language, not model outputs. Assessments are dated and revised as situations move.</p>
   <h2>Data sources</h2>
   <ul>
-    <li><b>Coverage:</b> collected daily from think tanks and conflict analysts (International Crisis Group, CFR, CSIS, Institute for the Study of War, Atlantic Council, RAND, AEI, Stimson Center, 38 North, War on the Rocks, Long War Journal, Bellingcat, Geopolitical Monitor, Lawfare, InSight Crime, Balkan Insight, Foreign Policy, The Diplomat); wire services and international news (AP, Reuters, CNN, The New York Times, The Washington Post, The Wall Street Journal, PBS NewsHour and Frontline, ABC News, CBS News, NBC News, NPR, Politico, Axios, BBC World, Al Jazeera, The Guardian, Financial Times, The Economist, France 24, DW, Kyiv Independent); official and humanitarian sources (UN News, ReliefWeb, Security Council Report, U.S. Department of Defense, U.S. State Department, CISA); cyber threat intelligence (Google Threat Intelligence / Mandiant, SentinelLabs, The Record, CyberScoop); and the GDELT Project for global coverage. Outlets without a public feed are reached through GDELT's index. Every item links to its original publisher.</li>
+    <li><b>Coverage:</b> the GDELT Project (global news aggregation, ~15-minute refresh) plus direct wire feeds from Al Jazeera, BBC World, CISA, and The Record. Every item links to its original publisher.</li>
     <li><b>Aircraft:</b> OpenSky Network (one worldwide snapshot about every 2 minutes, shared through the SOKREN relay), with community ADS-B feeds (adsb.lol, adsb.fi) as fallback. Military identification is by ICAO hex allocation, so military aircraft without ADS-B, or outside known ranges, won't appear; absence on the map is not absence in the sky.</li>
     <li><b>Ships:</b> AISStream.io (live AIS, user-supplied free key). <b>Cables:</b> TeleGeography Submarine Cable Map (CC BY-NC-SA). <b>Basemap:</b> Natural Earth.</li>
   </ul>
@@ -832,9 +639,7 @@
         <span class="tag" id="d-emg" style="display:none; color:#35C4D7; border-color:#35C4D7;">EMERGING</span>
         <span class="tag" id="d-cat"></span>
       </div>
-      <div id="d-review" class="d-review"></div>
       <p class="d-brief" id="d-brief"></p>
-      <div id="d-changes"></div>
     </div>
     <button id="d-close">✕</button>
   </div>
@@ -1230,139 +1035,6 @@ const EVENTS = [
       ["Information Operations", "GPS jamming and attribution disputes as pressure tools"],
       ["Geopolitical", "Each interdiction carrying direct NATO\u2013Russia incident risk"]],
     outlook: { p: 55, line: "further infrastructure incidents", window: "next 60 days" } },
-  // ---- added 2026-09-29: cyber, conflicts, emerging threats (baselines from current reporting; the weekly review keeps them current)
-  { id: "ru-cyber", name: "Russian Cyber & Sabotage vs Europe", cats: ["cyber","info","geopol","military"], priority: 2, lon: 12.3, lat: 51.4,
-    sti: 70, parts: { Kinetic: 25, Military: 55, Cyber: 85, Political: 70, Humanitarian: 10 },
-    brief: "Russia's military intelligence (GRU) runs a sustained campaign of cyber attacks, sabotage and arson against European infrastructure, transport and Ukraine-support logistics, often through hired criminal proxies. The EU sanctioned GRU officers and a wider cyber ecosystem in July 2026, and Germany attributed an explosive drone found at Leipzig/Halle airport to Russia.",
-    query: '(Sandworm OR "Russian hackers" OR "Russian sabotage" OR GRU) Europe',
-    assess: [
-      ["Cyber Activity", "GRU-linked intrusions against energy, rail and government networks across the EU"],
-      ["Sabotage", "Proxy-recruited arson, explosives and drone incidents around logistics hubs"],
-      ["Information Operations", "Hacktivist personas amplifying disruption and deniability"],
-      ["Political / Diplomatic", "EU sanctions on GRU officers, contractors and hacktivist fronts"],
-      ["Critical Infrastructure", "Transport and grid assets remain the most frequent targets"]],
-    outlook: { p: 70, line: "further attributed sabotage or disruptive cyber incidents in the EU", window: "next 60 days" } },
-  { id: "iran-cyber", name: "Iranian Cyber Operations", cats: ["cyber","info","geopol"], priority: 2, lon: 51.4, lat: 35.7,
-    sti: 72, parts: { Kinetic: 10, Military: 45, Cyber: 90, Political: 65, Humanitarian: 10 },
-    brief: "Since the US–Israeli strikes of February 2026, Iranian state and state-aligned actors have run a multi-vector cyber campaign: wiper attacks on Western companies, intrusions into internet-exposed industrial controllers in US water and energy systems, and hack-and-leak operations against Israel, where recorded incidents roughly tripled year on year.",
-    query: '("Iranian hackers" OR "Iran-linked hackers" OR Handala OR CyberAv3ngers)',
-    assess: [
-      ["Cyber Activity", "PLC tampering at US utilities; destructive wiper operations against firms"],
-      ["Israel", "Sharp rise in attacks on critical infrastructure and public bodies"],
-      ["Information Operations", "MOIS-linked personas claiming and exaggerating attacks"],
-      ["Geopolitical", "Cyber used as retaliation channel below the kinetic threshold"],
-      ["Defensive Posture", "CISA and FBI advisories on exposed controllers and remote-management abuse"]],
-    outlook: { p: 75, line: "continued disruptive attacks on US and Israeli infrastructure", window: "next 30 days" } },
-  { id: "influence", name: "Foreign Influence Ops & US Midterms", cats: ["info","cyber","political"], priority: 2, lon: -77.04, lat: 38.9,
-    sti: 64, parts: { Kinetic: 0, Military: 5, Cyber: 55, Political: 85, Humanitarian: 0 },
-    brief: "Russia, China and Iran are each running influence campaigns aimed at the November 2026 US midterm elections, using AI-generated media, impersonated news outlets and fake personas. US intelligence assesses the Kremlin has authorised a covert digital effort to undermine confidence in the vote, while federal counter-influence capacity has been scaled back.",
-    query: '("election interference" OR "foreign influence" OR "influence operation") midterms',
-    assess: [
-      ["Information Operations", "AI-generated video and cloned news sites targeting US voters"],
-      ["Russia", "Covert campaign to erode confidence in the midterm process"],
-      ["Iran and China", "Persona networks and content farms focused on divisive US issues"],
-      ["Defensive Posture", "Reduced federal counter-influence capacity; platforms carry more of the load"],
-      ["Election Security", "Risk peaks around voting and certification in November"]],
-    outlook: { p: 80, line: "publicly exposed foreign influence operations before election day", window: "next 5 weeks" } },
-  { id: "ot-cyber", name: "Critical Infrastructure & OT Attacks", cats: ["cyber","economic"], priority: 2, lon: -88.5, lat: 41.5,
-    sti: 68, parts: { Kinetic: 5, Military: 30, Cyber: 90, Political: 50, Humanitarian: 25 },
-    brief: "Attacks on operational technology — the controllers that run water, power and industrial plants — have moved from probing to physical effects. Since late July 2026 water utilities in at least seven US states reported tampering with internet-exposed PLCs, causing pressure loss, flooding and boil-water notices; energy and telecom systems are also being targeted.",
-    query: '(PLC OR SCADA OR "industrial control") (cyberattack OR hackers) (water OR utility OR grid)',
-    assess: [
-      ["Water Sector", "PLC lockouts and IP changes forcing manual operation at multiple utilities"],
-      ["Energy and Telecom", "Intrusion attempts against grid and network control systems"],
-      ["Threat Actors", "State-linked groups and hacktivists exploiting default credentials"],
-      ["Regulation", "CIRCIA incident-reporting rules due to take effect"],
-      ["Humanitarian", "Service outages carry public-health risk when treatment is disrupted"]],
-    outlook: { p: 70, line: "additional OT incidents with operational effects", window: "next 60 days" } },
-  { id: "iraq", name: "Iraq Militias & US Withdrawal", cats: ["armed","military","airmissile","political"], priority: 2, lon: 44.4, lat: 33.3,
-    sti: 70, parts: { Kinetic: 70, Military: 75, Cyber: 20, Political: 75, Humanitarian: 45 },
-    brief: "Since February 2026 Iran-backed Iraqi militias have carried out hundreds of attacks on US forces, the Kurdistan region and neighbouring states, drawing US and Israeli counter-strikes. Saudi Arabia blamed militia drones for shutting its East-West oil pipeline on 12 September, and remaining US forces are due to leave Iraq by 30 September 2026.",
-    query: 'Iraq (militia OR "Kataib Hezbollah" OR "Popular Mobilization" OR "US troops")',
-    assess: [
-      ["Conflict Activity", "Militia drone and rocket attacks on US sites, Kurdistan and Gulf infrastructure"],
-      ["Military Activity", "US force withdrawal due to complete by 30 September"],
-      ["Regional Spillover", "Attack on Saudi East-West pipeline widens the target set"],
-      ["Political / Diplomatic", "Baghdad under pressure to rein in Iran-aligned factions"],
-      ["Humanitarian", "Strikes and counter-strikes raising civilian risk in Kurdistan"]],
-    outlook: { p: 60, line: "continued militia attacks through and after the US withdrawal", window: "next 30 days" } },
-  { id: "yemen", name: "Yemen Civil War", cats: ["armed","humanitarian","political"], priority: 2, lon: 45.9, lat: 14.6,
-    sti: 71, parts: { Kinetic: 75, Military: 70, Cyber: 10, Political: 70, Humanitarian: 90 },
-    brief: "Yemen's internal war has reignited. The UAE-backed Southern Transitional Council collapsed in January 2026 after its southern offensive failed, leaving remnants fighting as the 'Southern Resistance', and heavy fighting between the Houthis and the government's Presidential Leadership Council resumed on 3 September. The UN envoy warns of a return to large-scale war.",
-    query: 'Yemen (Houthis OR "Presidential Leadership Council" OR Aden OR Marib OR Hadramaut)',
-    assess: [
-      ["Conflict Activity", "Houthi–government front lines active again since 3 September"],
-      ["Southern Yemen", "STC remnants ambushing convoys and blocking roads in Dhale"],
-      ["Political / Diplomatic", "UN mediation stalled; Saudi–UAE rift shapes the south"],
-      ["Humanitarian", "One of the world's largest aid crises, worsening with renewed fighting"],
-      ["Regional", "Linked to Houthi Red Sea operations and the wider Iran war"]],
-    outlook: { p: 65, line: "escalation toward large-scale fighting on key fronts", window: "next 60 days" } },
-  { id: "thaicam", name: "Thailand–Cambodia Border", cats: ["armed","military","humanitarian"], priority: 3, emerging: true,
-    flash: "Fragile ceasefire after two rounds of deadly border fighting", lon: 103.9, lat: 14.4,
-    sti: 52, parts: { Kinetic: 50, Military: 60, Cyber: 5, Political: 60, Humanitarian: 55 },
-    brief: "Two rounds of fighting along the Thailand–Cambodia border in 2025 killed at least 100 people and displaced more than half a million. A December 2025 ceasefire under ASEAN monitoring has largely held, but hundreds of thousands remained displaced into 2026, the border stays closed to most trade, and analysts judge a new flare-up plausible.",
-    query: 'Thailand Cambodia border',
-    assess: [
-      ["Conflict Activity", "Ceasefire holding with sporadic incidents along disputed temples and passes"],
-      ["Military Activity", "Troop movements frozen under the ceasefire; direct defence hotlines"],
-      ["Humanitarian", "Large displaced population on both sides of the border"],
-      ["Political / Diplomatic", "ASEAN observer mission; nationalist pressure in both capitals"]],
-    outlook: { p: 35, line: "renewed armed clashes along the border", window: "next 90 days" } },
-  { id: "coastalwa", name: "Sahel Spillover: Coastal West Africa", cats: ["armed","terror"], priority: 3, emerging: true,
-    flash: "JNIM pressing into northern Benin, Togo and Ghana's borderlands", lon: 1.9, lat: 10.9,
-    sti: 55, parts: { Kinetic: 60, Military: 55, Cyber: 0, Political: 45, Humanitarian: 50 },
-    brief: "The al-Qaeda-linked JNIM is pushing south from the Sahel into the northern borderlands of Benin and Togo, and uses northern Ghana as a logistics and medical hub. A March 2026 attack on a Beninese army base killed 15 soldiers. Recorded fatalities in Benin and Togo fell over the past year, but the group's footprint and ambitions toward the coast persist.",
-    query: '(Benin OR Togo OR Ghana) (jihadist OR JNIM OR militants)',
-    assess: [
-      ["Conflict Activity", "Periodic mass-casualty raids on army posts in northern Benin"],
-      ["Terrorism / Extremism", "JNIM networks embedding across the tri-border area"],
-      ["Military Activity", "Benin and Togo expanding northern deployments and air strikes"],
-      ["Humanitarian", "Displacement and school closures in affected border districts"]],
-    outlook: { p: 55, line: "further significant attacks in northern Benin or Togo", window: "next 90 days" } },
-  { id: "moldova", name: "Moldova / Transnistria", cats: ["geopol","political","info"], priority: 3, emerging: true,
-    flash: "Russian hybrid pressure; Duma vote held in Transnistria", lon: 29.4, lat: 46.9,
-    sti: 48, parts: { Kinetic: 5, Military: 35, Cyber: 45, Political: 75, Humanitarian: 20 },
-    brief: "Russia keeps pressure on EU-candidate Moldova through the breakaway Transnistria region, mass passportisation, energy leverage and influence operations. It held Russian State Duma voting in Transnistria on 18–20 September 2026, which Chisinau condemned as a violation of its sovereignty. The Ukraine war has cut Transnistria off, weakening but not ending Moscow's hand.",
-    query: '(Moldova OR Transnistria) Russia',
-    assess: [
-      ["Political / Diplomatic", "Chisinau condemns Russian Duma voting held in Transnistria"],
-      ["Information Operations", "Kremlin-linked disinformation and vote-buying networks"],
-      ["Economic", "Energy dependence and Transnistria's isolation as pressure points"],
-      ["Military Activity", "Russian garrison in Transnistria isolated since 2022"]],
-    outlook: { p: 45, line: "escalating Russian hybrid pressure on Chisinau", window: "next 90 days" } },
-  { id: "arctic", name: "Arctic & Greenland", cats: ["geopol","military","maritime"], priority: 3, emerging: true,
-    flash: "US–Denmark Greenland pact; Russian Arctic build-up", lon: -42, lat: 72,
-    sti: 45, parts: { Kinetic: 0, Military: 55, Cyber: 20, Political: 70, Humanitarian: 0 },
-    brief: "The High North is increasingly contested. After months of US pressure to acquire Greenland, Washington, Copenhagen and Nuuk signed a security agreement in September 2026 that expands the US military presence while preserving Danish sovereignty; Denmark has deployed conscripts to the island and NATO runs an 'Arctic Sentry' mission amid growing Russian military activity and Chinese interest.",
-    query: '(Greenland OR Arctic) (military OR Denmark OR Russia OR NATO)',
-    assess: [
-      ["Geopolitical", "US–Denmark–Greenland pact eases the standoff but trust remains fragile"],
-      ["Military Activity", "Expanded US presence, Danish conscripts and NATO Arctic Sentry patrols"],
-      ["Russia", "Northern Fleet and Arctic base build-up continue"],
-      ["Economic", "Critical minerals and new sea routes raising the stakes"]],
-    outlook: { p: 30, line: "renewed US–Denmark friction over Greenland", window: "next 90 days" } },
-  { id: "lac", name: "India–China Border (LAC)", cats: ["military","geopol"], priority: 3, emerging: true,
-    flash: "Patrol denials and encroachment claims despite new hotlines", lon: 94.2, lat: 28.4,
-    sti: 50, parts: { Kinetic: 20, Military: 70, Cyber: 35, Political: 65, Humanitarian: 5 },
-    brief: "India and China stabilised the Line of Actual Control after the 2024 disengagement deal, and in August 2026 agreed an eight-point consensus adding military meeting points and two border hotlines. Friction persists: reports in August described Chinese denial of Indian patrol access and encroachment in Arunachal Pradesh, and Beijing reasserted its claim to the Shaksgam Valley in January.",
-    query: '(India China) (LAC OR border OR Arunachal OR Ladakh)',
-    assess: [
-      ["Military Activity", "Heavy forward infrastructure, surveillance and drone build-out on both sides"],
-      ["Border Friction", "Patrol-access denials and encroachment claims in Arunachal Pradesh"],
-      ["Political / Diplomatic", "Eight-point consensus and new hotlines to manage incidents"],
-      ["Territorial Claims", "Shaksgam Valley claim adds a new point of contention"]],
-    outlook: { p: 25, line: "a publicly reported physical clash on the LAC", window: "next 90 days" } },
-  { id: "nile", name: "Nile Dam Dispute (Egypt–Ethiopia)", cats: ["geopol","economic","political"], priority: 3, emerging: true,
-    flash: "Egypt securitises the Nile after the GERD's completion", lon: 35.1, lat: 11.2,
-    sti: 46, parts: { Kinetic: 5, Military: 35, Cyber: 5, Political: 75, Humanitarian: 40 },
-    brief: "Ethiopia's Grand Ethiopian Renaissance Dam is complete with its reservoir full, ending the filling dispute but not the underlying one. Egypt told the UN General Assembly on 26 September 2026 that Nile water is an existential priority and has signalled to the Security Council it may take 'all necessary measures', while Ethiopia plans further Blue Nile dams.",
-    query: '(GERD OR "Renaissance Dam" OR "Nile dam") (Egypt OR Ethiopia)',
-    assess: [
-      ["Political / Diplomatic", "Egypt pressing for binding rules at the UN; US mediation revived"],
-      ["Economic / Resource", "Downstream water security versus Ethiopian development needs"],
-      ["Future Dams", "Planned Karadobi, Mandaya and Beko Abo projects extend the dispute"],
-      ["Regional", "Linked to Ethiopia–Eritrea tensions and Sudan's war"]],
-    outlook: { p: 20, line: "a sharp escalation in Egyptian–Ethiopian rhetoric or posture", window: "next 90 days" } },
 ];
 const byId = Object.fromEntries(EVENTS.map(e => [e.id, e]));
 
@@ -1378,27 +1050,18 @@ const WIRES = [
    first so "North Korean hackers" lands on the cyber track, not the peninsula. */
 const EVENT_KEYWORDS = [
   ["dprk-cyber", ["lazarus", "north korean hackers"]],
-  ["iran-cyber", ["iranian hackers", "iran-linked hackers", "iranian cyber", "handala", "cyberav3ngers", "iran-backed hackers"]],
-  ["ru-cyber",   ["sandworm", "russian hackers", "russian sabotage", "gru hackers", "apt28", "fancy bear", "russian cyber"]],
-  ["influence",  ["election interference", "foreign influence", "influence operation", "influence campaign", "disinformation campaign"]],
-  ["ot-cyber",   ["plc", "plcs", "scada", "industrial control", "water utility", "water utilities", "operational technology"]],
   ["cn-cyber",   ["salt typhoon", "volt typhoon", "chinese hackers", "china cyber", "chinese state-sponsored"]],
   ["ransomware", ["ransomware"]],
-  ["moldova",    ["moldova", "transnistria", "chisinau"]],
   ["ru-ua",      ["ukraine", "kyiv", "zelensky", "kremlin", "moscow"]],
-  ["iraq",       ["iraq", "baghdad", "kataib hezbollah", "popular mobilization", "erbil"]],
   ["iran",       ["iran", "hormuz", "tehran"]],
   ["taiwan",     ["taiwan", "taipei"]],
-  ["yemen",      ["presidential leadership council", "hadramaut", "marib", "southern transitional council", "yemeni government"]],
   ["redsea",     ["houthi", "red sea"]],
   ["ssudan",     ["south sudan", "juba"]],
   ["sudan",      ["sudan", "darfur", "rsf"]],
   ["korea",      ["north korea", "pyongyang", "dprk"]],
-  ["coastalwa",  ["benin", "togo", "northern ghana"]],
   ["sahel",      ["sahel", "burkina faso", "mali", "niger"]],
   ["scs",        ["south china sea", "scarborough", "philippines"]],
   ["venezuela",  ["venezuela", "maduro", "caracas"]],
-  ["nile",       ["gerd", "renaissance dam", "nile dam", "blue nile"]],
   ["ethiopia",   ["ethiopia", "eritrea", "amhara", "tigray"]],
   ["drc",        ["m23", "congo", "goma", "kivu"]],
   ["haiti",      ["haiti", "port-au-prince"]],
@@ -1413,14 +1076,11 @@ const EVENT_KEYWORDS = [
   ["lebanon",    ["lebanon", "hezbollah", "beirut"]],
   ["syria",      ["syria", "damascus"]],
   ["afghanistan",["afghanistan", "taliban", "kabul"]],
-  ["lac",        ["line of actual control", "arunachal", "ladakh", "galwan", "shaksgam"]],
   ["kashmir",    ["kashmir"]],
   ["pakistan",   ["pakistan", "balochistan", "ttp"]],
   ["ecuador",    ["ecuador", "guayaquil", "noboa"]],
   ["balkans",    ["kosovo", "bosnia", "srpska", "dodik"]],
   ["baltic",     ["baltic", "undersea cable", "gps jamming"]],
-  ["arctic",     ["greenland", "arctic", "nuuk"]],
-  ["thaicam",    ["cambodia", "thai border", "hun manet"]],
   ["gaza",       ["gaza", "israel", "west bank", "rafah"]],
 ];
 
@@ -1449,66 +1109,6 @@ function mkSeed(eventId, rows) {
   }));
 }
 const SEED = {
-  "ru-cyber": mkSeed("ru-cyber", [
-    ["EU denounces Russia's malicious cyber ecosystem targeting the EU", "https://www.consilium.europa.eu/en/press/press-releases/2026/07/13/cyber-russia-statement-by-the-high-representative-on-behalf-of-the-european-union-denouncing-russia-s-malicious-cyber-ecosystem-targeting-the-eu-its-member-states-and-international-partners/", "consilium.europa.eu", "2026-07-13"],
-    ["Russian hybrid warfare activities in Europe: considerations for Congress", "https://www.congress.gov/crs-product/R49134", "congress.gov", "2026-09-01"],
-    ["Russian GRU forms sabotage unit to target Europe", "https://militarnyi.com/en/news/russian-gru-forms-sabotage-unit-to-target-europe/", "militarnyi.com", "2026-09-10"],
-  ]),
-  "iran-cyber": mkSeed("iran-cyber", [
-    ["Iranian cyberattacks on Israel surged in 2026, cyber chief says", "https://www.timesofisrael.com/iranian-cyberattacks-on-israel-surged-in-2026-cyber-chief-says/", "timesofisrael.com", "2026-07-15"],
-    ["Iranian-affiliated cyber actors exploit PLCs across US critical infrastructure", "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-097a", "cisa.gov", "2026-04-07"],
-    ["Threat brief: escalation of cyber risk related to Iran", "https://unit42.paloaltonetworks.com/iranian-cyberattacks-2026/", "paloaltonetworks.com", "2026-04-17"],
-  ]),
-  "influence": mkSeed("influence", [
-    ["Threat of foreign influence on U.S. elections remains as federal defenses recede", "https://www.brennancenter.org/our-work/research-reports/threat-foreign-influence-us-elections-remain-federal-defenses-recede", "brennancenter.org", "2026-08-20"],
-    ["AI is changing foreign election influence", "https://www.brennancenter.org/our-work/analysis-opinion/ai-changing-foreign-election-influence", "brennancenter.org", "2026-08-05"],
-    ["China, Russia and Iran are investing billions to influence the US midterms", "https://thehill.com/opinion/cybersecurity/5713097-china-russia-iran-influence/", "thehill.com", "2026-09-10"],
-  ]),
-  "ot-cyber": mkSeed("ot-cyber", [
-    ["Malicious cyber actors targeting water sector PLCs, causing operational disruptions", "https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions", "fbi.gov", "2026-08-15"],
-    ["CISA urges water and wastewater sector to protect OT against PLC targeting", "https://www.cisa.gov/news-events/alerts/2026/07/30/cisa-urges-water-and-wastewater-systems-sector-protect-ot-against-activity-targeting-plcs", "cisa.gov", "2026-07-30"],
-    ["Mapping Iranian cyberattacks on U.S. water systems", "https://www.csis.org/analysis/mapping-iranian-cyberattacks-us-water-systems", "csis.org", "2026-08-25"],
-  ]),
-  "iraq": mkSeed("iraq", [
-    ["Iranian-backed militias continue attacks on US forces in Iraq", "https://www.longwarjournal.org/archives/2026/03/iranian-backed-militias-continue-attacks-on-us-forces-in-iraq.php", "longwarjournal.org", "2026-03-20"],
-    ["Iraq: background and U.S. policy", "https://www.congress.gov/crs_external_products/IF/HTML/IF10404.html", "congress.gov", "2026-09-01"],
-    ["With Iraqi militia attacks on US forces, Iraq edges toward Iran war frontline", "https://www.jpost.com/middle-east/iran-news/article-888439", "jpost.com", "2026-03-10"],
-  ]),
-  "yemen": mkSeed("yemen", [
-    ["Yemen in 2026: Southern Transitional Council's fall and intensifying Houthi conflict", "https://commonslibrary.parliament.uk/research-briefings/cbp-10427/", "parliament.uk", "2026-09-05"],
-    ["Yemeni Civil War: overview", "https://www.britannica.com/event/Yemeni-Civil-War", "britannica.com", "2026-09-10"],
-    ["The Houthis' advance to Bab al-Mandab: has Yemen's war returned?", "https://www.crisisgroup.org/rss.xml", "crisisgroup.org", "2026-09-18"],
-  ]),
-  "thaicam": mkSeed("thaicam", [
-    ["The latest on Southeast Asia: the second Cambodia–Thailand ceasefire", "https://www.csis.org/blogs/latest-southeast-asia/latest-southeast-asia-2nd-cambodia-thailand-ceasefire", "csis.org", "2026-01-05"],
-    ["The long shadow of the Cambodia–Thailand border conflict", "https://eastasiaforum.org/2026/06/20/the-long-shadow-of-the-cambodia-thailand-border-conflict/", "eastasiaforum.org", "2026-06-20"],
-    ["Cambodians struggle with displaced lives amid tense ceasefire with Thailand", "https://www.aljazeera.com/news/2026/5/9/cambodians-struggle-with-displaced-lives-amid-tense-ceasefire-with-thailand", "aljazeera.com", "2026-05-09"],
-  ]),
-  "coastalwa": mkSeed("coastalwa", [
-    ["15 soldiers killed in jihadist attack in northern Benin", "https://www.africanews.com/2026/03/06/15-soldiers-killed-in-jihadist-attack-in-northern-benin/", "africanews.com", "2026-03-06"],
-    ["JNIM presses into coastal states", "https://adf-magazine.com/2026/03/jnim-presses-into-coastal-states/", "adf-magazine.com", "2026-03-15"],
-    ["Mounting fatalities linked to militant Islamist violence in Africa", "https://africacenter.org/spotlight/en-2026b-mig-10yr/", "africacenter.org", "2026-08-01"],
-  ]),
-  "moldova": mkSeed("moldova", [
-    ["EU dreams collide with Russia's hybrid war in Moldova", "https://www.geopoliticalmonitor.com/eu-dreams-collide-with-russias-hybrid-war-in-moldova/", "geopoliticalmonitor.com", "2026-09-15"],
-    ["Moldova condemns Russia's holding of elections in Transnistria", "https://news.liga.net/en/politics/news/moldovas-foreign-ministry-condemned-russias-holding-of-elections-in-transnistria", "liga.net", "2026-09-21"],
-    ["Passportisation under pressure: why Russia is expanding citizenship in Transnistria", "https://www.gmfus.org/news/passportisation-under-pressure-why-russia-expanding-citizenship-transnistria", "gmfus.org", "2026-08-10"],
-  ]),
-  "arctic": mkSeed("arctic", [
-    ["Denmark sees long-term NATO presence in Greenland after Trump deal", "https://www.usnews.com/news/world/articles/2026-09-28/denmark-sees-long-term-nato-presence-in-greenland-after-trump-deal", "usnews.com", "2026-09-28"],
-    ["Making the Greenland agreement work: building distributed Arctic deterrence", "https://www.realcleardefense.com/articles/2026/09/26/making_the_greenland_agreement_work_building_distributed_arctic_deterrence_1208421.html", "realcleardefense.com", "2026-09-26"],
-    ["Denmark sends conscripts to Greenland as Arctic tensions grow", "https://www.usnews.com/news/world/articles/2026-09-02/denmark-sends-conscripts-to-greenland-as-arctic-tensions-grow", "usnews.com", "2026-09-02"],
-  ]),
-  "lac": mkSeed("lac", [
-    ["How China-India border tensions are rising again over encroachment claims", "https://www.aljazeera.com/news/2026/8/17/is-china-encroaching-upon-indian-territory-in-arunachal-pradesh-2", "aljazeera.com", "2026-08-17"],
-    ["India–China border tech race: LAC modernization in 2026", "https://thedefensewatch.com/asian-defense-security/india-china-border-tech-race-lac-modernization-2026/", "thedefensewatch.com", "2026-08-01"],
-    ["India–China border talks 2026: key outcomes", "https://edunovations.com/currentaffairs/national/india-china-border-talks-2026/", "edunovations.com", "2026-08-20"],
-  ]),
-  "nile": mkSeed("nile", [
-    ["Egypt sets out new case against Ethiopia in Nile dam dispute", "https://www.thenationalnews.com/news/mena/2026/09/21/egypt-ethiopia-nile-dam-latest/", "thenationalnews.com", "2026-09-21"],
-    ["After GERD, can Egypt shape Ethiopia's next Nile dams?", "https://www.aljazeera.com/news/2026/8/21/after-gerd-can-egypt-shape-ethiopias-next-nile-dams", "aljazeera.com", "2026-08-21"],
-    ["The Nile in 2026: Ethiopia's developmental GERD or Egypt's securitised status quo?", "https://www.theafricareport.com/406685/the-nile-in-2026-ethiopias-developmental-gerd-or-egypts-securitised-status-quo/", "theafricareport.com", "2026-06-01"],
-  ]),
   "ru-ua": mkSeed("ru-ua", [
     ["Russia strikes Kyiv area for six straight days; Zelenskyy vows drone campaign continues", "https://www.aljazeera.com/tag/ukraine-russia-crisis/", "aljazeera.com", "2026-09-04"],
     ["Putin threatens escalated strikes on Ukraine's economic sectors after Kyiv's attacks", "https://www.nbcnews.com/world/russia-ukraine-news", "nbcnews.com", "2026-09-03"],
@@ -1766,66 +1366,6 @@ function saveLayerPrefs() {
    pins: linchpin assumptions [assumption, consequence if it fails]
    swot: situation-adapted SWOT (stabilizing / vulnerabilities / de-escalation paths / escalation drivers) */
 const ANALYSIS = {
-  "ru-cyber": {
-    ach: [["Sustained deniable pressure campaign to raise the cost of supporting Ukraine", 60], ["Preparation of the battlespace for a wider NATO–Russia crisis", 25], ["Opportunistic, loosely coordinated proxy activity", 15]],
-    disc: "Attacks on military logistics and pre-positioned access in grid control systems would discriminate H2.",
-    pins: [["Proxies keep attacks below the threshold of lethal mass-casualty events", "an Article 5 debate becomes likely"], ["European attribution and sanctions remain coordinated", "Russia exploits divisions to scale the campaign"]],
-    swot: { s: ["Improved European attribution and law-enforcement cooperation", "EU sanctions framework for cyber and hybrid actors"], w: ["Hard-to-defend dispersed transport and grid assets", "Cheap criminal proxies easy to recruit"], o: ["Joint NATO–EU hybrid response mechanisms maturing", "Public attribution deterring some proxies"], t: ["Escalation from arson to lethal sabotage", "Pre-positioned access in energy networks"] } },
-  "iran-cyber": {
-    ach: [["Cyber retaliation continues as a calibrated channel alongside the kinetic war", 60], ["Escalation to destructive attacks with physical consequences in the US", 25], ["Campaign winds down with any ceasefire", 15]],
-    disc: "A successful attack causing lasting physical damage or casualties at a US utility would confirm H2.",
-    pins: [["Iran seeks deniable pressure rather than a US cyber-kinetic response", "US retaliation could target Iranian infrastructure directly"], ["Exposed controllers get remediated faster than they are found", "attack volume scales with little effort"]],
-    swot: { s: ["Rapid US and allied advisories on exposed PLCs", "Mature Israeli cyber defence"], w: ["Thousands of internet-exposed industrial devices", "Under-resourced small utilities"], o: ["Remediation of default credentials is cheap", "Public-private information sharing"], t: ["Wiper attacks on large Western firms", "AI-accelerated targeting of critical infrastructure"] } },
-  "influence": {
-    ach: [["Broad, low-cost campaigns aimed at eroding trust in the process", 60], ["Targeted operations in close races to shift outcomes", 25], ["Limited reach with little measurable effect", 15]],
-    disc: "Coordinated operations concentrated on specific districts and certification disputes would discriminate H2.",
-    pins: [["Platforms detect and remove networks quickly", "synthetic content circulates widely before election day"], ["Election officials can rebut false claims in time", "confidence in results erodes after the vote"]],
-    swot: { s: ["Experienced state and local election officials", "Platform takedown capabilities"], w: ["Reduced federal counter-influence capacity", "Polarised information environment"], o: ["Public exposure reduces operation reach", "Media literacy efforts"], t: ["AI deepfakes of candidates and officials", "Post-election disinformation during certification"] } },
-  "ot-cyber": {
-    ach: [["Opportunistic exploitation of exposed controllers by state-linked and hacktivist actors", 55], ["Deliberate state campaign to demonstrate disruptive capability", 35], ["Attack wave fades as utilities remediate", 10]],
-    disc: "Simultaneous incidents across sectors with shared tooling would point to H2.",
-    pins: [["Attacks stay below the threshold of lasting physical harm", "a public-health incident changes the policy response"], ["Operators remove controllers from the open internet", "the target pool stays large"]],
-    swot: { s: ["Clear federal guidance and advisories", "Manual fallback operations at most utilities"], w: ["Legacy, internet-exposed PLCs", "Small operators lack security staff"], o: ["CIRCIA reporting improves visibility", "Low-cost hardening measures available"], t: ["Water treatment disruption", "Cascading effects between energy and water"] } },
-  "iraq": {
-    ach: [["Militias keep attacking US and Gulf targets through the withdrawal to claim victory", 50], ["Withdrawal leads to a sharp drop in attacks and a militia-dominated Iraq", 30], ["Escalation into a wider Gulf infrastructure campaign", 20]],
-    disc: "Further strikes on Gulf energy infrastructure after 30 September would confirm H3.",
-    pins: [["The US withdrawal completes on schedule", "a delayed exit extends the militia campaign"], ["Tehran restrains the militias outside Iraq", "Saudi and Gulf retaliation becomes likely"]],
-    swot: { s: ["Agreed withdrawal timetable", "Baghdad's interest in avoiding a war on its soil"], w: ["Weak state control over Iran-aligned factions", "Kurdistan exposed to strikes"], o: ["Withdrawal removes the militias' main stated target", "Gulf–Baghdad diplomacy"], t: ["Attacks on regional oil infrastructure", "Security vacuum after the US exit"] } },
-  "yemen": {
-    ach: [["Grinding renewed Houthi–government war on multiple fronts", 55], ["Houthi offensive toward Marib and the south makes major gains", 25], ["Saudi-brokered de-escalation restores the truce", 20]],
-    disc: "A Houthi breakthrough around Marib would confirm H2.",
-    pins: [["Saudi Arabia stays out of direct combat", "the war regionalises again"], ["Government forces hold Marib's energy assets", "the balance tips decisively to the Houthis"]],
-    swot: { s: ["Saudi-backed government consolidated after the STC's collapse", "Existing UN mediation framework"], w: ["Fragmented anti-Houthi coalition", "Collapsing economy and salaries"], o: ["Saudi interest in a settlement", "Humanitarian channels still open"], t: ["Return to large-scale war", "Famine conditions deepening"] } },
-  "thaicam": {
-    ach: [["The ceasefire holds with sporadic incidents", 55], ["A third round of heavy fighting", 30], ["A negotiated border settlement", 15]],
-    disc: "Renewed troop movements toward disputed temple sites would discriminate H2.",
-    pins: [["ASEAN monitoring stays in place", "incidents escalate without a mediator"], ["Nationalist politics in both capitals stay contained", "leaders use the border for domestic advantage"]],
-    swot: { s: ["ASEAN-backed ceasefire and observers", "Direct military hotlines"], w: ["Undemarcated border sections", "Large displaced population"], o: ["Economic incentives to reopen trade", "Regional mediation"], t: ["Nationalist escalation", "Mines and unexploded ordnance"] } },
-  "coastalwa": {
-    ach: [["Slow JNIM entrenchment in northern border areas", 55], ["Major escalation with mass-casualty attacks moving south", 30], ["Containment by strengthened coastal-state forces", 15]],
-    disc: "Attacks deeper inside Benin or Togo, away from the border, would confirm H2.",
-    pins: [["Coastal states maintain northern deployments", "JNIM fills the space quickly"], ["Ghana stays a logistics hub rather than a target", "violence spreads into Ghana"]],
-    swot: { s: ["Coastal states' stronger institutions than the Sahel juntas", "Falling fatality counts in the past year"], w: ["Porous borders with Burkina Faso and Niger", "Weak governance in the north"], o: ["Regional security cooperation", "Development programmes in border districts"], t: ["Recruitment from marginalised communities", "Collapse of cooperation with Sahel juntas"] } },
-  "moldova": {
-    ach: [["Sustained hybrid pressure to derail Moldova's EU path", 60], ["Russia uses Transnistria for a sharper political crisis", 25], ["Transnistria's isolation pushes it toward reintegration", 15]],
-    disc: "Moves toward a Transnistria 'referendum' or recognition would discriminate H2.",
-    pins: [["Ukraine continues to block land access to Transnistria", "Russia's options expand sharply"], ["Moldova's pro-EU government stays in power", "Moscow gains a friendly government without force"]],
-    swot: { s: ["EU candidacy and financial support", "Pro-EU parliamentary majority"], w: ["Energy vulnerability", "Exposure to vote-buying and disinformation"], o: ["Transnistria's growing economic dependence on Chisinau", "EU energy integration"], t: ["Russian destabilisation operations", "Transnistrian provocations"] } },
-  "arctic": {
-    ach: [["Managed competition: allied build-up deters Russia; US–Denmark tensions eased", 60], ["Renewed US–Denmark friction over Greenland's status", 25], ["Russian military incident in the High North", 15]],
-    disc: "New US demands on Greenland's sovereignty would discriminate H2.",
-    pins: [["The September security agreement holds", "alliance cohesion in the North suffers"], ["Russia avoids direct confrontation with NATO in the Arctic", "the region militarises quickly"]],
-    swot: { s: ["New trilateral security agreement", "NATO Arctic Sentry mission"], w: ["Fragile trust between Washington and Copenhagen", "Vast, thinly defended territory"], o: ["Allied investment in Arctic infrastructure", "Greenlandic self-determination respected"], t: ["Russian Northern Fleet expansion", "Great-power competition over minerals and sea routes"] } },
-  "lac": {
-    ach: [["Managed rivalry: friction stays below armed clashes", 60], ["A new standoff at a friction point", 30], ["Deeper normalisation and patrol arrangements", 10]],
-    disc: "Troop build-ups at a new friction point in the eastern sector would discriminate H2.",
-    pins: [["New hotlines and meeting points are actually used", "small incidents escalate quickly"], ["Both governments want stable economic ties", "nationalist pressure drives brinkmanship"]],
-    swot: { s: ["August 2026 eight-point consensus", "2024 disengagement framework"], w: ["Undefined boundary", "Competing infrastructure build-out"], o: ["Economic incentives on both sides", "Additional military channels"], t: ["Arunachal encroachment claims", "China–Pakistan coordination"] } },
-  "nile": {
-    ach: [["A long diplomatic and legal standoff without military action", 70], ["Egypt escalates coercive pressure, including through regional partners", 20], ["A binding water-sharing framework is agreed", 10]],
-    disc: "Egyptian military cooperation with Ethiopia's neighbours would discriminate H2.",
-    pins: [["Ethiopia operates the dam without severe dry-year cuts", "the dispute becomes acute"], ["International mediation stays active", "Egypt's 'all necessary measures' language gains weight"]],
-    swot: { s: ["Dam complete and reservoir full ends the filling phase", "Renewed US mediation"], w: ["No binding operating rules", "Deep mutual distrust"], o: ["Data sharing on releases", "Regional power trade"], t: ["Drought years", "New upstream dams"] } },
   "ru-ua": {
     ach: [["Russia sustains an attritional strike campaign to force winter concessions", 60], ["Russia is preparing a limited new ground offensive", 25], ["Russia is maneuvering toward a negotiated freeze", 15]],
     disc: "Force concentration on the northeastern axis is the most diagnostic indicator separating H1 from H2.",
@@ -2058,273 +1598,191 @@ function decodeEntities(t) {
   return el.value;
 }
 
-/* ========================= map engine (MapLibre GL, WebGL globe) =========================
-   The basemap is OpenFreeMap vector tiles (free, no key, commercial use OK) restyled to the
-   SOKREN palette, plus Natural Earth shaded relief at low zoom. Every live layer is a GeoJSON
-   source drawn on the GPU, so 15k vessels cost what 1.5k DOM markers used to. If MapLibre
-   can't load, the rest of the page still works (MAP stays null and every map call no-ops). */
-let MAP = null, mapReady = false;
-const MAP_ATTR = '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> · © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · Data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · Natural Earth';
-const SHIP_COLORS = { military: "#35C4D7", law: "#C9A227", tanker: "#D98E4A", cargo: "#7FB3D5", passenger: "#9FB4E0", small: "#5F7C92", other: "#7FB3D5", dark: "#D9534F" };
-const AC_COLORS = { mil: "#35C4D7", civ: "#7D8794", emg: "#D9534F" };
-const NAME = ["coalesce", ["get", "name:en"], ["get", "name"]];
+/* ========================= basemap ========================= */
+const WORLD_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-function graticule() {
-  const f = [];
-  for (let lon = -180; lon < 180; lon += 30) f.push({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: Array.from({ length: 37 }, (_, i) => [lon, -90 + i * 5]) } });
-  for (let lat = -60; lat <= 60; lat += 30) f.push({ type: "Feature", properties: { eq: lat === 0 ? 1 : 0 }, geometry: { type: "LineString", coordinates: Array.from({ length: 73 }, (_, i) => [-180 + i * 5, lat]) } });
-  return { type: "FeatureCollection", features: f };
-}
-
-const MAP_STYLE = {
-  version: 8,
-  projection: { type: "globe" },
-  glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
-  sky: {
-    "sky-color": "#05070A", "horizon-color": "#16222F", "fog-color": "#05070A",
-    "sky-horizon-blend": 0.5, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.92,
-    "atmosphere-blend": ["interpolate", ["linear"], ["zoom"], 0, 1, 4, 0.9, 7, 0],
-  },
-  sources: {
-    omt: { type: "vector", url: "https://tiles.openfreemap.org/planet", attribution: MAP_ATTR },
-    relief: { type: "raster", tiles: ["https://tiles.openfreemap.org/natural_earth/ne2sr/{z}/{x}/{y}.png"], tileSize: 256, maxzoom: 6 },
-    grat: { type: "geojson", data: graticule() },
-  },
-  layers: [
-    { id: "land", type: "background", paint: { "background-color": "#111720" } },
-    { id: "relief", type: "raster", source: "relief", paint: { "raster-saturation": -1, "raster-contrast": 0.15, "raster-brightness-min": 0.02, "raster-brightness-max": 0.3, "raster-opacity": ["interpolate", ["linear"], ["zoom"], 0, 0.85, 6, 0.35, 8, 0] } },
-    { id: "water", type: "fill", source: "omt", "source-layer": "water", paint: { "fill-color": "#070B10", "fill-antialias": false } },
-    { id: "ice", type: "fill", source: "omt", "source-layer": "landcover", filter: ["==", ["get", "class"], "ice"], paint: { "fill-color": "#141B24", "fill-opacity": 0.6 } },
-    { id: "grat", type: "line", source: "grat", paint: { "line-color": ["case", ["==", ["get", "eq"], 1], "#1A2431", "#101822"], "line-width": 0.6, "line-opacity": ["interpolate", ["linear"], ["zoom"], 0, 1, 5, 0.4, 7, 0] } },
-    { id: "road", type: "line", source: "omt", "source-layer": "transportation", minzoom: 5, filter: ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary"]]], paint: { "line-color": "#1A222C", "line-width": ["interpolate", ["linear"], ["zoom"], 5, 0.4, 10, 1.4] } },
-    { id: "admin1", type: "line", source: "omt", "source-layer": "boundary", minzoom: 3.5, filter: ["all", ["==", ["get", "admin_level"], 4], ["!=", ["get", "maritime"], 1]], paint: { "line-color": "#1F2833", "line-width": 0.6, "line-dasharray": [3, 2] } },
-    { id: "admin0", type: "line", source: "omt", "source-layer": "boundary", filter: ["all", ["==", ["get", "admin_level"], 2], ["!=", ["get", "maritime"], 1]], paint: { "line-color": ["case", ["==", ["get", "disputed"], 1], "#6B5A48", "#3A4757"], "line-width": ["interpolate", ["linear"], ["zoom"], 0, 0.5, 4, 0.9, 8, 1.4] } },
-    { id: "ocean-name", type: "symbol", source: "omt", "source-layer": "water_name", minzoom: 1, maxzoom: 6, filter: ["==", ["get", "class"], "ocean"], layout: { "text-field": NAME, "text-font": ["Noto Sans Italic"], "text-size": 11, "text-letter-spacing": 0.3, "text-transform": "uppercase", "text-max-width": 8 }, paint: { "text-color": "#1D2937" } },
-    { id: "country-name", type: "symbol", source: "omt", "source-layer": "place", minzoom: 2, maxzoom: 7, filter: ["==", ["get", "class"], "country"], layout: { "text-field": NAME, "text-font": ["Noto Sans Regular"], "text-size": ["interpolate", ["linear"], ["zoom"], 2, 9, 6, 12], "text-transform": "uppercase", "text-letter-spacing": 0.18, "text-max-width": 7 }, paint: { "text-color": "#4D5866", "text-halo-color": "#0B0F15", "text-halo-width": 1 } },
-    { id: "city-name", type: "symbol", source: "omt", "source-layer": "place", minzoom: 4.5, filter: ["==", ["get", "class"], "city"], layout: { "text-field": NAME, "text-font": ["Noto Sans Regular"], "text-size": ["interpolate", ["linear"], ["zoom"], 4.5, 9.5, 9, 12], "text-max-width": 8 }, paint: { "text-color": "#6A7482", "text-halo-color": "#0B0F15", "text-halo-width": 1 } },
-  ],
-};
-
-/* small bitmap icons drawn once on a canvas (2x for retina) */
-function makeIcon(draw, w, h) {
-  const c = document.createElement("canvas"); c.width = w * 2; c.height = h * 2;
-  const g = c.getContext("2d"); g.scale(2, 2); draw(g, w, h);
-  return { width: c.width, height: c.height, data: new Uint8Array(g.getImageData(0, 0, c.width, c.height).data.buffer) };
-}
-function addIcons() {
-  const plane = color => makeIcon((g, w, h) => {
-    g.fillStyle = color; g.strokeStyle = "rgba(5,7,10,0.9)"; g.lineWidth = 1;
-    g.beginPath();   // nose up: fuselage, swept wings, tailplane
-    g.moveTo(9, 0.8); g.lineTo(10.4, 6); g.lineTo(17.2, 10.6); g.lineTo(17.2, 12.2); g.lineTo(10.4, 10.2); g.lineTo(10.1, 14.4);
-    g.lineTo(12.6, 16.3); g.lineTo(12.6, 17.4); g.lineTo(9, 16.4); g.lineTo(5.4, 17.4); g.lineTo(5.4, 16.3); g.lineTo(7.9, 14.4);
-    g.lineTo(7.6, 10.2); g.lineTo(0.8, 12.2); g.lineTo(0.8, 10.6); g.lineTo(7.6, 6); g.closePath(); g.stroke(); g.fill();
-  }, 18, 18);
-  const hull = color => makeIcon((g) => {
-    g.fillStyle = color; g.strokeStyle = "rgba(5,7,10,0.85)"; g.lineWidth = 1;
-    g.beginPath(); g.moveTo(5, 0.8); g.lineTo(8.6, 5.2); g.lineTo(8.6, 13.2); g.lineTo(1.4, 13.2); g.lineTo(1.4, 5.2); g.closePath(); g.stroke(); g.fill();
-  }, 10, 14);
-  Object.entries(AC_COLORS).forEach(([k, c]) => MAP.addImage("ac-" + k, plane(c), { pixelRatio: 2 }));
-  Object.entries(SHIP_COLORS).forEach(([k, c]) => MAP.addImage("sh-" + k, hull(c), { pixelRatio: 2 }));
-  MAP.addImage("cp", makeIcon(g => {
-    g.translate(8, 8); g.rotate(Math.PI / 4);
-    g.fillStyle = "rgba(11,14,19,0.75)"; g.strokeStyle = "#E29964"; g.lineWidth = 1.6;
-    g.fillRect(-4.2, -4.2, 8.4, 8.4); g.strokeRect(-4.2, -4.2, 8.4, 8.4);
-  }, 16, 16), { pixelRatio: 2 });
-}
-
-const EMPTY_FC = { type: "FeatureCollection", features: [] };
-function setSrc(id, data) { const s = MAP && MAP.getSource(id); if (s) s.setData(data); }
-function setVis(ids, on) { ids.forEach(id => { if (MAP.getLayer(id)) MAP.setLayoutProperty(id, "visibility", on ? "visible" : "none"); }); }
-function pt(lon, lat, props) { return { type: "Feature", properties: props, geometry: { type: "Point", coordinates: [lon, lat] } }; }
-function ring(lon, lat, km) {
-  const c = [], R = 6371, d = km / R, la = lat * Math.PI / 180, lo = lon * Math.PI / 180;
-  for (let i = 0; i <= 96; i++) {
-    const b = i / 96 * 2 * Math.PI;
-    const la2 = Math.asin(Math.sin(la) * Math.cos(d) + Math.cos(la) * Math.sin(d) * Math.cos(b));
-    const lo2 = lo + Math.atan2(Math.sin(b) * Math.sin(d) * Math.cos(la), Math.cos(d) - Math.sin(la) * Math.sin(la2));
-    c.push([((lo2 * 180 / Math.PI + 540) % 360) - 180, la2 * 180 / Math.PI]);
-  }
-  return { type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: c } };
-}
-
-function addDataLayers() {
-  ["aoi", "cables", "ship-trails", "ships", "ac-trails", "aircraft", "chokepoints", "situations"].forEach(id => MAP.addSource(id, { type: "geojson", data: EMPTY_FC }));
-  const shipColor = ["match", ["get", "c"], ...Object.entries(SHIP_COLORS).flat(), "#7FB3D5"];
-  const L = (o) => MAP.addLayer(o);
-  L({ id: "aoi", type: "line", source: "aoi", paint: { "line-color": "#E29964", "line-width": 1, "line-opacity": 0.55, "line-dasharray": [4, 3] } });
-  L({ id: "cables", type: "line", source: "cables", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": ["interpolate", ["linear"], ["zoom"], 1, "#8A3431", 5, "#D9534F"], "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.4, 4, 0.8, 8, 1.6], "line-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.3, 4, 0.5, 7, 0.75] } });
-  L({ id: "ship-trails", type: "line", source: "ship-trails", minzoom: 4, paint: { "line-color": shipColor, "line-width": 1, "line-opacity": 0.35 } });
-  L({ id: "ships", type: "circle", source: "ships", maxzoom: 5.5, paint: { "circle-color": shipColor, "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, ["case", ["==", ["get", "c"], "military"], 2.2, 1.1], 5.5, ["case", ["==", ["get", "c"], "military"], 3.5, 2.4]], "circle-opacity": 0.9, "circle-stroke-width": ["case", ["==", ["get", "s"], 1], 2, 0], "circle-stroke-color": "#FFFFFF" } });
-  L({ id: "ships-arrow", type: "symbol", source: "ships", minzoom: 5.5, layout: { "icon-image": ["concat", "sh-", ["get", "c"]], "icon-rotate": ["get", "cog"], "icon-rotation-alignment": "map", "icon-allow-overlap": true, "icon-ignore-placement": true, "icon-size": ["interpolate", ["linear"], ["zoom"], 5.5, 0.8, 10, 1.25], "symbol-sort-key": ["case", ["==", ["get", "c"], "military"], 2, 1] } });
-  L({ id: "ships-dark", type: "circle", source: "ships", filter: ["==", ["get", "dark"], 1], paint: { "circle-color": "rgba(217,83,79,0.15)", "circle-radius": 7, "circle-stroke-color": "#D9534F", "circle-stroke-width": 1.5 } });
-  L({ id: "ships-sel", type: "circle", source: "ships", filter: ["==", ["get", "s"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": 11, "circle-stroke-color": "#FFFFFF", "circle-stroke-width": 1.5 } });
-  L({ id: "ac-trails", type: "line", source: "ac-trails", paint: { "line-color": "#35C4D7", "line-width": 1, "line-opacity": 0.4 } });
-  L({ id: "aircraft", type: "symbol", source: "aircraft", layout: { "icon-image": ["concat", "ac-", ["get", "k"]], "icon-rotate": ["get", "trk"], "icon-rotation-alignment": "map", "icon-allow-overlap": true, "icon-ignore-placement": true, "icon-size": ["interpolate", ["linear"], ["zoom"], 1, ["case", ["==", ["get", "k"], "civ"], 0.55, 0.75], 6, ["case", ["==", ["get", "k"], "civ"], 0.85, 1.05]], "symbol-sort-key": ["case", ["==", ["get", "k"], "civ"], 1, 2] } });
-  L({ id: "chokepoints", type: "symbol", source: "chokepoints", layout: { "icon-image": "cp", "icon-allow-overlap": true, "text-field": ["step", ["zoom"], "", 3, ["get", "name"]], "text-font": ["Noto Sans Regular"], "text-size": 10, "text-offset": [0, 1.1], "text-anchor": "top", "text-letter-spacing": 0.08, "text-optional": true, "icon-ignore-placement": true }, paint: { "text-color": "#C9895F", "text-halo-color": "#07090C", "text-halo-width": 1.2 } });
-  const pc = ["match", ["get", "p"], 1, "#D9534F", 2, "#D98E4A", 3, "#C9A227", "#6B8F7E"];
-  L({ id: "sit-glow", type: "circle", source: "situations", paint: { "circle-color": pc, "circle-blur": 1, "circle-opacity": 0.32, "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, ["match", ["get", "p"], 1, 26, 2, 18, 3, 12, 9], 6, ["match", ["get", "p"], 1, 60, 2, 42, 3, 28, 20]] } });
-  L({ id: "sit-pulse", type: "circle", source: "situations", filter: ["==", ["get", "p"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": "#D9534F", "circle-stroke-width": 1.2, "circle-radius": 8, "circle-stroke-opacity": 0.8 } });
-  L({ id: "sit-upd", type: "circle", source: "situations", filter: ["==", ["get", "u"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": ["match", ["get", "p"], 1, 11, 2, 10, 3, 9, 8.5], "circle-stroke-color": "#35C4D7", "circle-stroke-width": 1.2, "circle-stroke-opacity": 0.9 } });
-  L({ id: "sit-dot", type: "circle", source: "situations", paint: { "circle-color": pc, "circle-radius": ["+", ["match", ["get", "p"], 1, 6, 2, 5, 3, 4, 3.5], ["*", ["get", "s"], 3]], "circle-stroke-width": ["case", ["==", ["get", "s"], 1], 2, ["==", ["get", "em"], 1], 2, 1.2], "circle-stroke-color": ["case", ["==", ["get", "s"], 1], "#FFFFFF", ["==", ["get", "em"], 1], "#35C4D7", "#07090C"] } });
-  L({ id: "sit-label", type: "symbol", source: "situations", layout: {
-    // zoom may only drive a top-level step: P1 always, P2 from 1.8, all from 2.8; the selected one always
-    "text-field": ["step", ["zoom"], ["case", ["any", ["==", ["get", "s"], 1], ["<=", ["get", "p"], 1]], ["get", "label"], ""], 1.8, ["case", ["any", ["==", ["get", "s"], 1], ["<=", ["get", "p"], 2]], ["get", "label"], ""], 2.8, ["get", "label"]], "text-font": ["Noto Sans Regular"], "text-transform": "uppercase", "text-letter-spacing": 0.08,
-    "text-size": ["interpolate", ["linear"], ["zoom"], 1, 9.5, 6, 11.5], "text-variable-anchor": ["top", "bottom", "right", "left"], "text-radial-offset": 1.1, "text-justify": "auto",
-    "symbol-sort-key": ["-", ["get", "p"], ["*", ["get", "s"], 10]], "text-max-width": 14,
-  }, paint: { "text-color": ["case", ["==", ["get", "s"], 1], "#FFFFFF", ["<=", ["get", "p"], 2], "#D5DBE2", "#8C96A3"], "text-halo-color": "rgba(7,9,12,0.95)", "text-halo-width": 1.4 } });
-  setSrc("chokepoints", { type: "FeatureCollection", features: CHOKEPOINTS.map(c => pt(c.lon, c.lat, { id: c.id, name: c.name })) });
-}
-
-/* map-driven state kept compatible with the old SVG view: k grows with zoom (1 = world) */
-function syncView() {
-  const z = MAP.getZoom();
-  state.view.k = Math.max(1, Math.pow(2, z - 1.6));
-  const zr = $("z-reset"); if (zr) zr.style.display = z > 2.2 ? "block" : "none";
-}
-
-let pulseRAF = 0;
-let spinMode = (() => { try { return localStorage.getItem("sokren_spin") === "on" ? "on" : "idle"; } catch (e) { return "idle"; } })();
-let spinPauseUntil = 0;
-const SPIN_DEG = 0.06;   // degrees per frame at world zoom (~3.6°/s, one turn in ~100 s)
-function animateMap(t) {
-  pulseRAF = requestAnimationFrame(animateMap);
-  if (!mapReady || document.hidden || state.tab !== "home") return;
-  const f = (t % 2400) / 2400;
-  if (MAP.getLayer("sit-pulse")) { MAP.setPaintProperty("sit-pulse", "circle-radius", 7 + f * 26); MAP.setPaintProperty("sit-pulse", "circle-stroke-opacity", 0.85 * (1 - f)); }
-  const g = 0.45 + 0.4 * Math.abs(Math.sin(t / 700));
-  if (MAP.getLayer("ships-dark")) MAP.setPaintProperty("ships-dark", "circle-stroke-opacity", g);
-  const z = MAP.getZoom();
-  const idleOk = spinMode === "idle" && !state.selected && z < 2.4;           // gentle rotation until the first interaction
-  const pinned = spinMode === "on" && Date.now() > spinPauseUntil;             // "keep spinning" — pauses briefly while you interact
-  if ((idleOk || pinned) && !MAP.isMoving()) {
-    const c = MAP.getCenter(); MAP.setCenter([c.lng + SPIN_DEG / Math.pow(2, Math.max(0, z - 2)), c.lat]);
-  }
-}
-function stopSpin() {
-  if (spinMode === "idle") { spinMode = "off"; renderSpinBtn(); }
-  else if (spinMode === "on") spinPauseUntil = Date.now() + 3500;
-}
-function renderSpinBtn() {
-  const b = $("z-spin"); if (!b) return;
-  b.classList.toggle("on", spinMode === "on");
-  b.title = spinMode === "on" ? "Stop spinning" : "Keep the globe spinning";
-}
-
-function tipAt(point, html) {
-  const tt = $("tooltip"); if (!tt) return;
-  tt.innerHTML = html; tt.style.display = "block";
-  const w = $("ops").clientWidth, tw = tt.offsetWidth;
-  tt.style.left = Math.min(w - tw - 8, point.x + 14) + "px";
-  tt.style.top = Math.max(8, point.y - 36) + "px";
-}
-function hideTip() { const tt = $("tooltip"); if (tt) tt.style.display = "none"; }
-function acTipHtml(a) {
-  return `<span style="font-size:11px">${esc(a.flight || a.reg || a.hex.toUpperCase())}${a.type ? " · " + esc(a.type) : ""}${a.mil ? " · MIL" : ""}</span>` +
-    `<span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${a.alt ? Math.round(a.alt).toLocaleString() + " ft" : "ground"} · ${Math.round(a.gs)} kt · hdg ${Math.round(a.track)}°${a.emg ? " · SQUAWK " + esc(a.squawk) : ""}</span>`;
-}
-function shipTipHtml(v) {
-  return v.dark
-    ? `<span style="font-size:11px; color:var(--p1)">AIS GAP · ${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">last heard ${timeAgo(new Date(v.t))} · was underway ${v.sog.toFixed(1)} kt · transmission stopped, cause unknown</span>`
-    : `<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : (v.classB ? " · class B" : "")}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`;
-}
-const HIT_LAYERS = ["sit-dot", "sit-label", "chokepoints", "aircraft", "ships-dark", "ships", "ships-arrow"];
-function hitAt(point) {
-  if (!mapReady) return null;
-  const r = 6, box = [[point.x - r, point.y - r], [point.x + r, point.y + r]];
-  const fs = MAP.queryRenderedFeatures(box, { layers: HIT_LAYERS.filter(id => MAP.getLayer(id)) });
-  if (!fs.length) return null;
-  const rank = { "sit-dot": 0, "sit-label": 0, chokepoints: 1, aircraft: 2, "ships-dark": 3, ships: 4, "ships-arrow": 4 };
-  fs.sort((a, b) => rank[a.layer.id] - rank[b.layer.id]);
-  return fs[0];
-}
-function describeHit(f) {
-  const id = f.layer.id, p = f.properties;
-  if (id === "sit-dot" || id === "sit-label") { const ev = byId[p.id]; return { kind: "sit", ev, html: `<span style="font-size:11px">${esc(ev.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:${PRIORITY[ev.priority].raw}">P${ev.priority} ${PRIORITY[ev.priority].label} · STI ${ev.sti}</span>` }; }
-  if (id === "chokepoints") { const c = CHOKEPOINTS.find(x => x.id === p.id); return { kind: "cp", c, html: `<span style="font-size:11px">${esc(c.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${esc(c.note)}</span>` }; }
-  if (id === "aircraft") { const a = (p.src === "area" ? state.layerData.area : state.layerData.flights)[p.i]; return a ? { kind: "ac", a, html: acTipHtml(a) } : null; }
-  const v = state.ships[p.m]; return v ? { kind: "ship", v, html: shipTipHtml(v) } : null;
-}
-
-/* keep the globe centred in the space the floating panels leave free */
-function mapPadding() {
-  if (window.innerWidth <= 900) return { top: 90, bottom: 60, left: 0, right: 0 };
-  const ops = $("ops");
-  return { top: 50, bottom: 0, left: ops.classList.contains("rail-off") ? 0 : 274, right: ops.classList.contains("board-off") ? 0 : 330 };
-}
-function setPanel(which, off) {
-  const ops = $("ops");
-  ops.classList.toggle(which + "-off", off);
-  try { localStorage.setItem("sokren_" + which, off ? "off" : "on"); } catch (e) { /* ignore */ }
-  if (MAP && window.innerWidth > 900) MAP.easeTo({ padding: mapPadding(), duration: 300 });
-}
-function homeZoom() {
-  const w = window.innerWidth, h = $("ops") ? $("ops").clientHeight : window.innerHeight;
-  if (w <= 900) return Math.max(0.6, Math.log2(Math.min(w, h - 150) / 330) + 0.85);
-  return Math.max(1.3, Math.log2(Math.min(w - 620, h - 60) / 512) + 1.65);
-}
-function initGlobe() {
-  if (typeof maplibregl === "undefined") { const m = $("map-msg"); if (m) m.textContent = "map engine unavailable — situations are listed on the board"; return; }
-  const phone = window.innerWidth < 760;
-  MAP = new maplibregl.Map({
-    container: "map", style: MAP_STYLE, center: [38, 24], zoom: homeZoom(), minZoom: 0.3, maxZoom: 12,
-    attributionControl: { compact: true }, dragRotate: false, pitchWithRotate: false, renderWorldCopies: true, fadeDuration: 150,
+function decodeTopology(topo, name) {
+  const tr = topo.transform;
+  const obj = topo.objects && topo.objects[name];
+  if (!obj || !obj.geometries) return [];
+  const arcs = topo.arcs.map(arc => {
+    let x = 0, y = 0;
+    return arc.map(d => {
+      x += d[0]; y += d[1];
+      return tr ? [x * tr.scale[0] + tr.translate[0], y * tr.scale[1] + tr.translate[1]] : [x, y];
+    });
   });
-  MAP.touchZoomRotate.disableRotation();
-  MAP.setPadding(mapPadding());
-  MAP.on("load", () => {
-    addIcons(); addDataLayers(); mapReady = true;
-    const m = $("map-msg"); if (m) m.style.display = "none";
-    renderMarkerCounts(); renderOverlay(); syncView();
+  const ring = idxs => {
+    const pts = [];
+    idxs.forEach(i => {
+      const line = i < 0 ? arcs[~i].slice().reverse() : arcs[i];
+      if (pts.length) pts.push(...line.slice(1)); else pts.push(...line);
+    });
+    return pts;
+  };
+  const feats = [];
+  obj.geometries.forEach((g, i) => {
+    let polys = null;
+    if (g.type === "Polygon") polys = [g.arcs.map(ring)];
+    else if (g.type === "MultiPolygon") polys = g.arcs.map(p => p.map(ring));
+    if (polys) feats.push(polys);
   });
-  MAP.on("error", e => { if (!mapReady && e && e.error) { const m = $("map-msg"); if (m) m.textContent = "basemap loading slowly…"; } });
-  MAP.on("move", syncView);
-  MAP.on("moveend", () => { if (state.layers.ships) { renderOverlayShips(); } });
-  ["mousedown", "touchstart", "wheel", "dragstart"].forEach(ev => MAP.on(ev, stopSpin));
-  MAP.on("mousemove", e => {
-    const f = hitAt(e.point), d = f && describeHit(f);
-    MAP.getCanvas().style.cursor = d ? "pointer" : "";
-    if (d) tipAt(e.point, d.html); else hideTip();
-  });
-  MAP.on("mouseout", hideTip);
-  MAP.on("click", e => {
-    const f = hitAt(e.point), d = f && describeHit(f);
-    if (!d) { if (state.shipSel) selectShip(null); return; }
-    if (d.kind === "sit") setSelected(state.selected === d.ev.id ? null : d.ev.id);
-    else if (d.kind === "cp") { if (d.c.ev) setSelected(d.c.ev); else { tipAt(e.point, d.html); setTimeout(hideTip, 2500); } }
-    else if (d.kind === "ship") { hideTip(); selectShip(state.shipSel === d.v.mmsi ? null : d.v.mmsi); }
-    else { tipAt(e.point, d.html); setTimeout(hideTip, 2500); }
-  });
-  pulseRAF = requestAnimationFrame(animateMap);
+  return feats;
 }
 
-/* compatibility shims for code written against the old SVG map */
-function drawBasemap() {}
-function buildMarkers() {}
-function applyView() {}
-function clampView(x, y) { return { x, y }; }
+// lon/lat -> svg coords in the 360x180 equirectangular space
+const sx = lon => lon + 180;
+const sy = lat => 90 - lat;
+
+function polysToPath(polys) {
+  let d = "";
+  polys.forEach(rings => {
+    rings.forEach(pts => {
+      pts.forEach((p, i) => {
+        d += (i === 0 ? "M" : "L") + sx(p[0]).toFixed(2) + "," + sy(p[1]).toFixed(2);
+      });
+      d += "Z";
+    });
+  });
+  return d;
+}
+
+function drawBasemap() {
+  const svg = $("basemap");
+  // graticule
+  let g = "";
+  for (let lon = -150; lon <= 180; lon += 30) g += `M${sx(lon)},0L${sx(lon)},180`;
+  for (let lat = -60; lat <= 60; lat += 30) g += `M0,${sy(lat)}L360,${sy(lat)}`;
+  svg.innerHTML = `<path d="${g}" fill="none" stroke="#1F2630" stroke-width="0.25" opacity="0.6"/>`;
+
+  fetch(WORLD_URL)
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(topo => {
+      const feats = decodeTopology(topo, "countries");
+      if (!feats.length) throw new Error();
+      const paths = feats.map(f => `<path d="${polysToPath(f)}"/>`).join("");
+      svg.innerHTML += `<g fill="#161C25" stroke="#2C3542" stroke-width="0.2" stroke-linejoin="round">${paths}</g>`;
+      $("basemap-msg").style.display = "none";
+    })
+    .catch(() => { $("basemap-msg").textContent = "basemap unavailable — events plotted by coordinate"; });
+}
+
+/* ========================= map interaction ========================= */
+function buildMarkers() {
+  const wrap = $("markers");
+  const ordered = EVENTS.slice().sort((a, b) => b.priority - a.priority);
+  wrap.innerHTML = ordered.map(ev => {
+    const p = PRIORITY[ev.priority];
+    const size = ev.priority === 1 ? 13 : ev.priority === 2 ? 10 : ev.priority === 3 ? 8 : 7;
+    const glow = ev.priority === 1 ? 110 : ev.priority === 2 ? 74 : ev.priority === 3 ? 48 : 38;
+    return `<div class="marker" data-id="${ev.id}" style="left:${projX(ev.lon)}%; top:${projY(ev.lat)}%; z-index:${20 - ev.priority * 2};">
+      <div class="marker-glow" style="width:${glow}px; height:${glow}px; background:radial-gradient(circle, ${p.raw}4d 0%, ${p.raw}00 70%); ${ev.priority === 1 ? "animation:breathe 3s ease-in-out infinite;" : ""}"></div>
+      <div class="marker-dot" data-dot style="width:${size}px; height:${size}px; background:${p.raw};"></div>
+      <div class="marker-label" data-label>${esc(ev.name)}</div>
+    </div>`;
+  }).join("");
+
+  wrap.querySelectorAll(".marker").forEach(m => {
+    const ev = byId[m.dataset.id];
+    m.addEventListener("click", e => {
+      e.stopPropagation();
+      if (mapDrag.moved) return;
+      setSelected(state.selected === ev.id ? null : ev.id);
+    });
+    m.addEventListener("mouseenter", () => {
+      const tt = $("tooltip");
+      tt.innerHTML = `<span style="font-size:11px">${esc(ev.name)}</span>
+        <span class="mono" style="font-size:9px; margin-left:8px; color:${PRIORITY[ev.priority].raw}">P${ev.priority} ${PRIORITY[ev.priority].label}</span>`;
+      tt.style.display = "block";
+    });
+    m.addEventListener("mouseleave", () => { $("tooltip").style.display = "none"; });
+  });
+}
+
+function applyView() {
+  const v = state.view;
+  $("map-layer").style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.k})`;
+  const inv = 1 / v.k;
+  document.querySelectorAll("#markers .marker").forEach(m => {
+    m.style.transform = `translate(-50%,-50%) scale(${inv})`;
+  });
+  document.querySelectorAll("#ov-pts .ovpt").forEach(m => {
+    m.style.transform = `translate(-50%,-50%) scale(${inv})`;
+  });
+  $("z-reset").style.display = v.k > 1 ? "block" : "none";
+  $("map-wrap").classList.toggle("zoomed", v.k >= 1.8);
+  const cp = $("cable-path");
+  if (cp) { cp.setAttribute("stroke-width", v.k >= 2.5 ? "1.4" : "0.8"); cp.setAttribute("opacity", v.k >= 2.5 ? "0.85" : "0.6"); }
+  $("map-wrap").style.cursor = v.k > 1 ? "grab" : "default";
+  repickShipsSoon();
+}
+
+function clampView(x, y, k) {
+  const el = $("map-wrap");
+  const w = el.clientWidth, h = el.clientHeight;
+  return { x: Math.min(0, Math.max(-(k - 1) * w, x)), y: Math.min(0, Math.max(-(k - 1) * h, y)) };
+}
 function zoomAt(factor, cx, cy) {
-  if (!MAP) return;
-  stopSpin();
-  MAP.easeTo({ zoom: MAP.getZoom() + Math.log2(factor), around: cx != null ? MAP.unproject([cx, cy]) : undefined, duration: 250 });
+  const v = state.view;
+  const k = Math.min(8, Math.max(1, v.k * factor));
+  if (k === v.k) return;
+  const r = k / v.k;
+  const c = clampView(cx - (cx - v.x) * r, cy - (cy - v.y) * r, k);
+  state.view = { k, x: c.x, y: c.y };
+  applyView();
 }
+
+const mapDrag = { active: false, moved: false, sx: 0, sy: 0, ox: 0, oy: 0 };
 function initMap() {
-  const w = () => $("ops");
-  $("z-in").addEventListener("click", e => { e.stopPropagation(); zoomAt(2, w().clientWidth / 2, w().clientHeight / 2); });
-  $("z-out").addEventListener("click", e => { e.stopPropagation(); zoomAt(0.5, w().clientWidth / 2, w().clientHeight / 2); });
-  $("z-reset").addEventListener("click", e => { e.stopPropagation(); if (MAP) MAP.flyTo({ center: [38, 24], zoom: homeZoom(), duration: 1200 }); });
-  $("z-spin").addEventListener("click", e => {
-    e.stopPropagation();
-    spinMode = spinMode === "on" ? "off" : "on"; spinPauseUntil = 0;
-    try { localStorage.setItem("sokren_spin", spinMode === "on" ? "on" : "off"); } catch (x) { /* ignore */ }
-    renderSpinBtn();
-  });
-  renderSpinBtn();
-  $("z-proj").addEventListener("click", e => {
-    e.stopPropagation(); if (!MAP) return;
-    const globe = !(MAP.getProjection() && MAP.getProjection().type === "mercator");
-    MAP.setProjection({ type: globe ? "mercator" : "globe" });
-    $("z-proj").textContent = globe ? "◐" : "▭"; $("z-proj").title = globe ? "Switch to globe" : "Switch to flat map";
-  });
+  const el = $("map-wrap");
+  el.addEventListener("wheel", e => {
+    e.preventDefault();
+    const r = el.getBoundingClientRect();
+    zoomAt(e.deltaY < 0 ? 1.18 : 1 / 1.18, e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+
+  const start = (x, y) => { mapDrag.active = true; mapDrag.moved = false; mapDrag.sx = x; mapDrag.sy = y; mapDrag.ox = state.view.x; mapDrag.oy = state.view.y; };
+  const move = (x, y) => {
+    if (!mapDrag.active) return;
+    const dx = x - mapDrag.sx, dy = y - mapDrag.sy;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) mapDrag.moved = true;
+    const c = clampView(mapDrag.ox + dx, mapDrag.oy + dy, state.view.k);
+    state.view.x = c.x; state.view.y = c.y;
+    applyView();
+  };
+  const end = () => { mapDrag.active = false; setTimeout(() => { mapDrag.moved = false; }, 0); };
+
+  el.addEventListener("mousedown", e => start(e.clientX, e.clientY));
+  el.addEventListener("mousemove", e => move(e.clientX, e.clientY));
+  el.addEventListener("mouseup", end);
+  el.addEventListener("mouseleave", end);
+  el.addEventListener("click", e => { if (!mapDrag.moved && state.shipSel && !e.target.closest("#ship-card") && !e.target.closest("#zoom-ctl")) selectShip(null); });
+
+  // touch (iPhone/iPad) — one finger pan, two finger pinch zoom
+  let pinch = null;
+  el.addEventListener("touchstart", e => {
+    if (e.touches.length === 1) start(e.touches[0].clientX, e.touches[0].clientY);
+    else if (e.touches.length === 2) {
+      const [a, b] = e.touches;
+      pinch = { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) };
+    }
+  }, { passive: true });
+  el.addEventListener("touchmove", e => {
+    if (e.touches.length === 1 && !pinch) move(e.touches[0].clientX, e.touches[0].clientY);
+    else if (e.touches.length === 2 && pinch) {
+      e.preventDefault();
+      const [a, b] = e.touches;
+      const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      const r = el.getBoundingClientRect();
+      zoomAt(d / pinch.d, (a.clientX + b.clientX) / 2 - r.left, (a.clientY + b.clientY) / 2 - r.top);
+      pinch.d = d;
+    }
+  }, { passive: false });
+  el.addEventListener("touchend", () => { pinch = null; end(); }, { passive: true });
+
+  $("z-in").addEventListener("click", e => { e.stopPropagation(); zoomAt(1.5, el.clientWidth / 2, el.clientHeight / 2); });
+  $("z-out").addEventListener("click", e => { e.stopPropagation(); zoomAt(1 / 1.5, el.clientWidth / 2, el.clientHeight / 2); });
+  $("z-reset").addEventListener("click", e => { e.stopPropagation(); state.view = { k: 1, x: 0, y: 0 }; applyView(); });
 }
 
 /* ========================= GDELT ========================= */
@@ -2396,83 +1854,6 @@ async function fetchEventNews(ev) {
   throw lastErr;
 }
 
-/* ============ automated intel: data/*.json written by the GitHub Actions pipeline ============
-   news.json (daily): reporting per situation from the approved sources + GDELT, gathered server-side.
-   intel.json (weekly): machine revisions of assessments, applied only when reporting was material.
-   changes.json: what changed, when, why, and on which reporting. */
-const INTEL = { news: {}, newsAt: null, changes: [], loaded: false };
-function newsItemsFor(id) {
-  return (INTEL.news[id] || []).map(a => ({ eventId: id, title: a.title, url: a.url, domain: a.domain, date: a.date ? new Date(a.date) : null, src: a.src }));
-}
-function mergeItems(live, base) {
-  const seen = new Set(), out = [];
-  for (const it of [...live, ...base]) { const k = String(it.url || "").replace(/[?#].*$/, ""); if (!k || seen.has(k)) continue; seen.add(k); out.push(it); }
-  return out.sort((a, b) => (b.date || 0) - (a.date || 0));
-}
-function fallbackFeed(id) {
-  const n = newsItemsFor(id);
-  return n.length ? { status: "ok", items: n } : { status: "cached", items: SEED[id] || [] };
-}
-const DAY = 864e5;
-const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); };
-function recentlyUpdated(ev) { return !!(ev.auto && ev.auto.updatedAt && Date.now() - Date.parse(ev.auto.updatedAt) < 7 * DAY); }
-async function loadIntel() {
-  const v = Math.floor(Date.now() / 6e5);   // 10-min cache-buster = GitHub Pages' CDN lifetime, so new data shows within ~10 min
-  const get = f => fetch("./data/" + f + "?v=" + v).then(r => r.ok ? r.json() : null).catch(() => null);
-  const [intel, news, changes] = await Promise.all([get("intel.json"), get("news.json"), get("changes.json")]);
-  if (intel && intel.events) for (const [id, rec] of Object.entries(intel.events)) {
-    const ev = byId[id]; if (!ev) continue;
-    if (rec.fields) {
-      const f = rec.fields;
-      ["priority", "sti", "parts", "brief", "assess", "outlook"].forEach(k => { if (f[k] != null) ev[k] = f[k]; });
-      if (f.analysis) ANALYSIS[id] = { ...(ANALYSIS[id] || {}), ...f.analysis };
-    }
-    ev.auto = rec;
-  }
-  if (news && news.items) {
-    INTEL.news = news.items; INTEL.newsAt = news.generatedAt;
-    for (const ev of EVENTS) {
-      const base = newsItemsFor(ev.id); if (!base.length) continue;
-      const f = state.feeds[ev.id];
-      state.feeds[ev.id] = { status: "ok", items: mergeItems(f.status === "ok" ? f.items : [], base) };
-    }
-  }
-  if (changes && changes.entries) INTEL.changes = changes.entries;
-  INTEL.loaded = true;
-  renderAll(); renderChanges();
-}
-function renderReview(ev) {
-  const el = $("d-review"); if (!el) return;
-  const a = ev.auto;
-  if (!a) { el.innerHTML = '<span class="rv-dot"></span>Analyst baseline assessment'; return; }
-  const lr = a.lastReview || {};
-  if (lr.material && a.updatedAt) el.innerHTML = `<span class="rv-dot upd"></span>Auto-updated ${esc(fmtDay(a.updatedAt))} from ${a.basis ? a.basis.articles : "?"} reports across ${a.basis ? a.basis.outlets : "?"} outlets · machine-drafted`;
-  else el.innerHTML = `<span class="rv-dot ok"></span>Reviewed ${esc(fmtDay(a.checkedAt))} against ${a.checkedArticles || 0} new reports · no material change${a.updatedAt ? " · last updated " + esc(fmtDay(a.updatedAt)) : ""}`;
-  const box = $("d-changes"); if (!box) return;
-  const c = INTEL.changes.find(x => x.id === ev.id && Date.now() - Date.parse(x.at) < 30 * DAY);
-  box.innerHTML = !c ? "" : `<div class="chg-box">
-    <div class="chg-h"><span>What changed · ${esc(fmtDay(c.at))}</span><span>STI ${c.sti.from} → ${c.sti.to}${c.priority.from !== c.priority.to ? " · P" + c.priority.from + " → P" + c.priority.to : ""}</span></div>
-    <div class="chg-reason">${esc(c.reason)}</div>
-    ${c.changes.map(x => `<div class="chg-row"><div class="chg-f">${esc(CHG_LABEL[x.field] || x.field)}</div>
-      <div class="chg-ft"><b>${esc(x.to)}</b>${x.from ? ` <span style="color:var(--dim)">(was: ${esc(x.from)})</span>` : ""}<br>${esc(x.why)}</div>
-      ${(x.sources || []).length ? `<div class="chg-src">${x.sources.slice(0, 4).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="${esc(s.title)}">${esc(s.domain)} ↗</a>`).join("")}</div>` : ""}</div>`).join("")}
-  </div>`;
-}
-const CHG_LABEL = { priority: "Priority", sti: "Threat index", parts: "Index components", brief: "Brief", assess: "Activity", outlook: "Outlook", ach: "Competing hypotheses", disc: "Key discriminator", pins: "Linchpins", swot: "SWOT" };
-function renderChanges() {
-  const el = $("ip-changes"); if (!el) return;
-  const recent = INTEL.changes.filter(c => Date.now() - Date.parse(c.at) < 30 * DAY);
-  const n = $("chg-n"); if (n) n.textContent = recent.length ? String(recent.length) : "";
-  const upd = EVENTS.filter(recentlyUpdated).length;
-  $("board-n").textContent = EVENTS.length + " tracked" + (upd ? " · " + upd + " updated" : "");
-  el.innerHTML = recent.length ? recent.map(c => `<div class="chg-item" data-chg="${esc(c.id)}">
-      <div class="ci-top"><span class="ci-n">${esc(c.name)}</span><span class="ci-d">${esc(fmtDay(c.at))}</span></div>
-      <div class="ci-s" style="color:${stiColor(c.sti.to)}">STI ${c.sti.from} → ${c.sti.to}${c.priority.from !== c.priority.to ? " · P" + c.priority.from + " → P" + c.priority.to : ""} · ${c.changes.length} field${c.changes.length === 1 ? "" : "s"}</div>
-      <div class="ci-r">${esc(c.reason)}</div></div>`).join("")
-    : '<div class="ip-empty">No material changes recorded yet. Every situation with new reporting is reviewed weekly; when the reporting changes the picture, the revision and its sources appear here.</div>';
-  el.querySelectorAll("[data-chg]").forEach(x => x.addEventListener("click", () => setSelected(x.dataset.chg)));
-}
-
 async function retryEvent(id) {
   const ev = byId[id];
   state.feeds[id] = { status: "loading", items: state.feeds[id].items };
@@ -2481,13 +1862,13 @@ async function retryEvent(id) {
     const items = await fetchEventNews(ev);
     if (items.length) {
       markFresh(items);
-      state.feeds[id] = { status: "ok", items: mergeItems(items, newsItemsFor(id)) };
+      state.feeds[id] = { status: "ok", items };
     } else {
-      state.feeds[id] = fallbackFeed(id);
+      state.feeds[id] = { status: "cached", items: SEED[id] || [] };
     }
   } catch (e) {
-    const kept = state.feeds[id].items.length ? state.feeds[id] : fallbackFeed(id);
-    state.feeds[id] = kept.items.length ? kept : { status: "error", items: [] };
+    const kept = state.feeds[id].items.length ? state.feeds[id].items : (SEED[id] || []);
+    state.feeds[id] = { status: kept.length ? "cached" : "error", items: kept };
   }
   renderAll();
 }
@@ -2607,13 +1988,13 @@ async function loadAll() {
       const items = await fetchEventNews(ev);
       if (items.length) {
         markFresh(items);
-        state.feeds[ev.id] = { status: "ok", items: mergeItems(items, newsItemsFor(ev.id)) };
+        state.feeds[ev.id] = { status: "ok", items };
       } else {
-        state.feeds[ev.id] = fallbackFeed(ev.id);
+        state.feeds[ev.id] = { status: "cached", items: SEED[ev.id] || [] };
       }
     } catch (err) {
-      const kept = state.feeds[ev.id] && state.feeds[ev.id].items.length ? state.feeds[ev.id] : fallbackFeed(ev.id);
-      state.feeds[ev.id] = kept.items.length ? kept : { status: "error", items: [] };
+      const kept = state.feeds[ev.id] && state.feeds[ev.id].items.length ? state.feeds[ev.id].items : (SEED[ev.id] || []);
+      state.feeds[ev.id] = { status: kept.length ? "cached" : "error", items: kept };
     }
     renderAll();
   }));
@@ -3179,13 +2560,35 @@ function refreshShips() {
 const SHIP_DRAW_CAP = () => (window.innerWidth < 768 ? 600 : 1500);
 const TRAIL_MIN_ZOOM = 2;
 function viewBounds() {
-  if (!MAP) return { w: -180, e: 180, n: 90, s: -90 };
-  const b = MAP.getBounds(); return { w: b.getWest(), e: b.getEast(), n: b.getNorth(), s: b.getSouth() };
+  const el = $("map-wrap"), v = state.view, w = el.clientWidth || 1, h = el.clientHeight || 1;
+  const lon = px => (px - v.x) / v.k / w * 360 - 180, lat = py => 90 - (py - v.y) / v.k / h * 180;
+  return { w: lon(0), e: lon(w), n: lat(0), s: lat(h) };
 }
-function pickShips(all) { return all.filter(shipVisible); }
+function pickShips(all) {
+  let list = all.filter(shipVisible);
+  if (state.view.k > 1) {
+    const b = viewBounds(), mx = (b.e - b.w) * 0.1, my = (b.n - b.s) * 0.1;
+    list = list.filter(v => v.lon >= b.w - mx && v.lon <= b.e + mx && v.lat >= b.s - my && v.lat <= b.n + my);
+  }
+  const cap = SHIP_DRAW_CAP();
+  if (list.length <= cap) return list;
+  const ev = state.selected && byId[state.selected];
+  const score = v => {
+    let s = 0;
+    if (v.dark) s += 4;
+    const c = shipBaseClass(v); if (c === "military" || c === "law") s += 4;
+    if (ev && Math.abs(v.lat - ev.lat) <= 4 && Math.abs(v.lon - ev.lon) <= 4) s += 2;
+    return s;
+  };
+  return list.map(v => [score(v), v.t || 0, v]).sort((a, z) => z[0] - a[0] || z[1] - a[1]).slice(0, cap).map(x => x[2]);
+}
 function repickShips() { state.shipsDrawn = pickShips(state.layerData.ships); }
 let shipRepick = 0;
-function repickShipsSoon() {}
+function repickShipsSoon() {
+  if (!state.layers.ships || !state.layerData.ships) return;
+  clearTimeout(shipRepick);
+  shipRepick = setTimeout(() => { repickShips(); renderLayerChips(); renderOverlay(); }, 400);
+}
 
 function openAkey() {
   $("ak-input").value = aisKey();
@@ -3242,8 +2645,6 @@ function renderLayerChips() {
   }));
   const lab = $("mb-layers-lab");
   if (lab) lab.textContent = String(LAYERS.filter(l => state.layers[l.id]).length) + " on";
-  const rt = $("rail-toggle-n"); if (rt) rt.textContent = String(LAYERS.filter(l => state.layers[l.id]).length);
-  renderStatus();
   const sf = $("ship-filter");
   if (sf) {
     sf.classList.toggle("on", !!state.layers.ships);
@@ -3273,114 +2674,116 @@ function aheadPoint(ac) {
 }
 
 function renderOverlay() {
-  renderStatus();
-  if (!mapReady) return;
-  // cables — only re-sent when the loaded set changes
-  const ck = state.layers.cables ? (state.layerData.cables.length ? "tg" + state.layerData.cables.length : "curated") : "off";
-  if (ck !== renderOverlay.cablesKey) {
-    renderOverlay.cablesKey = ck;
-    const lines = ck === "off" ? [] : state.layerData.cables.length
-      ? state.layerData.cables.map(c => ({ type: "Feature", properties: { n: c.name || "" }, geometry: { type: "MultiLineString", coordinates: c.segs } }))
-      : CABLES.map(c => ({ type: "Feature", properties: { n: c.name || "" }, geometry: { type: "LineString", coordinates: c.pts } }));
-    setSrc("cables", { type: "FeatureCollection", features: lines });
+  const ov = $("ov"), pts = $("ov-pts");
+  if (!ov || !pts) return;
+  let svg = "", html = "";
+
+  if (state.layers.cables) {
+    if (state.layerData.cables.length) {
+      let d = "";
+      state.layerData.cables.forEach(c => {
+        c.segs.forEach(sg => { d += sg.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join(""); });
+      });
+      svg += `<path id="cable-path" d="${d}" fill="none" stroke="#E0564F" stroke-width="${state.view.k >= 2.5 ? 1.4 : 0.8}" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" opacity="${state.view.k >= 2.5 ? 0.85 : 0.6}"/>`;
+    } else {
+      CABLES.forEach(c => {
+        const d = c.pts.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#D9534F" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity="0.7"/>`;
+      });
+    }
   }
-  setVis(["chokepoints"], !!state.layers.chokepoints);
-  renderOverlayShips();
-  // aircraft: military worldwide + everything near the selected situation
-  const acs = [], trails = [];
+  if (state.layers.ships && state.view.k >= TRAIL_MIN_ZOOM) {
+    (state.shipsDrawn || []).forEach(v => {
+      const tr = state.shipTrails[v.mmsi];
+      if (tr && tr.length > 1) {
+        const d = tr.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#7FB3D5" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.3"/>`;
+      }
+    });
+  }
+
   if (state.layers.aircraft) {
-    const milHex = new Set();
-    state.layerData.flights.forEach((a, i) => {
-      milHex.add(a.hex);
-      acs.push(pt(a.lon, a.lat, { src: "mil", i, k: a.emg ? "emg" : "mil", trk: a.track || 0 }));
-      const t = state.trails[a.hex];
-      if (t && t.length > 1) trails.push({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: t } });
-    });
-    if (state.selected && state.areaFor === state.selected) state.layerData.area.forEach((a, i) => {
-      if (!milHex.has(a.hex)) acs.push(pt(a.lon, a.lat, { src: "area", i, k: a.emg ? "emg" : a.mil ? "mil" : "civ", trk: a.track || 0 }));
+    state.layerData.flights.forEach(ac => {
+      const t = state.trails[ac.hex];
+      if (t && t.length > 1) {
+        const d = t.map((p, i) => (i ? "L" : "M") + svgX(p[0]) + "," + svgY(p[1])).join("");
+        svg += `<path d="${d}" fill="none" stroke="#35C4D7" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.35"/>`;
+      }
+      const a = aheadPoint(ac);
+      svg += `<path d="M${svgX(ac.lon)},${svgY(ac.lat)}L${svgX(a[0])},${svgY(a[1])}" fill="none" stroke="${ac.emg ? "#D9534F" : "#35C4D7"}" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0.7"/>`;
     });
   }
-  setSrc("aircraft", { type: "FeatureCollection", features: acs });
-  setSrc("ac-trails", { type: "FeatureCollection", features: trails });
-  // area of interest: the 250 nm Live Signals radius around the selected situation
-  const ev = state.selected && byId[state.selected];
-  setSrc("aoi", ev ? { type: "FeatureCollection", features: [ring(ev.lon, ev.lat, 463)] } : EMPTY_FC);
-}
+  ov.innerHTML = svg;
 
-function renderOverlayShips() {
-  if (!mapReady) return;
-  const list = state.layers.ships ? (state.shipsDrawn || []) : [];
-  setSrc("ships", { type: "FeatureCollection", features: list.map(v => pt(v.lon, v.lat, { m: v.mmsi, c: v.dark ? "dark" : shipBaseClass(v), cog: v.cog || 0, dark: v.dark ? 1 : 0, s: state.shipSel === v.mmsi ? 1 : 0 })) });
-  // trails only when zoomed in, and only for what's on screen
-  let tr = [];
-  if (list.length && MAP.getZoom() >= 4) {
-    const b = MAP.getBounds();
-    tr = list.filter(v => b.contains([v.lon, v.lat])).map(v => {
-      const t = state.shipTrails[v.mmsi];
-      return t && t.length > 1 ? { type: "Feature", properties: { c: v.dark ? "dark" : shipBaseClass(v) }, geometry: { type: "LineString", coordinates: t } } : null;
-    }).filter(Boolean);
+  if (state.layers.chokepoints) {
+    CHOKEPOINTS.forEach(c => {
+      html += `<div class="ovpt" data-cp="${c.id}" style="left:${projX(c.lon)}%; top:${projY(c.lat)}%; z-index:12;"><div class="cp-d"></div></div>`;
+    });
   }
-  setSrc("ship-trails", { type: "FeatureCollection", features: tr });
-}
+  if (state.layers.ships) {
+    (state.shipsDrawn || []).forEach((v, i) => {
+      const sel = state.shipSel === v.mmsi ? " sel" : "";
+      if (v.dark) { html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:13;"><div class="sh-dark${sel}"></div></div>`; return; }
+      const c = shipClass(v);
+      const cls = c === "military" ? " mil" : c === "law" ? " law" : c === "tanker" ? " tanker" : c === "small" ? " small" : "";
+      html += `<div class="ovpt" data-sh="${i}" style="left:${projX(v.lon)}%; top:${projY(v.lat)}%; z-index:11;"><div class="sh-d${cls}${sel}" style="transform:rotate(${v.cog}deg)"></div></div>`;
+    });
+  }
+  if (state.layers.aircraft) {
+    state.layerData.flights.forEach((ac, i) => {
+      html += `<div class="ovpt" data-ac="${i}" style="left:${projX(ac.lon)}%; top:${projY(ac.lat)}%; z-index:14;"><div class="ac-d${ac.emg ? " emg" : ""}" style="transform:rotate(${ac.track}deg)"></div></div>`;
+    });
+  }
+  if (state.layers.aircraft && state.selected && state.areaFor === state.selected) {
+    const milHex = new Set(state.layers.aircraft ? state.layerData.flights.map(a => a.hex) : []);
+    state.layerData.area.forEach((ac, i) => {
+      if (milHex.has(ac.hex)) return;
+      const cls = ac.emg ? "ac-d emg" : (ac.mil ? "ac-d" : "ac-d civ");
+      html += `<div class="ovpt" data-ar="${i}" style="left:${projX(ac.lon)}%; top:${projY(ac.lat)}%; z-index:13;"><div class="${cls}" style="transform:rotate(${ac.track}deg)"></div></div>`;
+    });
+  }
+  pts.innerHTML = html;
+  applyView();
 
-/* top status strip: UTC clock + feed health, so viewers can see at a glance what is live */
-function renderStatus() {
-  const el = $("ops-status"); if (!el) return;
-  const set = (id, cls, txt) => { const s = $(id); if (s) { s.className = "st-item " + cls; s.lastElementChild.textContent = txt; } };
-  const crit = EVENTS.filter(e => e.priority === 1).length;
-  set("st-sit", "ok", EVENTS.length + " situations · " + crit + " critical");
-  const sh = state.layerStatus.ships, n = (state.layerData.ships || []).length;
-  set("st-ais", !state.layers.ships ? "off" : sh === "live" ? "ok" : sh === "error" ? "bad" : "warn", !state.layers.ships ? "AIS off" : sh === "live" ? "AIS " + n.toLocaleString() + " vessels" : sh === "error" ? "AIS unreachable" : "AIS connecting");
-  const af = state.layerStatus.flights;
-  set("st-air", !state.layers.aircraft ? "off" : af === "ok" ? "ok" : af === "error" || af === "limited" ? "bad" : "warn", !state.layers.aircraft ? "Air off" : af === "ok" ? "Air " + state.layerData.flights.length + " mil" : af === "error" ? "Air unreachable" : af === "limited" ? "Air rate-limited" : "Air loading");
-  const live = EVENTS.filter(e => state.feeds[e.id].status === "ok").length;
-  const nAt = INTEL.newsAt ? new Date(INTEL.newsAt) : null, nStale = nAt && Date.now() - nAt > 2 * DAY;
-  set("st-news", state.refreshing && !nAt ? "warn" : live ? (nStale ? "warn" : "ok") : state.hadFirstLoad ? "bad" : "warn",
-    state.refreshing && !nAt ? "News updating" : nAt ? "News " + timeAgo(nAt) : live ? "News " + (state.lastUpdated ? timeAgo(state.lastUpdated) : "live") : state.hadFirstLoad ? "News snapshot" : "News loading");
-}
-/* clock: Zulu by default; any zone, or "follow the selected situation" */
-const TZ_EVENT = { "ru-ua": "Europe/Kyiv", iran: "Asia/Tehran", taiwan: "Asia/Taipei", redsea: "Asia/Aden", sudan: "Africa/Khartoum", drc: "Africa/Lubumbashi", "cn-cyber": "Asia/Shanghai", korea: "Asia/Seoul", "dprk-cyber": "Asia/Pyongyang", sahel: "Africa/Bamako", scs: "Asia/Manila", venezuela: "America/Caracas", ethiopia: "Africa/Addis_Ababa", haiti: "America/Port-au-Prince", myanmar: "Asia/Yangon", nigeria: "Africa/Lagos", somalia: "Africa/Mogadishu", mexico: "America/Mexico_City", colombia: "America/Bogota", cuba: "America/Havana", libya: "Africa/Tripoli", mozambique: "Africa/Maputo", gaza: "Asia/Gaza", syria: "Asia/Damascus", afghanistan: "Asia/Kabul", kashmir: "Asia/Kolkata", pakistan: "Asia/Karachi", ssudan: "Africa/Juba", ecuador: "America/Guayaquil", lebanon: "Asia/Beirut", balkans: "Europe/Belgrade", baltic: "Europe/Riga",
-  "ru-cyber": "Europe/Brussels", "iran-cyber": "Asia/Tehran", influence: "America/New_York", iraq: "Asia/Baghdad", yemen: "Asia/Aden", thaicam: "Asia/Bangkok",
-  coastalwa: "Africa/Porto-Novo", moldova: "Europe/Chisinau", arctic: "America/Nuuk", lac: "Asia/Kolkata", nile: "Africa/Cairo" };
-const TZ_LIST = [["Z", "Zulu (UTC)"], ["local", "Local · this device"], ["auto", "Follow selected situation"], null,
-  ["America/New_York", "Washington DC"], ["America/Chicago", "Central US"], ["America/Los_Angeles", "Pacific US"], ["Pacific/Honolulu", "Honolulu · INDOPACOM"],
-  ["Europe/London", "London"], ["Europe/Brussels", "Brussels · NATO"], ["Europe/Berlin", "Stuttgart · EUCOM / AFRICOM"], ["Europe/Kyiv", "Kyiv"], ["Europe/Moscow", "Moscow"],
-  ["Asia/Jerusalem", "Tel Aviv"], ["Asia/Beirut", "Beirut"], ["Asia/Tehran", "Tehran"], ["Asia/Riyadh", "Riyadh"], ["Asia/Aden", "Sana'a"], ["Asia/Dubai", "Dubai"],
-  ["Asia/Kabul", "Kabul"], ["Asia/Karachi", "Islamabad"], ["Asia/Kolkata", "New Delhi"], ["Asia/Yangon", "Yangon"], ["Asia/Shanghai", "Beijing"], ["Asia/Taipei", "Taipei"],
-  ["Asia/Manila", "Manila"], ["Asia/Seoul", "Seoul"], ["Asia/Pyongyang", "Pyongyang"], ["Asia/Tokyo", "Tokyo"], ["Africa/Cairo", "Cairo"], ["Africa/Khartoum", "Khartoum"],
-  ["Africa/Nairobi", "Nairobi"], ["Africa/Lagos", "Lagos"], ["America/Caracas", "Caracas"], ["America/Bogota", "Bogotá"], ["America/Mexico_City", "Mexico City"]];
-let tzChoice = (() => { try { return localStorage.getItem("sokren_tz") || "Z"; } catch (e) { return "Z"; } })();
-function tzNow() {
-  if (tzChoice === "auto") { const z = state.selected && TZ_EVENT[state.selected]; return z ? { zone: z, label: byId[state.selected].name.split(/[\/(]/)[0].trim() } : { zone: "Z", label: "Zulu" }; }
-  if (tzChoice === "local") return { zone: undefined, label: "Local" };
-  if (tzChoice === "Z") return { zone: "Z", label: "Zulu" };
-  const t = TZ_LIST.find(x => x && x[0] === tzChoice); return { zone: tzChoice, label: t ? t[1].split(" · ")[0] : tzChoice };
-}
-function tzOffset(zone, d) {
-  try { return new Intl.DateTimeFormat("en-US", { timeZone: zone, timeZoneName: "shortOffset" }).formatToParts(d).find(p => p.type === "timeZoneName").value.replace("GMT", "UTC"); } catch (e) { return ""; }
-}
-function tickClock() {
-  const c = $("utc"); if (!c) return;
-  const d = new Date(), t = tzNow(), dd = $("utc-date");
-  if (t.zone === "Z") { c.textContent = d.toISOString().slice(11, 19) + "Z"; if (dd) dd.textContent = d.toISOString().slice(0, 10); return; }
-  let hms = "";
-  try { hms = new Intl.DateTimeFormat("en-GB", { timeZone: t.zone, hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }).format(d); } catch (e) { hms = d.toISOString().slice(11, 19); }
-  c.textContent = hms;
-  if (dd) dd.textContent = t.label.toUpperCase() + " · " + (tzOffset(t.zone, d) || "UTC") + " · " + d.toISOString().slice(11, 16) + "Z";
-}
-function renderTzMenu() {
-  const m = $("tz-menu"), d = new Date();
-  m.innerHTML = TZ_LIST.map(x => {
-    if (!x) return '<div class="tz-sep"></div>';
-    const [id, name] = x, zone = id === "Z" ? "UTC" : id === "local" ? undefined : id === "auto" ? null : id;
-    const off = id === "Z" ? "UTC+0" : zone === null ? (state.selected && TZ_EVENT[state.selected] ? tzOffset(TZ_EVENT[state.selected], d) : "UTC+0") : tzOffset(zone, d);
-    return `<button class="tz-opt${tzChoice === id ? " on" : ""}" data-tz="${id}"><span>${esc(name)}</span><span class="o">${esc(off)}</span></button>`;
-  }).join("");
-  m.querySelectorAll("[data-tz]").forEach(b => b.addEventListener("click", e => {
-    e.stopPropagation(); tzChoice = b.dataset.tz;
-    try { localStorage.setItem("sokren_tz", tzChoice); } catch (x) { /* ignore */ }
-    m.classList.remove("open"); tickClock();
-  }));
+  const tip = (h) => { const tt = $("tooltip"); tt.innerHTML = h; tt.style.display = "block"; };
+  const hide = () => { $("tooltip").style.display = "none"; };
+  pts.querySelectorAll("[data-cp]").forEach(el => {
+    const c = CHOKEPOINTS.find(x => x.id === el.dataset.cp);
+    el.addEventListener("mouseenter", () => tip(`<span style="font-size:11px">${esc(c.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${esc(c.note)}</span>`));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); if (!mapDrag.moved && c.ev) setSelected(c.ev); });
+  });
+  pts.querySelectorAll("[data-sh]").forEach(el => {
+    const v = (state.shipsDrawn || [])[Number(el.dataset.sh)];
+    if (!v) return;
+    const h = () => tip(v.dark
+      ? `<span style="font-size:11px; color:var(--p1)">AIS GAP · ${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">last heard ${timeAgo(new Date(v.t))} · was underway ${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}°</span>`
+      : `<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : (v.classB ? " · class B" : "")}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`);
+    el.addEventListener("mouseenter", h);
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); hide(); if (!mapDrag.moved) selectShip(state.shipSel === v.mmsi ? null : v.mmsi); });
+  });
+  const acTip = a =>
+    `<span style="font-size:11px">${esc(a.flight || a.reg || a.hex.toUpperCase())}${a.type ? " · " + esc(a.type) : ""}${a.mil ? " · MIL" : ""}</span>` +
+    `<span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${a.alt ? Math.round(a.alt).toLocaleString() + " ft" : "ground"} · ${Math.round(a.gs)} kt · hdg ${Math.round(a.track)}°${a.emg ? " · SQUAWK " + esc(a.squawk) : ""}</span>`;
+  pts.querySelectorAll("[data-ac]").forEach(el => {
+    const a = state.layerData.flights[Number(el.dataset.ac)];
+    if (!a) return;
+    el.addEventListener("mouseenter", () => tip(acTip(a)));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); tip(acTip(a)); setTimeout(hide, 2500); });
+  });
+  pts.querySelectorAll("[data-ar]").forEach(el => {
+    const a = state.layerData.area[Number(el.dataset.ar)];
+    if (!a) return;
+    el.addEventListener("mouseenter", () => tip(acTip(a)));
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); tip(acTip(a)); setTimeout(hide, 2500); });
+  });
+  // tap support for chokepoints
+  pts.querySelectorAll("[data-cp]").forEach(el => {
+    el.addEventListener("touchstart", () => { el.dispatchEvent(new Event("mouseenter")); setTimeout(hide, 2500); }, { passive: true });
+  });
 }
 
 /* ========================= convergence: live signals near an event ========================= */
@@ -3448,39 +2851,39 @@ const COUNTRIES = [
   ["Afghanistan",66,34,["afghanistan"],["kabul"]],["Albania",20,41,[],[]],["Algeria",3,28,[],[]],["Angola",17.5,-12.5,[],[]],
   ["Argentina",-64,-34,[],[]],["Armenia",45,40,[],["yerevan"]],["Australia",134,-25,[],[]],["Austria",14,47.5,[],[]],
   ["Azerbaijan",47.5,40.5,[],["baku"]],["Bahrain",50.5,26,["iran"],[]],["Bangladesh",90,24,[],["dhaka"]],["Belarus",28,53,["ru-ua"],["minsk"]],
-  ["Belgium",4.5,50.8,[],[]],["Benin",2.3,9.5,["sahel","coastalwa"],[]],["Bolivia",-64,-17,[],[]],["Bosnia and Herzegovina",17.8,44,["balkans"],["bosnia","sarajevo","republika srpska"]],
+  ["Belgium",4.5,50.8,[],[]],["Benin",2.3,9.5,["sahel"],[]],["Bolivia",-64,-17,[],[]],["Bosnia and Herzegovina",17.8,44,["balkans"],["bosnia","sarajevo","republika srpska"]],
   ["Brazil",-53,-10,[],[]],["Bulgaria",25,42.7,[],[]],["Burkina Faso",-1.5,12.3,["sahel"],["ouagadougou"]],["Burundi",29.9,-3.4,["drc"],[]],
-  ["Cambodia",105,12.5,["thaicam"],[]],["Cameroon",12.5,5.5,["nigeria"],[]],["Canada",-100,60,[],[]],["Central African Republic",20.9,6.6,[],["car","bangui"]],
-  ["Chad",18.7,15.4,["sudan","sahel"],["ndjamena"]],["Chile",-71,-33,[],[]],["China",104,35,["taiwan","cn-cyber","scs","lac"],["beijing","prc"]],["Colombia",-73.5,4.5,["colombia","venezuela"],["bogota"]],
+  ["Cambodia",105,12.5,[],[]],["Cameroon",12.5,5.5,["nigeria"],[]],["Canada",-100,60,[],[]],["Central African Republic",20.9,6.6,[],["car","bangui"]],
+  ["Chad",18.7,15.4,["sudan","sahel"],["ndjamena"]],["Chile",-71,-33,[],[]],["China",104,35,["taiwan","cn-cyber","scs"],["beijing","prc"]],["Colombia",-73.5,4.5,["colombia","venezuela"],["bogota"]],
   ["Costa Rica",-84,10,[],[]],["Croatia",16,45.5,[],[]],["Cuba",-79.5,21.5,["cuba"],["havana"]],["Cyprus",33.4,35.1,[],[]],
-  ["Czechia",15.5,49.8,[],["czech republic"]],["Democratic Republic of the Congo",23.6,-2.9,["drc"],["drc","congo","kinshasa","goma","kivu"]],["Denmark",10,56,["baltic","arctic"],[]],["Djibouti",42.6,11.8,["redsea"],[]],
-  ["Dominican Republic",-70.2,18.9,["haiti"],[]],["Ecuador",-78.5,-1.5,["ecuador"],["quito","guayaquil"]],["Egypt",30,26.5,["gaza","redsea","nile"],["cairo","sinai"]],["El Salvador",-88.9,13.8,[],[]],
-  ["Eritrea",39,15.2,["ethiopia"],["asmara"]],["Estonia",25.5,58.7,["baltic"],["tallinn"]],["Greenland",-42,72,["arctic"],["nuuk"]],["Ethiopia",39.5,9,["ethiopia","nile"],["addis ababa","tigray","amhara"]],["Finland",26,64,["baltic"],["helsinki"]],
-  ["France",2.5,46.5,[],["paris"]],["Georgia",43.5,42,[],["tbilisi"]],["Germany",10.5,51,["baltic"],["berlin"]],["Ghana",-1.2,7.9,["sahel","coastalwa"],[]],
+  ["Czechia",15.5,49.8,[],["czech republic"]],["Democratic Republic of the Congo",23.6,-2.9,["drc"],["drc","congo","kinshasa","goma","kivu"]],["Denmark",10,56,["baltic"],[]],["Djibouti",42.6,11.8,["redsea"],[]],
+  ["Dominican Republic",-70.2,18.9,["haiti"],[]],["Ecuador",-78.5,-1.5,["ecuador"],["quito","guayaquil"]],["Egypt",30,26.5,["gaza","redsea"],["cairo","sinai"]],["El Salvador",-88.9,13.8,[],[]],
+  ["Eritrea",39,15.2,["ethiopia"],["asmara"]],["Estonia",25.5,58.7,["baltic"],["tallinn"]],["Ethiopia",39.5,9,["ethiopia"],["addis ababa","tigray","amhara"]],["Finland",26,64,["baltic"],["helsinki"]],
+  ["France",2.5,46.5,[],["paris"]],["Georgia",43.5,42,[],["tbilisi"]],["Germany",10.5,51,["baltic"],["berlin"]],["Ghana",-1.2,7.9,["sahel"],[]],
   ["Greece",22,39,[],[]],["Guatemala",-90.4,15.8,[],[]],["Guinea",-11,10,[],[]],["Guyana",-58.9,4.9,["venezuela"],["essequibo"]],
-  ["Haiti",-72.7,19,["haiti"],["port-au-prince"]],["Honduras",-86.6,14.8,[],[]],["Hungary",19.5,47.2,[],[]],["India",79,22,["kashmir","lac"],["new delhi"]],
-  ["Indonesia",118,-2,[],["jakarta"]],["Iran",53.7,32.4,["iran","iran-cyber"],["tehran","persia"]],["Iraq",43.7,33.2,["iran","iraq"],["baghdad"]],["Ireland",-8,53.3,[],[]],
+  ["Haiti",-72.7,19,["haiti"],["port-au-prince"]],["Honduras",-86.6,14.8,[],[]],["Hungary",19.5,47.2,[],[]],["India",79,22,["kashmir"],["new delhi"]],
+  ["Indonesia",118,-2,[],["jakarta"]],["Iran",53.7,32.4,["iran"],["tehran","persia"]],["Iraq",43.7,33.2,["iran"],["baghdad"]],["Ireland",-8,53.3,[],[]],
   ["Israel",35,31.4,["gaza","iran","lebanon"],["tel aviv","jerusalem"]],["Italy",12.5,42.5,[],[]],["Ivory Coast",-5.5,7.5,["sahel"],["cote d'ivoire"]],["Japan",138,36.5,["korea","taiwan"],["tokyo"]],
   ["Jordan",36.5,31,["gaza","iran"],["amman"]],["Kazakhstan",67,48,[],[]],["Kenya",37.9,0.5,["somalia"],["nairobi"]],["Kosovo",20.9,42.6,["balkans"],["pristina"]],
   ["Kuwait",47.5,29.3,["iran"],[]],["Kyrgyzstan",74.5,41.2,[],[]],["Laos",103,18,[],[]],["Latvia",24.6,56.9,["baltic"],["riga"]],
   ["Lebanon",35.8,33.9,["lebanon"],["beirut","hezbollah"]],["Libya",17.5,27,["libya"],["tripoli","benghazi"]],["Lithuania",23.9,55.2,["baltic"],["vilnius"]],["Madagascar",47,-20,[],[]],
   ["Malaysia",109.5,3.5,["scs"],[]],["Mali",-2,17.5,["sahel"],["bamako"]],["Mauritania",-10.5,20.5,["sahel"],[]],["Mexico",-102.5,23.5,["mexico"],["sinaloa","cartel"]],
-  ["Moldova",28.5,47.2,["ru-ua","moldova"],["transnistria","chisinau"]],["Mongolia",104,46.5,[],[]],["Montenegro",19.3,42.7,["balkans"],[]],["Morocco",-6,32,[],[]],
+  ["Moldova",28.5,47.2,["ru-ua"],["transnistria","chisinau"]],["Mongolia",104,46.5,[],[]],["Montenegro",19.3,42.7,["balkans"],[]],["Morocco",-6,32,[],[]],
   ["Mozambique",35.5,-18.5,["mozambique"],["cabo delgado","maputo"]],["Myanmar",96.5,19.5,["myanmar"],["burma","rangoon","naypyidaw"]],["Nepal",84,28.2,[],[]],["Netherlands",5.5,52.2,[],[]],
   ["New Zealand",172,-41,[],[]],["Nicaragua",-85,12.9,[],[]],["Niger",9,17.5,["sahel"],["niamey"]],["Nigeria",8,9.5,["nigeria"],["abuja","lagos","borno"]],
   ["North Korea",127,40,["korea","dprk-cyber"],["dprk","pyongyang"]],["North Macedonia",21.7,41.6,["balkans"],[]],["Norway",9,62,["baltic"],[]],["Oman",56,21,["iran"],["muscat"]],
   ["Pakistan",69.5,30.5,["pakistan","kashmir","afghanistan"],["islamabad","balochistan"]],["Panama",-80,8.5,[],["panama canal"]],["Papua New Guinea",145,-6,[],[]],["Paraguay",-58,-23,[],[]],
   ["Peru",-76,-10,[],[]],["Philippines",122,12.5,["scs"],["manila"]],["Poland",19.5,52,["ru-ua","baltic"],["warsaw"]],["Portugal",-8,39.5,[],[]],
-  ["Qatar",51.2,25.3,["iran"],["doha"]],["Romania",25,45.8,["ru-ua"],["bucharest"]],["Russia",100,60,["ru-ua","baltic","ru-cyber"],["moscow","kremlin"]],["Rwanda",29.9,-2,["drc"],["kigali"]],
+  ["Qatar",51.2,25.3,["iran"],["doha"]],["Romania",25,45.8,["ru-ua"],["bucharest"]],["Russia",100,60,["ru-ua","baltic"],["moscow","kremlin"]],["Rwanda",29.9,-2,["drc"],["kigali"]],
   ["Saudi Arabia",45,24,["iran","redsea"],["riyadh"]],["Senegal",-14.5,14.5,[],[]],["Serbia",21,44,["balkans"],["belgrade"]],["Sierra Leone",-11.8,8.5,[],[]],
   ["Singapore",103.8,1.3,[],[]],["Slovakia",19.5,48.7,[],[]],["Somalia",46,5.5,["somalia"],["mogadishu","puntland","al-shabaab"]],["South Africa",25,-29,[],[]],
   ["South Korea",127.8,36.5,["korea"],["seoul","rok"]],["South Sudan",30,7,["ssudan"],["juba"]],["Spain",-3.7,40.2,[],[]],["Sri Lanka",80.7,7.8,[],[]],
   ["Sudan",30,15.5,["sudan"],["khartoum","darfur","rsf"]],["Sweden",17,62,["baltic"],["stockholm","gotland"]],["Switzerland",8.2,46.8,[],[]],["Syria",38.5,35,["syria"],["damascus","aleppo"]],
-  ["Taiwan",121,23.7,["taiwan"],["taipei","formosa"]],["Tajikistan",71,38.9,[],[]],["Tanzania",35,-6.4,[],[]],["Thailand",101,15.5,["thaicam"],[]],
-  ["Togo",1,8.5,["sahel","coastalwa"],[]],["Tunisia",9.5,34,[],[]],["Turkey",35.2,39,["syria","ru-ua"],["ankara","istanbul","turkiye"]],["Turkmenistan",59.5,39,[],[]],
+  ["Taiwan",121,23.7,["taiwan"],["taipei","formosa"]],["Tajikistan",71,38.9,[],[]],["Tanzania",35,-6.4,[],[]],["Thailand",101,15.5,[],[]],
+  ["Togo",1,8.5,["sahel"],[]],["Tunisia",9.5,34,[],[]],["Turkey",35.2,39,["syria","ru-ua"],["ankara","istanbul","turkiye"]],["Turkmenistan",59.5,39,[],[]],
   ["Uganda",32.3,1.3,["drc","ssudan"],["kampala"]],["Ukraine",32,49,["ru-ua"],["kyiv","kiev","donbas","crimea","kharkiv","odesa"]],["United Arab Emirates",54,24,["iran"],["uae","dubai","abu dhabi"]],["United Kingdom",-2.5,54,[],["uk","britain","london"]],
-  ["United States",-98,39,["ransomware","cn-cyber","influence","ot-cyber","iran-cyber"],["usa","us","america","washington"]],["Uruguay",-56,-33,[],[]],["Uzbekistan",63.5,41.5,[],[]],["Venezuela",-66.5,7.5,["venezuela"],["caracas","maduro"]],
-  ["Vietnam",106,16,["scs"],["hanoi"]],["Yemen",47.5,15.5,["redsea","yemen"],["houthi","sanaa","aden","hodeidah"]],["Zambia",27.8,-13.5,[],[]],["Zimbabwe",29.8,-19,[],[]],
+  ["United States",-98,39,["ransomware","cn-cyber"],["usa","us","america","washington"]],["Uruguay",-56,-33,[],[]],["Uzbekistan",63.5,41.5,[],[]],["Venezuela",-66.5,7.5,["venezuela"],["caracas","maduro"]],
+  ["Vietnam",106,16,["scs"],["hanoi"]],["Yemen",47.5,15.5,["redsea"],["houthi","sanaa","aden","hodeidah"]],["Zambia",27.8,-13.5,[],[]],["Zimbabwe",29.8,-19,[],[]],
 ];
 
 /* ========================= views ========================= */
@@ -3491,17 +2894,20 @@ function switchView(name) {
   VIEWS.forEach(v => { const el = $("view-" + v); if (el) el.classList.toggle("active", v === name); });
   document.querySelectorAll("#nav [data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   closePops();
-  document.body.classList.toggle("on-home", name === "home");
-  if (name === "home") { state.fireK = 0; renderOverlay(); if (MAP) setTimeout(() => MAP.resize(), 0); }
+  if (name === "home") { state.fireK = 0; applyView(); renderOverlay(); }
   if (name === "situations") renderSituations();
   try { history.replaceState(null, "", "#" + name); } catch (e) { /* ignore */ }
   window.scrollTo(0, 0);
 }
 
 function focusMap(lon, lat, k) {
-  if (!MAP) return;
-  stopSpin();
-  MAP.flyTo({ center: [lon, lat], zoom: Math.min(9, 1.6 + Math.log2(Math.max(1, k || 3)) * 1.35), duration: 1400, essential: true });
+  const el = $("map-wrap");
+  if (!el) return;
+  k = Math.min(8, Math.max(1, k || 3));
+  const w = el.clientWidth, h = el.clientHeight;
+  const c = clampView(w / 2 - (projX(lon) / 100) * w * k, h / 2 - (projY(lat) / 100) * h * k, k);
+  state.view = { k, x: c.x, y: c.y };
+  applyView();
 }
 
 function closePops() {
@@ -3723,12 +3129,23 @@ function markerVisible(ev) {
 }
 
 function renderMarkerCounts() {
-  if (!mapReady) return;
-  const feats = EVENTS.filter(markerVisible).map(ev => {
+  document.querySelectorAll("#markers .marker").forEach(m => {
+    const ev = byId[m.dataset.id];
+    m.style.display = markerVisible(ev) ? "flex" : "none";
     const n = state.feeds[ev.id].items.length;
-    return pt(ev.lon, ev.lat, { id: ev.id, p: ev.priority, em: ev.emerging ? 1 : 0, s: state.selected === ev.id ? 1 : 0, u: recentlyUpdated(ev) ? 1 : 0, label: ev.name + (n ? " · " + n : "") });
+    m.querySelector("[data-label]").textContent = ev.name + (n ? " · " + n : "");
+    const sel = state.selected === ev.id;
+    m.classList.toggle("sel", sel);
+    const dot = m.querySelector("[data-dot]");
+    const base = ev.priority === 1 ? 13 : ev.priority === 2 ? 10 : 8;
+    const size = sel ? base + 4 : base;
+    dot.style.width = size + "px";
+    dot.style.height = size + "px";
+    const emgRing = ev.emerging ? ", 0 0 0 2.5px #35C4D7" : "";
+    dot.style.boxShadow = (sel ? `0 0 0 5px ${PRIORITY[ev.priority].raw}30, 0 0 0 1px var(--bg)` : "0 0 0 1px var(--bg)") + emgRing;
+    if (sel) m.style.zIndex = 30;
+    else m.style.zIndex = 20 - ev.priority * 2;
   });
-  setSrc("situations", { type: "FeatureCollection", features: feats });
 }
 
 function renderDetail() {
@@ -3746,7 +3163,6 @@ function renderDetail() {
   $("d-cat").textContent = (ev.cats || []).slice(0, 3).map(c => CAT_DEFS[c].short).join(" \u00b7 ");
   $("d-emg").style.display = ev.emerging ? "inline" : "none";
   $("d-brief").textContent = ev.brief;
-  renderReview(ev);
 
   $("d-assess").innerHTML = (ev.assess || []).map(r =>
     `<div class="as-row"><div class="as-lab">${esc(r[0])}</div><div class="as-line">${esc(r[1])}</div></div>`
@@ -3887,7 +3303,7 @@ function filteredItems() {
 
 function panelRow(ev, right, sub) {
   return `<div class="ip-item" data-ip="${ev.id}">
-    <span class="ip-name">${esc(ev.name)}${recentlyUpdated(ev) ? '<span class="upd-pill">UPDATED</span>' : ""}${sub ? `<span class="ip-line">${esc(sub)}</span>` : ""}<span class="ip-bar"><i style="width:${ev.sti}%; background:${stiColor(ev.sti)}"></i></span></span>
+    <span class="ip-name">${esc(ev.name)}${sub ? `<span class="ip-line">${esc(sub)}</span>` : ""}</span>
     <span class="ip-val" style="color:${stiColor(ev.sti)}">${right}</span>
   </div>`;
 }
@@ -4006,7 +3422,6 @@ function renderAll() {
 
 function setSelected(id) {
   state.selected = id;
-  if (typeof tickClock === "function") setTimeout(tickClock, 0);
   state.limit = 30;
   if (state.layers.aircraft) {
     if (id) loadArea();
@@ -4015,11 +3430,6 @@ function setSelected(id) {
   if (state.layers.ships && aisKey()) connectAis();
   renderAll();
   if (id) $("detail").scrollTop = 0;
-  if (id && MAP && mapReady) {
-    stopSpin();
-    const ev = byId[id], wide = window.innerWidth > 900;
-    MAP.flyTo({ center: [ev.lon, ev.lat], zoom: Math.max(MAP.getZoom(), wide ? 3.6 : 3.2), padding: wide ? { right: Math.min(620, window.innerWidth * 0.45), left: 280 } : { bottom: window.innerHeight * 0.35 }, duration: 1300, essential: true });
-  }
 }
 
 /* ========================= wire up ========================= */
@@ -4090,46 +3500,11 @@ $("ak-input").addEventListener("keydown", e => { if (e.key === "Enter") $("ak-sa
   if (saved) LAYERS.forEach(l => { if (typeof saved[l.id] === "boolean") state.layers[l.id] = saved[l.id]; });
 })();
 
-function setHdrH() { document.documentElement.style.setProperty("--hdr-h", $("hdr").offsetHeight + "px"); if (MAP) { MAP.resize(); MAP.setPadding(mapPadding()); } }
-setHdrH(); window.addEventListener("resize", setHdrH);
-document.querySelectorAll(".btab").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".btab").forEach(x => x.classList.toggle("on", x === b));
-  document.querySelectorAll(".bpane").forEach(p => p.classList.toggle("on", p.dataset.bp === b.dataset.bt));
-  $("board").classList.add("open");
-}));
-$("board-head").addEventListener("click", e => { if (e.target.closest("#board-col")) return; if (window.innerWidth <= 900) $("board").classList.toggle("open"); });
-$("board-col").addEventListener("click", e => { e.stopPropagation(); setPanel("board", true); });
-$("board-tab").addEventListener("click", e => { e.stopPropagation(); setPanel("board", false); });
-(function restorePanels() {
-  let r = "on", bd = "on";
-  try { r = localStorage.getItem("sokren_rail") || "on"; bd = localStorage.getItem("sokren_board") || "on"; } catch (e) { /* ignore */ }
-  if (window.innerWidth > 900) { $("ops").classList.toggle("rail-off", r === "off"); $("ops").classList.toggle("board-off", bd === "off"); }
-})();
-document.addEventListener("keydown", e => {
-  if (state.ck.open || /INPUT|TEXTAREA/.test((e.target && e.target.tagName) || "") || state.tab !== "home" || window.innerWidth <= 900) return;
-  if (e.key === "[") setPanel("rail", !$("ops").classList.contains("rail-off"));
-  if (e.key === "]") setPanel("board", !$("ops").classList.contains("board-off"));
-});
-$("board-all").addEventListener("click", () => switchView("situations"));
-$("board-feed").addEventListener("click", () => switchView("feed"));
-$("rail-toggle").addEventListener("click", e => { e.stopPropagation(); if (window.innerWidth <= 900) $("rail").classList.toggle("open"); else setPanel("rail", false); });
-$("rail-close").addEventListener("click", () => { if (window.innerWidth <= 900) $("rail").classList.remove("open"); else setPanel("rail", true); });
-$("board-n").textContent = EVENTS.length + " tracked";
-tickClock(); setInterval(tickClock, 1000);
-$("tz-btn").addEventListener("click", e => { e.stopPropagation(); const m = $("tz-menu"); if (!m.classList.contains("open")) renderTzMenu(); m.classList.toggle("open"); });
-$("tz-menu").addEventListener("click", e => e.stopPropagation());
-document.addEventListener("click", () => $("tz-menu").classList.remove("open"));
-(function bootGlobe() {
-  if (typeof maplibregl !== "undefined") return initGlobe();
-  const s = $("ml-js");
-  s.addEventListener("load", initGlobe);
-  s.addEventListener("error", () => { $("map-msg").textContent = "map engine unavailable — situations are listed on the board"; });
-})();
+drawBasemap();
+buildMarkers();
 renderMapChips();
 renderLayerChips();
-renderPanels();
 initMap();
-loadIntel();
 switchView((location.hash || "").slice(1));
 applyView();
 renderOverlay();
