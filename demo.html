@@ -2112,31 +2112,7 @@ function makeIcon(draw, w, h) {
   const g = c.getContext("2d"); g.scale(2, 2); draw(g, w, h);
   return { width: c.width, height: c.height, data: new Uint8Array(g.getImageData(0, 0, c.width, c.height).data.buffer) };
 }
-function mixHex(a, b, t) {
-  const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
-  const x = p(a), y = p(b);
-  return "rgb(" + x.map((v, i) => Math.round(v + (y[i] - v) * t)).join(",") + ")";
-}
-function orbIcon(hex) {
-  return makeIcon(g => {
-    const cx = 15, cy = 14, r = 10;
-    const sh = g.createRadialGradient(cx + 1.2, cy + r * 0.95, 0, cx + 1.2, cy + r * 0.95, r * 1.05);   // contact shadow
-    sh.addColorStop(0, "rgba(0,0,0,0.55)"); sh.addColorStop(1, "rgba(0,0,0,0)");
-    g.fillStyle = sh; g.beginPath(); g.ellipse(cx + 1.2, cy + r * 0.95, r * 1.05, r * 0.42, 0, 0, Math.PI * 2); g.fill();
-    const body = g.createRadialGradient(cx - r * 0.38, cy - r * 0.42, r * 0.08, cx, cy, r);              // lit from upper left
-    body.addColorStop(0, mixHex(hex, "#ffffff", 0.55)); body.addColorStop(0.38, hex); body.addColorStop(1, mixHex(hex, "#000000", 0.6));
-    g.fillStyle = body; g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fill();
-    const rim = g.createRadialGradient(cx + r * 0.3, cy + r * 0.4, r * 0.5, cx, cy, r * 1.02);             // faint bounce light
-    rim.addColorStop(0.78, "rgba(255,255,255,0)"); rim.addColorStop(1, "rgba(255,255,255,0.16)");
-    g.fillStyle = rim; g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fill();
-    const sp = g.createRadialGradient(cx - r * 0.36, cy - r * 0.44, 0, cx - r * 0.36, cy - r * 0.44, r * 0.4); // specular
-    sp.addColorStop(0, "rgba(255,255,255,0.92)"); sp.addColorStop(1, "rgba(255,255,255,0)");
-    g.fillStyle = sp; g.beginPath(); g.arc(cx - r * 0.36, cy - r * 0.44, r * 0.4, 0, Math.PI * 2); g.fill();
-    g.strokeStyle = "rgba(5,7,10,0.65)"; g.lineWidth = 0.7; g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.stroke();
-  }, 30, 30);
-}
 function addIcons() {
-  [["1", "#D9534F"], ["2", "#D98E4A"], ["3", "#C9A227"], ["4", "#6B8F7E"]].forEach(([k, c]) => MAP.addImage("orb-" + k, orbIcon(c), { pixelRatio: 2 }));
   const plane = color => makeIcon((g, w, h) => {
     g.fillStyle = color; g.strokeStyle = "rgba(5,7,10,0.9)"; g.lineWidth = 1;
     g.beginPath();   // nose up: fuselage, swept wings, tailplane
@@ -2187,20 +2163,18 @@ function addDataLayers() {
   L({ id: "aircraft", type: "symbol", source: "aircraft", layout: { "icon-image": ["concat", "ac-", ["get", "k"]], "icon-rotate": ["get", "trk"], "icon-rotation-alignment": "map", "icon-allow-overlap": true, "icon-ignore-placement": true, "icon-size": ["interpolate", ["linear"], ["zoom"], 1, ["case", ["==", ["get", "k"], "civ"], 0.55, 0.75], 6, ["case", ["==", ["get", "k"], "civ"], 0.85, 1.05]], "symbol-sort-key": ["case", ["==", ["get", "k"], "civ"], 1, 2] } });
   L({ id: "chokepoints", type: "symbol", source: "chokepoints", layout: { "icon-image": "cp", "icon-allow-overlap": true, "text-field": ["step", ["zoom"], "", 3, ["get", "name"]], "text-font": ["Noto Sans Regular"], "text-size": 10, "text-offset": [0, 1.1], "text-anchor": "top", "text-letter-spacing": 0.08, "text-optional": true, "icon-ignore-placement": true }, paint: { "text-color": "#C9895F", "text-halo-color": "#07090C", "text-halo-width": 1.2 } });
   const pc = ["match", ["get", "p"], 1, "#D9534F", 2, "#D98E4A", 3, "#C9A227", "#6B8F7E"];
-  // Situations are shaded spheres (orbs); sizes grow with zoom. Names stay hidden on the opening view and
+  // Situation dots are small at world zoom and grow gently as you zoom in. Names stay hidden on the opening view and
   // fade in once the viewer zooms past it (LABEL_REVEAL), so the first impression is the globe, not text.
   const T = LABEL_REVEAL, LS = window.innerWidth <= 760 ? 9.5 : 10.5;   // label size; a little smaller on phones
-  const orbD = (z, d1, d5) => ["interpolate", ["linear"], ["zoom"], 1, d1, 5, d5];   // orb diameter px
-  const orbSize = ["interpolate", ["linear"], ["zoom"],
-    1, ["*", ["match", ["get", "p"], 1, 0.55, 2, 0.46, 3, 0.4, 0.35], ["case", ["==", ["get", "s"], 1], 1.3, 1]],
-    5, ["*", ["match", ["get", "p"], 1, 0.95, 2, 0.8, 3, 0.68, 0.58], ["case", ["==", ["get", "s"], 1], 1.3, 1]]];
   const ringR = (extra) => ["interpolate", ["linear"], ["zoom"],
-    1, ["+", ["match", ["get", "p"], 1, 5.5, 2, 4.6, 3, 4, 3.5], extra], 5, ["+", ["match", ["get", "p"], 1, 9.5, 2, 8, 3, 6.8, 5.8], extra]];
+    1, ["+", ["match", ["get", "p"], 1, 4.5, 2, 3.8, 3, 3.2, 2.8], extra], 5, ["+", ["match", ["get", "p"], 1, 6.5, 2, 5.5, 3, 4.6, 4], extra]];
   L({ id: "sit-glow", type: "circle", source: "situations", paint: { "circle-color": pc, "circle-blur": 1, "circle-opacity": 0.22, "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, ["match", ["get", "p"], 1, 18, 2, 12, 3, 8, 6], 6, ["match", ["get", "p"], 1, 52, 2, 36, 3, 24, 18]] } });
   L({ id: "sit-pulse", type: "circle", source: "situations", filter: ["==", ["get", "p"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": "#D9534F", "circle-stroke-width": 1, "circle-radius": 8, "circle-stroke-opacity": 0.7 } });
   L({ id: "sit-upd", type: "circle", source: "situations", filter: ["==", ["get", "u"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": ringR(3.5), "circle-stroke-color": "#35C4D7", "circle-stroke-width": 1, "circle-stroke-opacity": ["interpolate", ["linear"], ["zoom"], T - 0.05, 0, T + 0.4, 0.85] } });
   L({ id: "sit-em", type: "circle", source: "situations", filter: ["==", ["get", "em"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": ringR(1.6), "circle-stroke-color": "#35C4D7", "circle-stroke-width": 1.4, "circle-stroke-opacity": ["interpolate", ["linear"], ["zoom"], T - 0.05, 0, T + 0.4, 1] } });
-  L({ id: "sit-orb", type: "symbol", source: "situations", layout: { "icon-image": ["concat", "orb-", ["to-string", ["get", "p"]]], "icon-size": orbSize, "icon-allow-overlap": true, "icon-ignore-placement": true, "symbol-sort-key": ["-", 10, ["get", "p"]] } });
+  L({ id: "sit-dot", type: "circle", source: "situations", paint: { "circle-color": pc,
+    "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, ["+", ["match", ["get", "p"], 1, 4.5, 2, 3.8, 3, 3.2, 2.8], ["*", ["get", "s"], 2]], 5, ["+", ["match", ["get", "p"], 1, 6.5, 2, 5.5, 3, 4.6, 4], ["*", ["get", "s"], 3]]],
+    "circle-stroke-width": 1, "circle-stroke-color": "#07090C" } });
   L({ id: "sit-sel", type: "circle", source: "situations", filter: ["==", ["get", "s"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": ringR(5), "circle-stroke-color": "#FFFFFF", "circle-stroke-width": 1.5, "circle-stroke-opacity": 0.9 } });
   const labelLayout = {
     "text-field": ["get", "label"], "text-font": ["Noto Sans Regular"], "text-transform": "uppercase", "text-letter-spacing": 0.08,
@@ -2268,19 +2242,19 @@ function shipTipHtml(v) {
     ? `<span style="font-size:11px; color:var(--p1)">AIS GAP · ${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : ""}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">last heard ${timeAgo(new Date(v.t))} · was underway ${v.sog.toFixed(1)} kt · transmission stopped, cause unknown</span>`
     : `<span style="font-size:11px">${esc(v.name || "MMSI " + v.mmsi)}${v.type ? " · " + esc(shipTypeLabel(v.type)) : (v.classB ? " · class B" : "")}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${v.sog.toFixed(1)} kt · cog ${Math.round(v.cog)}° · ${timeAgo(new Date(v.t))}</span>`;
 }
-const HIT_LAYERS = ["sit-orb", "sit-label", "sit-label-sel", "chokepoints", "aircraft", "ships-dark", "ships", "ships-arrow"];
+const HIT_LAYERS = ["sit-dot", "sit-label", "sit-label-sel", "chokepoints", "aircraft", "ships-dark", "ships", "ships-arrow"];
 function hitAt(point) {
   if (!mapReady) return null;
   const r = 6, box = [[point.x - r, point.y - r], [point.x + r, point.y + r]];
   const fs = MAP.queryRenderedFeatures(box, { layers: HIT_LAYERS.filter(id => MAP.getLayer(id)) });
   if (!fs.length) return null;
-  const rank = { "sit-orb": 0, "sit-label": 0, "sit-label-sel": 0, chokepoints: 1, aircraft: 2, "ships-dark": 3, ships: 4, "ships-arrow": 4 };
+  const rank = { "sit-dot": 0, "sit-label": 0, "sit-label-sel": 0, chokepoints: 1, aircraft: 2, "ships-dark": 3, ships: 4, "ships-arrow": 4 };
   fs.sort((a, b) => rank[a.layer.id] - rank[b.layer.id]);
   return fs[0];
 }
 function describeHit(f) {
   const id = f.layer.id, p = f.properties;
-  if (id === "sit-orb" || id === "sit-label" || id === "sit-label-sel") { const ev = byId[p.id]; return { kind: "sit", ev, html: `<span style="font-size:11px">${esc(ev.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:${PRIORITY[ev.priority].raw}">P${ev.priority} ${PRIORITY[ev.priority].label} · STI ${ev.sti}</span>` }; }
+  if (id === "sit-dot" || id === "sit-label" || id === "sit-label-sel") { const ev = byId[p.id]; return { kind: "sit", ev, html: `<span style="font-size:11px">${esc(ev.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:${PRIORITY[ev.priority].raw}">P${ev.priority} ${PRIORITY[ev.priority].label} · STI ${ev.sti}</span>` }; }
   if (id === "chokepoints") { const c = CHOKEPOINTS.find(x => x.id === p.id); return { kind: "cp", c, html: `<span style="font-size:11px">${esc(c.name)}</span><span class="mono" style="font-size:9px; margin-left:8px; color:var(--dim)">${esc(c.note)}</span>` }; }
   if (id === "aircraft") { const a = (p.src === "area" ? state.layerData.area : state.layerData.flights)[p.i]; return a ? { kind: "ac", a, html: acTipHtml(a) } : null; }
   const v = state.ships[p.m]; return v ? { kind: "ship", v, html: shipTipHtml(v) } : null;
