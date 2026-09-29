@@ -134,7 +134,7 @@ outlook, STI/parts, brief, activity lines, priority) **only when new reporting i
 reports; free reputable sources only (ACLED rejected — paid for commercial use).
 - **Daily 06:15 UTC** `collect.mjs`: ~30 RSS feeds (`SOURCES`: think tanks, wires/international news, UN/DoD,
   cyber TI) + GDELT per situation (`EVENTS[].query`) + GDELT per outlet for sites with no usable feed
-  (`GDELT_OUTLETS`: AP, Reuters, ISW, CSIS, ReliefWeb, Security Council Report, Kyiv Independent, RAND, State) —
+  (`GDELT_OUTLETS`: AP, Reuters, CNN, WSJ, WaPo, PBS/Frontline, ISW, CSIS, ReliefWeb, Security Council Report, Kyiv Independent, RAND, State) —
   ≥8 s apart with retries and a circuit breaker (GDELT throttles bursts). Sites that 403 automated readers are
   covered via GDELT, never by spoofing a browser. ReliefWeb's API needs an approved (free) appname — not requested yet. Routed with the site's `EVENT_KEYWORDS`
   (first match wins). Rolling 30 days, ≤60 per situation → `data/news.json`. CrisisWatch pages are behind bot

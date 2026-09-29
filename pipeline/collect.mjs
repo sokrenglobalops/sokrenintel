@@ -34,6 +34,15 @@ const SOURCES = [
   { id: 'france24', name: 'France 24', url: 'https://www.france24.com/en/rss' },
   { id: 'dw', name: 'DW', url: 'https://rss.dw.com/rdf/rss-en-world' },
   { id: 'npr', name: 'NPR', url: 'https://feeds.npr.org/1004/rss.xml' },
+  { id: 'wapo', name: 'The Washington Post', url: 'https://feeds.washingtonpost.com/rss/world' },
+  { id: 'pbs', name: 'PBS NewsHour', url: 'https://www.pbs.org/newshour/feeds/rss/world' },
+  { id: 'abc', name: 'ABC News', url: 'https://abcnews.go.com/abcnews/internationalheadlines' },
+  { id: 'cbs', name: 'CBS News', url: 'https://www.cbsnews.com/latest/rss/world' },
+  { id: 'nbc', name: 'NBC News', url: 'https://feeds.nbcnews.com/nbcnews/public/world' },
+  { id: 'politico', name: 'Politico', url: 'https://rss.politico.com/defense.xml' },
+  { id: 'axios', name: 'Axios', url: 'https://api.axios.com/feed/' },
+  { id: 'economist', name: 'The Economist', url: 'https://www.economist.com/international/rss.xml' },
+  { id: 'ft', name: 'Financial Times', url: 'https://www.ft.com/world?format=rss' },
   // cyber & threat intelligence
   { id: 'mandiant', name: 'Google Threat Intelligence (Mandiant)', url: 'https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v' },
   { id: 'sentinellabs', name: 'SentinelLabs', url: 'https://www.sentinelone.com/labs/feed/' },
@@ -46,6 +55,7 @@ const GDELT_OUTLETS = [
   ['csis.org', 'CSIS'], ['reliefweb.int', 'ReliefWeb'], ['securitycouncilreport.org', 'Security Council Report'],
   ['kyivindependent.com', 'Kyiv Independent'], ['crisisgroup.org', 'International Crisis Group'],
   ['rand.org', 'RAND'], ['state.gov', 'U.S. State Department'],
+  ['cnn.com', 'CNN'], ['pbs.org', 'PBS (NewsHour / Frontline)'], ['wsj.com', 'The Wall Street Journal'], ['washingtonpost.com', 'The Washington Post'],
 ];
 const WINDOW_DAYS = 30, PER_SITUATION = 60, UA = 'SOKREN-intel/1.0 (+https://www.sokren.com)';
 
