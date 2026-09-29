@@ -1,0 +1,429 @@
+{
+ "generatedAt": "2026-09-29T00:50:53.628Z",
+ "windowDays": 30,
+ "sources": [
+  {
+   "id": "crisisgroup",
+   "name": "International Crisis Group",
+   "url": "https://www.crisisgroup.org/rss.xml"
+  },
+  {
+   "id": "geomon",
+   "name": "Geopolitical Monitor",
+   "url": "https://www.geopoliticalmonitor.com/feed/"
+  },
+  {
+   "id": "lawfare",
+   "name": "Lawfare",
+   "url": "https://www.lawfaremedia.org/feeds/articles"
+  },
+  {
+   "id": "defenseone",
+   "name": "Defense One",
+   "url": "https://www.defenseone.com/rss/all/"
+  },
+  {
+   "id": "aj",
+   "name": "Al Jazeera",
+   "url": "https://www.aljazeera.com/xml/rss/all.xml"
+  },
+  {
+   "id": "bbc",
+   "name": "BBC World",
+   "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
+  },
+  {
+   "id": "mandiant",
+   "name": "Google Threat Intelligence (Mandiant)",
+   "url": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v"
+  },
+  {
+   "id": "sentinellabs",
+   "name": "SentinelLabs",
+   "url": "https://www.sentinelone.com/labs/feed/"
+  },
+  {
+   "id": "record",
+   "name": "The Record",
+   "url": "https://therecord.media/feed"
+  },
+  {
+   "id": "cyberscoop",
+   "name": "CyberScoop",
+   "url": "https://cyberscoop.com/feed/"
+  },
+  {
+   "id": "cisa",
+   "name": "CISA",
+   "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+  }
+ ],
+ "items": {
+  "ru-ua": [
+   {
+    "title": "Photos: Russian drone strikes pound civilian targets across Kyiv",
+    "url": "https://www.aljazeera.com/gallery/2026/9/28/photos-aftermath-of-a-russian-drone-attack-in-kyiv?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T17:37:36.000Z",
+    "src": "Al Jazeera",
+    "summary": "Ukraine condemns Russian targeting of civilians as strikes kill seven and injure dozens across Kyiv."
+   },
+   {
+    "title": "People escape historic Kyiv building hit by Russian drone",
+    "url": "https://www.bbc.co.uk/news/videos/cqj9xkdyrvgzo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-28T17:04:14.000Z",
+    "src": "BBC World",
+    "summary": "The BBC's Paul Adams reports from the scene of the strike on Ukraine's National Academy of Sciences."
+   },
+   {
+    "title": "Seoul summons Ukraine envoy over North Korean prisoner-of-war row",
+    "url": "https://www.bbc.co.uk/news/articles/c8ly40xx0dr0o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-28T14:57:31.000Z",
+    "src": "BBC World",
+    "summary": "Last week Zelensky revealed Ukraine had sent two captured North Koreans to South Korea - which Seoul says was meant to be a secret."
+   }
+  ],
+  "iran": [
+   {
+    "title": "Iran war live: Trump says he did not offer Tehran sanctions relief",
+    "url": "https://www.aljazeera.com/news/liveblog/2026/9/29/iran-war-live-trump-says-he-did-not-offer-tehran-sanctions-relief?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T00:00:00.000Z",
+    "src": "Al Jazeera",
+    "summary": "US President Trump rejects a news report claiming his administration offered Iran sanctions relief and frozen funds."
+   },
+   {
+    "title": "Flights between Iraq’s Najaf and Iran resumed as Tehran protests US curbs",
+    "url": "https://www.aljazeera.com/news/2026/9/28/flights-between-iraqs-najaf-and-iran-resumed-as-tehran-protests-us-curbs?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T18:50:24.000Z",
+    "src": "Al Jazeera",
+    "summary": "Tehran filed a UN complaint against US sanctions forcing regional cancellations of Iran flights."
+   },
+   {
+    "title": "Trump made the right decision to reject Iran’s offer",
+    "url": "https://www.aljazeera.com/opinions/2026/9/28/trump-made-the-right-decision-to-reject-irans-offer?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T18:16:26.000Z",
+    "src": "Al Jazeera",
+    "summary": "The US president has denied Tehran the opportunity to use the US midterm elections as a pressure point."
+   },
+   {
+    "title": "Iran touts Hormuz attacks as oil flows increase despite tensions",
+    "url": "https://www.aljazeera.com/news/2026/9/28/iran-touts-hormuz-attacks-as-oil-flows-increase-despite-tensions?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T17:43:10.000Z",
+    "src": "Al Jazeera",
+    "summary": "Mediators are trying to facilitate more talks, but Washington signals faith in its pressure tactics."
+   },
+   {
+    "title": "Iran court upholds lashes sentence for singer who performed without hijab",
+    "url": "https://www.bbc.co.uk/news/articles/crn45ed1kqqgo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-28T17:15:00.000Z",
+    "src": "BBC World",
+    "summary": "Parastoo Ahmadi was convicted of \"offending public decency\" after singing while wearing a sleeveless dress during a livestreamed concert."
+   },
+   {
+    "title": "Parsing the UN Fact-Finding Mission’s Report on U.S. Strikes in Iran",
+    "url": "https://www.lawfaremedia.org/article/parsing-the-un-fact-finding-mission-s-report-on-u.s.-strikes-in-iran",
+    "domain": "lawfaremedia.org",
+    "date": "2026-09-28T14:38:48.000Z",
+    "src": "Lawfare",
+    "summary": "The UN Fact-Finding Commission concludes that the United States has committed war crimes. It could have said more to make a convincing case."
+   },
+   {
+    "title": "Iranian minister says only negotiation can end conflict after Trump rejects Hormuz deal",
+    "url": "https://www.bbc.co.uk/news/articles/cmvgyyw2jeego?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-27T07:44:11.000Z",
+    "src": "BBC World",
+    "summary": "The foreign minister says Tehran is waiting for an official rejection of a deal, despite the US President's comments."
+   }
+  ],
+  "taiwan": [
+   {
+    "title": "China backs Cuba after Trump says island will fall",
+    "url": "http://www.heraldglobe.com/news/279338813/china-backs-cuba-after-trump-says-island-will-fall",
+    "domain": "heraldglobe.com",
+    "date": "2026-09-29T00:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "ABC Politics - WOND",
+    "url": "https://wondradio.com/abc-politics/65b92edaf329d60c5ad18fedce7502ab",
+    "domain": "wondradio.com",
+    "date": "2026-09-29T00:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "US officials deny there are plans to sell weapons to China",
+    "url": "https://abcnews.com/Politics/us-officials-deny-plans-sell-weapons-china/story?id=136823372",
+    "domain": "abcnews.com",
+    "date": "2026-09-29T00:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Politics News - 1540 WADK Newport",
+    "url": "https://wadk.com/politics-news/7746dfb1510a8c89475ff7e46e626b79",
+    "domain": "wadk.com",
+    "date": "2026-09-29T00:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "North Korea issue dwarfed by more pressing concerns during Trump - Xi summit",
+    "url": "https://www.rfa.org:443/english/korea/2026/09/28/xi-trump-summit-north-korea-china/",
+    "domain": "rfa.org",
+    "date": "2026-09-29T00:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Trump disputes his ambassador account that he asked China president if he wanted to buy US arms",
+    "url": "http://www.southernminn.com/faribault_daily_news/news/nation/trump-disputes-his-ambassadors-account-that-he-asked-chinas-president-if-he-wanted-to-buy/article_2d2d9fcd-e677-5d4c-b0d9-9bc00eb5cdac.html",
+    "domain": "southernminn.com",
+    "date": "2026-09-28T23:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "China and Taiwan Battle for Influence at the PIF Summit",
+    "url": "https://www.geopoliticalmonitor.com/china-taiwan-pacific-islands-forum-palau/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-24T14:25:44.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "China's envoy promised 'consequences' for Taiwan's presence at the Pacific Islands Forum in Palau. The Quad is starting to answer. The post China and Taiwan Battle for Influence at the PIF Summit appeared first on Geopolitical Monitor ."
+   }
+  ],
+  "redsea": [
+   {
+    "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain - Boston News , Weather , Sports",
+    "url": "https://whdh.com/news/mediators-are-working-to-broker-a-us-iran-deal-but-major-hurdles-remain/",
+    "domain": "whdh.com",
+    "date": "2026-09-29T00:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Netanyahu meets Emirati leader in a secret weekend trip to Abu Dhabi , and other Mideast developments",
+    "url": "https://www.2news.com/news/world/netanyahu-meets-emirati-leader-in-a-secret-weekend-trip-to-abu-dhabi-and-other-mideast/article_8884ed21-a4b4-549f-bac1-9835c95c1ca6.html",
+    "domain": "2news.com",
+    "date": "2026-09-28T23:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain",
+    "url": "https://www.aol.com/articles/officials-mediators-still-working-iran-122544000.html",
+    "domain": "aol.com",
+    "date": "2026-09-28T23:30:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators working to broker U . S .- Iran deal , but major hurdles remain",
+    "url": "https://japantoday.com/category/world/officials-say-mediators-are-still-working-with-iran-and-the-us-on-a-possible-deal",
+    "domain": "japantoday.com",
+    "date": "2026-09-28T23:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators still working with Iran and US on a deal to end fighting",
+    "url": "https://www.wgauradio.com/news/world/officials-say/CQPJZP4CWMZMVLAV2YKJIADPRI/",
+    "domain": "wgauradio.com",
+    "date": "2026-09-28T23:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Iran offers plan to reopen Strait of Hormuz",
+    "url": "http://www.afghanistansun.com/news/279333999/iran-offers-plan-to-reopen-strait-of-hormuz",
+    "domain": "afghanistansun.com",
+    "date": "2026-09-28T22:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators are working to broker U . S .- Iran deal even after Trump rejected latest proposal",
+    "url": "https://www.adn.com/nation-world/2026/09/28/mediators-are-working-to-broker-us-iran-deal-even-after-trump-rejected-latest-proposal/",
+    "domain": "adn.com",
+    "date": "2026-09-28T22:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators working to broker US - Iran deal even after Trump rejection",
+    "url": "https://www.wmtw.com/article/us-iran-deal-mediators-trump-rejection/73927939",
+    "domain": "wmtw.com",
+    "date": "2026-09-28T22:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "80 countries sign joint statement calling for reopening of Strait of Hormuz | Hellenic Shipping News Worldwide",
+    "url": "https://www.hellenicshippingnews.com/80-countries-sign-joint-statement-calling-for-reopening-of-strait-of-hormuz/",
+    "domain": "hellenicshippingnews.com",
+    "date": "2026-09-28T21:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Mediators working to broker US - Iran deal even after Trump rejected latest Tehran proposal - Las Vegas Sun News",
+    "url": "https://lasvegassun.com/news/2026/sep/28/mediators-working-to-broker-us-iran-deal-even-afte/",
+    "domain": "lasvegassun.com",
+    "date": "2026-09-28T21:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Trump weighs response to Iran proposal",
+    "url": "https://www.2lt.com.au/trump-weighs-response-to-iran-proposal/",
+    "domain": "2lt.com.au",
+    "date": "2026-09-28T21:30:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "The Houthis, the Saudis and the New Red Sea Politics",
+    "url": "https://www.crisisgroup.org/pod/africa/horn-africa/houthis-saudis-and-new-red-sea-politics",
+    "domain": "crisisgroup.org",
+    "date": "2026-09-18T13:17:19.000Z",
+    "src": "International Crisis Group",
+    "summary": "<span>The Houthis, the Saudis and the New Red Sea Politics</span> <span><span>hschaub</span></span> <span><time datetime=\"2026-09-18T15:17:19+02:00\" title=\"Friday, September 18, 2026 - 15:17\">Fri, 09/18/2026 - 15:17</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls-025\"> <li class=\""
+   }
+  ],
+  "sudan": [],
+  "drc": [],
+  "cn-cyber": [
+   {
+    "title": "Bipartisan Senate leaders introduce bill to bolster telecom cybersecurity in response to Salt Typhoon hacks",
+    "url": "https://cyberscoop.com/senate-telecom-cybersecurity-resilience-act-salt-typhoon/",
+    "domain": "cyberscoop.com",
+    "date": "2026-09-24T14:00:00.000Z",
+    "src": "CyberScoop",
+    "summary": "The legislation from Senate Intelligence Vice-Chairman. Mark Warner, D-Va., and Senate Commerce Chairman Ted Cruz, R-Tex., would create a government-industry group to write voluntary best practices. The post Bipartisan Senate leaders introduce bill to bolster telecom cybersecurity in response to Salt Typhoon hacks appeared first on CyberScoop ."
+   }
+  ],
+  "korea": [
+   {
+    "title": "Don’t Call Us, We’ll Call Your APIs | TraderTraitor Backdoors Resurface on Victim With No Crypto Ties",
+    "url": "https://www.sentinelone.com/labs/dont-call-us-well-call-your-apis-tradertraitor-backdoors-resurface-on-victim-with-no-crypto-ties/",
+    "domain": "sentinelone.com",
+    "date": "2026-09-18T17:00:16.000Z",
+    "src": "SentinelLabs",
+    "summary": "North Korean operators built a foothold on a DevOps engineer's Mac in a campaign whose job interview lures deliver malware via Terraform lock files."
+   }
+  ],
+  "dprk-cyber": [],
+  "sahel": [],
+  "ransomware": [],
+  "scs": [],
+  "venezuela": [
+   {
+    "title": "Venezuela releases dozens of political prisoners as election calls grow",
+    "url": "https://www.bbc.co.uk/news/articles/c620lrw2xr12o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-27T15:56:25.000Z",
+    "src": "BBC World",
+    "summary": "A slew of dissidents being released from long-term detention comes days after the nation's interim leader met the US president."
+   }
+  ],
+  "ethiopia": [],
+  "haiti": [],
+  "myanmar": [
+   {
+    "title": "Myanmar army air strike kills dozens in Rakhine state",
+    "url": "https://www.aljazeera.com/news/2026/9/28/myanmar-army-air-strike-kills-dozens-in-rakhine-state?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T19:31:27.000Z",
+    "src": "Al Jazeera",
+    "summary": "Nearly half a million people are displaced in Rakhine as a result of the conflict between the military and rebel groups."
+   },
+   {
+    "title": "The Arakan Army Expands Influence along the Bangladesh Border",
+    "url": "https://www.geopoliticalmonitor.com/arakan-army-bangladesh-border-bandarban-influence/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-23T12:49:14.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "The Arakan Army now controls all 271km of Myanmar's border with Bangladesh — and is crossing it. The post The Arakan Army Expands Influence along the Bangladesh Border appeared first on Geopolitical Monitor ."
+   }
+  ],
+  "nigeria": [],
+  "somalia": [
+   {
+    "title": "Somalia Awaits a New Security Order as Mission Drawdown Looms",
+    "url": "https://www.crisisgroup.org/cmt/africa/somalia/somalia-awaits-new-security-order-mission-drawdown-looms",
+    "domain": "crisisgroup.org",
+    "date": "2026-09-18T19:00:36.000Z",
+    "src": "International Crisis Group",
+    "summary": "<span>Somalia Awaits a New Security Order as Mission Drawdown Looms</span> <span><span>pfranz</span></span> <span><time datetime=\"2026-09-18T21:00:36+02:00\" title=\"Friday, September 18, 2026 - 21:00\">Fri, 09/18/2026 - 21:00</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls-025\"> <li"
+   }
+  ],
+  "mexico": [],
+  "colombia": [],
+  "cuba": [],
+  "libya": [],
+  "mozambique": [],
+  "gaza": [
+   {
+    "title": "Slovenia’s U-turn towards Israel",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/28/aje-onl-nf_slovenias-u-turn-towards-israel-280926?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T20:35:51.000Z",
+    "src": "Al Jazeera",
+    "summary": "Slovenia’s policy towards Palestine has changed sharply following a UNGA sideline meeting with Israeli PM Netanyahu."
+   },
+   {
+    "title": "Gaza’s young inventors build robots with what they have",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/28/gazas-young-inventors-build-robots-with-what-they-have?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T20:34:22.000Z",
+    "src": "Al Jazeera",
+    "summary": "At a youth hackathon in Gaza City, young inventors are developing robots."
+   },
+   {
+    "title": "UAE confirms Israel PM Netanyahu’s visit to Abu Dhabi",
+    "url": "https://www.aljazeera.com/news/2026/9/28/uae-confirms-netanyahu-visit-to-abu-dhabi?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T19:42:30.000Z",
+    "src": "Al Jazeera",
+    "summary": "The visit took place as the Israeli prime minister battles domestic turmoil ahead of October's Knesset elections."
+   }
+  ],
+  "syria": [
+   {
+    "title": "A Pivotal Moment in Uniting Post-Assad Syria",
+    "url": "https://www.crisisgroup.org/cmt/middle-east-north-africa/syria/pivotal-moment-uniting-post-assad-syria",
+    "domain": "crisisgroup.org",
+    "date": "2026-09-17T10:17:20.000Z",
+    "src": "International Crisis Group",
+    "summary": "<span>A Pivotal Moment in Uniting Post-Assad Syria </span> <span><span>eschelhaas</span></span> <span><time datetime=\"2026-09-17T12:17:20+02:00\" title=\"Thursday, September 17, 2026 - 12:17\">Thu, 09/17/2026 - 12:17</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls-025\"> <li class=\"c-"
+   }
+  ],
+  "afghanistan": [
+   {
+    "title": "Afghanistan Reduced Opium Production. What Was the Impact on Drug Trafficking?",
+    "url": "https://www.geopoliticalmonitor.com/afghanistan-opium-ban-drug-trafficking-impact/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-23T14:24:54.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Afghanistan’s opium ban cut cultivation to almost nothing. Whether it shrank the drug trade is a separate question. The post Afghanistan Reduced Opium Production. What Was the Impact on Drug Trafficking? appeared first on Geopolitical Monitor ."
+   }
+  ],
+  "kashmir": [],
+  "pakistan": [
+   {
+    "title": "The Mecca Defence Alliance: Towards a Regional Security Stabiliser",
+    "url": "https://www.geopoliticalmonitor.com/mecca-defence-alliance-regional-security-stabiliser/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-28T18:14:19.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Pakistan will run the alliance’s first Secretariat for three years, placing it at the core of a new Gulf security framework. The post The Mecca Defence Alliance: Towards a Regional Security Stabiliser appeared first on Geopolitical Monitor ."
+   }
+  ],
+  "ssudan": [
+   {
+    "title": "South Sudan calls for sanctions to be lifted at UNGA",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/28/south-sudan-calls-for-sanctions-to-be-lifted-at-unga?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-28T20:45:52.000Z",
+    "src": "Al Jazeera",
+    "summary": "Speaking at the UN General Assembly, South Sudan’s UN envoy Cecilia Adeng called for sanctions to be lifted"
+   }
+  ],
+  "ecuador": [],
+  "lebanon": [],
+  "balkans": [],
+  "baltic": []
+ }
+}

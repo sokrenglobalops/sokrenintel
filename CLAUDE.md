@@ -13,6 +13,8 @@ misaligned pixels; keep the visual language consistent with what exists.
 | `index.html` | **The entire app.** Vanilla HTML/CSS/JS, one file, ~250 KB, no build step, no framework, no bundler. |
 | `v2.html` | **Redesign preview** (Sep 2026): same app as an operations console on a MapLibre WebGL globe. Public but unlinked at `/v2.html` until Tim approves; then it replaces `index.html`. Keep data-code fixes in both until then. |
 | `air-helper/` | Deno Deploy helper that logs in to OpenSky for the relay (OpenSky blocks Cloudflare). |
+| `pipeline/` | Intel pipeline run by `.github/workflows/intel.yml`: `collect.mjs` (daily news), `assess.mjs` (weekly assessment review via Claude API), `lib.mjs`. |
+| `data/` | Pipeline output served same-origin: `news.json`, `intel.json`, `changes.json`. Written by the bot; don't hand-edit. |
 | `cables.json` | TeleGeography submarine-cable GeoJSON (730 systems, CC BY-NC-SA). Loaded same-origin. Refresh occasionally from `https://www.submarinecablemap.com/api/v3/cable/cable-geo.json`. |
 | `README.md` | Public-facing README (also shows on the repo page). Keep in sync when features change. |
 | `sokren-relay/` | Cloudflare Worker + Durable Object: shared AIS feed, ADS-B + news pass-through. Own README with deploy steps. |
@@ -124,6 +126,28 @@ over the map. Layout: `#ops` full-bleed; `#rail` (layers, filters, key), `#board
 tabs), `#ops-status` (UTC + feed health, `renderStatus`). ≤ 900 px: rail = slide-in sheet, board = bottom
 sheet. Zoom expressions in MapLibre must be a top-level `step`/`interpolate` — nesting one inside `case`
 silently kills the layer. Test: `tests/v2.test.mjs` (MapLibre from node_modules, swiftshader WebGL).
+
+## Intel pipeline (pipeline/, data/, .github/workflows/intel.yml)
+
+Tim's rules (2026-09-28): fully automatic; revise the existing assessment **in place** (ACH, linchpins, SWOT,
+outlook, STI/parts, brief, activity lines, priority) **only when new reporting is material**; no separate
+reports; free reputable sources only (ACLED rejected — paid for commercial use).
+- **Daily 06:15 UTC** `collect.mjs`: RSS (Crisis Group, Geopolitical Monitor, Lawfare `/feeds/articles`, Defense One,
+  Al Jazeera, BBC, Google TI/Mandiant feedburner, SentinelLabs, The Record, CyberScoop, CISA) + GDELT per situation
+  (`EVENTS[].query`, ≥8 s apart with retries — GDELT throttles bursts). Routed with the site's `EVENT_KEYWORDS`
+  (first match wins). Rolling 30 days, ≤60 per situation → `data/news.json`. CrisisWatch pages are behind bot
+  protection (no feed); Lawfare's main feeds 403 but `/feeds/articles` works.
+- **Weekly Mon 07:00 UTC** `assess.mjs`: situations with ≥3 new articles since their last review go to
+  `claude-opus-5-5` via the **Message Batches API** (half price) with a strict JSON schema (`output_config.format`);
+  refusals/errors retried synchronously with `fallbacks: "default"`. Output validated/clamped (ACH renormalised to
+  100). Material → `data/intel.json` `events[id].fields` + `data/changes.json` entry; not material → only
+  `checkedAt`/`lastReview`. Baseline is read from `v2.html` (`lib.mjs` `loadBaseline()` slices EVENTS/ANALYSIS/
+  EVENT_KEYWORDS), so the HTML stays the analyst baseline and intel.json the machine layer.
+- **Site** (`v2.html` `loadIntel()`): overlays intel.json onto EVENTS/ANALYSIS, merges news.json into feeds
+  (preferred over the Sep 4 `SEED`), drawer review line ("Auto-updated … machine-drafted" / "Reviewed … no
+  material change" / "Analyst baseline"), "What changed" box, board **Changes** tab, cyan ring + UPDATED pill ≤ 7 days.
+- Secret: `ANTHROPIC_API_KEY` (repo → Settings → Secrets → Actions). Manual run: Actions → intel → Run workflow.
+  Local: `node pipeline/collect.mjs [--no-gdelt]`, `node pipeline/assess.mjs --dry | --sync --only <id>`.
 
 ## Testing
 

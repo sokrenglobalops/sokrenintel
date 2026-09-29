@@ -547,6 +547,33 @@
   .board-foot { padding: 10px 14px; border-top: 1px solid var(--hud-line); display: flex; justify-content: space-between; align-items: center; }
   .board-foot button { font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt); }
 
+  /* automated review status + change log */
+  .d-review { display: flex; align-items: center; gap: 8px; margin-top: 10px; font: 9.5px 'JetBrains Mono', monospace; letter-spacing: 0.04em; color: var(--dim); }
+  .rv-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
+  .rv-dot.upd { background: var(--cyan); box-shadow: 0 0 6px rgba(53,196,215,0.7); }
+  .rv-dot.ok { background: var(--ok); }
+  .chg-box { margin-top: 14px; border: 1px solid rgba(53,196,215,0.35); border-radius: 8px; padding: 11px 13px; background: rgba(53,196,215,0.05); }
+  .chg-h { display: flex; justify-content: space-between; gap: 10px; font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+  .chg-reason { font-size: 12px; color: var(--ink); margin-top: 6px; line-height: 1.5; }
+  .chg-row { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .chg-f { font: 9px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt); }
+  .chg-ft { font-size: 11.5px; color: var(--mut); margin-top: 2px; line-height: 1.45; }
+  .chg-ft b { color: var(--ink); font-weight: 500; }
+  .chg-src { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .chg-src a { font: 9px 'JetBrains Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 3px; padding: 1px 6px; }
+  .chg-src a:hover { color: var(--accent-lt); border-color: var(--accent); }
+  .upd-pill { font: 8px 'JetBrains Mono', monospace; letter-spacing: 0.08em; color: var(--bg); background: var(--cyan); border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 1px; }
+  .btab b { color: var(--cyan); font-weight: 500; }
+  .chg-item { padding: 10px 0; border-top: 1px solid var(--hud-line); cursor: pointer; }
+  .chg-item:first-child { border-top: none; }
+  .chg-item:hover .ci-n { color: #fff; }
+  .ci-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .ci-n { font-size: 12px; color: var(--ink); }
+  .ci-d { font: 9px 'JetBrains Mono', monospace; color: var(--dim); flex-shrink: 0; }
+  .ci-s { font: 10px 'JetBrains Mono', monospace; margin-top: 3px; }
+  .ci-r { font-size: 11px; color: var(--mut); margin-top: 3px; line-height: 1.45; }
+  .ip-empty { font-size: 11px; color: var(--dim); line-height: 1.55; padding: 10px 0; }
+
   /* map chrome */
   #ops #tooltip { top: 0; left: 0; transform: none; z-index: 40; background: rgba(13,18,25,0.96); border-color: var(--hud-line); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
   #ops #zoom-ctl { left: auto; right: 342px; bottom: 16px; z-index: 22; }
@@ -664,11 +691,13 @@
       <button class="btab on" data-bt="active">Active</button>
       <button class="btab" data-bt="emerging">Emerging</button>
       <button class="btab" data-bt="outlook">Outlook</button>
+      <button class="btab" data-bt="changes">Changes <b id="chg-n"></b></button>
     </div>
     <div class="board-body">
       <div class="bpane on" data-bp="active"><div class="ip-sub">armed conflict under way · ranked by STI</div><div class="ip-list" id="ip-active"></div></div>
       <div class="bpane" data-bp="emerging"><div class="ip-sub">deteriorating, not yet major</div><div class="ip-list" id="ip-emerging"></div></div>
       <div class="bpane" data-bp="outlook"><div class="ip-sub">assessed likely developments</div><div class="ip-list" id="ip-outlook"></div></div>
+      <div class="bpane" data-bp="changes"><div class="ip-sub">assessment changes from new reporting · last 30 days</div><div class="ip-list" id="ip-changes"></div></div>
     </div>
     <div class="board-foot"><button id="board-all">All situations →</button><button id="board-feed">Live feed →</button></div>
   </div></aside>
@@ -803,7 +832,9 @@
         <span class="tag" id="d-emg" style="display:none; color:#35C4D7; border-color:#35C4D7;">EMERGING</span>
         <span class="tag" id="d-cat"></span>
       </div>
+      <div id="d-review" class="d-review"></div>
       <p class="d-brief" id="d-brief"></p>
+      <div id="d-changes"></div>
     </div>
     <button id="d-close">✕</button>
   </div>
@@ -1868,6 +1899,7 @@ function addDataLayers() {
   const pc = ["match", ["get", "p"], 1, "#D9534F", 2, "#D98E4A", 3, "#C9A227", "#6B8F7E"];
   L({ id: "sit-glow", type: "circle", source: "situations", paint: { "circle-color": pc, "circle-blur": 1, "circle-opacity": 0.32, "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, ["match", ["get", "p"], 1, 26, 2, 18, 3, 12, 9], 6, ["match", ["get", "p"], 1, 60, 2, 42, 3, 28, 20]] } });
   L({ id: "sit-pulse", type: "circle", source: "situations", filter: ["==", ["get", "p"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": "#D9534F", "circle-stroke-width": 1.2, "circle-radius": 8, "circle-stroke-opacity": 0.8 } });
+  L({ id: "sit-upd", type: "circle", source: "situations", filter: ["==", ["get", "u"], 1], paint: { "circle-color": "rgba(0,0,0,0)", "circle-radius": ["match", ["get", "p"], 1, 11, 2, 10, 3, 9, 8.5], "circle-stroke-color": "#35C4D7", "circle-stroke-width": 1.2, "circle-stroke-opacity": 0.9 } });
   L({ id: "sit-dot", type: "circle", source: "situations", paint: { "circle-color": pc, "circle-radius": ["+", ["match", ["get", "p"], 1, 6, 2, 5, 3, 4, 3.5], ["*", ["get", "s"], 3]], "circle-stroke-width": ["case", ["==", ["get", "s"], 1], 2, ["==", ["get", "em"], 1], 2, 1.2], "circle-stroke-color": ["case", ["==", ["get", "s"], 1], "#FFFFFF", ["==", ["get", "em"], 1], "#35C4D7", "#07090C"] } });
   L({ id: "sit-label", type: "symbol", source: "situations", layout: {
     // zoom may only drive a top-level step: P1 always, P2 from 1.8, all from 2.8; the selected one always
@@ -2099,6 +2131,83 @@ async function fetchEventNews(ev) {
   throw lastErr;
 }
 
+/* ============ automated intel: data/*.json written by the GitHub Actions pipeline ============
+   news.json (daily): reporting per situation from the approved sources + GDELT, gathered server-side.
+   intel.json (weekly): machine revisions of assessments, applied only when reporting was material.
+   changes.json: what changed, when, why, and on which reporting. */
+const INTEL = { news: {}, newsAt: null, changes: [], loaded: false };
+function newsItemsFor(id) {
+  return (INTEL.news[id] || []).map(a => ({ eventId: id, title: a.title, url: a.url, domain: a.domain, date: a.date ? new Date(a.date) : null, src: a.src }));
+}
+function mergeItems(live, base) {
+  const seen = new Set(), out = [];
+  for (const it of [...live, ...base]) { const k = String(it.url || "").replace(/[?#].*$/, ""); if (!k || seen.has(k)) continue; seen.add(k); out.push(it); }
+  return out.sort((a, b) => (b.date || 0) - (a.date || 0));
+}
+function fallbackFeed(id) {
+  const n = newsItemsFor(id);
+  return n.length ? { status: "ok", items: n } : { status: "cached", items: SEED[id] || [] };
+}
+const DAY = 864e5;
+const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); };
+function recentlyUpdated(ev) { return !!(ev.auto && ev.auto.updatedAt && Date.now() - Date.parse(ev.auto.updatedAt) < 7 * DAY); }
+async function loadIntel() {
+  const v = Math.floor(Date.now() / 36e5);   // hourly cache-buster: the files change at most daily
+  const get = f => fetch("./data/" + f + "?v=" + v).then(r => r.ok ? r.json() : null).catch(() => null);
+  const [intel, news, changes] = await Promise.all([get("intel.json"), get("news.json"), get("changes.json")]);
+  if (intel && intel.events) for (const [id, rec] of Object.entries(intel.events)) {
+    const ev = byId[id]; if (!ev) continue;
+    if (rec.fields) {
+      const f = rec.fields;
+      ["priority", "sti", "parts", "brief", "assess", "outlook"].forEach(k => { if (f[k] != null) ev[k] = f[k]; });
+      if (f.analysis) ANALYSIS[id] = { ...(ANALYSIS[id] || {}), ...f.analysis };
+    }
+    ev.auto = rec;
+  }
+  if (news && news.items) {
+    INTEL.news = news.items; INTEL.newsAt = news.generatedAt;
+    for (const ev of EVENTS) {
+      const base = newsItemsFor(ev.id); if (!base.length) continue;
+      const f = state.feeds[ev.id];
+      state.feeds[ev.id] = { status: "ok", items: mergeItems(f.status === "ok" ? f.items : [], base) };
+    }
+  }
+  if (changes && changes.entries) INTEL.changes = changes.entries;
+  INTEL.loaded = true;
+  renderAll(); renderChanges();
+}
+function renderReview(ev) {
+  const el = $("d-review"); if (!el) return;
+  const a = ev.auto;
+  if (!a) { el.innerHTML = '<span class="rv-dot"></span>Analyst baseline assessment'; return; }
+  const lr = a.lastReview || {};
+  if (lr.material && a.updatedAt) el.innerHTML = `<span class="rv-dot upd"></span>Auto-updated ${esc(fmtDay(a.updatedAt))} from ${a.basis ? a.basis.articles : "?"} reports across ${a.basis ? a.basis.outlets : "?"} outlets · machine-drafted`;
+  else el.innerHTML = `<span class="rv-dot ok"></span>Reviewed ${esc(fmtDay(a.checkedAt))} against ${a.checkedArticles || 0} new reports · no material change${a.updatedAt ? " · last updated " + esc(fmtDay(a.updatedAt)) : ""}`;
+  const box = $("d-changes"); if (!box) return;
+  const c = INTEL.changes.find(x => x.id === ev.id && Date.now() - Date.parse(x.at) < 30 * DAY);
+  box.innerHTML = !c ? "" : `<div class="chg-box">
+    <div class="chg-h"><span>What changed · ${esc(fmtDay(c.at))}</span><span>STI ${c.sti.from} → ${c.sti.to}${c.priority.from !== c.priority.to ? " · P" + c.priority.from + " → P" + c.priority.to : ""}</span></div>
+    <div class="chg-reason">${esc(c.reason)}</div>
+    ${c.changes.map(x => `<div class="chg-row"><div class="chg-f">${esc(CHG_LABEL[x.field] || x.field)}</div>
+      <div class="chg-ft"><b>${esc(x.to)}</b>${x.from ? ` <span style="color:var(--dim)">(was: ${esc(x.from)})</span>` : ""}<br>${esc(x.why)}</div>
+      ${(x.sources || []).length ? `<div class="chg-src">${x.sources.slice(0, 4).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="${esc(s.title)}">${esc(s.domain)} ↗</a>`).join("")}</div>` : ""}</div>`).join("")}
+  </div>`;
+}
+const CHG_LABEL = { priority: "Priority", sti: "Threat index", parts: "Index components", brief: "Brief", assess: "Activity", outlook: "Outlook", ach: "Competing hypotheses", disc: "Key discriminator", pins: "Linchpins", swot: "SWOT" };
+function renderChanges() {
+  const el = $("ip-changes"); if (!el) return;
+  const recent = INTEL.changes.filter(c => Date.now() - Date.parse(c.at) < 30 * DAY);
+  const n = $("chg-n"); if (n) n.textContent = recent.length ? String(recent.length) : "";
+  const upd = EVENTS.filter(recentlyUpdated).length;
+  $("board-n").textContent = EVENTS.length + " tracked" + (upd ? " · " + upd + " updated" : "");
+  el.innerHTML = recent.length ? recent.map(c => `<div class="chg-item" data-chg="${esc(c.id)}">
+      <div class="ci-top"><span class="ci-n">${esc(c.name)}</span><span class="ci-d">${esc(fmtDay(c.at))}</span></div>
+      <div class="ci-s" style="color:${stiColor(c.sti.to)}">STI ${c.sti.from} → ${c.sti.to}${c.priority.from !== c.priority.to ? " · P" + c.priority.from + " → P" + c.priority.to : ""} · ${c.changes.length} field${c.changes.length === 1 ? "" : "s"}</div>
+      <div class="ci-r">${esc(c.reason)}</div></div>`).join("")
+    : '<div class="ip-empty">No material changes recorded yet. Every situation with new reporting is reviewed weekly; when the reporting changes the picture, the revision and its sources appear here.</div>';
+  el.querySelectorAll("[data-chg]").forEach(x => x.addEventListener("click", () => setSelected(x.dataset.chg)));
+}
+
 async function retryEvent(id) {
   const ev = byId[id];
   state.feeds[id] = { status: "loading", items: state.feeds[id].items };
@@ -2107,13 +2216,13 @@ async function retryEvent(id) {
     const items = await fetchEventNews(ev);
     if (items.length) {
       markFresh(items);
-      state.feeds[id] = { status: "ok", items };
+      state.feeds[id] = { status: "ok", items: mergeItems(items, newsItemsFor(id)) };
     } else {
-      state.feeds[id] = { status: "cached", items: SEED[id] || [] };
+      state.feeds[id] = fallbackFeed(id);
     }
   } catch (e) {
-    const kept = state.feeds[id].items.length ? state.feeds[id].items : (SEED[id] || []);
-    state.feeds[id] = { status: kept.length ? "cached" : "error", items: kept };
+    const kept = state.feeds[id].items.length ? state.feeds[id] : fallbackFeed(id);
+    state.feeds[id] = kept.items.length ? kept : { status: "error", items: [] };
   }
   renderAll();
 }
@@ -2233,13 +2342,13 @@ async function loadAll() {
       const items = await fetchEventNews(ev);
       if (items.length) {
         markFresh(items);
-        state.feeds[ev.id] = { status: "ok", items };
+        state.feeds[ev.id] = { status: "ok", items: mergeItems(items, newsItemsFor(ev.id)) };
       } else {
-        state.feeds[ev.id] = { status: "cached", items: SEED[ev.id] || [] };
+        state.feeds[ev.id] = fallbackFeed(ev.id);
       }
     } catch (err) {
-      const kept = state.feeds[ev.id] && state.feeds[ev.id].items.length ? state.feeds[ev.id].items : (SEED[ev.id] || []);
-      state.feeds[ev.id] = { status: kept.length ? "cached" : "error", items: kept };
+      const kept = state.feeds[ev.id] && state.feeds[ev.id].items.length ? state.feeds[ev.id] : fallbackFeed(ev.id);
+      state.feeds[ev.id] = kept.items.length ? kept : { status: "error", items: [] };
     }
     renderAll();
   }));
@@ -2960,7 +3069,9 @@ function renderStatus() {
   const af = state.layerStatus.flights;
   set("st-air", !state.layers.aircraft ? "off" : af === "ok" ? "ok" : af === "error" || af === "limited" ? "bad" : "warn", !state.layers.aircraft ? "Air off" : af === "ok" ? "Air " + state.layerData.flights.length + " mil" : af === "error" ? "Air unreachable" : af === "limited" ? "Air rate-limited" : "Air loading");
   const live = EVENTS.filter(e => state.feeds[e.id].status === "ok").length;
-  set("st-news", state.refreshing ? "warn" : live ? "ok" : state.hadFirstLoad ? "bad" : "warn", state.refreshing ? "News updating" : live ? "News " + (state.lastUpdated ? timeAgo(state.lastUpdated) : "live") : state.hadFirstLoad ? "News snapshot" : "News loading");
+  const nAt = INTEL.newsAt ? new Date(INTEL.newsAt) : null, nStale = nAt && Date.now() - nAt > 2 * DAY;
+  set("st-news", state.refreshing && !nAt ? "warn" : live ? (nStale ? "warn" : "ok") : state.hadFirstLoad ? "bad" : "warn",
+    state.refreshing && !nAt ? "News updating" : nAt ? "News " + timeAgo(nAt) : live ? "News " + (state.lastUpdated ? timeAgo(state.lastUpdated) : "live") : state.hadFirstLoad ? "News snapshot" : "News loading");
 }
 /* clock: Zulu by default; any zone, or "follow the selected situation" */
 const TZ_EVENT = { "ru-ua": "Europe/Kyiv", iran: "Asia/Tehran", taiwan: "Asia/Taipei", redsea: "Asia/Aden", sudan: "Africa/Khartoum", drc: "Africa/Lubumbashi", "cn-cyber": "Asia/Shanghai", korea: "Asia/Seoul", "dprk-cyber": "Asia/Pyongyang", sahel: "Africa/Bamako", scs: "Asia/Manila", venezuela: "America/Caracas", ethiopia: "Africa/Addis_Ababa", haiti: "America/Port-au-Prince", myanmar: "Asia/Yangon", nigeria: "Africa/Lagos", somalia: "Africa/Mogadishu", mexico: "America/Mexico_City", colombia: "America/Bogota", cuba: "America/Havana", libya: "Africa/Tripoli", mozambique: "Africa/Maputo", gaza: "Asia/Gaza", syria: "Asia/Damascus", afghanistan: "Asia/Kabul", kashmir: "Asia/Kolkata", pakistan: "Asia/Karachi", ssudan: "Africa/Juba", ecuador: "America/Guayaquil", lebanon: "Asia/Beirut", balkans: "Europe/Belgrade", baltic: "Europe/Riga" };
@@ -3348,7 +3459,7 @@ function renderMarkerCounts() {
   if (!mapReady) return;
   const feats = EVENTS.filter(markerVisible).map(ev => {
     const n = state.feeds[ev.id].items.length;
-    return pt(ev.lon, ev.lat, { id: ev.id, p: ev.priority, em: ev.emerging ? 1 : 0, s: state.selected === ev.id ? 1 : 0, label: ev.name + (n ? " · " + n : "") });
+    return pt(ev.lon, ev.lat, { id: ev.id, p: ev.priority, em: ev.emerging ? 1 : 0, s: state.selected === ev.id ? 1 : 0, u: recentlyUpdated(ev) ? 1 : 0, label: ev.name + (n ? " · " + n : "") });
   });
   setSrc("situations", { type: "FeatureCollection", features: feats });
 }
@@ -3368,6 +3479,7 @@ function renderDetail() {
   $("d-cat").textContent = (ev.cats || []).slice(0, 3).map(c => CAT_DEFS[c].short).join(" \u00b7 ");
   $("d-emg").style.display = ev.emerging ? "inline" : "none";
   $("d-brief").textContent = ev.brief;
+  renderReview(ev);
 
   $("d-assess").innerHTML = (ev.assess || []).map(r =>
     `<div class="as-row"><div class="as-lab">${esc(r[0])}</div><div class="as-line">${esc(r[1])}</div></div>`
@@ -3508,7 +3620,7 @@ function filteredItems() {
 
 function panelRow(ev, right, sub) {
   return `<div class="ip-item" data-ip="${ev.id}">
-    <span class="ip-name">${esc(ev.name)}${sub ? `<span class="ip-line">${esc(sub)}</span>` : ""}<span class="ip-bar"><i style="width:${ev.sti}%; background:${stiColor(ev.sti)}"></i></span></span>
+    <span class="ip-name">${esc(ev.name)}${recentlyUpdated(ev) ? '<span class="upd-pill">UPDATED</span>' : ""}${sub ? `<span class="ip-line">${esc(sub)}</span>` : ""}<span class="ip-bar"><i style="width:${ev.sti}%; background:${stiColor(ev.sti)}"></i></span></span>
     <span class="ip-val" style="color:${stiColor(ev.sti)}">${right}</span>
   </div>`;
 }
@@ -3750,6 +3862,7 @@ renderMapChips();
 renderLayerChips();
 renderPanels();
 initMap();
+loadIntel();
 switchView((location.hash || "").slice(1));
 applyView();
 renderOverlay();
