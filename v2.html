@@ -2417,7 +2417,7 @@ const DAY = 864e5;
 const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); };
 function recentlyUpdated(ev) { return !!(ev.auto && ev.auto.updatedAt && Date.now() - Date.parse(ev.auto.updatedAt) < 7 * DAY); }
 async function loadIntel() {
-  const v = Math.floor(Date.now() / 36e5);   // hourly cache-buster: the files change at most daily
+  const v = Math.floor(Date.now() / 6e5);   // 10-min cache-buster = GitHub Pages' CDN lifetime, so new data shows within ~10 min
   const get = f => fetch("./data/" + f + "?v=" + v).then(r => r.ok ? r.json() : null).catch(() => null);
   const [intel, news, changes] = await Promise.all([get("intel.json"), get("news.json"), get("changes.json")]);
   if (intel && intel.events) for (const [id, rec] of Object.entries(intel.events)) {
