@@ -1,0 +1,1722 @@
+{
+ "version": 1,
+ "events": {
+  "ru-ua": {
+   "checkedAt": "2026-09-29T03:12:29.597Z",
+   "checkedArticles": 37,
+   "fields": {
+    "priority": 1,
+    "sti": 92,
+    "parts": {
+     "Kinetic": 95,
+     "Military": 90,
+     "Cyber": 80,
+     "Political": 70,
+     "Humanitarian": 85
+    },
+    "brief": "Full-scale war ongoing since February 2022. Russia has shifted to deadly daytime jet-powered drone strikes on central Kyiv as Ukrainian air defenses strain ahead of winter, and drone incidents and hybrid activity along the eastern flank raise spillover risk. A US push for an energy ceasefire and trilateral talks is reported, but Moscow publicly vows to continue the war.",
+    "assess": [
+     [
+      "Conflict Activity",
+      "Daytime jet-powered drone strikes on central Kyiv; at least 7 killed across Ukraine on 28 September"
+     ],
+     [
+      "Military Activity",
+      "Russian force concentration along northeastern axis; airspace violations and drone incidents over Poland, Romania, Moldova"
+     ],
+     [
+      "Cyber Activity",
+      "Elevated targeting of Ukrainian and European energy infrastructure"
+     ],
+     [
+      "Political / Diplomatic",
+      "US reportedly pushing energy ceasefire and trilateral talks; Lavrov vows war will be carried through"
+     ],
+     [
+      "Humanitarian",
+      "Strikes on power infrastructure ahead of winter raising displacement risk"
+     ]
+    ],
+    "outlook": {
+     "p": 75,
+     "line": "increased strike activity",
+     "window": "next 7 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Russia sustains an attritional strike campaign to force winter concessions",
+       63
+      ],
+      [
+       "Russia is preparing a limited new ground offensive",
+       22
+      ],
+      [
+       "Russia is maneuvering toward a negotiated freeze",
+       15
+      ]
+     ],
+     "disc": "Force concentration on the northeastern axis is the most diagnostic indicator separating H1 from H2.",
+     "pins": [
+      [
+       "Western air-defense resupply continues",
+       "strike effectiveness rises sharply and civilian-infrastructure damage accelerates"
+      ],
+      [
+       "Russia refrains from striking NATO territory directly",
+       "the conflict's scope and NATO's role change fundamentally"
+      ],
+      [
+       "Ukrainian mobilization sustains front-line manning",
+       "ground lines destabilize and negotiating leverage collapses"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Attrition equilibrium neither side can quickly break",
+       "Established escalation-management channels still function"
+      ],
+      "w": [
+       "Energy-grid vulnerability on both sides entering winter",
+       "Ukrainian manpower strain deepening"
+      ],
+      "o": [
+       "Winter logistics pressure creating a negotiation window",
+       "US push for energy ceasefire and trilateral talks"
+      ],
+      "t": [
+       "Escalating Russian hybrid campaign against NATO frontline states",
+       "Long-range strike exchange spiraling past prior limits"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.597Z",
+   "sources": [
+    {
+     "title": "Russia hammers Ukraine's capital with major daytime drone strike",
+     "url": "https://www.cbsnews.com/news/russia-ukraine-war-kyiv-strikes-national-academy-sciences/",
+     "domain": "cbsnews.com",
+     "date": "2026-09-28T23:34:31.000Z"
+    },
+    {
+     "title": "Russia’s jet-powered drones are turning Kyiv into a daytime war zone",
+     "url": "https://www.washingtonpost.com/world/2026/09/28/russias-jet-powered-drones-are-turning-kyiv-into-daytime-war-zone/",
+     "domain": "washingtonpost.com",
+     "date": "2026-09-28T21:32:49.000Z"
+    },
+    {
+     "title": "Russian Drone Strikes Ukraine’s Science Academy, Causing Fire in City Center",
+     "url": "https://www.nytimes.com/2026/09/28/world/europe/urkaine-drone-attack-kyiv-academy-sciences.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-28T19:33:55.000Z"
+    },
+    {
+     "title": "Russian drones hammer apartments and cultural landmark in Ukraine, killing 7",
+     "url": "https://www.pbs.org/newshour/world/russian-drones-hammer-apartments-and-cultural-landmark-in-ukraine-killing-7",
+     "domain": "pbs.org",
+     "date": "2026-09-28T18:58:50.000Z"
+    },
+    {
+     "title": "Zelensky: U.S. pushing energy ceasefire, trilateral talks with Russia",
+     "url": "https://www.axios.com/2026/09/24/zelensky-ukraine-russia-war-energy-ceasefire-grain",
+     "domain": "axios.com",
+     "date": "2026-09-24T03:25:01.000Z"
+    },
+    {
+     "title": "Daytime Russian strike on Kyiv’s science academy kills at least one",
+     "url": "https://www.theguardian.com/world/2026/sep/28/russia-strike-on-kyiv-science-academy-drone-ukraine",
+     "domain": "theguardian.com",
+     "date": "2026-09-28T15:16:50.000Z"
+    },
+    {
+     "title": "Russian drones hammer apartments, offices and cultural landmark in Ukraine, killing 7",
+     "url": "https://abcnews.com/International/wireStory/russian-drones-pound-civilian-areas-ukraine-claims-battlefield-136816631",
+     "domain": "abcnews.com",
+     "date": "2026-09-28T13:54:54.000Z"
+    },
+    {
+     "title": "Russian Foreign Minister Vows Russia Will See Ukraine War Through",
+     "url": "https://www.nytimes.com/2026/09/26/world/europe/russia-germany-lavrov-ukraine-war.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-27T00:49:12.000Z"
+    },
+    {
+     "title": "Russia expected to intensify hybrid war on Europe",
+     "url": "https://www.dw.com/en/russia-expected-to-intensify-hybrid-war-on-europe/a-79444596?maca=en-rss-en-world-4025-rdf",
+     "domain": "dw.com",
+     "date": "2026-09-26T15:39:00.000Z"
+    },
+    {
+     "title": "Lavrov issues call for new Eurasian ‘security architecture’",
+     "url": "https://news.un.org/feed/view/en/story/2026/09/1168457",
+     "domain": "news.un.org",
+     "date": "2026-09-26T12:00:00.000Z"
+    },
+    {
+     "title": "Ukrainians are braced for a brutal winter. Are the Russians also ready?",
+     "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/ukrainians-are-braced-for-a-brutal-winter-are-the-russians-also-ready/",
+     "domain": "atlanticcouncil.org",
+     "date": "2026-09-22T20:49:09.000Z"
+    },
+    {
+     "title": "Stuck on the Battlefield, Russia Wages ‘Total War’ on Ukraine’s Economy",
+     "url": "https://www.nytimes.com/2026/09/25/world/europe/ukraine-russia-economy.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-25T09:02:55.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 37,
+    "outlets": 18
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.597Z",
+    "material": true,
+    "reason": "Russia has begun daytime jet-powered drone strikes on central Kyiv, and Ukrainian air defenses are reported to be struggling or running low. Separately, a US push for an energy ceasefire and trilateral talks has been reported, though Moscow publicly vows to continue the war. These support the attritional-campaign hypothesis and open a tentative diplomatic track, but do not justify moving the STI or priority. The Seoul–Kyiv POW dispute and other commentary are not material."
+   }
+  },
+  "iran": {
+   "checkedAt": "2026-09-29T03:12:29.598Z",
+   "checkedArticles": 45,
+   "fields": {
+    "priority": 1,
+    "sti": 84,
+    "parts": {
+     "Kinetic": 82,
+     "Military": 85,
+     "Cyber": 60,
+     "Political": 72,
+     "Humanitarian": 65
+    },
+    "brief": "Direct conflict involving Iran, Israel and the United States that began in early 2026; fighting resumed in July after a mediated ceasefire collapsed. Hostilities have repeatedly disrupted commercial shipping through the Strait of Hormuz. Indirect talks resumed in late September; Trump rejected an Iranian plan to reopen the strait but expects further talks.",
+    "assess": [
+     [
+      "Conflict Activity",
+      "Strike tempo lower; Trump non-committal on restarting strikes after midterms; UK probing suspected RAF Fairford plot"
+     ],
+     [
+      "Maritime Security",
+      "Strait still restricted; Iran touts Hormuz attacks as leverage while oil flows reportedly increase"
+     ],
+     [
+      "Air / Missile",
+      "Ballistic and drone exchanges continuing at reduced tempo"
+     ],
+     [
+      "Political / Diplomatic",
+      "Indirect talks in New York; Trump rejected Iran's seven-day Hormuz plan but expects talks this week"
+     ],
+     [
+      "Economic",
+      "Oil up and bond sell-off as deal hopes fade; new US sanctions on Iranian aviation"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "indirect talks continue without a settlement while the strait stays restricted",
+     "window": "next 14 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Managed tit-for-tat continues below the full-war threshold",
+       50
+      ],
+      [
+       "Escalation toward a sustained strait-closure attempt",
+       20
+      ],
+      [
+       "De-escalation through revived mediation",
+       30
+      ]
+     ],
+     "disc": "Mine-laying activity and coastal missile dispersal are the discriminators for H2; a formal US response to Iran's Hormuz plan is the discriminator for H3.",
+     "pins": [
+      [
+       "Iran retains centralized control over proxy timing",
+       "uncoordinated attacks force a broader US response"
+      ],
+      [
+       "US and Israeli strikes stay limited to military targets",
+       "regime-survival logic changes Iran's risk tolerance entirely"
+      ],
+      [
+       "Gulf states remain off the target list",
+       "the war widens regionally overnight"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Neither side is seeking a full regime-change war",
+       "Mediation backchannels remain open"
+      ],
+      "w": [
+       "Hormuz chokepoint fragility",
+       "Dense naval environment prone to miscalculation"
+      ],
+      "o": [
+       "Iran's seven-day Hormuz plan offers a negotiating baseline",
+       "Economic pressure creating settlement incentives"
+      ],
+      "t": [
+       "Proxy autonomy producing unsanctioned attacks",
+       "A tanker sinking or strait mining as a trigger event"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.598Z",
+   "sources": [
+    {
+     "title": "Trump Rejects Iran’s Cease-Fire Proposal to Reopen Strait of Hormuz",
+     "url": "https://www.nytimes.com/2026/09/26/us/politics/trump-iran-hormuz-strait.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-26T21:02:42.000Z"
+    },
+    {
+     "title": "Iran ‘fully prepared’ for war to resume but diplomacy not over yet, Foreign Minister Abbas Araghchi says",
+     "url": "https://www.nbcnews.com/world/iran/iran-fully-prepared-war-resume-foreign-minister-rcna600059",
+     "domain": "nbcnews.com",
+     "date": "2026-09-27T14:08:37.000Z"
+    },
+    {
+     "title": "After nixing Iran proposal, Trump tells Axios he expects talks this week",
+     "url": "https://www.axios.com/2026/09/27/trump-iran-war-hormuz-blockade-negotiations",
+     "domain": "axios.com",
+     "date": "2026-09-27T14:55:07.000Z"
+    },
+    {
+     "title": "Trump expects talks with Iran to resume this week after rejecting proposal",
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-of-hormuz-7-day-proposal/",
+     "domain": "cbsnews.com",
+     "date": "2026-09-27T21:21:00.000Z"
+    },
+    {
+     "title": "Trump says U.S., Iran slated for indirect talks after he rejects latest proposal",
+     "url": "https://www.washingtonpost.com/world/2026/09/27/trump-says-us-iran-slated-indirect-talks-despite-his-rejection-offer/",
+     "domain": "washingtonpost.com",
+     "date": "2026-09-27T17:30:46.000Z"
+    },
+    {
+     "title": "Trump says he rejected the latest Iranian proposal",
+     "url": "https://www.axios.com/2026/09/26/trump-iran-un-proposal",
+     "domain": "axios.com",
+     "date": "2026-09-26T14:27:54.000Z"
+    },
+    {
+     "title": "Possible Terrorist Plot at RAF Fairford Air Base in U.K.: What We Know",
+     "url": "https://www.nytimes.com/2026/09/28/world/europe/raf-fairford-incident-air-base-terrorism-uk.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-28T21:57:21.000Z"
+    },
+    {
+     "title": "U.K. examines if Iran or Russia are involved in foiled attack near base used by U.S.",
+     "url": "https://www.npr.org/2026/09/28/g-s1-145245/britain-us-base-suspected-foiled-attack",
+     "domain": "npr.org",
+     "date": "2026-09-28T10:51:25.000Z"
+    },
+    {
+     "title": "Iran touts Hormuz attacks as oil flows increase despite tensions",
+     "url": "https://www.aljazeera.com/news/2026/9/28/iran-touts-hormuz-attacks-as-oil-flows-increase-despite-tensions?traffic_source=rss",
+     "domain": "aljazeera.com",
+     "date": "2026-09-28T17:43:10.000Z"
+    },
+    {
+     "title": "Mediators still working on U.S.-Iran deal after Trump rejected latest Tehran proposal",
+     "url": "https://www.pbs.org/newshour/world/mediators-still-working-on-u-s-iran-deal-after-trump-rejected-latest-tehran-proposal",
+     "domain": "pbs.org",
+     "date": "2026-09-28T17:23:59.000Z"
+    },
+    {
+     "title": "Bond sell-off deepens and oil rises as Iran-US deal hopes fade",
+     "url": "https://www.ft.com/content/d751ad99-531d-4990-9a4c-ee89a9fc1b2d?syn-25a6b1a6=1",
+     "domain": "ft.com",
+     "date": "2026-09-28T21:38:05.000Z"
+    },
+    {
+     "title": "US sanctions on Iran's aviation industry make travel less predictable as countries cancel flights",
+     "url": "https://www.dw.com/en/us-sanctions-on-iran-s-aviation-industry-make-travel-less-predictable-as-countries-cancel-flights/a-79459140?maca=en-rss-en-world-4025-rdf",
+     "domain": "dw.com",
+     "date": "2026-09-29T00:01:00.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 45,
+    "outlets": 16
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.598Z",
+    "material": true,
+    "reason": "Indirect US-Iran talks in New York produced a concrete Iranian plan to reopen Hormuz. Trump rejected it but says talks resume this week, replacing the 'stalled' picture. Reporting also points to a lower strike tempo, with Trump non-committal on restarting strikes after the midterms. A suspected plot near RAF Fairford is under investigation for possible Iran links."
+   }
+  },
+  "taiwan": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 22,
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": false,
+    "reason": "The Trump-Xi summit in Washington is the main event, but it produced no public Taiwan outcome. Taiwan was reportedly discussed only in private [12], and Xi reportedly pressed Trump to shift his stance on US support for Taiwan and Japan [13]. The ambassador's account that Trump offered Xi arms sales is disputed by Trump himself [8][9], so there is no confirmed change in US policy or deterrence signaling. Commentary on abandonment is balanced by assessments that substantive US capability investment continues [18]. The one-day report of 3 aircraft and 6 vessels [1] is a single data point, not a demonstrated change in tempo. Other items fit the existing gray-zone normalization picture (H1) and do not shift the hypothesis weights: stepped-up PLA activity east of Taiwan [21], Chinese threats of 'consequences' at the Pacific Islands Forum [15], cognitive-domain pressure [16], and Taiwan's multisystem resilience drill [19]. Watch the US deterrence linchpin for any concrete policy follow-through from the summit."
+   }
+  },
+  "redsea": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 14,
+   "fields": {
+    "priority": 2,
+    "sti": 76,
+    "parts": {
+     "Kinetic": 75,
+     "Military": 73,
+     "Cyber": 25,
+     "Political": 60,
+     "Humanitarian": 60
+    },
+    "brief": "Houthi attacks on commercial shipping and Western naval responses continue to disrupt one of the world's most important maritime corridors, forcing rerouting around the Cape of Good Hope. Yemen's government reportedly asked the US for military support as the Houthis tighten their grip on the Red Sea coast. Active US-Iran fighting and calls to reopen the Strait of Hormuz raise the corridor's stakes.",
+    "assess": [
+     [
+      "Maritime Security",
+      "Attacks on commercial shipping continue; rerouting via the Cape of Good Hope"
+     ],
+     [
+      "Air / Missile",
+      "Anti-ship missile and drone launches against transiting vessels"
+     ],
+     [
+      "Economic",
+      "Suez transit volumes depressed; insurance premiums elevated"
+     ],
+     [
+      "Ground",
+      "Houthis reportedly tightening grip on Red Sea coast; Yemen government seeks US military support"
+     ],
+     [
+      "Diplomatic",
+      "Mediators pursue US-Iran deal to end fighting; Trump rejected latest Iranian proposal"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "continued attacks on shipping",
+     "window": "next 30 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Houthis sustain attacks as leverage and prestige strategy",
+       58
+      ],
+      [
+       "Attack tempo declines under strikes and supply interdiction",
+       22
+      ],
+      [
+       "Escalation to broader regional targeting",
+       20
+      ]
+     ],
+     "disc": "Success of resupply interdiction is the primary discriminator for H2.",
+     "pins": [
+      [
+       "Iranian resupply lines remain open",
+       "capability degrades measurably within months"
+      ],
+      [
+       "Houthis avoid a mass-casualty hit on a Western warship",
+       "the retaliation scale changes categorically"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Naval escort coalition operational",
+       "Rerouting has absorbed the economic shock"
+      ],
+      "w": [
+       "Cheap-drone versus expensive-interceptor asymmetry",
+       "Yemen's ungoverned launch geography"
+      ],
+      "o": [
+       "Gaza and Lebanon tracks reduce the stated rationale",
+       "A Saudi-Houthi settlement track exists"
+      ],
+      "t": [
+       "Anti-ship ballistic missile proliferation",
+       "Environmental disaster from a struck tanker"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.599Z",
+   "sources": [
+    {
+     "title": "Yemen says it asked Trump for U.S. military support in fight against Houthis",
+     "url": "https://www.nbcnews.com/world/middle-east/yemen-says-asked-trump-us-military-support-fight-houthis-rcna599565",
+     "domain": "nbcnews.com",
+     "date": "2026-09-24T04:42:33.000Z"
+    },
+    {
+     "title": "Mediators still working with Iran and US on a deal to end fighting",
+     "url": "https://www.wgauradio.com/news/world/officials-say/CQPJZP4CWMZMVLAV2YKJIADPRI/",
+     "domain": "wgauradio.com",
+     "date": "2026-09-28T23:00:00Z"
+    },
+    {
+     "title": "80 countries sign joint statement calling for reopening of Strait of Hormuz | Hellenic Shipping News Worldwide",
+     "url": "https://www.hellenicshippingnews.com/80-countries-sign-joint-statement-calling-for-reopening-of-strait-of-hormuz/",
+     "domain": "hellenicshippingnews.com",
+     "date": "2026-09-28T21:45:00Z"
+    },
+    {
+     "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain - Boston News , Weather , Sports",
+     "url": "https://whdh.com/news/mediators-are-working-to-broker-a-us-iran-deal-but-major-hurdles-remain/",
+     "domain": "whdh.com",
+     "date": "2026-09-29T00:00:00Z"
+    },
+    {
+     "title": "Mediators are working to broker U . S .- Iran deal even after Trump rejected latest proposal",
+     "url": "https://www.adn.com/nation-world/2026/09/28/mediators-are-working-to-broker-us-iran-deal-even-after-trump-rejected-latest-proposal/",
+     "domain": "adn.com",
+     "date": "2026-09-28T22:00:00Z"
+    },
+    {
+     "title": "Trump weighs response to Iran proposal",
+     "url": "https://www.2lt.com.au/trump-weighs-response-to-iran-proposal/",
+     "domain": "2lt.com.au",
+     "date": "2026-09-28T21:30:00Z"
+    },
+    {
+     "title": "Iran offers plan to reopen Strait of Hormuz",
+     "url": "http://www.afghanistansun.com/news/279333999/iran-offers-plan-to-reopen-strait-of-hormuz",
+     "domain": "afghanistansun.com",
+     "date": "2026-09-28T22:45:00Z"
+    },
+    {
+     "title": "Mediators working to broker US - Iran deal even after Trump rejection",
+     "url": "https://www.wmtw.com/article/us-iran-deal-mediators-trump-rejection/73927939",
+     "domain": "wmtw.com",
+     "date": "2026-09-28T22:00:00Z"
+    },
+    {
+     "title": "Mediators working to broker US - Iran deal even after Trump rejected latest Tehran proposal - Las Vegas Sun News",
+     "url": "https://lasvegassun.com/news/2026/sep/28/mediators-working-to-broker-us-iran-deal-even-afte/",
+     "domain": "lasvegassun.com",
+     "date": "2026-09-28T21:45:00Z"
+    }
+   ],
+   "basis": {
+    "articles": 14,
+    "outlets": 14
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": true,
+    "reason": "Yemen's government reportedly asked the US for military support as the Houthis tighten their grip on the Red Sea coast, a new ground dimension. Wide reporting also shows active US-Iran fighting, with a Strait of Hormuz closure implied by calls to reopen it. Together these raise military and political risk around the corridor. There is no new reporting on attack tempo against shipping, so the outlook and priority are held."
+   }
+  },
+  "sudan": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 4,
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": false,
+    "reason": "No new battlefield, ceasefire, leadership or humanitarian development in Sudan is reported. Ethiopia's army chief accused Sudan, Eritrea and Egypt of backing Tigray rebels [1]; this is a regional-spillover cue worth watching, but it is a single unverified accusation. Sudan's foreign minister told the UN General Assembly there should be no imposed solutions, speaking in place of al-Burhan after Washington rejected his visa [2]. That signals friction with external mediation but fits the existing 'active but unresolved' line. Items [3] and [4] are routine humanitarian and recovery reporting. The assessment stands."
+   }
+  },
+  "drc": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 3,
+   "fields": {
+    "priority": 2,
+    "sti": 79,
+    "parts": {
+     "Kinetic": 80,
+     "Military": 70,
+     "Cyber": 5,
+     "Political": 70,
+     "Humanitarian": 95
+    },
+    "brief": "M23 offensives in eastern DR Congo have displaced millions, with Rwandan backing widely documented and regional mediation efforts struggling to hold. An Ebola outbreak now past 8,000 confirmed cases remains out of control, and aid agencies say fighting in the east is hampering the response.",
+    "assess": [
+     [
+      "Conflict Activity",
+      "M23 operations around North and South Kivu population centers"
+     ],
+     [
+      "Humanitarian",
+      "Ebola tops 8,000 confirmed cases; fighting forcing camp residents to flee and constraining aid access"
+     ],
+     [
+      "Political / Diplomatic",
+      "Regional mediation tracks fragile; ruling-party official reported killed after Ebola radio appearance"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "renewed offensives in the Kivus",
+     "window": "next 14 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "M23 consolidates control with periodic offensives",
+       55
+      ],
+      [
+       "Escalation toward interstate DRC-Rwanda conflict",
+       25
+      ],
+      [
+       "A regional deal produces staged withdrawal",
+       20
+      ]
+     ],
+     "disc": "Changes in Rwandan force posture discriminate H2 from the others.",
+     "pins": [
+      [
+       "Rwanda calculates M23's benefits exceed its costs",
+       "sustained pressure produces a drawdown and H3 rises"
+      ],
+      [
+       "Kinshasa cannot militarily retake the Kivus",
+       "a direct interstate war becomes the central scenario"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Mineral-access frameworks create bargaining space",
+       "Regional bodies actively engaged"
+      ],
+      "w": [
+       "FARDC institutional weakness",
+       "Militia proliferation across the east"
+      ],
+      "o": [
+       "Externally brokered frameworks on the table",
+       "Economic integration incentives for both capitals"
+      ],
+      "t": [
+       "Direct DRC-Rwanda military exchanges",
+       "Ebola spread amid fighting compounds humanitarian collapse"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.599Z",
+   "sources": [
+    {
+     "title": "Congo Ebola outbreak tops 8,000 confirmed cases as disease remains out of control",
+     "url": "https://abcnews.com/International/wireStory/congo-ebola-outbreak-tops-8000-confirmed-cases-disease-136816027",
+     "domain": "abcnews.com",
+     "date": "2026-09-28T14:26:20.000Z"
+    },
+    {
+     "title": "DR Congo Ebola emergency: Calls grow for urgent humanitarian access",
+     "url": "https://news.un.org/feed/view/en/story/2026/09/1168465",
+     "domain": "news.un.org",
+     "date": "2026-09-28T12:00:00.000Z"
+    },
+    {
+     "title": "DRC politician beaten to death after radio appearance about Ebola outbreak",
+     "url": "https://www.theguardian.com/world/2026/sep/28/drc-politician-beaten-death-radio-appearance-ebola",
+     "domain": "theguardian.com",
+     "date": "2026-09-28T15:54:25.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 3,
+    "outlets": 3
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": true,
+    "reason": "A large, uncontrolled Ebola outbreak of more than 8,000 confirmed cases now overlaps with fighting and displacement in the east, which materially worsens the humanitarian picture. The kinetic, military and diplomatic balance is unchanged, so the outlook, ACH weights and linchpins stay as they are."
+   }
+  },
+  "korea": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 10,
+   "fields": {
+    "priority": 3,
+    "sti": 56,
+    "parts": {
+     "Kinetic": 25,
+     "Military": 70,
+     "Cyber": 50,
+     "Political": 55,
+     "Humanitarian": 30
+    },
+    "brief": "The DPRK fired two short-range ballistic missiles on Sept. 20, its second launch in about a week, and told the UN its nuclear status is irreversible. South Korea says DMZ blasts that injured three officers were likely caused by North Korean mines. Seoul is pressing Washington to revive talks, and Trump reportedly reaffirmed willingness to talk with Kim.",
+    "assess": [
+     [
+      "Military Activity",
+      "DMZ blasts injured three ROK officers; Seoul attributes them to likely North Korean mines"
+     ],
+     [
+      "Air / Missile",
+      "Two SRBMs fired Sept. 20, second launch in about a week; no ICBM or nuclear test"
+     ],
+     [
+      "Geopolitical",
+      "DPRK calls nuclear status irreversible at UN; Trump reaffirms willingness to talk with Kim"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "further weapons tests",
+     "window": "next 30 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Steady testing cadence without a provocation spike",
+       58
+      ],
+      [
+       "A major provocation cycle including ICBM or nuclear test",
+       22
+      ],
+      [
+       "An opening toward renewed talks",
+       20
+      ]
+     ],
+     "disc": "Activity signatures at the nuclear test site discriminate H2.",
+     "pins": [
+      [
+       "The Russia partnership keeps the DPRK resourced",
+       "incentives shift back toward negotiation"
+      ],
+      [
+       "Deterrence prevents miscalculation at the NLL and DMZ",
+       "a kinetic incident forces a crisis cycle"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Deterrence architecture stable",
+       "Channels through Beijing and Moscow exist"
+      ],
+      "w": [
+       "Hotlines unused in practice",
+       "Sanctions monitoring regime has collapsed"
+      ],
+      "o": [
+       "Summit-style diplomacy has reopened before",
+       "Trump reaffirms willingness to talk with Kim"
+      ],
+      "t": [
+       "Russian technology transfer to DPRK programs",
+       "A clash along the Northern Limit Line"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.599Z",
+   "sources": [
+    {
+     "title": "S. Korea says border blasts injured 3 officers was likely caused by N. Korean mines",
+     "url": "https://abcnews.com/International/wireStory/south-korea-border-blasts-injured-3-officers-caused-136818573",
+     "domain": "abcnews.com",
+     "date": "2026-09-28T13:46:24.000Z"
+    },
+    {
+     "title": "Ahead of Trump-Xi Summit, North Korea Launches More Missiles",
+     "url": "https://thediplomat.com/2026/09/ahead-of-trump-xi-summit-north-korea-launches-more-missiles/",
+     "domain": "thediplomat.com",
+     "date": "2026-09-21T14:09:00.000Z"
+    },
+    {
+     "title": "Lee Asks Trump to Help Revive North Korea Talks During New York Trip",
+     "url": "https://thediplomat.com/2026/09/lee-asks-trump-to-help-revive-north-korea-talks-during-new-york-trip/",
+     "domain": "thediplomat.com",
+     "date": "2026-09-28T13:36:00.000Z"
+    },
+    {
+     "title": "DPR Korea tells UN its nuclear status is ‘irreversible’, rejects outside pressure",
+     "url": "https://news.un.org/feed/view/en/story/2026/09/1168476",
+     "domain": "news.un.org",
+     "date": "2026-09-28T12:00:00.000Z"
+    },
+    {
+     "title": "In a relatively mild speech, North Korea uses UN platform to lament 'mutual distrust' and tension",
+     "url": "https://www.pbs.org/newshour/world/in-a-relatively-mild-speech-north-korea-uses-un-platform-to-lament-mutual-distrust-and-tension",
+     "domain": "pbs.org",
+     "date": "2026-09-28T20:20:31.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 10,
+    "outlets": 6
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": true,
+    "reason": "Two new developments shift the picture modestly. South Korea says DMZ blasts that injured three of its officers were likely caused by North Korean mines, a kinetic incident at the DMZ. Two SRBM launches in about a week confirm the steady-cadence hypothesis. The UN speech and Trump's reaffirmed willingness to talk offset each other, and no ICBM or nuclear test was reported."
+   }
+  },
+  "scs": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 4,
+   "fields": {
+    "priority": 3,
+    "sti": 59,
+    "parts": {
+     "Kinetic": 30,
+     "Military": 74,
+     "Cyber": 35,
+     "Political": 58,
+     "Humanitarian": 10
+    },
+    "brief": "Confrontations between Chinese coast guard forces and Philippine resupply missions around contested shoals continue to escalate, with US alliance commitments raising the stakes of any miscalculation. The provisional understanding on Second Thomas Shoal resupply reportedly appears to have broken down, and China followed a shoal confrontation with a military exercise.",
+    "assess": [
+     [
+      "Maritime Security",
+      "Water-cannon and blocking incidents around Second Thomas and Scarborough Shoals"
+     ],
+     [
+      "Military Activity",
+      "PLA exercise reported after shoal confrontation; US–Philippine joint patrols; expanded PLA naval presence"
+     ],
+     [
+      "Geopolitical",
+      "Mutual-defense treaty implications of any Philippine casualty"
+     ]
+    ],
+    "outlook": {
+     "p": 55,
+     "line": "further at-sea confrontations",
+     "window": "next 30 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Calibrated coercion continues short of casualties",
+       63
+      ],
+      [
+       "An incident produces a fatality and a treaty crisis",
+       22
+      ],
+      [
+       "A tacit modus vivendi arrangement emerges",
+       15
+      ]
+     ],
+     "disc": "Movement along the water-cannon, ramming, weapons-use gradient is the discriminator.",
+     "pins": [
+      [
+       "Both sides keep coast guards, not navies, in front",
+       "a militarization step-change follows"
+      ],
+      [
+       "No Filipino serviceman is killed",
+       "the US treaty question is forced immediately"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Hotlines and incident protocols exist"
+      ],
+      "w": [
+       "Shoal-resupply structure guarantees recurring contact"
+      ],
+      "o": [
+       "The ASEAN code-of-conduct track"
+      ],
+      "t": [
+       "Nationalist escalation pressure in both capitals",
+       "Reported collapse of the provisional resupply understanding"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.599Z",
+   "sources": [
+    {
+     "title": "China Conducts Military Exercise in South China Sea After Confrontation at Disputed Shoal",
+     "url": "https://thediplomat.com/2026/09/china-conducts-military-exercise-in-south-china-sea-after-confrontation-at-disputed-shoal/",
+     "domain": "thediplomat.com",
+     "date": "2026-09-28T05:35:00.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 4,
+    "outlets": 2
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": true,
+    "reason": "The Diplomat reports that China held a military exercise after a confrontation at a disputed shoal and that the provisional Second Thomas Shoal resupply understanding appears to have broken down. This is a single-source report, but it undercuts the modus vivendi hypothesis and shows a military signal on top of coast guard coercion. Items [2]-[4] (a pardon, scam networks, the budget) are not relevant."
+   }
+  },
+  "venezuela": {
+   "checkedAt": "2026-09-29T03:12:29.599Z",
+   "checkedArticles": 5,
+   "fields": {
+    "priority": 3,
+    "sti": 48,
+    "parts": {
+     "Kinetic": 10,
+     "Military": 30,
+     "Cyber": 15,
+     "Political": 72,
+     "Humanitarian": 70
+    },
+    "brief": "Venezuela is led by an interim government under acting leader Delcy Rodríguez, who is courting Washington: she met President Trump, the US removed Venezuela from its drug blacklist, and dozens of political prisoners were released. No election timeline has been given despite US and domestic calls. Earthquake recovery is slow three months on, with at least 1,500 people missing.",
+    "assess": [
+     [
+      "Political Instability",
+      "Interim government under Rodríguez faces US and domestic calls for elections; no timeline set"
+     ],
+     [
+      "Civil Unrest",
+      "Protest and crackdown cycles recurring in major cities"
+     ],
+     [
+      "Economic",
+      "US emphasis on keeping oil flowing signals easing external economic pressure"
+     ],
+     [
+      "External Relations",
+      "First Trump–Rodríguez meeting; US removed Venezuela from its drug blacklist"
+     ],
+     [
+      "Humanitarian",
+      "Earthquake recovery lagging; families still searching rubble with at least 1,500 missing"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "interim government holds and makes incremental concessions without a firm election date",
+     "window": "next 30 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "The interim government consolidates and delays elections",
+       50
+      ],
+      [
+       "US-backed pressure produces a credible election timeline",
+       35
+      ],
+      [
+       "The interim arrangement fractures, reviving instability or external pressure",
+       15
+      ]
+     ],
+     "disc": "An announced election date and continued prisoner releases discriminate H2 from H1.",
+     "pins": [
+      [
+       "The armed forces back the interim government",
+       "the interim arrangement could fracture"
+      ],
+      [
+       "US-Venezuela rapprochement holds",
+       "sanctions and interdiction pressure could return"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Warming US ties, including drug-blacklist removal",
+       "Dozens of political prisoners released"
+      ],
+      "w": [
+       "No election timeline from the interim leader",
+       "Institutional hollowing"
+      ],
+      "o": [
+       "US pressure for elections could yield a timeline",
+       "A negotiated electoral framework remains conceivable"
+      ],
+      "t": [
+       "Slow earthquake recovery, at least 1,500 missing",
+       "A second mass-migration surge"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.599Z",
+   "sources": [
+    {
+     "title": "A search for their loved ones’ remains, three months after Venezuela earthquakes",
+     "url": "https://www.nbcnews.com/world/latin-america/search-loved-ones-remains-three-months-venezuela-earthquakes-rcna600302",
+     "domain": "nbcnews.com",
+     "date": "2026-09-28T21:05:36.000Z"
+    },
+    {
+     "title": "Venezuela releases dozens of political prisoners as election calls grow",
+     "url": "https://www.bbc.co.uk/news/articles/c620lrw2xr12o?at_medium=RSS&at_campaign=rss",
+     "domain": "bbc.co.uk",
+     "date": "2026-09-27T15:56:25.000Z"
+    },
+    {
+     "title": "Venezuela’s Acting Leader Makes Her U.N. Debut",
+     "url": "https://foreignpolicy.com/2026/09/25/venezuela-unga-delcy-rodriguez-maduro-trump-elections/",
+     "domain": "foreignpolicy.com",
+     "date": "2026-09-25T12:00:01.000Z"
+    },
+    {
+     "title": "The InSight Take: US Drug Certification: Law Enforcement or Politics?",
+     "url": "https://insightcrime.org/news/the-insight-take-us-drug-certification-law-enforcement-or-politics/",
+     "domain": "insightcrime.org",
+     "date": "2026-09-24T17:38:33.000Z"
+    },
+    {
+     "title": "Trump to Venezuela's Rodriguez: Elections need to happen",
+     "url": "https://www.axios.com/2026/09/23/trump-venezuela-rodriguez-meeting-elections",
+     "domain": "axios.com",
+     "date": "2026-09-24T00:00:25.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 5,
+    "outlets": 5
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.599Z",
+    "material": true,
+    "reason": "The reporting confirms an interim government under acting leader Delcy Rodríguez, her first meeting with President Trump, US removal of Venezuela from the drug blacklist, and releases of dozens of political prisoners. Together these mark a leadership change and a clear easing of US-Venezuela tension. It also documents a lagging earthquake recovery with at least 1,500 people missing. Priority stays at 3 because falling external pressure offsets higher humanitarian strain."
+   }
+  },
+  "ethiopia": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 5,
+   "fields": {
+    "priority": 2,
+    "sti": 62,
+    "parts": {
+     "Kinetic": 70,
+     "Military": 72,
+     "Cyber": 5,
+     "Political": 78,
+     "Humanitarian": 82
+    },
+    "brief": "Fighting has resumed across northern Ethiopia after a Tigray-led coalition of seven armed groups launched an offensive into Afar and Amhara aimed at ousting Abiy Ahmed. Addis accuses unnamed outside forces of backing the rebels. This raises the risk that the internal war and the Red Sea dispute with Eritrea merge.",
+    "assess": [
+     [
+      "Kinetic Activity",
+      "Heavy multi-front clashes; army reports seizing a key Tigray city; drone strike hit Tigray TV"
+     ],
+     [
+      "Military Activity",
+      "Tigray-led offensive into Afar and Amhara; border posturing with Eritrea persists"
+     ],
+     [
+      "Political Instability",
+      "TPLF allied with six armed groups to oust Abiy; Addis alleges outside backing"
+     ],
+     [
+      "Humanitarian",
+      "UN gravely concerned; spreading fighting disrupting aid operations across the north"
+     ]
+    ],
+    "outlook": {
+     "p": 70,
+     "line": "multi-front fighting in the north persists, with rising risk of regional spillover",
+     "window": "next 90 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Cold standoff without open war",
+       50
+      ],
+      [
+       "Limited border conflict over port access",
+       35
+      ],
+      [
+       "A rapprochement track resumes",
+       15
+      ]
+     ],
+     "disc": "Confirmed Eritrean backing of the Tigray-led coalition, or force movements toward the Assab axis, discriminate H2.",
+     "pins": [
+      [
+       "Addis judges war would be regime-threatening",
+       "open conflict becomes likely"
+      ],
+      [
+       "Tigray factions avoid aligning with Eritrea",
+       "internal and external conflicts merge"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Army still able to contest ground in Tigray",
+       "AU mediation available"
+      ],
+      "w": [
+       "Sea-access dependence",
+       "Insurgents now coordinated in anti-Abiy coalition"
+      ],
+      "o": [
+       "Commercial port deals as a substitute for force"
+      ],
+      "t": [
+       "The Eritrea-Tigray-Amhara triangle",
+       "Alleged outside backing regionalising the civil war"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.600Z",
+   "sources": [
+    {
+     "title": "Tigray TV station hit by drone as rebels advance in north Ethiopia",
+     "url": "https://www.france24.com/en/video/20260928-tigray-tv-station-hit-by-drone-as-rebels-advance-in-north-ethiopia",
+     "domain": "france24.com",
+     "date": "2026-09-28T16:51:23.000Z"
+    },
+    {
+     "title": "Ethiopia Returns to Civil War",
+     "url": "https://foreignpolicy.com/2026/09/25/ethiopia-tigray-tplf-civil-war-abiy-amhara-afar-eritrea/",
+     "domain": "foreignpolicy.com",
+     "date": "2026-09-25T20:33:44.000Z"
+    },
+    {
+     "title": "UN voices grave concern as fighting spreads across northern Ethiopia",
+     "url": "https://news.un.org/feed/view/en/story/2026/09/1168450",
+     "domain": "news.un.org",
+     "date": "2026-09-25T12:00:00.000Z"
+    },
+    {
+     "title": "Rebel offensive against Ethiopian army stokes fears of return to civil war",
+     "url": "https://www.theguardian.com/world/2026/sep/24/fears-return-to-war-tigray-rebels-launch-offensive-against-ethiopian-army",
+     "domain": "theguardian.com",
+     "date": "2026-09-24T15:29:42.000Z"
+    },
+    {
+     "title": "Ethiopian forces claim Tigray town",
+     "url": "https://www.france24.com/en/ethiopian-forces-claim-tigray-town",
+     "domain": "france24.com",
+     "date": "2026-09-28T20:32:38.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 5,
+    "outlets": 4
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": true,
+    "reason": "Several outlets report renewed large-scale fighting in northern Ethiopia. A Tigray-led coalition of seven armed groups seeks to oust Abiy Ahmed, and fighting has spread across multiple fronts into Afar and Amhara. The UN reports humanitarian operations disrupted. Addis accuses unnamed outside forces of backing the rebels. This is a clear escalation that raises the risk of interstate spillover."
+   }
+  },
+  "myanmar": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 6,
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": false,
+    "reason": "The new reporting fits the current picture and does not shift it. The Rakhine airstrike [1] and the reported bombing from paragliders and gyrocopters [3] match the existing line on continued junta airstrikes on civilian areas. The latter is a change in method, not in tempo or outcome. The Arakan Army's reported control of the full Bangladesh border [6] extends known resistance gains in Rakhine. Its cross-border activity comes from a single outlet and is not yet corroborated. Malaysia's Rohingya deportation plan [4] is a proposal under civil-society pressure, not an implemented action. The junta's regional re-engagement effort [2] and the atrocity-accountability commentary [5] are context, not new developments. No ceasefire, leadership change, major front collapse or shift in China's posture is reported. The assessment stands."
+   }
+  },
+  "colombia": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 4,
+   "fields": {
+    "priority": 3,
+    "sti": 56,
+    "parts": {
+     "Kinetic": 55,
+     "Military": 45,
+     "Cyber": 5,
+     "Political": 65,
+     "Humanitarian": 60
+    },
+    "brief": "ELN and FARC-dissident factions are expanding territorial control, with heavy fighting in Catatumbo and stalled peace tracks pushing security indicators back toward pre-accord levels. President Abelardo de la Espriella's government has extradited a trafficking suspect Petro had shielded and made FBI-assisted arrests, signalling a harder, US-aligned line.",
+    "assess": [
+     [
+      "Conflict Activity",
+      "ELN and dissident offensives in Catatumbo and border regions"
+     ],
+     [
+      "Political Instability",
+      "Total-peace negotiation tracks stalled or collapsed"
+     ],
+     [
+      "Humanitarian",
+      "Confinement and displacement rising in affected departments"
+     ],
+     [
+      "Security Policy",
+      "New government extradites Geovany Andres Rojas to US; FBI-assisted arrests of trafficker's relatives"
+     ]
+    ],
+    "outlook": {
+     "p": 55,
+     "line": "further armed-group territorial expansion",
+     "window": "next 60 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Armed-group expansion into vacuums continues",
+       55
+      ],
+      [
+       "A patchwork of fragmented local ceasefires",
+       20
+      ],
+      [
+       "A security offensive reverses gains",
+       25
+      ]
+     ],
+     "disc": "Control of the Catatumbo and Pacific corridors discriminates the hypotheses.",
+     "pins": [
+      [
+       "Peace-talk collapse persists",
+       "revived talks would freeze several fronts"
+      ],
+      [
+       "The coca economy stays lucrative",
+       "eradication economics would starve expansion"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "State institutional depth relative to neighbors"
+      ],
+      "w": [
+       "Rural security vacuum",
+       "Untested shift from total peace to hardline policy"
+      ],
+      "o": [
+       "A regional counter-narcotics reset",
+       "Renewed US extradition and law-enforcement cooperation"
+      ],
+      "t": [
+       "ELN-dissident tactical alliances",
+       "Venezuelan border sanctuary"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.600Z",
+   "sources": [
+    {
+     "title": "Accused drug lord \"The Spider\" extradited to U.S. from Colombia",
+     "url": "https://www.cbsnews.com/news/drug-lord-the-spider-extradited-to-us-from-colombia/",
+     "domain": "cbsnews.com",
+     "date": "2026-09-28T17:49:52.000Z"
+    },
+    {
+     "title": "Wife, daughter of top drug lord held in U.S. are captured in Colombia",
+     "url": "https://www.cbsnews.com/news/wife-daughter-ecuador-drug-lord-fito-held-us-captured-colombia/",
+     "domain": "cbsnews.com",
+     "date": "2026-09-28T15:26:43.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 4,
+    "outlets": 3
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": true,
+    "reason": "The reporting confirms a leadership change: Abelardo de la Espriella is president and Petro is former president. The new government has extradited a trafficking and terrorism suspect whom Petro had shielded, and it has made FBI-assisted arrests. Both moves point to a harder, US-aligned security posture and a move away from total-peace protections. No new kinetic, territorial or humanitarian data were reported, so the STI and sub-scores stay unchanged. The UN restorative-justice note and the InSight Crime ACSN profile are background."
+   }
+  },
+  "gaza": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 15,
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": false,
+    "reason": "No new kinetic, ceasefire, or implementation development is reported. The UN Security Council briefing says the Gaza plan has stalled and West Bank tensions are rising [6], which matches the current assessment. Axios reports a six-month, $2.45 billion Board of Peace recovery plan [15]. It is a single-outlet scoop about an unveiling, not funded or implemented reconstruction, and the existing 'reconstruction financing as leverage' framing already covers it. Israel's 27 October election, polling as a dead heat [5], is relevant to the coalition linchpin but has not yet changed policy. Netanyahu's UAE visit and the Oct. 7 warning reports [1][4][12] are domestic political context. The remaining items are commentary or peripheral diplomacy. Revisit if the election result shifts Israel's position on implementation, or if recovery funds actually begin to move."
+   }
+  },
+  "syria": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 3,
+   "fields": {
+    "priority": 2,
+    "sti": 72,
+    "parts": {
+     "Kinetic": 55,
+     "Military": 55,
+     "Cyber": 10,
+     "Political": 85,
+     "Humanitarian": 80
+    },
+    "brief": "Syria's post-Assad transition remains fragile: the new government is consolidating unevenly amid episodes of sectarian violence, contested integration of armed factions, foreign military activity, and a shattered economy under partial sanctions relief.",
+    "assess": [
+     [
+      "Political Instability",
+      "Transitional government consolidating unevenly across regions and sects"
+     ],
+     [
+      "Conflict Activity",
+      "Episodic sectarian violence and contested integration of armed factions"
+     ],
+     [
+      "Terrorism / Extremism",
+      "ISIS remnants exploiting security gaps in the east; coalition mission reported ending Sept. 30"
+     ],
+     [
+      "Humanitarian",
+      "Mass returns straining destroyed infrastructure and services"
+     ]
+    ],
+    "outlook": {
+     "p": 55,
+     "line": "renewed localized sectarian violence",
+     "window": "next 60 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Uneven consolidation with episodic violence",
+       55
+      ],
+      [
+       "Fragmentation into regional cantons",
+       25
+      ],
+      [
+       "A slide back into civil-war dynamics",
+       20
+      ]
+     ],
+     "disc": "Implementation of the SDF integration agreement discriminates H2.",
+     "pins": [
+      [
+       "Sanctions relief continues",
+       "economic collapse undermines the transition wholesale"
+      ],
+      [
+       "Israel-Syria de-confliction holds",
+       "an external shock derails consolidation"
+      ],
+      [
+       "The ruling coalition maintains factional discipline",
+       "intra-Sunni conflict opens a new war"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Broad international engagement",
+       "Deep war exhaustion"
+      ],
+      "w": [
+       "Sectarian trust deficit after massacres",
+       "Armed faction sprawl"
+      ],
+      "o": [
+       "Reconstruction and refugee-return economics"
+      ],
+      "t": [
+       "Coastal and Druze violence cycles",
+       "ISIS exploiting prisons and the desert"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.600Z",
+   "sources": [
+    {
+     "title": "What the End of Operation Inherent Resolve Means for Iraq and Syria",
+     "url": "https://warontherocks.com/what-the-end-of-operation-inherent-resolve-means-for-iraq-and-syria/",
+     "domain": "warontherocks.com",
+     "date": "2026-09-22T19:50:05.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 3,
+    "outlets": 2
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": true,
+    "reason": "One structural development: War on the Rocks reports that Operation Inherent Resolve, the US-led counter-ISIS coalition mission, ends on Sept. 30 as the remaining US troops leave northern Iraq. This touches the eastern ISIS threat line, so that line is updated. There is no reporting yet of changed ISIS activity, so scores, ACH and outlook stay as they are. Items [2] and [3] are commentary and not material."
+   }
+  },
+  "afghanistan": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 7,
+   "fields": {
+    "priority": 2,
+    "sti": 70,
+    "parts": {
+     "Kinetic": 60,
+     "Military": 55,
+     "Cyber": 5,
+     "Political": 75,
+     "Humanitarian": 85
+    },
+    "brief": "Taliban rule faces an IS-KP insurgency, deepening isolation, and one of the world's largest humanitarian crises, with mass refugee returns from neighboring states compounding economic collapse. Direct Pakistan–Taliban fighting resumed on September 18 after a nearly three-month lull. It includes Pakistani airstrikes in eastern Afghanistan, and Islamabad has framed it as open war.",
+    "assess": [
+     [
+      "Terrorism / Extremism",
+      "IS-KP attacks against Taliban and minority targets continuing"
+     ],
+     [
+      "Humanitarian",
+      "Aid contraction and mass refugee returns deepening the crisis"
+     ],
+     [
+      "Political Instability",
+      "Internal Taliban factionalism; relations with Pakistan broken down into open hostilities"
+     ],
+     [
+      "Interstate Conflict",
+      "Pakistani airstrikes, cross-border attacks and a car bombing since Sept 18; Taliban vow response"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "continued Pakistan–Taliban cross-border fighting without a negotiated settlement",
+     "window": "next 90 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Taliban consolidation continues despite pressure",
+       60
+      ],
+      [
+       "IS-KP capability growth forces a crisis",
+       20
+      ],
+      [
+       "An internal Taliban split",
+       20
+      ]
+     ],
+     "disc": "Signals of a Kandahar-Haqqani rift discriminate H3.",
+     "pins": [
+      [
+       "No external actor arms an organized opposition",
+       "an insurgency market reopens"
+      ],
+      [
+       "Minimal aid flows continue",
+       "a famine-scale crisis and mass movement follow"
+      ],
+      [
+       "Pakistan–Taliban fighting stays limited to strikes and border clashes",
+       "a wider interstate war and new displacement follow"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "Monopoly on force",
+       "Demonstrated enforcement capacity"
+      ],
+      "w": [
+       "Aid dependence",
+       "Exclusion of women halving productive capacity"
+      ],
+      "o": [
+       "Regional trade-corridor projects"
+      ],
+      "t": [
+       "Open-ended Pakistani strikes over militant attacks from Afghan soil",
+       "Refugee-return overload"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.600Z",
+   "sources": [
+    {
+     "title": "Fighting between Pakistan and the Taliban persists into second week",
+     "url": "https://www.longwarjournal.org/archives/2026/09/fighting-between-pakistan-and-the-taliban-persists-into-second-week.php",
+     "domain": "longwarjournal.org",
+     "date": "2026-09-28T19:20:31.000Z"
+    },
+    {
+     "title": "Why Pakistan Turned on the Taliban (and Vice Versa)",
+     "url": "https://thediplomat.com/2026/09/why-pakistan-turned-on-the-taliban-and-vice-versa/",
+     "domain": "thediplomat.com",
+     "date": "2026-09-28T12:41:00.000Z"
+    },
+    {
+     "title": "Pakistan’s Punitive Gamble in Afghanistan: An Open War With No End in Sight",
+     "url": "https://thediplomat.com/2026/09/pakistans-punitive-gamble-in-afghanistan-an-open-war-with-no-end-in-sight/",
+     "domain": "thediplomat.com",
+     "date": "2026-09-25T12:28:00.000Z"
+    },
+    {
+     "title": "Pakistan conducts airstrikes in eastern Afghanistan in retaliation for terrorist attacks",
+     "url": "https://www.longwarjournal.org/archives/2026/09/pakistan-conducts-airstrikes-in-eastern-afghanistan-in-retaliation-for-terrorist-attacks.php",
+     "domain": "longwarjournal.org",
+     "date": "2026-09-21T12:46:40.000Z"
+    },
+    {
+     "title": "Pakistan: Suicide attack at police stop kills at least 11",
+     "url": "https://www.dw.com/en/pakistan-suicide-attack-at-police-stop-kills-at-least-11/a-79443050?maca=en-rss-en-world-4025-rdf",
+     "domain": "dw.com",
+     "date": "2026-09-26T14:27:00.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 7,
+    "outlets": 4
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": true,
+    "reason": "Direct Pakistan–Taliban fighting resumed on September 18 after a nearly three-month lull. It has continued into a second week, with Pakistani airstrikes in eastern Afghanistan, cross-border attacks, targeted operations and a car bombing. Pakistan has declared 'an open war', and analysts see little Taliban incentive to meet its demands. This is a clear escalation beyond the 'border frictions' in the current text. ACH is unchanged: external pressure does not yet discriminate between consolidation, IS-KP-driven crisis or internal split. The opium item [6] and the retrospective piece [5] are not material."
+   }
+  },
+  "pakistan": {
+   "checkedAt": "2026-09-29T03:12:29.600Z",
+   "checkedArticles": 6,
+   "fields": {
+    "priority": 3,
+    "sti": 66,
+    "parts": {
+     "Kinetic": 65,
+     "Military": 55,
+     "Cyber": 15,
+     "Political": 75,
+     "Humanitarian": 50
+    },
+    "brief": "TTP attacks in Khyber Pakhtunkhwa and a widening Baloch insurgency have driven militant violence to multi-year highs, compounding political instability, economic strain, and friction with Afghanistan over cross-border sanctuaries. A PTI march on Islamabad, met with a container lockdown and the arrest of Imran Khan's sisters, has sharpened the political confrontation.",
+    "assess": [
+     [
+      "Terrorism / Extremism",
+      "TTP and Baloch separatist attacks at multi-year highs"
+     ],
+     [
+      "Conflict Activity",
+      "Security operations and cross-border strikes along the Afghan frontier"
+     ],
+     [
+      "Political Instability",
+      "Government-PTI confrontation escalating around Islamabad lockdown and arrests; economic strain persisting"
+     ]
+    ],
+    "outlook": {
+     "p": 60,
+     "line": "sustained militant attack tempo",
+     "window": "next 30 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Sustained high attack tempo",
+       60
+      ],
+      [
+       "A major operation degrades the TTP",
+       20
+      ],
+      [
+       "Afghanistan-Pakistan interstate escalation",
+       20
+      ]
+     ],
+     "disc": "Cross-border strike frequency discriminates H3.",
+     "pins": [
+      [
+       "Taliban tolerance of TTP sanctuaries continues",
+       "pressure could force relocation and a tempo drop"
+      ],
+      [
+       "Civil-military balance avoids breakdown",
+       "security focus diffuses into politics"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "A battle-tested CT apparatus"
+      ],
+      "w": [
+       "Economic constraints on sustained operations",
+       "Deep political polarization"
+      ],
+      "o": [
+       "Chinese pressure for corridor security"
+      ],
+      "t": [
+       "Baloch attacks on Chinese nationals",
+       "TTP-BLA operational convergence"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.600Z",
+   "sources": [
+    {
+     "title": "A Tetris-Like Maze Blocks Protests in Pakistan’s Capital",
+     "url": "https://www.nytimes.com/2026/09/26/world/asia/pakistan-protest-islamabad-containers.html",
+     "domain": "nytimes.com",
+     "date": "2026-09-27T02:08:32.000Z"
+    },
+    {
+     "title": "Pakistan locks down Islamabad as Imran Khan’s party vows to march on capital",
+     "url": "https://www.theguardian.com/world/2026/sep/25/pakistan-lockdown-islamabad-imran-khan-party-march",
+     "domain": "theguardian.com",
+     "date": "2026-09-25T13:44:55.000Z"
+    },
+    {
+     "title": "Pakistan jails sisters of Imran Khan before protest seeking his release",
+     "url": "https://www.theguardian.com/world/2026/sep/21/pakistan-jails-sisters-of-imran-khan-before-protest-seeking-his-release",
+     "domain": "theguardian.com",
+     "date": "2026-09-21T14:48:49.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 6,
+    "outlets": 5
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.600Z",
+    "material": true,
+    "reason": "The PTI march on Islamabad, the capital lockdown and the arrest of Imran Khan's sisters sharpen the political confrontation, so the political dimension moves modestly. No reporting this week covers TTP or Baloch attack tempo or cross-border strikes. The insurgency outlook, ACH and priority therefore stay unchanged. The Indus warning, the Mecca alliance and the mediation items are noted but do not bear directly on the insurgencies."
+   }
+  },
+  "balkans": {
+   "checkedAt": "2026-09-29T03:12:29.601Z",
+   "checkedArticles": 13,
+   "fields": {
+    "priority": 4,
+    "sti": 47,
+    "parts": {
+     "Kinetic": 10,
+     "Military": 25,
+     "Cyber": 30,
+     "Political": 78,
+     "Humanitarian": 15
+    },
+    "brief": "Secessionist maneuvering in Republika Srpska and recurring Serbia–Kosovo flashpoints keep the region's post-war settlements under strain, with external actors amplifying divisions through political and information channels. In Kosovo, a Hague verdict convicting four former KLA leaders has drawn daily protests and cross-party criticism, while MPs face an October 6 deadline to elect a president or trigger snap elections. Honours paid in Serbia to Ratko Mladic have drawn condemnation from Bosnia's presidency head and the UN chief.",
+    "assess": [
+     [
+      "Political Instability",
+      "Republika Srpska secessionist steps testing the Dayton framework; state court bars RS funding of independence lobbying"
+     ],
+     [
+      "Geopolitical",
+      "Serbia–Kosovo normalization stalled; periodic north-Kosovo flashpoints"
+     ],
+     [
+      "Information Operations",
+      "External influence campaigns amplifying ethnic divisions"
+     ],
+     [
+      "Kosovo Politics",
+      "Daily protests over Hague KLA verdict; October 6 deadline to elect president or face snap elections"
+     ],
+     [
+      "War Legacy",
+      "Mladic honours in Serbia condemned at UN; Bosnia dismisses two soldiers for glorifying him"
+     ]
+    ],
+    "outlook": {
+     "p": 38,
+     "line": "a localized political-security crisis",
+     "window": "next 90 days"
+    },
+    "analysis": {
+     "ach": [
+      [
+       "Chronic crisis short of rupture",
+       65
+      ],
+      [
+       "A Republika Srpska secession showdown",
+       20
+      ],
+      [
+       "EU-track progress reduces tension",
+       15
+      ]
+     ],
+     "disc": "Concrete referendum steps in Republika Srpska discriminate H2.",
+     "pins": [
+      [
+       "The peacekeeping presence deters kinetic moves",
+       "a security vacuum invites tests"
+      ],
+      [
+       "Belgrade avoids overtly backing secession",
+       "a regional crisis with EU-NATO stakes follows"
+      ]
+     ],
+     "swot": {
+      "s": [
+       "EU accession leverage",
+       "A standing peacekeeping presence"
+      ],
+      "w": [
+       "Dayton institutional gridlock",
+       "Youth exodus hollowing societies"
+      ],
+      "o": [
+       "An enlargement momentum window",
+       "State court curbs on secessionist lobbying funds"
+      ],
+      "t": [
+       "External amplification of divisions",
+       "The north-Kosovo incident cycle"
+      ]
+     }
+    }
+   },
+   "updatedAt": "2026-09-29T03:12:29.601Z",
+   "sources": [
+    {
+     "title": "Kosovo MPs Voice ‘Deep Concern’ Over Guerrilla Leaders’ Conviction",
+     "url": "https://balkaninsight.com/2026/09/28/kosovo-mps-voice-deep-concern-over-guerrilla-leaders-conviction/btj/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-28T13:24:09.000Z"
+    },
+    {
+     "title": "Kosovo Court Orders MPs to Elect President by October 6",
+     "url": "https://balkaninsight.com/2026/09/23/kosovo-court-orders-mps-to-elect-president-by-october-6/bi/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-23T15:03:07.000Z"
+    },
+    {
+     "title": "Bosnia Presidency Head Slams Serbia at UN Over Mladic Glorification",
+     "url": "https://balkaninsight.com/2026/09/23/bosnia-presidency-head-slams-serbia-at-un-over-mladic-glorification/btj/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-23T09:40:29.000Z"
+    },
+    {
+     "title": "‘Our War is Being Judged’: In Kosovo, Outrage at Hague Verdict Simmers",
+     "url": "https://balkaninsight.com/2026/09/22/our-war-is-being-judged-in-kosovo-outrage-at-hague-verdict-simmers/btj/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-22T05:59:29.000Z"
+    },
+    {
+     "title": "UN Chief Condemns Mladic Glorification in Meeting with Bosnian Leader",
+     "url": "https://balkaninsight.com/2026/09/21/un-chief-condemns-mladic-glorification-in-meeting-with-bosnian-leader/btj/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-21T15:58:15.000Z"
+    },
+    {
+     "title": "Bosnia Court Blocks Republika Srpska From Funding Secessionist Lobbying",
+     "url": "https://balkaninsight.com/2026/09/25/bosnia-court-blocks-republika-srpska-from-funding-secessionist-lobbying/bi/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-25T15:16:47.000Z"
+    },
+    {
+     "title": "Bosnia Dismisses Two Soldiers for Glorifying Ratko Mladic",
+     "url": "https://balkaninsight.com/2026/09/24/bosnia-dismisses-two-soldiers-for-glorifying-ratko-mladic/bi/",
+     "domain": "balkaninsight.com",
+     "date": "2026-09-24T14:42:08.000Z"
+    }
+   ],
+   "basis": {
+    "articles": 13,
+    "outlets": 2
+   },
+   "lastReview": {
+    "at": "2026-09-29T03:12:29.601Z",
+    "material": true,
+    "reason": "The Hague conviction of four former KLA leaders has triggered sustained protests and cross-party pushback in Kosovo, alongside a court-set October 6 deadline to elect a president or face snap elections. Honours paid in Serbia to Ratko Mladic have also drawn condemnation at the UN. Together these raise political strain modestly. There are no kinetic developments or RS referendum steps, and a Bosnian court curbed RS secessionist lobbying, so the core hypotheses and priority stand."
+   }
+  }
+ },
+ "generatedAt": "2026-09-29T03:12:29.601Z",
+ "model": "claude-opus-5-5"
+}
