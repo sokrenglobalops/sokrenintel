@@ -1,0 +1,60 @@
+# SOKREN intel pipeline
+#   daily  06:15 UTC  collect news from the approved sources + GDELT  -> data/news.json
+#   weekly Mon 07:00  review each situation with new reporting; revise ACH/linchpins/SWOT/STI in place
+#                     only when the reporting is material            -> data/intel.json, data/changes.json
+# Results are committed to main, which republishes www.sokren.com (GitHub Pages).
+# Needs repository secret ANTHROPIC_API_KEY for the weekly step.
+name: intel
+
+on:
+  schedule:
+    - cron: "15 6 * * *"
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "collect, assess, or both"
+        default: "collect"
+        type: choice
+        options: [collect, assess, both]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: intel
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install (no browsers needed)
+        run: npm ci --ignore-scripts
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+      - name: Collect news
+        if: github.event.schedule == '15 6 * * *' || inputs.step == 'collect' || inputs.step == 'both' || github.event.schedule == '0 7 * * 1'
+        run: node pipeline/collect.mjs
+
+      - name: Review assessments
+        if: github.event.schedule == '0 7 * * 1' || inputs.step == 'assess' || inputs.step == 'both'
+        run: node pipeline/assess.mjs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Publish
+        run: |
+          git config user.name "sokren-intel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          msg="intel: $(date -u +%Y-%m-%d) $( [ -n "$(git diff --cached --name-only | grep changes.json)" ] && echo 'assessment review' || echo 'news')"
+          git commit -m "$msg"
+          git pull --rebase origin main && git push origin HEAD:main
