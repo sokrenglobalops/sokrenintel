@@ -3,6 +3,7 @@
 // place. Unchanged situations only get a "reviewed" timestamp. Every applied change is logged to
 // data/changes.json (the week-to-week "what changed" alerts on the site).
 //   node pipeline/assess.mjs                 batch run (half price; normal weekly mode)
+//   node pipeline/assess.mjs --sync          no batch queue, 4 at a time (manual runs from GitHub)
 //   node pipeline/assess.mjs --sync --only ru-ua   one situation, immediate (testing)
 //   node pipeline/assess.mjs --dry           build requests, print sizes, call nothing
 // Needs ANTHROPIC_API_KEY (GitHub Actions secret) except with --dry.
@@ -145,7 +146,10 @@ async function main() {
   const results = {}, retry = [];
 
   if (flag('--sync')) {
-    for (const r of reqs) { try { results[r.id] = await runSync(client, r, true); } catch (e) { console.log(r.id, 'failed:', e.message); } }
+    // no batch queue: several situations at a time (manual runs); ~2x the batch price
+    const queue = [...reqs];
+    const worker = async () => { for (let r; (r = queue.shift());) { try { results[r.id] = await runSync(client, r, true); console.log(r.id, 'reviewed'); } catch (e) { console.log(r.id, 'failed:', e.message); } } };
+    await Promise.all(Array.from({ length: 4 }, worker));
   } else {
     // Batches: half price; server-side fallbacks aren't accepted here, so refusals are retried synchronously below
     const batch = await client.messages.batches.create({ requests: reqs.map(r => ({ custom_id: r.id, params: r.params })) });

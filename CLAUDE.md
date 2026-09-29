@@ -141,7 +141,7 @@ reports; free reputable sources only (ACLED rejected — paid for commercial use
   protection (no feed); Lawfare's main feeds 403 but `/feeds/articles` works.
 - **Weekly Mon 07:00 UTC** `assess.mjs`: situations with ≥3 new articles since their last review go to
   `claude-opus-5-5` via the **Message Batches API** (half price) with a strict JSON schema (`output_config.format`);
-  refusals/errors retried synchronously with `fallbacks: "default"`. Output validated/clamped (ACH renormalised to
+  refusals/errors retried synchronously with `fallbacks: "default"`. Manual (workflow_dispatch) runs use `--sync`: no batch queue, 4 at a time. Output validated/clamped (ACH renormalised to
   100). Material → `data/intel.json` `events[id].fields` + `data/changes.json` entry; not material → only
   `checkedAt`/`lastReview`. Baseline is read from `v2.html` (`lib.mjs` `loadBaseline()` slices EVENTS/ANALYSIS/
   EVENT_KEYWORDS), so the HTML stays the analyst baseline and intel.json the machine layer.

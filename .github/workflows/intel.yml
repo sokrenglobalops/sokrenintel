@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 330
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - name: Install (no browsers needed)
@@ -45,7 +45,8 @@ jobs:
 
       - name: Review assessments
         if: github.event.schedule == '0 7 * * 1' || inputs.step == 'assess' || inputs.step == 'both'
-        run: node pipeline/assess.mjs
+        # scheduled Monday run: Batches API (half price, queued); manual runs skip the queue
+        run: node pipeline/assess.mjs ${{ github.event_name == 'workflow_dispatch' && '--sync' || '' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
