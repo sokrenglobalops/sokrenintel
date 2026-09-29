@@ -118,9 +118,12 @@ async function main() {
     } catch (e) { report.sources[s.id] = 'failed: ' + e.message; }
   }
 
+  // GDELT throttles hard (also from GitHub's runners): cap its total time and ask about the most critical situations first
+  const gdeltUntil = Date.now() + 10 * 60 * 1000, gdeltOk = () => Date.now() < gdeltUntil;
   if (!noGdelt) {
     let failStreak = 0;
-    for (const e of base.events) {
+    for (const e of [...base.events].sort((a, b) => a.priority - b.priority || b.sti - a.sti)) {
+      if (!gdeltOk()) { report.gdelt[e.id] = 'skipped: time budget'; continue; }
       if (failStreak >= 4) { report.gdelt[e.id] = 'skipped: GDELT unavailable this run'; continue; }   // don't grind for an hour when GDELT is down   // GDELT asks for ≤1 request per 5 s; it also throttles bursts, so go slower and retry
       // each situation's query is used as written (GDELT allows parentheses only around OR lists)
       const q = encodeURIComponent(`${e.query} sourcelang:english`);
@@ -140,6 +143,7 @@ async function main() {
   if (!noGdelt) {
     let failStreak = 0;
     for (const [domain, name] of GDELT_OUTLETS) {
+      if (!gdeltOk()) { report.gdelt['@' + domain] = 'skipped: time budget'; continue; }
       if (failStreak >= 3) { report.gdelt['@' + domain] = 'skipped'; continue; }
       try {
         const d = await gdelt(`https://api.gdeltproject.org/api/v2/doc/doc?query=domain:${domain}&mode=ArtList&format=json&maxrecords=75&timespan=3d&sort=DateDesc`);
