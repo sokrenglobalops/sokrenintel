@@ -57,6 +57,25 @@ R.selected = await page.evaluate(() => ({ aoi: MAP.getSource('aoi').serialize().
 await page.screenshot({ path: out('v2-selected.png') });
 await page.evaluate(() => setSelected(null));
 R.filter = await page.evaluate(() => { state.shipFilter = 'military'; repickShips(); renderOverlay(); const n = MAP.getSource('ships').serialize().data.features.length; state.shipFilter = 'all'; repickShips(); renderOverlay(); return n; });
+// collapsible panels, spin toggle, time zones
+await page.click('#rail-close'); await page.click('#board-col'); await page.waitForTimeout(500);
+R.collapsed = await page.evaluate(() => ({ cls: document.getElementById('ops').className, pad: MAP.getPadding(), tabs: [getComputedStyle(document.getElementById('rail-toggle')).display, getComputedStyle(document.getElementById('board-tab')).display], saved: localStorage.getItem('sokren_board') }));
+await page.screenshot({ path: out('v2-collapsed.png') });
+await page.click('#rail-toggle'); await page.click('#board-tab'); await page.waitForTimeout(400);
+R.reopened = await page.evaluate(() => document.getElementById('ops').className);
+await page.click('#z-spin');
+R.spin = await page.evaluate(() => ({ mode: spinMode, btn: document.getElementById('z-spin').classList.contains('on') }));
+const lng0 = await page.evaluate(() => MAP.getCenter().lng); await page.waitForTimeout(800);
+R.spinning = await page.evaluate(l => MAP.getCenter().lng !== l, lng0);
+await page.click('#tz-btn'); await page.click('.tz-opt[data-tz="Asia/Tehran"]');
+R.tzTehran = await page.evaluate(() => document.getElementById('utc-date').textContent);
+await page.click('#tz-btn'); await page.click('.tz-opt[data-tz="auto"]');
+await page.evaluate(() => setSelected('taiwan')); await page.waitForTimeout(300);
+R.tzAuto = await page.evaluate(() => document.getElementById('utc-date').textContent);
+await page.evaluate(() => setSelected(null));
+R.spinAfterSelect = await page.evaluate(() => spinMode);
+await page.click('#tz-btn'); await page.click('.tz-opt[data-tz="Z"]');
+R.tzZ = await page.evaluate(() => document.getElementById('utc').textContent);
 R.views = await page.evaluate(() => { const r = {}; for (const v of ['feed', 'situations', 'about', 'home']) { switchView(v); r[v] = document.getElementById('view-' + v).classList.contains('active'); } r.onHome = document.body.classList.contains('on-home'); return r; });
 await page.close();
 
@@ -85,4 +104,13 @@ assert.ok(R.views.feed && R.views.situations && R.views.about && R.views.home &&
 assert.strictEqual(R.phone.sw, 390, 'no horizontal scroll at 390 px');
 assert.ok(R.phone.railHidden && R.phone.toggle !== 'none' && R.phone.board < 70);
 assert.ok(R.phoneRailOpen && R.phoneBoardOpen > 200);
+assert.ok(/rail-off/.test(R.collapsed.cls) && /board-off/.test(R.collapsed.cls) && R.collapsed.pad.left === 0 && R.collapsed.pad.right === 0);
+assert.deepStrictEqual(R.collapsed.tabs, ['flex', 'flex']);
+assert.strictEqual(R.collapsed.saved, 'off');
+assert.ok(!/off/.test(R.reopened));
+assert.ok(R.spin.mode === 'on' && R.spin.btn && R.spinning, 'spin toggle keeps the globe turning');
+assert.strictEqual(R.spinAfterSelect, 'on', 'selecting a situation does not cancel pinned spin');
+assert.match(R.tzTehran, /TEHRAN · UTC\+3:30/);
+assert.match(R.tzAuto, /TAIWAN STRAIT · UTC\+8/);
+assert.match(R.tzZ, /Z$/);
 await b.close();

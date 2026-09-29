@@ -498,7 +498,30 @@
   .key .kp { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 9px solid var(--cyan); flex-shrink: 0; }
   .rail-note { font-size: 9.5px; color: var(--dim); line-height: 1.55; }
   .rail-note + .rail-note { margin-top: 6px; }
-  #rail-toggle, #rail-close { display: none; }
+  #rail-toggle, #board-tab { display: none; }
+  #rail-close, .pcol { font-size: 15px; line-height: 1; color: var(--dim); padding: 2px 6px; margin-left: 6px; border-radius: 5px; }
+  #rail-close:hover, .pcol:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
+  #rail, #board { transition: transform 0.25s ease, opacity 0.25s ease; }
+  #ops.rail-off #rail { transform: translateX(calc(-100% - 24px)); opacity: 0; pointer-events: none; }
+  #ops.board-off #board { transform: translateX(calc(100% + 24px)); opacity: 0; pointer-events: none; }
+  #ops.rail-off #rail-toggle, #ops.board-off #board-tab { display: inline-flex; }
+  #rail-toggle, #board-tab { position: absolute; top: 12px; z-index: 22; align-items: center; gap: 7px; padding: 8px 12px; font: 9.5px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+  #rail-toggle { left: 12px; }
+  #board-tab { right: 12px; }
+  #rail-toggle b, #board-tab b { color: var(--accent-lt); font-weight: 500; }
+  #ops.board-off #zoom-ctl { right: 16px; }
+  #ops.board-off .maplibregl-ctrl-bottom-right { right: 60px; }
+  #ops #zoom-ctl button.on { color: var(--accent-lt); border-color: rgba(201,124,78,0.55); }
+  #tz-btn { cursor: pointer; padding: 2px 6px; margin: -2px -6px; border-radius: 6px; font: inherit; color: var(--ink); text-transform: none; }
+  #tz-btn:hover { background: rgba(255,255,255,0.06); }
+  .tz-caret { color: var(--dim); font-size: 8px; }
+  #tz-menu { display: none; position: absolute; top: 52px; left: 50%; transform: translateX(-50%); z-index: 45; width: 290px; max-height: min(460px, 70%); overflow-y: auto; padding: 6px; }
+  #tz-menu.open { display: block; }
+  .tz-opt { display: flex; justify-content: space-between; gap: 10px; width: 100%; padding: 7px 10px; border-radius: 6px; font-size: 12px; color: var(--mut); text-align: left; }
+  .tz-opt:hover { background: rgba(255,255,255,0.05); color: var(--ink); }
+  .tz-opt.on { color: var(--ink); background: rgba(201,124,78,0.12); }
+  .tz-opt .o { font: 10px 'JetBrains Mono', monospace; color: var(--dim); }
+  .tz-sep { height: 1px; background: var(--hud-line); margin: 5px 4px; }
 
   /* right board: ranked situations */
   #board { position: absolute; top: 12px; right: 12px; bottom: 12px; width: 318px; z-index: 21; display: flex; flex-direction: column; overflow: hidden; }
@@ -543,9 +566,12 @@
     #utc-date, .st-sep { display: none; }
     #rail { top: 48px; bottom: 8px; left: 8px; width: min(300px, calc(100vw - 16px)); transform: translateX(calc(-100% - 20px)); transition: transform 0.22s ease; z-index: 30; }
     #rail.open { transform: none; }
-    #rail-toggle { display: inline-flex; position: absolute; top: 48px; left: 8px; z-index: 22; align-items: center; gap: 6px; padding: 7px 11px; font: 9.5px 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
-    #rail-toggle b { color: var(--accent-lt); font-weight: 500; }
-    #rail-close { display: block; margin-left: auto; font-size: 15px; line-height: 1; color: var(--dim); padding: 0 2px; }
+    #rail-toggle { display: inline-flex; top: 48px; left: 8px; padding: 7px 11px; }
+    #ops.rail-off #rail { transform: translateX(calc(-100% - 20px)); opacity: 1; }
+    #ops.board-off #board { transform: none; opacity: 1; pointer-events: auto; }
+    #ops.board-off #board-tab, #board-col { display: none; }
+    #ops.rail-off #rail.open { transform: none; pointer-events: auto; }
+    #tz-menu { top: 46px; left: 8px; transform: none; }
     #board { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; height: 50px; transition: height 0.22s ease; }
     #board.open { height: min(62%, 520px); }
     .board-head { cursor: pointer; padding: 15px 14px; }
@@ -586,7 +612,7 @@
   <div id="map-msg">initialising globe…</div>
 
   <div id="ops-status" class="hud" aria-label="Feed status">
-    <span class="clock"><span id="utc" class="mono">--:--:--Z</span><span id="utc-date" class="mono"></span></span>
+    <button class="clock" id="tz-btn" title="Change time zone" aria-haspopup="listbox"><span id="utc" class="mono">--:--:--Z</span><span id="utc-date" class="mono"></span><span class="tz-caret">▾</span></button>
     <span class="st-sep"></span>
     <span class="st-item" id="st-sit"><i></i><span></span></span>
     <span class="st-item" id="st-ais"><i></i><span></span></span>
@@ -594,10 +620,12 @@
     <span class="st-item" id="st-news"><i></i><span></span></span>
   </div>
 
-  <button id="rail-toggle" class="hud">☰ Layers <b id="rail-toggle-n"></b></button>
+  <div id="tz-menu" class="hud" role="listbox" aria-label="Time zone"></div>
+  <button id="rail-toggle" class="hud" title="Show layers panel ( [ )">☰ Layers <b id="rail-toggle-n"></b></button>
+  <button id="board-tab" class="hud" title="Show situation board ( ] )">Situation board <b>‹</b></button>
   <aside id="rail" class="hud" aria-label="Map layers and filters"><div class="rail-scroll">
     <div class="rail-sec">
-      <div class="hud-h"><span>Map layers</span><b id="mb-layers-lab"></b><button id="rail-close" aria-label="Close">×</button></div>
+      <div class="hud-h"><span>Map layers</span><b id="mb-layers-lab"></b><button id="rail-close" aria-label="Collapse panel" title="Collapse panel ( [ )">‹</button></div>
       <div id="layer-chips"></div>
       <div id="ship-filter"><span class="sf-lab">Vessels</span></div>
     </div>
@@ -631,7 +659,7 @@
   </div></aside>
 
   <aside id="board" class="hud" aria-label="Situation board"><div id="intel">
-    <button class="board-head" id="board-head"><span class="bh-t">Situation board</span><span class="bh-n" id="board-n"></span></button>
+    <div class="board-head" id="board-head"><span class="bh-t">Situation board</span><span class="bh-n" id="board-n"></span><button id="board-col" class="pcol" aria-label="Collapse panel" title="Collapse panel ( ] )">›</button></div>
     <div class="board-tabs">
       <button class="btab on" data-bt="active">Active</button>
       <button class="btab" data-bt="emerging">Emerging</button>
@@ -650,6 +678,7 @@
   <div id="zoom-ctl">
     <button id="z-in" aria-label="Zoom in">+</button>
     <button id="z-out" aria-label="Zoom out">−</button>
+    <button id="z-spin" title="Keep the globe spinning" aria-label="Spin globe">⟳</button>
     <button id="z-proj" title="Switch to flat map" aria-label="Globe or flat map">▭</button>
     <button id="z-reset" style="display:none; color:var(--accent-lt); font-size:11px;" aria-label="Reset view">⤢</button>
   </div>
@@ -1856,7 +1885,10 @@ function syncView() {
   const zr = $("z-reset"); if (zr) zr.style.display = z > 2.2 ? "block" : "none";
 }
 
-let pulseRAF = 0, spin = true;
+let pulseRAF = 0;
+let spinMode = (() => { try { return localStorage.getItem("sokren_spin") === "on" ? "on" : "idle"; } catch (e) { return "idle"; } })();
+let spinPauseUntil = 0;
+const SPIN_DEG = 0.06;   // degrees per frame at world zoom (~3.6°/s, one turn in ~100 s)
 function animateMap(t) {
   pulseRAF = requestAnimationFrame(animateMap);
   if (!mapReady || document.hidden || state.tab !== "home") return;
@@ -1864,11 +1896,22 @@ function animateMap(t) {
   if (MAP.getLayer("sit-pulse")) { MAP.setPaintProperty("sit-pulse", "circle-radius", 7 + f * 26); MAP.setPaintProperty("sit-pulse", "circle-stroke-opacity", 0.85 * (1 - f)); }
   const g = 0.45 + 0.4 * Math.abs(Math.sin(t / 700));
   if (MAP.getLayer("ships-dark")) MAP.setPaintProperty("ships-dark", "circle-stroke-opacity", g);
-  if (spin && !state.selected && MAP.getZoom() < 2.4 && !MAP.isMoving()) {   // slow idle rotation until the first interaction
-    const c = MAP.getCenter(); MAP.setCenter([c.lng + 0.035, c.lat]);
+  const z = MAP.getZoom();
+  const idleOk = spinMode === "idle" && !state.selected && z < 2.4;           // gentle rotation until the first interaction
+  const pinned = spinMode === "on" && Date.now() > spinPauseUntil;             // "keep spinning" — pauses briefly while you interact
+  if ((idleOk || pinned) && !MAP.isMoving()) {
+    const c = MAP.getCenter(); MAP.setCenter([c.lng + SPIN_DEG / Math.pow(2, Math.max(0, z - 2)), c.lat]);
   }
 }
-function stopSpin() { spin = false; }
+function stopSpin() {
+  if (spinMode === "idle") { spinMode = "off"; renderSpinBtn(); }
+  else if (spinMode === "on") spinPauseUntil = Date.now() + 3500;
+}
+function renderSpinBtn() {
+  const b = $("z-spin"); if (!b) return;
+  b.classList.toggle("on", spinMode === "on");
+  b.title = spinMode === "on" ? "Stop spinning" : "Keep the globe spinning";
+}
 
 function tipAt(point, html) {
   const tt = $("tooltip"); if (!tt) return;
@@ -1908,7 +1951,14 @@ function describeHit(f) {
 /* keep the globe centred in the space the floating panels leave free */
 function mapPadding() {
   if (window.innerWidth <= 900) return { top: 90, bottom: 60, left: 0, right: 0 };
-  return { top: 50, bottom: 0, left: 274, right: 330 };
+  const ops = $("ops");
+  return { top: 50, bottom: 0, left: ops.classList.contains("rail-off") ? 0 : 274, right: ops.classList.contains("board-off") ? 0 : 330 };
+}
+function setPanel(which, off) {
+  const ops = $("ops");
+  ops.classList.toggle(which + "-off", off);
+  try { localStorage.setItem("sokren_" + which, off ? "off" : "on"); } catch (e) { /* ignore */ }
+  if (MAP && window.innerWidth > 900) MAP.easeTo({ padding: mapPadding(), duration: 300 });
 }
 function homeZoom() {
   const w = window.innerWidth, h = $("ops") ? $("ops").clientHeight : window.innerHeight;
@@ -1965,6 +2015,13 @@ function initMap() {
   $("z-in").addEventListener("click", e => { e.stopPropagation(); zoomAt(2, w().clientWidth / 2, w().clientHeight / 2); });
   $("z-out").addEventListener("click", e => { e.stopPropagation(); zoomAt(0.5, w().clientWidth / 2, w().clientHeight / 2); });
   $("z-reset").addEventListener("click", e => { e.stopPropagation(); if (MAP) MAP.flyTo({ center: [38, 24], zoom: homeZoom(), duration: 1200 }); });
+  $("z-spin").addEventListener("click", e => {
+    e.stopPropagation();
+    spinMode = spinMode === "on" ? "off" : "on"; spinPauseUntil = 0;
+    try { localStorage.setItem("sokren_spin", spinMode === "on" ? "on" : "off"); } catch (x) { /* ignore */ }
+    renderSpinBtn();
+  });
+  renderSpinBtn();
   $("z-proj").addEventListener("click", e => {
     e.stopPropagation(); if (!MAP) return;
     const globe = !(MAP.getProjection() && MAP.getProjection().type === "mercator");
@@ -2905,11 +2962,47 @@ function renderStatus() {
   const live = EVENTS.filter(e => state.feeds[e.id].status === "ok").length;
   set("st-news", state.refreshing ? "warn" : live ? "ok" : state.hadFirstLoad ? "bad" : "warn", state.refreshing ? "News updating" : live ? "News " + (state.lastUpdated ? timeAgo(state.lastUpdated) : "live") : state.hadFirstLoad ? "News snapshot" : "News loading");
 }
+/* clock: Zulu by default; any zone, or "follow the selected situation" */
+const TZ_EVENT = { "ru-ua": "Europe/Kyiv", iran: "Asia/Tehran", taiwan: "Asia/Taipei", redsea: "Asia/Aden", sudan: "Africa/Khartoum", drc: "Africa/Lubumbashi", "cn-cyber": "Asia/Shanghai", korea: "Asia/Seoul", "dprk-cyber": "Asia/Pyongyang", sahel: "Africa/Bamako", scs: "Asia/Manila", venezuela: "America/Caracas", ethiopia: "Africa/Addis_Ababa", haiti: "America/Port-au-Prince", myanmar: "Asia/Yangon", nigeria: "Africa/Lagos", somalia: "Africa/Mogadishu", mexico: "America/Mexico_City", colombia: "America/Bogota", cuba: "America/Havana", libya: "Africa/Tripoli", mozambique: "Africa/Maputo", gaza: "Asia/Gaza", syria: "Asia/Damascus", afghanistan: "Asia/Kabul", kashmir: "Asia/Kolkata", pakistan: "Asia/Karachi", ssudan: "Africa/Juba", ecuador: "America/Guayaquil", lebanon: "Asia/Beirut", balkans: "Europe/Belgrade", baltic: "Europe/Riga" };
+const TZ_LIST = [["Z", "Zulu (UTC)"], ["local", "Local · this device"], ["auto", "Follow selected situation"], null,
+  ["America/New_York", "Washington DC"], ["America/Chicago", "Central US"], ["America/Los_Angeles", "Pacific US"], ["Pacific/Honolulu", "Honolulu · INDOPACOM"],
+  ["Europe/London", "London"], ["Europe/Brussels", "Brussels · NATO"], ["Europe/Berlin", "Stuttgart · EUCOM / AFRICOM"], ["Europe/Kyiv", "Kyiv"], ["Europe/Moscow", "Moscow"],
+  ["Asia/Jerusalem", "Tel Aviv"], ["Asia/Beirut", "Beirut"], ["Asia/Tehran", "Tehran"], ["Asia/Riyadh", "Riyadh"], ["Asia/Aden", "Sana'a"], ["Asia/Dubai", "Dubai"],
+  ["Asia/Kabul", "Kabul"], ["Asia/Karachi", "Islamabad"], ["Asia/Kolkata", "New Delhi"], ["Asia/Yangon", "Yangon"], ["Asia/Shanghai", "Beijing"], ["Asia/Taipei", "Taipei"],
+  ["Asia/Manila", "Manila"], ["Asia/Seoul", "Seoul"], ["Asia/Pyongyang", "Pyongyang"], ["Asia/Tokyo", "Tokyo"], ["Africa/Cairo", "Cairo"], ["Africa/Khartoum", "Khartoum"],
+  ["Africa/Nairobi", "Nairobi"], ["Africa/Lagos", "Lagos"], ["America/Caracas", "Caracas"], ["America/Bogota", "Bogotá"], ["America/Mexico_City", "Mexico City"]];
+let tzChoice = (() => { try { return localStorage.getItem("sokren_tz") || "Z"; } catch (e) { return "Z"; } })();
+function tzNow() {
+  if (tzChoice === "auto") { const z = state.selected && TZ_EVENT[state.selected]; return z ? { zone: z, label: byId[state.selected].name.split(/[\/(]/)[0].trim() } : { zone: "Z", label: "Zulu" }; }
+  if (tzChoice === "local") return { zone: undefined, label: "Local" };
+  if (tzChoice === "Z") return { zone: "Z", label: "Zulu" };
+  const t = TZ_LIST.find(x => x && x[0] === tzChoice); return { zone: tzChoice, label: t ? t[1].split(" · ")[0] : tzChoice };
+}
+function tzOffset(zone, d) {
+  try { return new Intl.DateTimeFormat("en-US", { timeZone: zone, timeZoneName: "shortOffset" }).formatToParts(d).find(p => p.type === "timeZoneName").value.replace("GMT", "UTC"); } catch (e) { return ""; }
+}
 function tickClock() {
   const c = $("utc"); if (!c) return;
-  const d = new Date();
-  c.textContent = d.toISOString().slice(11, 19) + "Z";
-  const dd = $("utc-date"); if (dd) dd.textContent = d.toISOString().slice(0, 10);
+  const d = new Date(), t = tzNow(), dd = $("utc-date");
+  if (t.zone === "Z") { c.textContent = d.toISOString().slice(11, 19) + "Z"; if (dd) dd.textContent = d.toISOString().slice(0, 10); return; }
+  let hms = "";
+  try { hms = new Intl.DateTimeFormat("en-GB", { timeZone: t.zone, hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }).format(d); } catch (e) { hms = d.toISOString().slice(11, 19); }
+  c.textContent = hms;
+  if (dd) dd.textContent = t.label.toUpperCase() + " · " + (tzOffset(t.zone, d) || "UTC") + " · " + d.toISOString().slice(11, 16) + "Z";
+}
+function renderTzMenu() {
+  const m = $("tz-menu"), d = new Date();
+  m.innerHTML = TZ_LIST.map(x => {
+    if (!x) return '<div class="tz-sep"></div>';
+    const [id, name] = x, zone = id === "Z" ? "UTC" : id === "local" ? undefined : id === "auto" ? null : id;
+    const off = id === "Z" ? "UTC+0" : zone === null ? (state.selected && TZ_EVENT[state.selected] ? tzOffset(TZ_EVENT[state.selected], d) : "UTC+0") : tzOffset(zone, d);
+    return `<button class="tz-opt${tzChoice === id ? " on" : ""}" data-tz="${id}"><span>${esc(name)}</span><span class="o">${esc(off)}</span></button>`;
+  }).join("");
+  m.querySelectorAll("[data-tz]").forEach(b => b.addEventListener("click", e => {
+    e.stopPropagation(); tzChoice = b.dataset.tz;
+    try { localStorage.setItem("sokren_tz", tzChoice); } catch (x) { /* ignore */ }
+    m.classList.remove("open"); tickClock();
+  }));
 }
 
 /* ========================= convergence: live signals near an event ========================= */
@@ -3534,6 +3627,7 @@ function renderAll() {
 
 function setSelected(id) {
   state.selected = id;
+  if (typeof tickClock === "function") setTimeout(tickClock, 0);
   state.limit = 30;
   if (state.layers.aircraft) {
     if (id) loadArea();
@@ -3624,13 +3718,28 @@ document.querySelectorAll(".btab").forEach(b => b.addEventListener("click", () =
   document.querySelectorAll(".bpane").forEach(p => p.classList.toggle("on", p.dataset.bp === b.dataset.bt));
   $("board").classList.add("open");
 }));
-$("board-head").addEventListener("click", () => $("board").classList.toggle("open"));
+$("board-head").addEventListener("click", e => { if (e.target.closest("#board-col")) return; if (window.innerWidth <= 900) $("board").classList.toggle("open"); });
+$("board-col").addEventListener("click", e => { e.stopPropagation(); setPanel("board", true); });
+$("board-tab").addEventListener("click", e => { e.stopPropagation(); setPanel("board", false); });
+(function restorePanels() {
+  let r = "on", bd = "on";
+  try { r = localStorage.getItem("sokren_rail") || "on"; bd = localStorage.getItem("sokren_board") || "on"; } catch (e) { /* ignore */ }
+  if (window.innerWidth > 900) { $("ops").classList.toggle("rail-off", r === "off"); $("ops").classList.toggle("board-off", bd === "off"); }
+})();
+document.addEventListener("keydown", e => {
+  if (state.ck.open || /INPUT|TEXTAREA/.test((e.target && e.target.tagName) || "") || state.tab !== "home" || window.innerWidth <= 900) return;
+  if (e.key === "[") setPanel("rail", !$("ops").classList.contains("rail-off"));
+  if (e.key === "]") setPanel("board", !$("ops").classList.contains("board-off"));
+});
 $("board-all").addEventListener("click", () => switchView("situations"));
 $("board-feed").addEventListener("click", () => switchView("feed"));
-$("rail-toggle").addEventListener("click", e => { e.stopPropagation(); $("rail").classList.toggle("open"); });
-$("rail-close").addEventListener("click", () => $("rail").classList.remove("open"));
+$("rail-toggle").addEventListener("click", e => { e.stopPropagation(); if (window.innerWidth <= 900) $("rail").classList.toggle("open"); else setPanel("rail", false); });
+$("rail-close").addEventListener("click", () => { if (window.innerWidth <= 900) $("rail").classList.remove("open"); else setPanel("rail", true); });
 $("board-n").textContent = EVENTS.length + " tracked";
 tickClock(); setInterval(tickClock, 1000);
+$("tz-btn").addEventListener("click", e => { e.stopPropagation(); const m = $("tz-menu"); if (!m.classList.contains("open")) renderTzMenu(); m.classList.toggle("open"); });
+$("tz-menu").addEventListener("click", e => e.stopPropagation());
+document.addEventListener("click", () => $("tz-menu").classList.remove("open"));
 (function bootGlobe() {
   if (typeof maplibregl !== "undefined") return initGlobe();
   const s = $("ml-js");
