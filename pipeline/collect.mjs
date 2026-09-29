@@ -6,19 +6,46 @@
 import { loadBaseline, readJSON, writeJSON, makeMatcher, domainOf } from './lib.mjs';
 
 const SOURCES = [
-  // conflict & geopolitics
+  // think tanks & conflict analysis
   { id: 'crisisgroup', name: 'International Crisis Group', url: 'https://www.crisisgroup.org/rss.xml' },
+  { id: 'cfr', name: 'Council on Foreign Relations', url: 'https://feeds.cfr.org/cfr_main' },
+  { id: 'atlantic', name: 'Atlantic Council', url: 'https://www.atlanticcouncil.org/feed/' },
+  { id: 'aei', name: 'AEI', url: 'https://www.aei.org/feed/' },
+  { id: 'stimson', name: 'Stimson Center', url: 'https://www.stimson.org/feed/' },
+  { id: '38north', name: '38 North', url: 'https://www.38north.org/feed/' },
+  { id: 'wotr', name: 'War on the Rocks', url: 'https://warontherocks.com/feed/' },
+  { id: 'lwj', name: 'Long War Journal', url: 'https://www.longwarjournal.org/feed' },
+  { id: 'bellingcat', name: 'Bellingcat', url: 'https://www.bellingcat.com/feed/' },
   { id: 'geomon', name: 'Geopolitical Monitor', url: 'https://www.geopoliticalmonitor.com/feed/' },
   { id: 'lawfare', name: 'Lawfare', url: 'https://www.lawfaremedia.org/feeds/articles' },
+  { id: 'fp', name: 'Foreign Policy', url: 'https://foreignpolicy.com/feed/' },
+  { id: 'diplomat', name: 'The Diplomat', url: 'https://thediplomat.com/feed/' },
+  { id: 'insightcrime', name: 'InSight Crime', url: 'https://insightcrime.org/feed/' },
+  { id: 'birn', name: 'Balkan Insight', url: 'https://balkaninsight.com/feed/' },
+  // defense & government
   { id: 'defenseone', name: 'Defense One', url: 'https://www.defenseone.com/rss/all/' },
+  { id: 'dod', name: 'U.S. Department of Defense', url: 'https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=945&max=10' },
+  { id: 'unnews', name: 'UN News', url: 'https://news.un.org/feed/subscribe/en/news/all/rss.xml' },
+  // international news
   { id: 'aj', name: 'Al Jazeera', url: 'https://www.aljazeera.com/xml/rss/all.xml' },
   { id: 'bbc', name: 'BBC World', url: 'https://feeds.bbci.co.uk/news/world/rss.xml' },
+  { id: 'guardian', name: 'The Guardian', url: 'https://www.theguardian.com/world/rss' },
+  { id: 'nyt', name: 'The New York Times', url: 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml' },
+  { id: 'france24', name: 'France 24', url: 'https://www.france24.com/en/rss' },
+  { id: 'dw', name: 'DW', url: 'https://rss.dw.com/rdf/rss-en-world' },
+  { id: 'npr', name: 'NPR', url: 'https://feeds.npr.org/1004/rss.xml' },
   // cyber & threat intelligence
   { id: 'mandiant', name: 'Google Threat Intelligence (Mandiant)', url: 'https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v' },
   { id: 'sentinellabs', name: 'SentinelLabs', url: 'https://www.sentinelone.com/labs/feed/' },
   { id: 'record', name: 'The Record', url: 'https://therecord.media/feed' },
   { id: 'cyberscoop', name: 'CyberScoop', url: 'https://cyberscoop.com/feed/' },
   { id: 'cisa', name: 'CISA', url: 'https://www.cisa.gov/cybersecurity-advisories/all.xml' },
+];
+const GDELT_OUTLETS = [
+  ['apnews.com', 'AP'], ['reuters.com', 'Reuters'], ['understandingwar.org', 'Institute for the Study of War'],
+  ['csis.org', 'CSIS'], ['reliefweb.int', 'ReliefWeb'], ['securitycouncilreport.org', 'Security Council Report'],
+  ['kyivindependent.com', 'Kyiv Independent'], ['crisisgroup.org', 'International Crisis Group'],
+  ['rand.org', 'RAND'], ['state.gov', 'U.S. State Department'],
 ];
 const WINDOW_DAYS = 30, PER_SITUATION = 60, UA = 'SOKREN-intel/1.0 (+https://www.sokren.com)';
 
@@ -96,6 +123,24 @@ async function main() {
         }
         report.gdelt[e.id] = arts.length; failStreak = 0;
       } catch (err) { report.gdelt[e.id] = 'failed: ' + err.message; failStreak++; }
+      await sleep(8000);
+    }
+  }
+
+  if (!noGdelt) {
+    let failStreak = 0;
+    for (const [domain, name] of GDELT_OUTLETS) {
+      if (failStreak >= 3) { report.gdelt['@' + domain] = 'skipped'; continue; }
+      try {
+        const d = await gdelt(`https://api.gdeltproject.org/api/v2/doc/doc?query=domain:${domain}&mode=ArtList&format=json&maxrecords=75&timespan=3d&sort=DateDesc`);
+        let routed = 0;
+        for (const a of d.articles || []) {
+          const [id] = match(decode(a.title)); if (!id) continue;
+          const dt = /^\d{8}T\d{6}Z$/.test(a.seendate || '') ? `${a.seendate.slice(0, 4)}-${a.seendate.slice(4, 6)}-${a.seendate.slice(6, 8)}T${a.seendate.slice(9, 11)}:${a.seendate.slice(11, 13)}:00Z` : null;
+          add(id, { title: decode(a.title), url: a.url, domain, date: dt, src: name }); routed++;
+        }
+        report.gdelt['@' + domain] = `${(d.articles || []).length} items, ${routed} routed`; failStreak = 0;
+      } catch (err) { report.gdelt['@' + domain] = 'failed: ' + err.message; failStreak++; }
       await sleep(8000);
     }
   }

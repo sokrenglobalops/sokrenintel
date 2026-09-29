@@ -132,9 +132,11 @@ silently kills the layer. Test: `tests/v2.test.mjs` (MapLibre from node_modules,
 Tim's rules (2026-09-28): fully automatic; revise the existing assessment **in place** (ACH, linchpins, SWOT,
 outlook, STI/parts, brief, activity lines, priority) **only when new reporting is material**; no separate
 reports; free reputable sources only (ACLED rejected — paid for commercial use).
-- **Daily 06:15 UTC** `collect.mjs`: RSS (Crisis Group, Geopolitical Monitor, Lawfare `/feeds/articles`, Defense One,
-  Al Jazeera, BBC, Google TI/Mandiant feedburner, SentinelLabs, The Record, CyberScoop, CISA) + GDELT per situation
-  (`EVENTS[].query`, ≥8 s apart with retries — GDELT throttles bursts). Routed with the site's `EVENT_KEYWORDS`
+- **Daily 06:15 UTC** `collect.mjs`: ~30 RSS feeds (`SOURCES`: think tanks, wires/international news, UN/DoD,
+  cyber TI) + GDELT per situation (`EVENTS[].query`) + GDELT per outlet for sites with no usable feed
+  (`GDELT_OUTLETS`: AP, Reuters, ISW, CSIS, ReliefWeb, Security Council Report, Kyiv Independent, RAND, State) —
+  ≥8 s apart with retries and a circuit breaker (GDELT throttles bursts). Sites that 403 automated readers are
+  covered via GDELT, never by spoofing a browser. ReliefWeb's API needs an approved (free) appname — not requested yet. Routed with the site's `EVENT_KEYWORDS`
   (first match wins). Rolling 30 days, ≤60 per situation → `data/news.json`. CrisisWatch pages are behind bot
   protection (no feed); Lawfare's main feeds 403 but `/feeds/articles` works.
 - **Weekly Mon 07:00 UTC** `assess.mjs`: situations with ≥3 new articles since their last review go to
