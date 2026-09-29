@@ -124,7 +124,10 @@ layers are GeoJSON sources updated by `renderOverlay()` / `renderOverlayShips()`
 screen), `aircraft` (plane icons, mil/civ/emg), `ac-trails`, `aoi` (250 nm ring round the selection).
 Hover/click via `hitAt()` + `describeHit()`. Old SVG functions (`applyView`, `zoomAt`, `focusMap`, …) are shims
 over the map. Layout: `#ops` full-bleed; `#rail` (layers, filters, key), `#board` (ranked situations,
-tabs), `#ops-status` (UTC + feed health, `renderStatus`). ≤ 900 px: rail = slide-in sheet, board = bottom
+tabs), `#ops-status` (UTC + feed health, `renderStatus`). Desktop visits **start with both panels collapsed** (not
+remembered). Situation names (`sit-label`, minzoom `LABEL_REVEAL` = opening zoom + 0.45) and the emerging/updated rings
+fade in only past the opening view; the selected situation is always named (`sit-label-sel`). Dots are flat, sized
+by priority and zoom (3D orbs were tried and rejected by Tim). Closing the drawer eases padding back to `mapPadding()`. ≤ 900 px: rail = slide-in sheet, board = bottom
 sheet. Zoom expressions in MapLibre must be a top-level `step`/`interpolate` — nesting one inside `case`
 silently kills the layer. Test: `tests/console.test.mjs` (MapLibre from node_modules, swiftshader WebGL).
 

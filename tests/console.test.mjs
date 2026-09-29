@@ -48,6 +48,7 @@ const count = (page, id) => page.evaluate(id => MAP.getSource(id).serialize().da
 // desktop
 let page = await open({ width: 1440, height: 900 });
 R.ready = await page.evaluate(() => mapReady && MAP.getProjection().type);
+R.opening = await page.evaluate(() => ({ z: MAP.getZoom(), reveal: LABEL_REVEAL, minz: MAP.getLayer('sit-label').minzoom, cls: document.getElementById('ops').className, pad: MAP.getPadding() }));
 R.situations = await count(page, 'situations');
 await page.evaluate(() => {
   const m = (mmsi, lat, lon, type) => ({ MessageType: "PositionReport", MetaData: { MMSI: mmsi, ShipName: "V" + mmsi, latitude: lat, longitude: lon }, Message: { PositionReport: { Latitude: lat, Longitude: lon, Cog: 45, Sog: 12 } } });
@@ -74,14 +75,18 @@ await page.evaluate(() => setSelected('iran')); await page.waitForTimeout(1800);
 R.drawerIran = await page.evaluate(() => document.getElementById('d-review').innerText);
 R.selected = await page.evaluate(() => ({ aoi: MAP.getSource('aoi').serialize().data.features.length, drawer: document.getElementById('detail').classList.contains('open'), sel: MAP.getSource('situations').serialize().data.features.find(f => f.properties.id === 'iran').properties.s, center: MAP.getCenter().toArray().map(v => +v.toFixed(0)) }));
 await page.screenshot({ path: out('v2-selected.png') });
-await page.evaluate(() => setSelected(null));
+await page.evaluate(() => setSelected(null)); await page.waitForTimeout(900);   // globe glides back to centre
 R.filter = await page.evaluate(() => { state.shipFilter = 'military'; repickShips(); renderOverlay(); const n = MAP.getSource('ships').serialize().data.features.length; state.shipFilter = 'all'; repickShips(); renderOverlay(); return n; });
 // collapsible panels, spin toggle, time zones
-await page.click('#rail-close'); await page.click('#board-col'); await page.waitForTimeout(500);
-R.collapsed = await page.evaluate(() => ({ cls: document.getElementById('ops').className, pad: MAP.getPadding(), tabs: [getComputedStyle(document.getElementById('rail-toggle')).display, getComputedStyle(document.getElementById('board-tab')).display], saved: localStorage.getItem('sokren_board') }));
+// panels start collapsed on every visit; open from the corner tabs, collapse again with ‹ ›
+R.collapsed = await page.evaluate(() => ({ cls: document.getElementById('ops').className, pad: MAP.getPadding(), tabs: [getComputedStyle(document.getElementById('rail-toggle')).display, getComputedStyle(document.getElementById('board-tab')).display] }));
 await page.screenshot({ path: out('v2-collapsed.png') });
 await page.click('#rail-toggle'); await page.click('#board-tab'); await page.waitForTimeout(400);
-R.reopened = await page.evaluate(() => document.getElementById('ops').className);
+R.reopened = await page.evaluate(() => ({ cls: document.getElementById('ops').className, pad: MAP.getPadding() }));
+await page.click('#rail-close'); await page.click('#board-col'); await page.waitForTimeout(400);
+R.recollapsed = await page.evaluate(() => document.getElementById('ops').className);
+await page.click('#rail-toggle'); await page.click('#board-tab'); await page.waitForTimeout(400);
+
 await page.click('#z-spin');
 R.spin = await page.evaluate(() => ({ mode: spinMode, btn: document.getElementById('z-spin').classList.contains('on') }));
 const lng0 = await page.evaluate(() => MAP.getCenter().lng); await page.waitForTimeout(800);
@@ -95,7 +100,7 @@ await page.evaluate(() => setSelected(null));
 R.spinAfterSelect = await page.evaluate(() => spinMode);
 await page.click('#tz-btn'); await page.click('.tz-opt[data-tz="Z"]');
 R.tzZ = await page.evaluate(() => document.getElementById('utc').textContent);
-R.views = await page.evaluate(() => { const r = {}; for (const v of ['feed', 'situations', 'about', 'home']) { switchView(v); r[v] = document.getElementById('view-' + v).classList.contains('active'); } r.onHome = document.body.classList.contains('on-home'); return r; });
+R.views = await page.evaluate(() => { const r = {}; for (const v of ['feed', 'situations', 'about', 'home']) { switchView(v); r[v] = document.getElementById('view-' + v).classList.contains('active'); } r.onHome = document.body.classList.contains('on-home'); return r; }); await page.waitForTimeout(300);
 await page.close();
 
 // phone
@@ -132,10 +137,13 @@ assert.ok(R.views.feed && R.views.situations && R.views.about && R.views.home &&
 assert.strictEqual(R.phone.sw, 390, 'no horizontal scroll at 390 px');
 assert.ok(R.phone.railHidden && R.phone.toggle !== 'none' && R.phone.board < 70);
 assert.ok(R.phoneRailOpen && R.phoneBoardOpen > 200);
-assert.ok(/rail-off/.test(R.collapsed.cls) && /board-off/.test(R.collapsed.cls) && R.collapsed.pad.left === 0 && R.collapsed.pad.right === 0);
+assert.ok(/rail-off/.test(R.opening.cls) && /board-off/.test(R.opening.cls) && R.opening.pad.left === 0 && R.opening.pad.right === 0, 'panels start collapsed, globe centred');
+assert.ok(R.opening.minz === R.opening.reveal && R.opening.reveal > R.opening.z, 'names hidden on the opening view');
+assert.ok(/rail-off/.test(R.collapsed.cls) && /board-off/.test(R.collapsed.cls) && R.collapsed.pad.left === 0 && R.collapsed.pad.right === 0, 'globe re-centred after the drawer closed');
 assert.deepStrictEqual(R.collapsed.tabs, ['flex', 'flex']);
-assert.strictEqual(R.collapsed.saved, 'off');
-assert.ok(!/off/.test(R.reopened));
+assert.ok(!/off/.test(R.reopened.cls) && R.reopened.pad.left > 0 && R.reopened.pad.right > 0);
+assert.ok(/rail-off/.test(R.recollapsed) && /board-off/.test(R.recollapsed));
+
 assert.ok(R.spin.mode === 'on' && R.spin.btn && R.spinning, 'spin toggle keeps the globe turning');
 assert.strictEqual(R.spinAfterSelect, 'on', 'selecting a situation does not cancel pinned spin');
 assert.match(R.tzTehran, /TEHRAN · UTC\+3:30/);
