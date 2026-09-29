@@ -110,11 +110,11 @@ await page.close();
 
 console.log(JSON.stringify(R, null, 2)); console.log('PAGE ERRORS:', errs.length ? errs : 'none');
 assert.strictEqual(R.ready, 'globe');
-assert.strictEqual(R.situations, 33);
+assert.strictEqual(R.situations, 45);
 assert.strictEqual(R.ships, 12001, 'GPU layer draws every vessel');
 assert.ok(R.milShip);
 assert.strictEqual(R.aircraft, 1);
-assert.match(R.status, /33 situations/i);
+assert.match(R.status, /45 situations/i);
 assert.match(R.status, /AIS 12,001 vessels/i);
 assert.ok(R.board >= 10 && R.railLayers === 4);
 assert.strictEqual(R.intel.sti, 95);
