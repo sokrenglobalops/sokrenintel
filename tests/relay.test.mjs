@@ -2,7 +2,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 import assert from 'assert';
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const HTML = fs.readFileSync(new URL('../classic.html', import.meta.url), 'utf8');
 const base = (HTML.match(/const RELAY_BASE = "([^"]*)";/) || [])[1];
 const b = await chromium.launch(); const page = await b.newPage({ viewport: { width: 1400, height: 900 } });
 const errs = []; page.on('pageerror', e => errs.push(e.message));

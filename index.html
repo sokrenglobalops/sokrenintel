@@ -2424,7 +2424,7 @@ async function loadIntel() {
     const ev = byId[id]; if (!ev) continue;
     if (rec.fields) {
       const f = rec.fields;
-      ["priority", "sti", "parts", "brief", "assess", "outlook"].forEach(k => { if (f[k] != null) ev[k] = f[k]; });
+      ["priority", "sti", "parts", "brief", "assess", "outlook", "emerging", "flash"].forEach(k => { if (f[k] != null) ev[k] = f[k]; });
       if (f.analysis) ANALYSIS[id] = { ...(ANALYSIS[id] || {}), ...f.analysis };
     }
     ev.auto = rec;
@@ -2458,7 +2458,7 @@ function renderReview(ev) {
       ${(x.sources || []).length ? `<div class="chg-src">${x.sources.slice(0, 4).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="${esc(s.title)}">${esc(s.domain)} ↗</a>`).join("")}</div>` : ""}</div>`).join("")}
   </div>`;
 }
-const CHG_LABEL = { priority: "Priority", sti: "Threat index", parts: "Index components", brief: "Brief", assess: "Activity", outlook: "Outlook", ach: "Competing hypotheses", disc: "Key discriminator", pins: "Linchpins", swot: "SWOT" };
+const CHG_LABEL = { status: "Status", priority: "Priority", sti: "Threat index", parts: "Index components", brief: "Brief", assess: "Activity", outlook: "Outlook", ach: "Competing hypotheses", disc: "Key discriminator", pins: "Linchpins", swot: "SWOT" };
 function renderChanges() {
   const el = $("ip-changes"); if (!el) return;
   const recent = INTEL.changes.filter(c => Date.now() - Date.parse(c.at) < 30 * DAY);

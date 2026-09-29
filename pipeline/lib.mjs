@@ -1,12 +1,12 @@
 // Shared helpers for the intel pipeline (collect.mjs daily, assess.mjs weekly).
 // The site file stays the single source of the baseline: EVENTS, ANALYSIS and EVENT_KEYWORDS are read
-// straight out of v2.html, and data/intel.json holds only the machine revisions layered on top.
+// straight out of index.html, and data/intel.json holds only the machine revisions layered on top.
 import fs from 'fs';
 import vm from 'vm';
 
 export const ROOT = new URL('../', import.meta.url);
 export const DATA = new URL('data/', ROOT);
-export const SITE_FILE = new URL('v2.html', ROOT);
+export const SITE_FILE = new URL('index.html', ROOT);
 
 function sliceConst(src, name) {
   const start = src.indexOf(`const ${name} = `);
@@ -54,7 +54,7 @@ export function currentAssessment(id, base, intel) {
   const e = base.events.find(x => x.id === id), a = base.analysis[id] || {};
   const rev = intel.events && intel.events[id] && intel.events[id].fields;
   const cur = {
-    name: e.name, priority: e.priority, sti: e.sti, parts: e.parts, brief: e.brief, assess: e.assess, outlook: e.outlook,
+    name: e.name, emerging: !!e.emerging, flash: e.flash || '', priority: e.priority, sti: e.sti, parts: e.parts, brief: e.brief, assess: e.assess, outlook: e.outlook,
     analysis: { ach: a.ach || [], disc: a.disc || '', pins: a.pins || [], swot: a.swot || { s: [], w: [], o: [], t: [] } },
   };
   return rev ? { ...cur, ...rev, analysis: { ...cur.analysis, ...(rev.analysis || {}) } } : cur;

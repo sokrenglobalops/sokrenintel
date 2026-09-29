@@ -10,8 +10,9 @@ misaligned pixels; keep the visual language consistent with what exists.
 
 | Path | What |
 |---|---|
-| `index.html` | **The entire app.** Vanilla HTML/CSS/JS, one file, ~250 KB, no build step, no framework, no bundler. |
-| `v2.html` | **Redesign preview** (Sep 2026): same app as an operations console on a MapLibre WebGL globe. Public but unlinked at `/v2.html` until Tim approves; then it replaces `index.html`. Keep data-code fixes in both until then. |
+| `index.html` | **The entire app** — the operations console on a MapLibre WebGL globe (was `v2.html`; promoted 2026-09-29). Vanilla HTML/CSS/JS, one file, no build step, no framework, no bundler. |
+| `classic.html` | The pre-redesign SVG-map site, kept as a fallback (noindex). The older engine tests run against it. Remove once Tim no longer wants it. |
+| `v2.html` | Redirect to `/` (keeps old preview links working). |
 | `air-helper/` | Deno Deploy helper that logs in to OpenSky for the relay (OpenSky blocks Cloudflare). |
 | `pipeline/` | Intel pipeline run by `.github/workflows/intel.yml`: `collect.mjs` (daily news), `assess.mjs` (weekly assessment review via Claude API), `lib.mjs`. |
 | `data/` | Pipeline output served same-origin: `news.json`, `intel.json`, `changes.json`. Written by the bot; don't hand-edit. |
@@ -114,7 +115,7 @@ cached pass-throughs (CORS locked to `ALLOWED_ORIGINS`).
   4000 credits/day. Health + login probe: `<relay>/air/status?probe=1`. Helper returns errors as 200 `{error}`
   (a 5xx body gets replaced by the edge). Test creds locally: `sokren-relay/test/opensky_login_check.sh FILE.json`.
 
-## v2 map engine (v2.html)
+## Map engine (index.html)
 
 MapLibre globe (`initGlobe`, `MAP_STYLE` = custom dark style over OpenFreeMap `planet` vector tiles). All live
 layers are GeoJSON sources updated by `renderOverlay()` / `renderOverlayShips()` / `renderMarkerCounts()`:
@@ -125,7 +126,7 @@ Hover/click via `hitAt()` + `describeHit()`. Old SVG functions (`applyView`, `zo
 over the map. Layout: `#ops` full-bleed; `#rail` (layers, filters, key), `#board` (ranked situations,
 tabs), `#ops-status` (UTC + feed health, `renderStatus`). ≤ 900 px: rail = slide-in sheet, board = bottom
 sheet. Zoom expressions in MapLibre must be a top-level `step`/`interpolate` — nesting one inside `case`
-silently kills the layer. Test: `tests/v2.test.mjs` (MapLibre from node_modules, swiftshader WebGL).
+silently kills the layer. Test: `tests/console.test.mjs` (MapLibre from node_modules, swiftshader WebGL).
 
 ## Intel pipeline (pipeline/, data/, .github/workflows/intel.yml)
 
@@ -142,10 +143,12 @@ reports; free reputable sources only (ACLED rejected — paid for commercial use
 - **Weekly Mon 07:00 UTC** `assess.mjs`: situations with ≥3 new articles since their last review go to
   `claude-opus-5-5` via the **Message Batches API** (half price) with a strict JSON schema (`output_config.format`);
   refusals/errors retried synchronously with `fallbacks: "default"`. Manual (workflow_dispatch) runs use `--sync`: no batch queue, 4 at a time. Output validated/clamped (ACH renormalised to
-  100). Material → `data/intel.json` `events[id].fields` + `data/changes.json` entry; not material → only
-  `checkedAt`/`lastReview`. Baseline is read from `v2.html` (`lib.mjs` `loadBaseline()` slices EVENTS/ANALYSIS/
+  100). The model may also reclassify `status` (active ↔ emerging) and rewrite `flash`. The collector keeps only
+  `TRUSTED` domains (+ every feed/outlet), so GDELT's local-station reprints are never stored or cited.
+  Material → `data/intel.json` `events[id].fields` + `data/changes.json` entry; not material → only
+  `checkedAt`/`lastReview`. Baseline is read from `index.html` (`lib.mjs` `loadBaseline()` slices EVENTS/ANALYSIS/
   EVENT_KEYWORDS), so the HTML stays the analyst baseline and intel.json the machine layer.
-- **Site** (`v2.html` `loadIntel()`): overlays intel.json onto EVENTS/ANALYSIS, merges news.json into feeds
+- **Site** (`index.html` `loadIntel()`): overlays intel.json onto EVENTS/ANALYSIS, merges news.json into feeds
   (preferred over the Sep 4 `SEED`), drawer review line ("Auto-updated … machine-drafted" / "Reviewed … no
   material change" / "Analyst baseline"), "What changed" box, board **Changes** tab, cyan ring + UPDATED pill ≤ 7 days.
 - Secret: `ANTHROPIC_API_KEY` (repo → Settings → Secrets → Actions). Manual run: Actions → intel → Run workflow.
@@ -159,7 +162,7 @@ npx playwright install chromium   # once
 npm test               # syntax + all tests/*.test.mjs, screenshots in tests/out/
 node tests/dark.test.mjs          # one test, full JSON output
 ```
-Tests blank `RELAY_BASE` (direct-key mode) except `relay.test.mjs`, which checks the page as deployed. Tests serve `index.html` via Playwright route interception at `http://localhost/` and mock every network
+`console.test.mjs` tests `index.html` (MapLibre from node_modules, pipeline data fixtures). The older engine tests (`air`, `cab`, `card`, `click`, `dark`, `ships`, `views`, `relay`) run against `classic.html`; they blank `RELAY_BASE` (direct-key mode) except `relay.test.mjs`. Tests serve `index.html` via Playwright route interception at `http://localhost/` and mock every network
 call (GDELT, ADS-B, OpenSky, cables) — they run offline and finish in ~50 s. AIS is tested with a fake
 `window.WebSocket` class and hand-built AISStream JSON fixtures. Each test prints a JSON result block and
 `PAGE ERRORS: none`; the runner fails on any page error or non-zero exit. When you add a feature, add or

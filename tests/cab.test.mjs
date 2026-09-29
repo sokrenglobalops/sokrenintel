@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 // Direct (per-browser key) mode: blank RELAY_BASE so tests stay offline and deterministic.
-const HTML = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
+const HTML = fs.readFileSync(new URL('../classic.html', import.meta.url), 'utf8').replace(/const RELAY_BASE = "[^"]*";/, 'const RELAY_BASE = "";');
 // 40 fake cable systems with realistic MultiLineString geometry
 const feats = [];
 for (let i = 0; i < 40; i++) { const lon0 = -170 + i * 8, lat0 = -40 + (i % 7) * 12; feats.push({ type: "Feature", properties: { id: "c" + i, name: "Cable " + i }, geometry: { type: "MultiLineString", coordinates: [[[lon0, lat0], [lon0 + 5, lat0 + 6], [lon0 + 12, lat0 + 3]], [[lon0 + 12, lat0 + 3], [lon0 + 20, lat0 - 4]]] } }); }

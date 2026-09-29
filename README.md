@@ -2,24 +2,44 @@
 
 ## 🔴 Live site: [www.sokren.com](https://www.sokren.com)
 
-Open-source global situational awareness. Live conflict monitoring, priority-tiered
-events, structured analytic assessments (ACH / linchpin / SWOT), and source-linked
-coverage aggregated from GDELT and primary wire feeds.
+Open-source global situational awareness on a live 3D globe: 45 tracked conflicts, cyber campaigns and emerging
+threats, each with a structured analytic assessment (STI threat index, ACH / linchpin / SWOT, outlook), live
+aircraft and ship tracking, and source-linked coverage from ~45 respected outlets. Assessments are reviewed
+automatically every week against new reporting and revised in place only when the reporting is material, with a
+public record of what changed and why.
 
 *This repository hosts the deployed application. To use the platform, visit
 **[www.sokren.com](https://www.sokren.com)** — this page is just the engine room.*
 
 ## Navigation
 
-- **Monitor** (home): the heat map, a Filter dropdown (situation categories), a Layers dropdown, and three
-  intelligence columns: Active Conflicts, Emerging Flashpoints, Analytic Outlook.
-- **Feed**: wire ticker, live coverage with category/priority filters, news sources, and live-search results.
+- **Monitor** (home): a full-screen operations console on a WebGL globe (MapLibre). Floating panels, each collapsible
+  (‹ › or the `[` `]` keys): **Layers** (map layers with live counts, vessel filter, situation filter, key) on the
+  left; the **Situation board** (Active / Emerging / Outlook / Changes, ranked by STI) on the right; a status strip
+  with a time-zone clock (Zulu, local, any capital, or "follow the selected situation") and live feed health.
+  Bottom right: zoom, keep-spinning (⟳), globe/flat toggle (▭), reset. On phones the panels become sheets.
+- **Feed**: wire ticker, current coverage with category/priority filters, news sources, and live-search results.
 - **Situations**: all tracked situations as cards, grouped (active / threat activity / emerging), with a filter box.
 - **About**: what the platform is, how to read it, the STI key, methods, data sources, limits.
-- Selecting a situation anywhere opens a **slide-in panel** with the brief, STI, outlook, live signals, the full
-  ACH / linchpin / SWOT assessment, and linked coverage. Esc or ✕ closes it.
+- Selecting a situation flies the globe to it, draws its 250 nm area of interest and opens the **situation drawer**:
+  brief, review status ("auto-updated" / "reviewed, no material change"), **What changed** with sources, STI,
+  outlook, live signals, the full ACH / linchpin / SWOT assessment, and linked coverage. Esc or ✕ closes it.
 - **Search** (header box, ⌘K / Ctrl+K): countries (focuses the map and opens the linked situation), situations,
   chokepoints, cables, current headlines, and a **live coverage search** on any topic via GDELT.
+- The pre-redesign site remains at `/classic.html` for now.
+
+## Intel pipeline
+
+A GitHub Actions job (`.github/workflows/intel.yml`) keeps the content current without manual work:
+
+- **Daily** — `pipeline/collect.mjs` gathers reporting from ~30 feeds (Crisis Group, CFR, Atlantic Council, War on
+  the Rocks, Long War Journal, UN News, the major US and international newsrooms, cyber threat-intelligence teams)
+  plus GDELT searches per situation and per outlet (AP, Reuters, CNN, ISW, CSIS, RAND, …). Only an allowlist of
+  respected outlets is kept. Output: `data/news.json`.
+- **Weekly (Monday)** — `pipeline/assess.mjs` sends each situation with new reporting to Claude with its current
+  assessment. Only material developments change it; the ACH, linchpins, SWOT, outlook, STI, priority and status are
+  revised in place and every change is logged with its sources (`data/intel.json`, `data/changes.json`). The site
+  labels these revisions as machine-drafted.
 
 ## Map layers
 
@@ -30,7 +50,7 @@ Toggle from the **Layers** dropdown on the map bar (choices are remembered per b
 | Chokepoints | curated (12 maritime chokepoints, linked to situations) | static |
 | Cables | `cables.json` in this repo (TeleGeography Submarine Cable Map geometry, CC BY-NC-SA); falls back to TeleGeography's live API, then to curated corridors | on toggle |
 | Air Tracker | military aircraft worldwide plus all traffic within 250 nm of the selected situation, from OpenSky Network via the SOKREN relay (one shared worldwide snapshot about every 2 min; military by ICAO hex allocation); community ADS-B feeds as fallback | 60 s (data ~2 min) |
-| Ships (AIS) | AISStream.io live AIS — waters around every chokepoint plus the selected situation. Shared with all visitors through the SOKREN relay (`sokren-relay/`, Cloudflare Worker; set `RELAY_BASE` in index.html). Without a relay: per-browser key via ⚙ on the chip | live |
+| Ships (AIS) | AISStream.io live AIS — waters around every chokepoint, 22 major shipping lanes, and the selected situation; every vessel drawn on the GPU. Shared with all visitors through the SOKREN relay (`sokren-relay/`, Cloudflare Worker; set `RELAY_BASE` in index.html). Without a relay: per-browser key via ⚙ on the chip | live |
 
 **Vessel filter (Layers ▾ → Vessels):** All / Military / Coast guard-LE / Tankers / Cargo / Small craft / AIS gaps.
 Classes come from the AIS ship-type code each vessel broadcasts (35 = military, 51/55 = SAR & law enforcement,

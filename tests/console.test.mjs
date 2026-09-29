@@ -1,11 +1,11 @@
-// v2.html (operations console on a MapLibre globe), offline: MapLibre served from node_modules,
+// index.html (operations console on a MapLibre globe), offline: MapLibre served from node_modules,
 // basemap tiles/glyphs aborted, relay AIS via a fake WebSocket. Checks the GPU layers get data,
 // selection flies + draws the AOI ring, the board/status/rail render, and phone width holds.
 import { chromium } from 'playwright';
 import fs from 'fs';
 import assert from 'assert';
 const root = new URL('../', import.meta.url);
-const HTML = fs.readFileSync(new URL('v2.html', root), 'utf8');
+const HTML = fs.readFileSync(new URL('index.html', root), 'utf8');
 const MLJS = fs.readFileSync(new URL('node_modules/maplibre-gl/dist/maplibre-gl.js', root));
 const MLCSS = fs.readFileSync(new URL('node_modules/maplibre-gl/dist/maplibre-gl.css', root));
 const out = p => new URL('tests/out/' + p, root).pathname;
