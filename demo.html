@@ -2269,13 +2269,13 @@ function mapPadding() {
 function setPanel(which, off) {
   const ops = $("ops");
   ops.classList.toggle(which + "-off", off);
-  try { localStorage.setItem("sokren_" + which, off ? "off" : "on"); } catch (e) { /* ignore */ }
   if (MAP && window.innerWidth > 900) MAP.easeTo({ padding: mapPadding(), duration: 300 });
 }
 function homeZoom() {
   const w = window.innerWidth, h = $("ops") ? $("ops").clientHeight : window.innerHeight;
   if (w <= 900) return Math.max(0.6, Math.log2(Math.min(w, h - 150) / 330) + 0.85);
-  return Math.max(1.3, Math.log2(Math.min(w - 620, h - 60) / 512) + 1.65);
+  const ops = $("ops"), side = (ops && !ops.classList.contains("rail-off") ? 290 : 30) + (ops && !ops.classList.contains("board-off") ? 330 : 30);
+  return Math.max(1.3, Math.log2(Math.min(w - side, h - 60) / 512) + 1.65);
 }
 let LABEL_REVEAL = 2.6;
 function initGlobe() {
@@ -4117,11 +4117,8 @@ document.querySelectorAll(".btab").forEach(b => b.addEventListener("click", () =
 $("board-head").addEventListener("click", e => { if (e.target.closest("#board-col")) return; if (window.innerWidth <= 900) $("board").classList.toggle("open"); });
 $("board-col").addEventListener("click", e => { e.stopPropagation(); setPanel("board", true); });
 $("board-tab").addEventListener("click", e => { e.stopPropagation(); setPanel("board", false); });
-(function restorePanels() {
-  let r = "on", bd = "on";
-  try { r = localStorage.getItem("sokren_rail") || "on"; bd = localStorage.getItem("sokren_board") || "on"; } catch (e) { /* ignore */ }
-  if (window.innerWidth > 900) { $("ops").classList.toggle("rail-off", r === "off"); $("ops").classList.toggle("board-off", bd === "off"); }
-})();
+// every visit opens on the clean globe: both panels collapsed (they stay as the viewer leaves them during the visit)
+if (window.innerWidth > 900) { $("ops").classList.add("rail-off"); $("ops").classList.add("board-off"); }
 document.addEventListener("keydown", e => {
   if (state.ck.open || /INPUT|TEXTAREA/.test((e.target && e.target.tagName) || "") || state.tab !== "home" || window.innerWidth <= 900) return;
   if (e.key === "[") setPanel("rail", !$("ops").classList.contains("rail-off"));
