@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-29T02:18:06.941Z",
+ "generatedAt": "2026-09-29T02:52:17.958Z",
  "windowDays": 30,
  "sources": [
   {
@@ -1157,23 +1157,37 @@
   ],
   "taiwan": [
    {
+    "title": "Taiwan reports 3 PLA aircraft , 6 PLAN vessels operating near island",
+    "url": "http://www.newzealandstar.com/news/279339014/taiwan-reports-3-pla-aircraft-6-plan-vessels-operating-near-island",
+    "domain": "newzealandstar.com",
+    "date": "2026-09-29T02:00:00Z",
+    "src": "GDELT"
+   },
+   {
     "title": "China backs Cuba after Trump says island will fall",
-    "url": "http://www.heraldglobe.com/news/279338813/china-backs-cuba-after-trump-says-island-will-fall",
-    "domain": "heraldglobe.com",
-    "date": "2026-09-29T00:15:00Z",
+    "url": "http://www.chinanationalnews.com/news/279338808/china-backs-cuba-after-trump-says-island-will-fall",
+    "domain": "chinanationalnews.com",
+    "date": "2026-09-29T01:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "US Pacific Commander Says Deterrence Means Making Military Aggression Too Costly to Benefit From",
+    "url": "https://www.theepochtimes.com/us/us-pacific-commander-says-deterrence-means-making-military-aggression-too-costly-to-benefit-from-6095711",
+    "domain": "theepochtimes.com",
+    "date": "2026-09-29T01:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "US officials deny there are plans to sell weapons to China",
+    "url": "https://kxel.com/2026/09/28/us-officials-deny-there-are-plans-to-sell-weapons-to-china/",
+    "domain": "kxel.com",
+    "date": "2026-09-29T00:45:00Z",
     "src": "GDELT"
    },
    {
     "title": "ABC Politics - WOND",
     "url": "https://wondradio.com/abc-politics/65b92edaf329d60c5ad18fedce7502ab",
     "domain": "wondradio.com",
-    "date": "2026-09-29T00:15:00Z",
-    "src": "GDELT"
-   },
-   {
-    "title": "US officials deny there are plans to sell weapons to China",
-    "url": "https://abcnews.com/Politics/us-officials-deny-plans-sell-weapons-china/story?id=136823372",
-    "domain": "abcnews.com",
     "date": "2026-09-29T00:15:00Z",
     "src": "GDELT"
    },
@@ -1336,6 +1350,13 @@
    }
   ],
   "redsea": [
+   {
+    "title": "Iran Oil Shock , Warsh Hike , Trump - Xi Truce Reshape Tech Investing After Summit",
+    "url": "https://www.techtimes.com/articles/328143/20260928/iran-oil-shock-warsh-hike-trump-xi-truce-reshape-tech-investing-after-summit.htm",
+    "domain": "techtimes.com",
+    "date": "2026-09-29T01:00:00Z",
+    "src": "GDELT"
+   },
    {
     "title": "Mediators are working to broker a US - Iran deal , but major hurdles remain - Boston News , Weather , Sports",
     "url": "https://whdh.com/news/mediators-are-working-to-broker-a-us-iran-deal-but-major-hurdles-remain/",
@@ -1508,6 +1529,13 @@
   ],
   "cn-cyber": [
    {
+    "title": "Refrigeration Failures at Military Commissaries Draw Scrutiny Over Infrastructure Security – NaturalNews . com",
+    "url": "https://www.naturalnews.com/2026-09-28-refrigeration-failures-at-military-commissaries-draw-scrutiny.html",
+    "domain": "naturalnews.com",
+    "date": "2026-09-28T17:45:00Z",
+    "src": "GDELT"
+   },
+   {
     "title": "Bipartisan Senate leaders introduce bill to bolster telecom cybersecurity in response to Salt Typhoon hacks",
     "url": "https://cyberscoop.com/senate-telecom-cybersecurity-resilience-act-salt-typhoon/",
     "domain": "cyberscoop.com",
@@ -1638,7 +1666,15 @@
     "summary": "North Korea held the Ninth Congress of the Workers’ Party of Korea (WPK) in February of this ... The post Successes and Challenges of North Korea’s Five-Year Plan for Economic Development: Assessment and Outlook appeared first on 38 North ."
    }
   ],
-  "dprk-cyber": [],
+  "dprk-cyber": [
+   {
+    "title": "THORChain Under Fire Over Bitget , ETH Evolves Beyond Blockchain : Hodler Digest",
+    "url": "https://cointelegraph.com/magazine/thorchain-under-fire-over-bitget-hack-eth-is-beyond-blockchain-now",
+    "domain": "cointelegraph.com",
+    "date": "2026-09-28T04:15:00Z",
+    "src": "GDELT"
+   }
+  ],
   "sahel": [
    {
     "title": "“A Recurring Pattern”: Civilians Paying the Price in Mali’s Drone Campaign",
