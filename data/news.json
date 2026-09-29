@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-29T03:20:51.314Z",
+ "generatedAt": "2026-09-29T06:48:16.910Z",
  "windowDays": 30,
  "sources": [
   {
@@ -200,6 +200,14 @@
  ],
  "items": {
   "ru-ua": [
+   {
+    "title": "Russia pounds Ukraine’s Kyiv after deadly strike on Academy of Sciences",
+    "url": "https://www.aljazeera.com/news/2026/9/29/russian-strike-hits-ukraines-academy-of-sciences-in-kyiv-killing-2?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T03:38:16.000Z",
+    "src": "Al Jazeera",
+    "summary": "Footage of attack on Academy shows people leaning out of windows as bright flames engulf part of the historic building."
+   },
    {
     "title": "Russia hammers Ukraine's capital with major daytime drone strike",
     "url": "https://www.cbsnews.com/news/russia-ukraine-war-kyiv-strikes-national-academy-sciences/",
@@ -675,6 +683,68 @@
   ],
   "iran": [
    {
+    "title": "Iran says it expects US response Tuesday on plan to reopen Strait of Hormuz",
+    "url": "https://www.france24.com/en/middle-east/20260929-iran-says-expects-us-response-tuesday-plan-reopen-strait-of-hormuz",
+    "domain": "france24.com",
+    "date": "2026-09-29T06:32:31.000Z",
+    "src": "France 24",
+    "summary": "Iran's Foreign Minister Abbas Araghchi said Tehran expects Washington to respond to its proposal to reopen the Strait of Hormuz on Tuesday. In exchange for reopening the vital shipping route, Tehran is seeking guarantees including a regional ceasefire, the lifting of sanctions on its oil sector and an end to the US naval blockade."
+   },
+   {
+    "title": "Tuesday briefing : Inside the suspected bomb plot at RAF Fairford",
+    "url": "https://www.theguardian.com/world/2026/sep/29/tuesday-briefing-first-edition-raf-fairford-cotswolds",
+    "domain": "theguardian.com",
+    "date": "2026-09-29T06:15:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Iran says it's up to Trump to choose between war and diplomacy",
+    "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-29T05:48:58.000Z",
+    "src": "CBS News",
+    "summary": "As the war with Iran hits the seven-month mark, President Trump confirmed that American and Iranian negotiators exchanged messages through mediators on Monday."
+   },
+   {
+    "title": "Rubio, Saudi Arabia’s foreign minister hold talks on Yemen, Hormuz Strait",
+    "url": "https://www.aljazeera.com/news/2026/9/29/rubio-saudi-arabias-foreign-minister-hold-talks-on-yemen-hormuz-strait?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T04:46:38.000Z",
+    "src": "Al Jazeera",
+    "summary": "Top US and Saudi diplomats discuss cooperation on security challenges, including hostilities with Yemen's Houthis."
+   },
+   {
+    "title": "Oil price and US Treasury yields in tightest relationship since 1990",
+    "url": "https://www.ft.com/content/f894f69a-9e2b-4c3f-bf5d-c5c4dc0e6197?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-29T04:00:23.000Z",
+    "src": "Financial Times",
+    "summary": "Bond investors watch Iran conflict and crude price for signs as to where government borrowing costs will go"
+   },
+   {
+    "title": "The View From India newsletter : U . S .- China : In search of strategic stability",
+    "url": "https://www.thehindu.com/news/international/the-view-from-india-newsletter-us-china-in-search-of-strategic-stability/article71518655.ece",
+    "domain": "thehindu.com",
+    "date": "2026-09-29T04:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Shein shares sink after profits disappoint in first results since IPO",
+    "url": "https://www.ft.com/content/e1696e1f-a54e-4e2a-bbfd-2273f26704cd?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-29T03:28:58.000Z",
+    "src": "Financial Times",
+    "summary": "Fast-fashion retailer squeezed by rising freight costs and Iran war fallout"
+   },
+   {
+    "title": "Rubio says UK air base incident involved ‘foreign actor’",
+    "url": "https://www.ft.com/content/262f5234-3d66-4187-a844-b52c29cb0e9b?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-29T03:08:11.000Z",
+    "src": "Financial Times",
+    "summary": "RAF Fairford was being used by US Air Force for strikes on Iran"
+   },
+   {
     "title": "Iran’s Araghchi meets Qatari mediators as US calls for nuclear talks",
     "url": "https://www.aljazeera.com/news/2026/9/29/irans-araghchi-meets-qatari-mediators-as-us-insists-on-nuclear-talks?traffic_source=rss",
     "domain": "aljazeera.com",
@@ -721,14 +791,6 @@
     "date": "2026-09-28T22:55:54.000Z",
     "src": "PBS NewsHour",
     "summary": "The Trump administration is rolling back federal fuel economy standards for new vehicles. The move reverses policies meant to increase fuel efficiency to encourage greater use of electric vehicles. The boost for gasoline-powered vehicles comes as the war in Iran continues to drive up oil prices. Amna Nawaz discussed the changes with David Shepardson of Reuters."
-   },
-   {
-    "title": "Iran says it's up to Trump to choose between war and diplomacy",
-    "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/",
-    "domain": "cbsnews.com",
-    "date": "2026-09-28T22:17:55.000Z",
-    "src": "CBS News",
-    "summary": "As the war with Iran hits the seven-month mark, President Trump confirmed that American and Iranian negotiators exchanged messages through mediators on Monday."
    },
    {
     "title": "British men released on bail after suspected terror plot",
@@ -1097,62 +1159,6 @@
     "date": "2026-09-23T22:02:05.000Z",
     "src": "Foreign Policy",
     "summary": "Iranian President Masoud Pezeshkian called the U.S. government “terrorists.”"
-   },
-   {
-    "title": "Iran’s president strikes a defiant tone at U.N. after Trump threats",
-    "url": "https://www.nbcnews.com/world/iran/irans-president-strikes-defiant-tone-un-trump-threats-rcna599372",
-    "domain": "nbcnews.com",
-    "date": "2026-09-23T17:42:07.000Z",
-    "src": "NBC News",
-    "summary": "Masoud Pezeshkian’s appearance at the General Assembly was the first time the leader of a country at war with the U.S. has addressed the world body."
-   },
-   {
-    "title": "Iran president: We have been \"victims of terrorism\"",
-    "url": "https://www.axios.com/2026/09/23/pezeshkian-trump-iran-terrorists-victims",
-    "domain": "axios.com",
-    "date": "2026-09-23T15:49:05.000Z",
-    "src": "Axios",
-    "summary": "<p>Iranian President <a href=\"https://www.axios.com/2026/03/23/trump-iran-peace-deal-iranian-leaders\" target=\"_blank\">Masoud Pezeshkian</a> forcefully rejected President <a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">Trump's</a> portrayal of Iran as a source of terrorism at the UN General Assembly on Wednesday, insisting instead that Iranians are \"victims of terrorism"
-   },
-   {
-    "title": "Kurdistan Region of Iraq announces Peshmerga unification",
-    "url": "https://www.longwarjournal.org/archives/2026/09/kurdistan-region-of-iraq-announces-peshmerga-unification.php",
-    "domain": "longwarjournal.org",
-    "date": "2026-09-23T14:00:55.000Z",
-    "src": "Long War Journal",
-    "summary": "The Kurdistan Regional Government announced the completion of a years-long process to unify the Peshmerga armed forces under the Ministry of Peshmerga Affairs, ending longstanding divisions between units linked to the Kurdistan Democratic Party (KDP) and the Patriotic Union of Kurdistan (PUK). The move comes amid the departure of US forces, pressure to disarm Iran-backed militias, and efforts to s"
-   },
-   {
-    "title": "The China-Russia Factor in the Iran War",
-    "url": "https://thediplomat.com/2026/09/the-china-russia-factor-in-the-iran-war/",
-    "domain": "thediplomat.com",
-    "date": "2026-09-23T13:14:00.000Z",
-    "src": "The Diplomat",
-    "summary": "Insights from Stephen J. Blank."
-   },
-   {
-    "title": "GOP breaking with an unpopular Trump",
-    "url": "https://www.axios.com/2026/09/22/republicans-trump-congresss-iran-diesel",
-    "domain": "axios.com",
-    "date": "2026-09-22T23:58:49.000Z",
-    "src": "Axios",
-    "summary": "<p>Congressional Republicans are increasingly breaking with an <a href=\"https://www.axios.com/2026/09/21/trump-ai-iran-tariffs-public-opinion\" target=\"_blank\">unpopular president</a> on foreign policy and pocketbook issues as they try to stop their majorities from slipping away. </p><p><strong>Why it matters: </strong>They aren't engaged in a full-scale revolt against President <a href=\"https://ww"
-   },
-   {
-    "title": "U.S. and Iran officials meet in New York to discuss ending the war",
-    "url": "https://www.axios.com/2026/09/22/unga-iran-us-trump-war",
-    "domain": "axios.com",
-    "date": "2026-09-22T23:42:43.000Z",
-    "src": "Axios",
-    "summary": "<p>President <a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">Trump</a> said U.S. officials met for three hours with the Iranian delegation to the United Nations General Assembly in New York on Tuesday. </p><ul><li>Trump envoys <a href=\"https://www.axios.com/2026/09/02/witkoff-uae-iran-war-trump-bessent\" target=\"_blank\">Steve Witkoff</a> and Jared Kushner attended the m"
-   },
-   {
-    "title": "Strait talk: Yemen, mercenaries and the Iran war",
-    "url": "https://www.atlanticcouncil.org/commentary/podcast/strait-talk-yemen-mercenaries-and-the-iran-war/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-22T20:21:00.000Z",
-    "src": "Atlantic Council",
-    "summary": "In this first video episode of the podcast, Alia is joined by Ibrahim Jalal, an expert on Yemen and the Gulf. Ibrahim describes the major military escalation unfolding along the Red Sea coast and the tactics used by the Houthis. The post Strait talk: Yemen, mercenaries and the Iran war appeared first on Atlantic Council ."
    }
   ],
   "taiwan": [
@@ -1294,6 +1300,14 @@
    }
   ],
   "redsea": [
+   {
+    "title": "US warns Houthi ties with al-Shabaab threaten Red Sea trade",
+    "url": "https://www.ft.com/content/c81d0739-5ff6-45fb-aed5-5c5f67729925?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-29T04:00:12.000Z",
+    "src": "Financial Times",
+    "summary": "Growing partnership with al-Qaeda affiliate in Somalia gives Yemeni rebels a foothold on both sides of the Gulf of Aden"
+   },
    {
     "title": "Scoop: NRSC pleads for $9M to defend three red seats",
     "url": "https://www.axios.com/2026/09/24/nrsc-republicans-alaska-iowa-ohio",
@@ -1522,6 +1536,14 @@
   "dprk-cyber": [],
   "sahel": [
    {
+    "title": "More than 80 reported abducted in Nigeria as police find human remains",
+    "url": "https://www.aljazeera.com/news/2026/9/29/more-than-80-reported-abducted-in-nigeria-as-police-find-human-remains?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T05:17:35.000Z",
+    "src": "Al Jazeera",
+    "summary": "Farmers and women abducted in northern Niger and Zamfara states as police find human remains at suspected gang camps."
+   },
+   {
     "title": "“A Recurring Pattern”: Civilians Paying the Price in Mali’s Drone Campaign",
     "url": "https://www.bellingcat.com/news/2026/09/16/drone-strike-civilians-killed-aes-sahel-mali-russia-africa-corps-guilt-by-location-jeune-afrique/",
     "domain": "bellingcat.com",
@@ -1657,6 +1679,14 @@
   ],
   "ethiopia": [
    {
+    "title": "Ethiopian army claims to have taken Tigrayan stronghold",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/29/ethiopian-army-claims-to-have-taken-tigrayan-stronghold?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T04:37:21.000Z",
+    "src": "Al Jazeera",
+    "summary": "The Ethiopian military and allied militia claim to have overtaken the town of Alamata in the Tigray region."
+   },
+   {
     "title": "Ethiopian forces claim Tigray town",
     "url": "https://www.france24.com/en/ethiopian-forces-claim-tigray-town",
     "domain": "france24.com",
@@ -1679,6 +1709,14 @@
     "date": "2026-09-25T20:33:44.000Z",
     "src": "Foreign Policy",
     "summary": "The Tigray People’s Liberation Front, now allied with six other armed groups, hopes to oust Prime Minister Abiy Ahmed."
+   },
+   {
+    "title": "Arresting the Dangerous Descent Back into War in Northern Ethiopia",
+    "url": "https://www.crisisgroup.org/stm/africa/ethiopia-eritrea/arresting-dangerous-descent-back-war-northern-ethiopia",
+    "domain": "crisisgroup.org",
+    "date": "2026-09-25T12:01:57.000Z",
+    "src": "International Crisis Group",
+    "summary": "<span>Arresting the Dangerous Descent Back into War in Northern Ethiopia </span> <span><span>eschelhaas</span></span> <span><time datetime=\"2026-09-25T14:01:57+02:00\" title=\"Friday, September 25, 2026 - 14:01\">Fri, 09/25/2026 - 14:01</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls"
    },
    {
     "title": "UN voices grave concern as fighting spreads across northern Ethiopia",
@@ -2706,6 +2744,14 @@
     "date": "2026-09-25T12:00:00.000Z",
     "src": "UN News",
     "summary": "Iraq’s Prime Minister, Ali Faleh Al-Zaidi, said his country aims to exert its influence as an active economic power in the region, and as a bridge for dialogue and cooperation between its peoples."
+   },
+   {
+    "title": "Iraq’s Post-coalition Test",
+    "url": "https://www.crisisgroup.org/vid/middle-east-north-africa/iraq/iraqs-post-coalition-test",
+    "domain": "crisisgroup.org",
+    "date": "2026-09-24T13:14:18.000Z",
+    "src": "International Crisis Group",
+    "summary": "<span>Iraq’s Post-coalition Test</span> <span><span>saureli</span></span> <span><time datetime=\"2026-09-24T15:14:18+02:00\" title=\"Thursday, September 24, 2026 - 15:14\">Thu, 09/24/2026 - 15:14</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls-025\"> <li class=\"c-side-nav__list__item\">"
    },
    {
     "title": "Kurdistan Region of Iraq announces Peshmerga unification",
