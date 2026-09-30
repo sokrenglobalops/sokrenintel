@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-29T06:48:16.910Z",
+ "generatedAt": "2026-09-30T06:48:59.482Z",
  "windowDays": 30,
  "sources": [
   {
@@ -200,6 +200,118 @@
  ],
  "items": {
   "ru-ua": [
+   {
+    "title": "Live: Several people killed as Russia launches new round of strikes on Kyiv",
+    "url": "https://www.france24.com/en/europe/20260930-live-several-people-killed-as-russia-launches-new-round-of-strikes-on-kyiv",
+    "domain": "france24.com",
+    "date": "2026-09-30T05:35:15.000Z",
+    "src": "France 24",
+    "summary": "At least three people, including a child, have died after Russia launched another round of strikes on Kyiv and its surrounding regions overnight to Wednesday, officials said. Several people were also wounded in the attacks. In Poland, two airports, in Lublin and Rzeszow, were briefly shut over “military aviation activity” during Russian attacks on Ukraine. Follow our liveblog for all the latest up"
+   },
+   {
+    "title": "Missile alerts cost Ukraine $45m for every hour they halt businesses",
+    "url": "https://www.theguardian.com/world/2026/sep/30/missile-alerts-cost-ukraine-businesses-halt",
+    "domain": "theguardian.com",
+    "date": "2026-09-30T04:00:10.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Figure cited by minister highlights trade-offs Kyiv faces as it tries to keep normal life moving amid Russian strikes</p><p>Missile alerts are costing Ukraine an estimated $45m (£34m) for every hour they bring business to a halt, according to the country’s economy minister, as Kyiv searches for ways to keep the economy running under an intensifying Russian bombardment.</p><p>Russia has increasi"
+   },
+   {
+    "title": "Ukraine's prized steel industry left in ruins by Russian missile campaign",
+    "url": "https://www.bbc.co.uk/news/articles/cjkg7k6z9296o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-29T23:33:34.000Z",
+    "src": "BBC World",
+    "summary": "Ukraine's remaining steelworks, a vital part of its economy, have all but ground to a halt because of relentless attacks."
+   },
+   {
+    "title": "Ukrainian Science Academy, Struck by Drone, Played Key Role in Research",
+    "url": "https://www.nytimes.com/2026/09/29/science/ukraine-science-academy-russia-attack.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T19:55:20.000Z",
+    "src": "The New York Times",
+    "summary": "Over 90 percent of Ukraine’s scientific discoveries have been attributed to Ukraine’s National Academy of Sciences, including advancements in astronomy and military technology."
+   },
+   {
+    "title": "Estonia blames Russia for arson at defence company supplying Ukraine",
+    "url": "https://www.bbc.co.uk/news/articles/c6m27l4er4jxo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-29T19:36:41.000Z",
+    "src": "BBC World",
+    "summary": "Russia has been accused of launching sabotage attacks across a number of European Nato countries which have been helping Ukraine."
+   },
+   {
+    "title": "Ukraine’s innovative robot offensive just reversed a year of Russian gains",
+    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/ukraines-innovative-robot-offensive-just-reversed-a-year-of-russian-gains/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-29T19:06:26.000Z",
+    "src": "Atlantic Council",
+    "summary": "Russian President Vladimir Putin’s hopes of capturing eastern Ukraine’s Donbas region have been dealt a major blow in recent months by an innovative Ukrainian offensive that has reversed over a year of Russian territorial gains, writes David Kirichenko. The post Ukraine’s innovative robot offensive just reversed a year of Russian gains appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Vladimir Putin only has two options in Ukraine: Total victory or endless war",
+    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/vladimir-putin-only-has-two-options-in-ukraine-total-victory-or-endless-war/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-29T17:29:17.000Z",
+    "src": "Atlantic Council",
+    "summary": "US-led efforts to end the Russia-Ukraine War by offering the Kremlin limited territorial concessions reflect a fundamental misunderstanding of the imperial ambitions driving Putin's invasion, writes Peter Dickinson. The post Vladimir Putin only has two options in Ukraine: Total victory or endless war appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Estonia Says Arson at Defense Company Was ‘Deliberate’ Attack by Russia",
+    "url": "https://www.nytimes.com/2026/09/29/world/europe/estonia-russia-ukraine-milrem-fire.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T13:39:00.000Z",
+    "src": "The New York Times",
+    "summary": "A fire broke out at Milrem Robotics, which manufactures and supplies unmanned vehicles for Ukraine, in August."
+   },
+   {
+    "title": "What Life Looks Like in the ‘Fortress Cities’ Russia Is Trying to Break",
+    "url": "https://www.nytimes.com/2026/09/29/world/europe/ukraine-donbas-emergency-workers.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T13:18:14.000Z",
+    "src": "The New York Times",
+    "summary": "Emergency workers have to move fast after Russian attacks in eastern Ukraine. Another could come at any moment."
+   },
+   {
+    "title": "Estonia blames Russia for arson attack on defense company that provides vehicles to Ukraine",
+    "url": "https://abcnews.com/International/wireStory/estonia-blames-russia-arson-attack-defense-company-vehicles-136846626",
+    "domain": "abcnews.com",
+    "date": "2026-09-29T12:18:22.000Z",
+    "src": "ABC News",
+    "summary": "Estonian authorities say they have concluded that an arson attack in mid-August on a defense company that provides military vehicles to Ukraine was an act of sabotage commissioned by Russian security services"
+   },
+   {
+    "title": "LIVE: Weighing nuclear risks amid rising tensions and war",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168483",
+    "domain": "news.un.org",
+    "date": "2026-09-29T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "Amid rising tensions, extreme weather impacts and strikes on nuclear infrastructure in war-torn Iran and Ukraine, UN Member States are returning to the core issue of disarmament on Tuesday, closing out the General Assembly’s High-Level Week with expected calls for greater safeguards."
+   },
+   {
+    "title": "The Shield Stops Working: Russia’s Jet Gerans over Ukraine",
+    "url": "https://www.geopoliticalmonitor.com/the-shield-stops-working-russias-jet-gerans-over-ukraine/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-29T11:23:38.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Ukraine shot down 90% of Russia’s propeller drones. Against the jet-powered Gerans, that number collapses to 60%. The post The Shield Stops Working: Russia’s Jet Gerans over Ukraine appeared first on Geopolitical Monitor ."
+   },
+   {
+    "title": "Bomb by Bomb, the Slow Death of My Hometown in Ukraine",
+    "url": "https://www.nytimes.com/2026/09/29/world/europe/ukraine-kramatorsk.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T09:01:15.000Z",
+    "src": "The New York Times",
+    "summary": "It was possible, for a time, to think that Kramatorsk, where I was born and raised, would survive the war mostly unscathed. Not any more."
+   },
+   {
+    "title": "Why Nobody Can End the War in Ukraine",
+    "url": "https://foreignpolicy.com/2026/09/29/ukraine-war-russia-putin-trump-zelensky-stalemate-united-states-negotiations/",
+    "domain": "foreignpolicy.com",
+    "date": "2026-09-29T07:35:26.000Z",
+    "src": "Foreign Policy",
+    "summary": "It’s in everyone’s interest to stop the fighting. That’s still not enough."
+   },
    {
     "title": "Russia pounds Ukraine’s Kyiv after deadly strike on Academy of Sciences",
     "url": "https://www.aljazeera.com/news/2026/9/29/russian-strike-hits-ukraines-academy-of-sciences-in-kyiv-killing-2?traffic_source=rss",
@@ -567,121 +679,160 @@
     "date": "2026-09-14T18:40:51.000Z",
     "src": "War on the Rocks",
     "summary": "Welcome to The Ukraine Compass, a weekly digest of Ukrainian commentary and analysis from across the political spectrum, only for War on the Rocks members. Each Monday, we bring you a curated selection of articles from Ukrainian media offering insight into how Ukrainians themselves debate the issues shaping their country.American coverage often narrows the view to the battlefield — these pieces wi"
-   },
-   {
-    "title": "The Age of Strategic Exclusion",
-    "url": "https://warontherocks.com/the-age-of-strategic-exclusion/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-14T07:30:13.000Z",
-    "src": "War on the Rocks",
-    "summary": "Major powers are increasingly trying to shut out their rivals. Russia invaded Ukraine in part to prevent the latter’s further integration with the West. The United States is restricting China’s access to advanced semiconductors and encouraging allies to do the same. China’s Belt and Road Initiative secures privileged positions in strategic infrastructure and economic relationships. Though these ex"
-   },
-   {
-    "title": "Learning from Ukraine’s unrivaled experience of Russian cyber warfare",
-    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/learning-from-ukraines-unrivaled-experience-of-russian-cyber-warfare/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-14T00:25:02.000Z",
-    "src": "Atlantic Council",
-    "summary": "No country in the world today knows more about Russian cyber warfare than Ukraine, but further steps are required in order to help Kyiv’s partners make the most of Ukraine’s unrivaled experience, writes Iryna Volnytska. The post Learning from Ukraine’s unrivaled experience of Russian cyber warfare appeared first on Atlantic Council ."
-   },
-   {
-    "title": "As Russia’s invasion falters, Putin boasts of imaginary victories",
-    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/as-russias-invasion-falters-putin-boasts-of-imaginary-victories/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-10T13:59:01.000Z",
-    "src": "Atlantic Council",
-    "summary": "Putin was caught lying about imaginary Russian victories again in September. His habit of exaggerating battlefield gains reflects mounting unease over the credibility gap between the Kremlin’s superpower pretensions and his army’s underwhelming performance in Ukraine, writes Peter Dickinson. The post As Russia’s invasion falters, Putin boasts of imaginary victories appeared first on Atlantic Counc"
-   },
-   {
-    "title": "The Strange Transformation of the Front Line in Ukraine",
-    "url": "https://warontherocks.com/the-strange-transformation-of-the-front-line-in-ukraine/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-09T07:30:29.000Z",
-    "src": "War on the Rocks",
-    "summary": "On Jan. 5, 2025, my volunteer platoon attached to the 23rd Special Purpose Battalion of the Presidential Brigade entered a 1-kilometer-long tree line called CHAI, on the outskirts of Kotlyne, a few kilometers west of Pokrovsk, Ukraine. Our task was to occupy a position whose status on DeepState, an open-source map tracking military operations in the Russo-Ukrainian war, had been shifting out of gr"
-   },
-   {
-    "title": "Nuclear Security News and Member Updates Roundup, August 2026",
-    "url": "https://www.stimson.org/2026/nuclear-security-news-and-member-updates-roundup-august-2026/",
-    "domain": "stimson.org",
-    "date": "2026-09-08T22:09:37.000Z",
-    "src": "Stimson Center",
-    "summary": "The U.S.-Saudi Arabia 123 agreement steals headlines; Ukraine ZNPP under stress; IAEA launches ATLAS initiative. The post Nuclear Security News and Member Updates Roundup, August 2026 appeared first on Stimson Center ."
-   },
-   {
-    "title": "Ukrainian drone strikes are disarming Russia’s energy weapon",
-    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/ukrainian-drone-strikes-are-disarming-russias-energy-weapon/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-08T21:01:42.000Z",
-    "src": "Atlantic Council",
-    "summary": "For years, Russia wielded its energy capacity as a weapon against its neighbors to manipulate, coerce, and control. Ukraine’s strategic bombing campaign is now turning this energy weapon against Moscow itself, writes Ana Lejava. The post Ukrainian drone strikes are disarming Russia’s energy weapon appeared first on Atlantic Council ."
-   },
-   {
-    "title": "Putin welcomes Trump’s peace envoys but has no intention of ending the war",
-    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/putin-welcomes-trumps-peace-envoys-but-has-no-intention-of-ending-the-war/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-08T20:16:08.000Z",
-    "src": "Atlantic Council",
-    "summary": "Trump’s envoys continue to discuss win-win scenarios, but Putin is playing a zero sum game. His invasion of Ukraine is not a land grab or a geopolitical real estate deal. It is an attempt to reverse the Soviet collapse and revive the Russian Empire, writes Peter Dickinson. The post Putin welcomes Trump’s peace envoys but has no intention of ending the war appeared first on Atlantic Council ."
-   },
-   {
-    "title": "The Two Questions Ukraine Asks Before Every Decision",
-    "url": "https://warontherocks.com/the-two-questions-ukraine-asks-before-every-decision/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-08T19:50:05.000Z",
-    "src": "War on the Rocks",
-    "summary": "Welcome to The Ukraine Compass, a weekly digest of Ukrainian commentary and analysis from across the political spectrum, only for War on the Rocks members. Each Monday, we bring you a curated selection of articles from Ukrainian media offering insight into how Ukrainians themselves debate the issues shaping their country.American coverage often narrows the view to the battlefield — these pieces wi"
-   },
-   {
-    "title": "Mark Leonard – European Security in a Post-American Order",
-    "url": "https://www.stimson.org/2026/mark-leonard-european-security-in-a-post-american-order/",
-    "domain": "stimson.org",
-    "date": "2026-09-04T18:07:38.000Z",
-    "src": "Stimson Center",
-    "summary": "Mark Leonard, Co-Founder and Director of the European Council on Foreign Relations, joins Worldviews with Peter Slezkine to discuss Europe’s evolving identity, the current state of the transatlantic relationship, prospects for ending the war in Ukraine, and the future of Europe in a changing global order The post Mark Leonard – European Security in a Post-American Order appeared first on Stimson C"
-   },
-   {
-    "title": "European Resilience in Digital Infrastructure: The Changing Nature of State-Business Relations",
-    "url": "https://warontherocks.com/cogs-of-war/european-resilience-in-digital-infrastructure-the-changing-nature-of-state-business-relations/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-02T08:00:52.000Z",
-    "src": "War on the Rocks",
-    "summary": "As the war in Ukraine progressed, Russian strikes increasingly degraded Ukraine’s terrestrial communications infrastructure, steadily deepening Kyiv’s dependence on SpaceX’s Starlink. The satellite constellation became indispensable for crucial military functions, including command and control, drone operations, and artillery fire coordination, with no readily available European alternative should"
-   },
-   {
-    "title": "Ukraine’s Ground Robots and the Economics of Survival",
-    "url": "https://warontherocks.com/ukraines-ground-robots-and-the-economics-of-survival/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-02T07:30:47.000Z",
-    "src": "War on the Rocks",
-    "summary": "In August 2024, special forces from five Ukrainian military intelligence units crossed the Black Sea to raid Russian-held Kinburn Spit. The commandos of these units — Chimera, Aratta, Stuhna, Paragon, Terror, and the Siberian Battalion — landed, fought, destroyed equipment, and withdrew. Two years later, in July 2026, Ukraine returned, but left the soldiers behind. Instead, an uncrewed surface ves"
-   },
-   {
-    "title": "Why Are People Talking About a German Reset with Russia?",
-    "url": "https://warontherocks.com/why-are-people-talking-about-a-german-reset-with-russia/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-02T07:15:33.000Z",
-    "src": "War on the Rocks",
-    "summary": "The summer of 2026 has raised questions once again among politicians, diplomats, and academics about whether Germany might be about to dither on Russia. Last month, a drone attack on German soil seemed designed to coerce Germany back into business as usual. Earlier, there had been rumblings about two German ex-chancellors brokering a peace treaty between Kyiv and Moscow. Both Angela Merkel and Ger"
-   },
-   {
-    "title": "The Ukraine war is intensifying, expanding and stuck",
-    "url": "https://www.economist.com/international/2026/09/01/the-ukraine-war-is-intensifying-expanding-and-stuck",
-    "domain": "economist.com",
-    "date": "2026-09-01T19:57:35.000Z",
-    "src": "The Economist",
-    "summary": "The bleak view from Sweden, a Ukrainian ally braced for 50 years of confrontation with Russia"
-   },
-   {
-    "title": "The Divine Calculus of the Ukraine War’s End",
-    "url": "https://warontherocks.com/the-divine-calculus-of-the-ukraine-wars-end/",
-    "domain": "warontherocks.com",
-    "date": "2026-08-31T16:35:54.000Z",
-    "src": "War on the Rocks",
-    "summary": "Welcome to The Ukraine Compass, a weekly digest of Ukrainian commentary and analysis from across the political spectrum, only for War on the Rocks members. Each Monday, we bring you a curated selection of articles from Ukrainian media offering insight into how Ukrainians themselves debate the issues shaping their country.American coverage often narrows the view to the battlefield — these pieces wi"
    }
   ],
   "iran": [
+   {
+    "title": "Energy bills in Great Britain forecast to jump by £276 a year from January",
+    "url": "https://www.theguardian.com/money/2026/sep/30/energy-bills-great-britain-forecast-to-rise-iran-war",
+    "domain": "theguardian.com",
+    "date": "2026-09-30T06:17:33.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Cap poised to rise by 16% to equivalent of £1,999 for dual-fuel bill as impact of Iran war puts squeeze on homes</p><p>Household energy bills in Great Britain are predicted to soar by £276 a year for the typical household from January as the impact of the Middle East war continues through the coldest months of winter.</p><p>The government’s cap on energy prices is poised to jump by 16% to the e"
+   },
+   {
+    "title": "Inflation leaps to 4 % stoking fears of fifth interest rate hike before Christmas",
+    "url": "https://www.theguardian.com/australia-news/2026/sep/30/australia-inflation-rise-stokes-fears-fifth-interest-rate-hike-before-christmas",
+    "domain": "theguardian.com",
+    "date": "2026-09-30T05:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Vanguard warns France is ‘degrading credit’ as borrowing costs surge",
+    "url": "https://www.ft.com/content/7820a84f-338e-4b91-a9b6-241a9bf81539?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-30T04:00:14.000Z",
+    "src": "Financial Times",
+    "summary": "Iran war has exacerbated fiscal pressures on Paris as budget battle looms"
+   },
+   {
+    "title": "Iran war live: Trump claims war will end ‘very soon’, gives no details",
+    "url": "https://www.aljazeera.com/news/liveblog/2026/9/30/iran-war-live-trump-claims-war-will-end-very-soon-provides-no-details?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-30T00:00:00.000Z",
+    "src": "Al Jazeera",
+    "summary": "US President Donald Trump reiterates that Tehran will not have a nuclear weapon."
+   },
+   {
+    "title": "Trump says he plans to campaign for 32 days before midterm elections",
+    "url": "https://www.aljazeera.com/news/2026/9/29/trump-says-he-plans-to-campaign-for-32-days-before-midterm-elections?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T23:53:08.000Z",
+    "src": "Al Jazeera",
+    "summary": "US president brushes aside concerns about his popularity as voters express frustration over cost of living, war on Iran."
+   },
+   {
+    "title": "British authorities defend decision to let terror suspects go on bail",
+    "url": "https://www.cbsnews.com/video/british-authorities-defend-decision-let-terror-suspects-go-bail/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-29T23:36:49.000Z",
+    "src": "CBS News",
+    "summary": "British authorities defended their decision to let a group of young men go free, even as investigators look into a suspected terror plot near an air base there that was used by the U.S. military in its war against Iran. Ramy Inocencio reports from London."
+   },
+   {
+    "title": "Iran says it expects response to ceasefire plan already rejected by Trump",
+    "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-29T23:20:42.000Z",
+    "src": "CBS News",
+    "summary": "President Trump says U.S. and Iranian negotiators are talking via mediators, but insists he has \"offered them NOTHING\" to get a peace deal done."
+   },
+   {
+    "title": "U.S.-Iran talks yield little, raising odds of renewed combat",
+    "url": "https://www.axios.com/2026/09/29/trump-iran-war-qatar-diplomacy",
+    "domain": "axios.com",
+    "date": "2026-09-29T22:27:09.000Z",
+    "src": "Axios",
+    "summary": "<p>Efforts this week by Qatari mediators to broker a diplomatic breakthrough between the U.S. and <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a> have made little progress, with neither side willing to budge, according to three sources familiar with the talks.</p><p><strong>Why it matters:</strong> The stalemate bolsters the belief on both sides that a renewed military conflict"
+   },
+   {
+    "title": "Mystery over UK airbase scare as police find 'quantity of petrol' but no explosives",
+    "url": "https://www.france24.com/en/europe/20260929-mystery-over-uk-airbase-scare-as-police-find-quantity-of-petrol-but-no-explosives",
+    "domain": "france24.com",
+    "date": "2026-09-29T19:05:41.000Z",
+    "src": "France 24",
+    "summary": "Britain's counter-terrorism police said ​on Tuesday that no improvised explosive devices had been found as part of an ​investigation ‌into a suspected plot targeting ⁠a British airbase used by US forces to ‌strike Iran, deepening uncertainty over the incident a day after five UK-based suspects were released on bail."
+   },
+   {
+    "title": "U.S. targets Iran's military supply chain as diplomatic talks remain uncertain",
+    "url": "https://www.pbs.org/newshour/world/u-s-targets-irans-military-supply-chain-as-diplomatic-talks-remain-uncertain",
+    "domain": "pbs.org",
+    "date": "2026-09-29T18:39:26.000Z",
+    "src": "PBS NewsHour",
+    "summary": "The U.S. has targeted people and firms around the globe that it has accused of being financial facilitators or enablers of Iran's military supply chain."
+   },
+   {
+    "title": "Rubio Says Incident at UK Air Base RAF Fairford ‘Clearly Involved’ a Foreign Actor",
+    "url": "https://www.nytimes.com/2026/09/29/world/europe/uk-raf-fairford-air-base-incident-rubio-us.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T17:27:20.000Z",
+    "src": "The New York Times",
+    "summary": "The U.S. secretary of state, Marco Rubio, told Fox News that what happened at a base used by U.S. bombers flying to Iran was “very serious,” without providing details."
+   },
+   {
+    "title": "Trade and connectivity in the Europe-Gulf strategic partnership",
+    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/trade-and-connectivity-in-the-europe-gulf-strategic-partnership/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-29T16:39:32.000Z",
+    "src": "Atlantic Council",
+    "summary": "Boosting trade between European and Gulf states requires progress on two key projects planned to connect the regions: the India-Middle East-Europe Economic Corridor, and a free trade agreement. Can the disruption caused by the Iran war provide an impetus to move these stalled projects forward? The post Trade and connectivity in the Europe-Gulf strategic partnership appeared first on Atlantic Counc"
+   },
+   {
+    "title": "How Europe and the Gulf can unite behind an energy-transition agenda",
+    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/how-europe-and-the-gulf-can-unite-behind-an-energy-transition-agenda/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-29T16:38:06.000Z",
+    "src": "Atlantic Council",
+    "summary": "European and Gulf states share a strong interest in restoring the free flow of energy cut off by the Iran war, and in reducing their economies' exposure to chokepoints like the Strait of Hormuz. What's their best path forward? The post How Europe and the Gulf can unite behind an energy-transition agenda appeared first on Atlantic Council ."
+   },
+   {
+    "title": "The Rural English Villages Around RAF Fairford at the Center of a Possible Terrorist Plot",
+    "url": "https://www.nytimes.com/2026/09/28/world/europe/uk-fairford-base-terrorist-plot.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T16:29:49.000Z",
+    "src": "The New York Times",
+    "summary": "The quiet rural area around R.A.F. Fairford, where U.S. bombers fly to Iran, was thrust into the spotlight after the authorities said they were investigating a possible terrorist plot targeting the base."
+   },
+   {
+    "title": "Iran's currency hits a new record low as war erodes the country's economic stability",
+    "url": "https://www.pbs.org/newshour/world/irans-currency-hits-a-new-record-low-as-war-erodes-the-countrys-economic-stability",
+    "domain": "pbs.org",
+    "date": "2026-09-29T15:58:07.000Z",
+    "src": "PBS NewsHour",
+    "summary": "The Iranian economy has been under duress for years in the face of international sanctions. A U.S. naval blockade on Iranian oil and new sanctions imposed since the start of the war have sent it into freefall."
+   },
+   {
+    "title": "The East-West Pipeline Attack Exposes the Limits of Hormuz Contingency Planning",
+    "url": "https://www.geopoliticalmonitor.com/the-east-west-pipeline-attack-exposes-the-limits-of-hormuz-contingency-planning/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-29T15:14:38.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Saudi Arabia’s bypass around Hormuz was hit by drones in September. The backup route turned out to have no backup. The post The East-West Pipeline Attack Exposes the Limits of Hormuz Contingency Planning appeared first on Geopolitical Monitor ."
+   },
+   {
+    "title": "British police find no explosives in vehicles of men detained near base used by U.S.",
+    "url": "https://www.nbcnews.com/world/united-kingdom/trump-surprised-uk-releases-men-base-used-us-iran-rcna600423",
+    "domain": "nbcnews.com",
+    "date": "2026-09-29T10:06:04.000Z",
+    "src": "NBC News",
+    "summary": "Secretary of State Marco Rubio said the incident near RAF Fairford, which facilitates strikes on Iran, “clearly involves the hands of a foreign actor,” an allegation British officials haven’t confirmed."
+   },
+   {
+    "title": "As the U.S. signals a smaller Middle East footprint, Turkey is ready to step in",
+    "url": "https://www.npr.org/2026/09/29/nx-s1-5983685/turkey-influence",
+    "domain": "npr.org",
+    "date": "2026-09-29T09:00:00.000Z",
+    "src": "NPR",
+    "summary": "Turkey's bid for regional influence comes as the Middle East has been hit by profound shocks that started with the Hamas-led 2023 attack on Israel and continue with the seven-month-old war on Iran."
+   },
+   {
+    "title": "Possible Terrorist Plot at RAF Fairford Air Base in U.K.: What We Know",
+    "url": "https://www.nytimes.com/2026/09/28/world/europe/raf-fairford-incident-air-base-terrorism-uk.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T07:42:10.000Z",
+    "src": "The New York Times",
+    "summary": "Five British men who were detained near R.A.F. Fairford, a base used by American forces in the war against Iran, were being released on bail but remained under investigation."
+   },
    {
     "title": "Iran says it expects US response Tuesday on plan to reopen Strait of Hormuz",
     "url": "https://www.france24.com/en/middle-east/20260929-iran-says-expects-us-response-tuesday-plan-reopen-strait-of-hormuz",
@@ -696,14 +847,6 @@
     "domain": "theguardian.com",
     "date": "2026-09-29T06:15:00Z",
     "src": "GDELT"
-   },
-   {
-    "title": "Iran says it's up to Trump to choose between war and diplomacy",
-    "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/",
-    "domain": "cbsnews.com",
-    "date": "2026-09-29T05:48:58.000Z",
-    "src": "CBS News",
-    "summary": "As the war with Iran hits the seven-month mark, President Trump confirmed that American and Iranian negotiators exchanged messages through mediators on Monday."
    },
    {
     "title": "Rubio, Saudi Arabia’s foreign minister hold talks on Yemen, Hormuz Strait",
@@ -807,14 +950,6 @@
     "date": "2026-09-28T21:58:44.000Z",
     "src": "Axios",
     "summary": "<p>President Trump is willing to give <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a> sanctions relief and release Iranian frozen funds in return for concrete Iranian steps regarding the nuclear program, U.S. officials say. </p><p><strong>Why it matters:</strong> The U.S. message to Iran comes as Qatari and Pakistani mediators try again this week to strike a deal between the tw"
-   },
-   {
-    "title": "Possible Terrorist Plot at RAF Fairford Air Base in U.K.: What We Know",
-    "url": "https://www.nytimes.com/2026/09/28/world/europe/raf-fairford-incident-air-base-terrorism-uk.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-28T21:57:21.000Z",
-    "src": "The New York Times",
-    "summary": "Five British men who were detained near R.A.F. Fairford, a base used by American forces in the war against Iran, were being released on bail but remained under investigation."
    },
    {
     "title": "Bond sell-off deepens and oil rises as Iran-US deal hopes fade",
@@ -1023,145 +1158,33 @@
     "date": "2026-09-27T16:19:35.000Z",
     "src": "Axios",
     "summary": "<p>British police arrested five men Sunday on suspicion of terrorism near a U.K. air base used for U.S. operations in <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a>, as President <a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">Trump</a> said the suspects had been under investigation.</p><p><strong>The latest: </strong>\"Working with Britain, it was "
-   },
-   {
-    "title": "After nixing Iran proposal, Trump tells Axios he expects talks this week",
-    "url": "https://www.axios.com/2026/09/27/trump-iran-war-hormuz-blockade-negotiations",
-    "domain": "axios.com",
-    "date": "2026-09-27T14:55:07.000Z",
-    "src": "Axios",
-    "summary": "<p>One day after he rejected <a href=\"https://www.axios.com/2026/09/26/trump-iran-un-proposal\" target=\"_blank\">an Iranian proposal</a> to end the war, President <a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">Trump</a> told Axios in a phone interview on Sunday that he expects U.S. negotiators to engage in more talks with the country this week.</p><p><strong>Why it matt"
-   },
-   {
-    "title": "9/27: Face The Nation",
-    "url": "https://www.cbsnews.com/video/092726-face-the-nation/",
-    "domain": "cbsnews.com",
-    "date": "2026-09-27T14:30:00.000Z",
-    "src": "CBS News",
-    "summary": "This week on \"Face the Nation with Margaret Brennan,\" an interview with Iranian President Masoud Pezeshkian, which was taped before President Trump rejected the plan to reopen the Strait of Hormuz. Plus as the midterm elections approach, Republican Sen. John Kennedy and Democratic Rep. Jim Himes join."
-   },
-   {
-    "title": "Iran ‘fully prepared’ for war to resume but diplomacy not over yet, Foreign Minister Abbas Araghchi says",
-    "url": "https://www.nbcnews.com/world/iran/iran-fully-prepared-war-resume-foreign-minister-rcna600059",
-    "domain": "nbcnews.com",
-    "date": "2026-09-27T14:08:37.000Z",
-    "src": "NBC News",
-    "summary": "Despite Trump’s comments rejecting a plan to reopen the Strait of Hormuz, Araghchi said Iran hadn’t yet officially responded to the proposal."
-   },
-   {
-    "title": "Iran sticks to Hormuz plan after Trump rejects it",
-    "url": "https://www.dw.com/en/iran-sticks-to-hormuz-plan-after-trump-rejects-it/a-79447432?maca=en-rss-en-world-4025-rdf",
-    "domain": "dw.com",
-    "date": "2026-09-27T08:07:00.000Z",
-    "src": "DW",
-    "summary": "Iranian officials that while they were aware of Trump's comments on rejecting the new proposal, they had not received a formal message rejecting the plan that would open the Strait of Hormuz."
-   },
-   {
-    "title": "Iranian minister says only negotiation can end conflict after Trump rejects Hormuz deal",
-    "url": "https://www.bbc.co.uk/news/articles/cmvgyyw2jeego?at_medium=RSS&at_campaign=rss",
-    "domain": "bbc.co.uk",
-    "date": "2026-09-27T07:44:11.000Z",
-    "src": "BBC World",
-    "summary": "The foreign minister says Tehran is waiting for an official rejection of a deal, despite the US President's comments."
-   },
-   {
-    "title": "Trump Rejects Iran’s Cease-Fire Proposal to Reopen Strait of Hormuz",
-    "url": "https://www.nytimes.com/2026/09/26/us/politics/trump-iran-hormuz-strait.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-26T21:02:42.000Z",
-    "src": "The New York Times",
-    "summary": "The president said the deal was not “acceptable” and demurred on whether he would restart military strikes after the midterm elections."
-   },
-   {
-    "title": "Trump says he rejected the latest Iranian proposal",
-    "url": "https://www.axios.com/2026/09/26/trump-iran-un-proposal",
-    "domain": "axios.com",
-    "date": "2026-09-26T14:27:54.000Z",
-    "src": "Axios",
-    "summary": "<p><a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">President Trump</a> said on Saturday that he rejected the latest Iranian proposal that was conveyed to the U.S. during indirect negotiations in New York this week.</p><p><strong>Why it matters:</strong> While Qatar and other regional mediators are trying to revive negotiations between the U.S. and Iran, the gaps on the"
-   },
-   {
-    "title": "Trump says he has rejected Iranian proposal to reopen Strait of Hormuz",
-    "url": "https://www.nbcnews.com/world/iran/iran-says-choice-reopening-hormuz-rests-united-states-offer-rcna599956",
-    "domain": "nbcnews.com",
-    "date": "2026-09-26T09:35:55.000Z",
-    "src": "NBC News",
-    "summary": "Despite Trump’s comments, Iranian Foreign Minister Abbas Araghchi said no rejection had come through official channels."
-   },
-   {
-    "title": "Trump asked Xi to stop supporting Iran",
-    "url": "https://www.axios.com/2026/09/25/trump-xi-china-iran-war-support",
-    "domain": "axios.com",
-    "date": "2026-09-25T15:56:28.000Z",
-    "src": "Axios",
-    "summary": "<p>President Trump asked Chinese President Xi Jinping to halt any assistance to <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a> when the two spoke during his state visit, U.S. Ambassador to Beijing David Perdue said Friday. </p><p><strong>Why it matters:</strong> China's economic, intelligence and military support for Iran has undermined Trump's effort to isolate the country am"
-   },
-   {
-    "title": "Gulf States Are Hedging and Suffering",
-    "url": "https://foreignpolicy.com/2026/09/25/gulf-states-iran-trump-oil-energy-hormuz/",
-    "domain": "foreignpolicy.com",
-    "date": "2026-09-25T15:18:51.000Z",
-    "src": "Foreign Policy",
-    "summary": "Neither appealing to Washington nor diversifying security partners nor back-channeling with Tehran is insulating the region from the consequences of war."
-   },
-   {
-    "title": "Iraq agrees to Turkish base deal as militia disarmament timeline debated",
-    "url": "https://www.longwarjournal.org/archives/2026/09/iraq-agrees-to-turkish-base-deal-as-militia-disarmament-timeline-debated.php",
-    "domain": "longwarjournal.org",
-    "date": "2026-09-25T13:24:55.000Z",
-    "src": "Long War Journal",
-    "summary": "Iraqi Prime Minister Ali al Zaidi has outlined a plan to disarm Iran-backed militias by June 2027 as Baghdad prepares for the withdrawal of US forces. The proposed disarmament timeline coincides with an agreement for Turkey to gradually hand over its Bashiqa-Zilkan military base to Iraq, part of wider efforts to bring armed groups and military facilities under Iraqi state control. The post Iraq ag"
-   },
-   {
-    "title": "Netanyahu Faces an UNGA Walkout (Again)",
-    "url": "https://foreignpolicy.com/2026/09/24/netanyahu-speech-unga-israel-walkout-mamdani/",
-    "domain": "foreignpolicy.com",
-    "date": "2026-09-24T22:07:50.000Z",
-    "src": "Foreign Policy",
-    "summary": "The Israeli prime minister defended his country’s actions in Gaza and Iran—and lashed out at Mamdani."
-   },
-   {
-    "title": "GOP holds the line on Iran despite growing midterm rift with Trump",
-    "url": "https://www.politico.com/news/2026/09/24/gop-iran-war-vote-01092071",
-    "domain": "politico.com",
-    "date": "2026-09-24T19:11:50.000Z",
-    "src": "Politico",
-    "summary": "Senate Republicans barely defeated an effort to halt the conflict even as GOP candidates in battleground states turn against the war."
-   },
-   {
-    "title": "Iran’s president says Tehran wants a deal with U.S. before midterm elections",
-    "url": "https://www.nbcnews.com/world/iran/irans-president-says-tehran-wants-deal-us-midterm-elections-rcna599638",
-    "domain": "nbcnews.com",
-    "date": "2026-09-24T18:38:14.000Z",
-    "src": "NBC News",
-    "summary": "In an exchange with news organizations, Iran’s Masoud Pezeshkian also described meeting twice with the Islamic Republic’s new supreme leader, who hasn’t been seen in public."
-   },
-   {
-    "title": "The Saudi economy can hold out through year’s end—even if oil exports drop to zero",
-    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/the-saudi-economy-can-hold-out-through-years-end-even-if-oil-exports-drop-to-zero/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-24T18:08:50.000Z",
-    "src": "Atlantic Council",
-    "summary": "First the Strait of Hormuz closed, so Saudi Arabia started sending more oil over land through its East-West Pipeline. Then drone strikes damaged the pipeline, and the Iran-backed Houthis fired missiles near the pipeline’s Red Sea terminus. Does Saudi Arabia need to plan for a near term without meaningful oil exports? The post The Saudi economy can hold out through year’s end—even if oil exports dr"
-   },
-   {
-    "title": "Netanyahu defends Iran war, calls Gaza genocide accusations a lie in defiant U.N. address",
-    "url": "https://www.nbcnews.com/world/israel/israel-netanyahu-united-nations-general-assembly-gaza-iran-war-rcna599576",
-    "domain": "nbcnews.com",
-    "date": "2026-09-24T12:03:32.000Z",
-    "src": "NBC News",
-    "summary": "As Israeli Prime Minister Benjamin Netanyahu pleads his country’s case at the United Nations General Assembly, his target audience will likely be Israeli voters."
-   },
-   {
-    "title": "Iran’s UNGA Moment",
-    "url": "https://foreignpolicy.com/2026/09/23/iran-unga-speech-pezeshkian-trump-israel-terrorist-nuclear/",
-    "domain": "foreignpolicy.com",
-    "date": "2026-09-23T22:02:05.000Z",
-    "src": "Foreign Policy",
-    "summary": "Iranian President Masoud Pezeshkian called the U.S. government “terrorists.”"
    }
   ],
   "taiwan": [
+   {
+    "title": "Potential Taiwan tension sparked 'last minute' change in Trump-Xi National Archives visit",
+    "url": "https://www.npr.org/2026/09/29/nx-s1-5984989/digital-archives-trump-xi",
+    "domain": "npr.org",
+    "date": "2026-09-29T17:17:04.000Z",
+    "src": "NPR",
+    "summary": "The sudden change was precipitated because of Chinese displeasure over one document that the U.S. had planned to show."
+   },
+   {
+    "title": "Taiwan Should Be Kept Off the Negotiating Table",
+    "url": "https://thediplomat.com/2026/09/taiwan-should-be-kept-off-the-negotiating-table/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-29T15:26:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The fact that Trump didn’t give anything new away on Taiwan shouldn’t obscure how much ground he has already conceded to Xi."
+   },
+   {
+    "title": "Taiwan says US arms sales to island are unchanged, but a $14B package remains on hold",
+    "url": "https://abcnews.com/International/wireStory/taiwan-us-arms-sales-island-unchanged-14b-package-136844909",
+    "domain": "abcnews.com",
+    "date": "2026-09-29T10:00:24.000Z",
+    "src": "ABC News",
+    "summary": "Taiwan's defense minister says U.S. arms sales to Taiwan remain unchanged, despite a stalled $14 billion package"
+   },
    {
     "title": "WATCH: Trump says Perdue 'was probably talking about Taiwan' in saying Trump offered Xi arms sales",
     "url": "https://www.pbs.org/newshour/politics/watch-trump-says-perdue-was-probably-talking-about-taiwan-in-saying-trump-offered-xi-arms-sales",
@@ -1301,6 +1324,14 @@
   ],
   "redsea": [
    {
+    "title": "Saudi Arabia urged to reconcile with UAE to drive back Houthi separatists in Yemen",
+    "url": "https://www.theguardian.com/world/2026/sep/29/saudi-arabia-urged-to-reconcile-with-uae-to-drive-back-houthi-separatists-in-yemen",
+    "domain": "theguardian.com",
+    "date": "2026-09-29T16:52:37.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Relations between two countries soured in January when a UAE-backed force was defeated by Saudis</p><p>Saudi Arabia is being urged to reconcile with the United Arab Emirates over Yemen as the price Riyadh must pay to form a military alliance capable of driving the Houthis back.</p><p>Relations between the UAE and Saudi Arabia in Yemen, where both had backed anti-Houthi forces, plummeted in Janu"
+   },
+   {
     "title": "US warns Houthi ties with al-Shabaab threaten Red Sea trade",
     "url": "https://www.ft.com/content/c81d0739-5ff6-45fb-aed5-5c5f67729925?syn-25a6b1a6=1",
     "domain": "ft.com",
@@ -1343,6 +1374,13 @@
   ],
   "sudan": [
    {
+    "title": "Sudan foreign minister slams US over visa block on army chief",
+    "url": "https://www.africanews.com/2026/09/29/sudan-foreign-minister-slams-us-over-visa-block-on-army-chief/",
+    "domain": "africanews.com",
+    "date": "2026-09-29T05:45:00Z",
+    "src": "GDELT"
+   },
+   {
     "title": "Ethiopia’s army chief accuses Eritrea, Sudan and Egypt of supporting Tigray rebels",
     "url": "https://abcnews.com/International/wireStory/ethiopias-army-chief-accuses-eritrea-sudan-egypt-supporting-136825185",
     "domain": "abcnews.com",
@@ -1357,6 +1395,13 @@
     "date": "2026-09-28T12:00:00.000Z",
     "src": "UN News",
     "summary": "Sudan’s Foreign Minister addressed the UN General Assembly on Monday in place of de facto head of state General Abdel Fattah al-Burhan, whose visa application was rejected by Washington."
+   },
+   {
+    "title": "Power cuts , rubble : millions come home to find Sudan capital unlivable",
+    "url": "https://www.africanews.com/2026/09/27/power-cuts-rubble-millions-come-home-to-find-sudans-capital-unlivable/",
+    "domain": "africanews.com",
+    "date": "2026-09-27T15:45:00Z",
+    "src": "GDELT"
    },
    {
     "title": "World News in Brief: West Bank demolitions accelerate, urgent support for Sudan, Haiti diplacement, AI hub to boost gender equality",
@@ -1376,6 +1421,22 @@
    }
   ],
   "drc": [
+   {
+    "title": "Security Council LIVE: DRC peace deals fail to halt fighting as Ebola deepens crisis",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168482",
+    "domain": "news.un.org",
+    "date": "2026-09-29T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The Security Council met in New York&nbsp;on the Democratic Republic of the Congo (DRC) Tuesday, where clashes between Government forces and M23 rebels continue in the east despite a series of peace agreements. Ambassadors are likely to focus on ceasefire monitoring, rising tensions between the DRC and Rwanda, and the country’s worst Ebola outbreak on record, which has killed more than 3,900 peopl"
+   },
+   {
+    "title": "DRC: Early access to care and oxygen decisive for Ebola patients’ survival – WHO",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168481",
+    "domain": "news.un.org",
+    "date": "2026-09-29T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "In the Democratic Republic of the Congo (DRC), health workers fighting the country’s largest-ever Ebola outbreak are struggling to overcome critical challenges to patient care, the UN World Health Organization (WHO) warned on Tuesday."
+   },
    {
     "title": "DRC politician beaten to death after radio appearance about Ebola outbreak",
     "url": "https://www.theguardian.com/world/2026/sep/28/drc-politician-beaten-death-radio-appearance-ebola",
@@ -1412,6 +1473,38 @@
    }
   ],
   "korea": [
+   {
+    "title": "North Korea denies planting mines that injured 3 South Korean soldiers, accuses Seoul of conspiracy",
+    "url": "https://abcnews.com/International/wireStory/north-korea-denies-planting-mines-injured-3-south-136874623",
+    "domain": "abcnews.com",
+    "date": "2026-09-30T05:44:17.000Z",
+    "src": "ABC News",
+    "summary": "The powerful sister of North Korean leader Kim Jong Un has rejected South Korean findings that North Korea planted the land mines that injured three South Korean soldiers last week"
+   },
+   {
+    "title": "South Korea demands apology from Pyongyang for landmine blasts that injured three",
+    "url": "https://www.bbc.co.uk/news/articles/cwj3dkvpm4e7o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-30T05:24:52.000Z",
+    "src": "BBC World",
+    "summary": "Blasts in the Demilitarised Zone (DMZ) injured three South Korean personnel earlier this month."
+   },
+   {
+    "title": "Quick Take: A Shift in US Messaging Amid North Korea’s Nuclear Signaling",
+    "url": "https://www.38north.org/2026/09/quick-take-a-shift-in-us-messaging-amid-north-koreas-nuclear-signaling/",
+    "domain": "38north.org",
+    "date": "2026-09-29T15:57:15.000Z",
+    "src": "38 North",
+    "summary": "When Presidents Donald Trump and Xi Jinping met in May, the discrepancy between the two ... The post Quick Take: A Shift in US Messaging Amid North Korea’s Nuclear Signaling appeared first on 38 North ."
+   },
+   {
+    "title": "North Korea has recently completed two road bridges easing transport to strategic allies Russia and China",
+    "url": "https://www.dw.com/en/north-korea-has-recently-completed-two-road-bridges-easing-transport-to-strategic-allies-russia-and-china/a-79473981?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-09-29T13:35:00.000Z",
+    "src": "DW",
+    "summary": "Two recently opened bridges are expected to ease trade and transport between North Korea and its powerful neighbors. The new connections come as Pyongyang builds strategic ties with China and Russia."
+   },
    {
     "title": "In a relatively mild speech, North Korea uses UN platform to lament 'mutual distrust' and tension",
     "url": "https://www.pbs.org/newshour/world/in-a-relatively-mild-speech-north-korea-uses-un-platform-to-lament-mutual-distrust-and-tension",
@@ -1536,6 +1629,14 @@
   "dprk-cyber": [],
   "sahel": [
    {
+    "title": "Russia’s Sahel Intervention Is Riskier Than It Looks",
+    "url": "https://foreignpolicy.com/2026/09/29/niger-coup-russia-africa-corps-sahel-counterterrorism-junta-security-model-united-states/",
+    "domain": "foreignpolicy.com",
+    "date": "2026-09-29T11:00:41.000Z",
+    "src": "Foreign Policy",
+    "summary": "No one—not least in postcolonial West Africa—loves an army of occupation."
+   },
+   {
     "title": "More than 80 reported abducted in Nigeria as police find human remains",
     "url": "https://www.aljazeera.com/news/2026/9/29/more-than-80-reported-abducted-in-nigeria-as-police-find-human-remains?traffic_source=rss",
     "domain": "aljazeera.com",
@@ -1560,7 +1661,16 @@
     "summary": "As a new convoy of Russian armored vehicles arrives from the port of Lomé to support Russia’s Africa Corps deployment in Mali, that mission has entered its fifth year. Russia’s investment of blood and treasure urgently demands a return, but what could this return be? What is the Russian end goal in Mali?When the Wagner Group, Africa Corps’ predecessor, entered Mali in December 2021, it was pursuin"
    }
   ],
-  "ransomware": [],
+  "ransomware": [
+   {
+    "title": "Arizona Supreme Court says hackers stole residents’ personal data",
+    "url": "https://therecord.media/arizona-supreme-court-says-hackers-stole-data",
+    "domain": "therecord.media",
+    "date": "2026-09-29T12:27:00.000Z",
+    "src": "The Record",
+    "summary": "A spokesperson for the court system told Recorded Future News that the incident did not involve ransomware and the hackers have not issued ransom demands for the stolen data as of Monday."
+   }
+  ],
   "scs": [
    {
     "title": "China Conducts Military Exercise in South China Sea After Confrontation at Disputed Shoal",
@@ -1679,6 +1789,30 @@
   ],
   "ethiopia": [
    {
+    "title": "2027 AFCON qualifiers: first win for Patrick Vieira and Senegal",
+    "url": "https://www.france24.com/en/tv-shows/sports/20260930-2027-afcon-qualifiers-first-win-for-patrick-vieira-and-senegal",
+    "domain": "france24.com",
+    "date": "2026-09-30T06:15:59.000Z",
+    "src": "France 24",
+    "summary": "Patrick Vieira won his first match as Senegal’s manager. Senegal secured a 1-0 away victory against Ethiopia thanks to a goal from Ibrahim Mbaye."
+   },
+   {
+    "title": "Ugandan coronation under social media scrutiny",
+    "url": "https://www.france24.com/en/ugandan-coronation-under-social-media-scrutiny",
+    "domain": "france24.com",
+    "date": "2026-09-29T20:22:04.000Z",
+    "src": "France 24",
+    "summary": "In tonight's edition, Uganda's new king of Tooro is crowned before thousands. Also, Africa's richest man cautions the continent against losing control of its major projects. And dozens of civilians are killed as Ethiopian government forces bombard towns in the northern region of Tigray."
+   },
+   {
+    "title": "Ethiopia: No regard for civilians as fighting in Ethiopia's Tigray region continues",
+    "url": "https://www.dw.com/en/ethiopia-no-regard-for-civilians-as-fighting-in-ethiopia-s-tigray-region-continues/a-79464569?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-09-29T16:14:00.000Z",
+    "src": "DW",
+    "summary": "Fighting has returned to northern Ethiopia, shattering a fragile peace in the region. DW spoke to civilians caught in the crossfire amid communication blackouts, as rebel and federal forces keep battling for territory."
+   },
+   {
     "title": "Ethiopian army claims to have taken Tigrayan stronghold",
     "url": "https://www.aljazeera.com/video/newsfeed/2026/9/29/ethiopian-army-claims-to-have-taken-tigrayan-stronghold?traffic_source=rss",
     "domain": "aljazeera.com",
@@ -1737,6 +1871,28 @@
   ],
   "haiti": [
    {
+    "title": "UN extends mandate of Gang Suppression Force in Haiti for six months",
+    "url": "https://www.aljazeera.com/news/2026/9/29/un-extends-mandate-of-gang-suppression-force-in-haiti-for-six-months?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T22:38:10.000Z",
+    "src": "Al Jazeera",
+    "summary": "Security force members deployed to Haiti have struggled to make progress against criminal groups as violence continues."
+   },
+   {
+    "title": "40 people rescued , several missing after boat capsizes in waters west of Puerto Rico",
+    "url": "https://abcnews.com/International/wireStory/40-people-rescued-missing-after-boat-capsizes-waters-136838659",
+    "domain": "abcnews.com",
+    "date": "2026-09-29T00:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Contributor : Trump and Rubio fight to sway Brazil election and control the hemisphere",
+    "url": "https://www.latimes.com/opinion/story/2026-09-28/trump-brazil-election",
+    "domain": "latimes.com",
+    "date": "2026-09-28T21:00:00Z",
+    "src": "GDELT"
+   },
+   {
     "title": "What to know as trials over assassination of Haiti's president resume in Miami",
     "url": "https://www.pbs.org/newshour/world/what-to-know-as-trials-over-assassination-of-haitis-president-resume-in-miami",
     "domain": "pbs.org",
@@ -1762,6 +1918,75 @@
    }
   ],
   "myanmar": [
+   {
+    "title": "Malaysia begins Myanmar repatriations despite warnings from UN and rights groups",
+    "url": "https://www.theguardian.com/world/2026/sep/30/malaysia-begins-myanmar-repatriations-despite-warnings-from-un-and-rights-groups",
+    "domain": "theguardian.com",
+    "date": "2026-09-30T06:05:11.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Kuala Lumpur plans to send a total of 5,000 Myanmar nationals back to the war-torn country despite persecution concerns </p><p>Malaysia began sending back about 1,500 Myanmar nationals on Tuesday, the government confirmed, as it launched a scheme that rights groups say may endanger migrants and asylum seekers by returning them to the war-torn country.</p><p>The group is the first of 5,000 Myanm"
+   },
+   {
+    "title": "Malaysia begins Myanmar repatriations despite safety warnings by UN and rights groups",
+    "url": "https://abcnews.com/International/wireStory/malaysia-begins-myanmar-repatriations-despite-safety-warnings-rights-136844283",
+    "domain": "abcnews.com",
+    "date": "2026-09-30T04:18:14.000Z",
+    "src": "ABC News",
+    "summary": "Malaysia has begun repatriating Myanmar nationals under a voluntary program, despite warnings from the UN refugee agency and rights groups about unsafe conditions in Myanmar"
+   },
+   {
+    "title": "Dozens Killed in Myanmar Military Bombing",
+    "url": "https://www.nytimes.com/2026/09/29/world/asia/myanmar-airstrike-rakhine-market.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T19:37:19.000Z",
+    "src": "The New York Times",
+    "summary": "An airstrike on a bustling market in rebel territory left at least 50 people dead, in one of the deadliest attacks on civilians in months."
+   },
+   {
+    "title": "Early Edition : September 29 , 2026",
+    "url": "https://www.justsecurity.org/159195/early-edition-september-29-2026/",
+    "domain": "justsecurity.org",
+    "date": "2026-09-29T16:00:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Malaysia Begins Repatriation of Migrants to War-Torn Myanmar Despite Critics’ Warnings",
+    "url": "https://www.nytimes.com/2026/09/29/world/asia/malaysia-repatriation-myanmar-migrants-asylum.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-29T12:13:30.000Z",
+    "src": "The New York Times",
+    "summary": "Malaysia says it is repatriating undocumented migrants from Myanmar who want to return. Critics say it is putting their lives at risk."
+   },
+   {
+    "title": "World News in Brief: Deadly Myanmar strikes as Malaysia begins deportations, new emergency funding released, Gaza and West Bank update",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168488",
+    "domain": "news.un.org",
+    "date": "2026-09-29T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The UN chief on Tuesday strongly condemned an airstrike that reportedly killed at least 50 people at a market in Myanmar’s Rakhine state and called for those responsible to be held to account."
+   },
+   {
+    "title": "Myanmar airstrike toll hits 50 as families gather dead",
+    "url": "https://www.thehindu.com/news/international/myanmar-airstrike-toll-hits-50-as-families-gather-dead/article71523544.ece",
+    "domain": "thehindu.com",
+    "date": "2026-09-29T11:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Malaysia repatriates Myanmar migrants despite UN warnings",
+    "url": "https://www.dw.com/en/malaysia-repatriates-myanmar-migrants-despite-un-warnings/a-79470814",
+    "domain": "dw.com",
+    "date": "2026-09-29T10:45:00Z",
+    "src": "GDELT"
+   },
+   {
+    "title": "Living Under a Lethal Sky: Myanmar’s Arakan on Edge as Military Airstrikes on Civilians Grow",
+    "url": "https://thediplomat.com/2026/09/living-under-a-lethal-sky-myanmars-arakan-on-edge-as-military-airstrikes-on-civilians-grow/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-29T07:02:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Airstrikes are no longer intermittent dangers as they were two years ago, but a constant hazard. They are part of the people’s daily lives, woven into their collective consciousness."
+   },
    {
     "title": "Myanmar army air strike kills dozens in Rakhine state",
     "url": "https://www.aljazeera.com/news/2026/9/28/myanmar-army-air-strike-kills-dozens-in-rakhine-state?traffic_source=rss",
@@ -1827,7 +2052,16 @@
     "summary": "Survey data suggests support for the Spring Revolution in Myanmar’s Dry Zone remains strong, but greater resistance unity is needed. The post Enduring the Storm: Empirical Evidence from Myanmar’s Central Dry Zone appeared first on Stimson Center ."
    }
   ],
-  "nigeria": [],
+  "nigeria": [
+   {
+    "title": "3 Nigerians killed in recent weeks in South Africa, Nigeria says",
+    "url": "https://abcnews.com/International/wireStory/3-nigerians-killed-recent-weeks-south-africa-nigeria-136857061",
+    "domain": "abcnews.com",
+    "date": "2026-09-29T15:53:54.000Z",
+    "src": "ABC News",
+    "summary": "Nigerian authorities report that three Nigerian nationals have been killed in South Africa in recent weeks, adding to tensions between the two countries"
+   }
+  ],
   "somalia": [
    {
     "title": "Somalia Awaits a New Security Order as Mission Drawdown Looms",
@@ -1891,6 +2125,14 @@
   ],
   "cuba": [
    {
+    "title": "U.S. military lays groundwork for potential action around Cuba",
+    "url": "https://www.cbsnews.com/news/u-s-groundwork-potential-action-cuba-trump/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-26T15:23:00.000Z",
+    "src": "CBS News",
+    "summary": "Some units would \"possibly [be] needed in 90-120 days,\" according to an internal Army message reviewed by CBS News."
+   },
+   {
     "title": "Cuba warns against ‘law of the jungle’ as Foreign Minister denounces US pressure",
     "url": "https://news.un.org/feed/view/en/story/2026/09/1168458",
     "domain": "news.un.org",
@@ -1920,6 +2162,94 @@
    }
   ],
   "gaza": [
+   {
+    "title": "Girl has multiple surgeries to control infections after strike in Gaza",
+    "url": "https://www.bbc.co.uk/news/videos/c8n5d0e0n6wdo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-30T05:02:50.000Z",
+    "src": "BBC World",
+    "summary": "Witnesses say Raseel's tent was hit by an Israeli helicopter strike. Israel’s military says it has no record of the attack."
+   },
+   {
+    "title": "Israel’s Lapid accuses Netanyahu of ‘fear-mongering’ over attack warning",
+    "url": "https://www.aljazeera.com/news/2026/9/30/israels-lapid-accuses-netanyahu-of-fear-mongering-over-attack-warning?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-30T04:51:01.000Z",
+    "src": "Al Jazeera",
+    "summary": "Opposition leader dismisses Netanyahu's warning of possible attacks during next month's general election."
+   },
+   {
+    "title": "US Senate blocks resolution seeking report on Americans killed in West Bank",
+    "url": "https://www.aljazeera.com/news/2026/9/30/us-senate-blocks-resolution-seeking-report-on-americans-killed-in-west-bank?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-30T02:26:20.000Z",
+    "src": "Al Jazeera",
+    "summary": "The resolution cites a 'lack of accountability' by Israel's government and an 'inability to secure justice' by the US."
+   },
+   {
+    "title": "Morocco’s pro-Palestine protests challenge Rabat’s deepening Israel ties",
+    "url": "https://www.aljazeera.com/news/2026/9/30/moroccos-pro-palestine-protests-challenge-rabats-deepening-israel-ties?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-30T01:46:53.000Z",
+    "src": "Al Jazeera",
+    "summary": "Protests across Morocco highlight gap between public opposition to normalisation and Rabat’s closer ties with Israel."
+   },
+   {
+    "title": "Israeli Settlers Stop Soldiers From Returning Palestinians to Their Home",
+    "url": "https://www.nytimes.com/2026/09/29/world/middleeast/west-bank-israel-settlers-attack-soldiers-palestinians.html",
+    "domain": "nytimes.com",
+    "date": "2026-09-30T00:19:18.000Z",
+    "src": "The New York Times",
+    "summary": "The Supreme Court had ordered the military to ensure a West Bank family that fled violence could go back. But settlers blocked the effort, with the authorities accused of not doing enough to confront them."
+   },
+   {
+    "title": "US Senate blocks resolution demanding accountability over Israeli violence in West Bank",
+    "url": "https://www.theguardian.com/us-news/2026/sep/29/senate-resolution-west-bank-israel-violence",
+    "domain": "theguardian.com",
+    "date": "2026-09-30T00:16:17.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Nine American citizens have been killed by Israeli settlers or security forces in occupied West Bank since 2022</p><p>The US Senate on Tuesday evening rejected along mostly party lines a Democratic resolution that would have forced the state department to report to Congress on violence in the occupied West Bank, including the killings of nine American citizens by Israeli settlers or security fo"
+   },
+   {
+    "title": "‘Nothing is justifying this’: Qatar’s PM slams Israel’s atrocities in Gaza",
+    "url": "https://www.aljazeera.com/news/2026/9/29/nothing-is-justifying-this-qatari-pm-slams-atrocities-in-gaza?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T23:49:18.000Z",
+    "src": "Al Jazeera",
+    "summary": "Qatar's top diplomat says Israel has undermined Doha's efforts to broker a ceasefire in Gaza from 'day one'."
+   },
+   {
+    "title": "Jewish settlers clash with Israeli security forces to prevent Palestinian family’s return to West Bank home",
+    "url": "https://www.nbcnews.com/world/middle-east/jewish-settlers-clash-israeli-security-forces-prevent-palestinian-fami-rcna600437",
+    "domain": "nbcnews.com",
+    "date": "2026-09-29T21:05:30.000Z",
+    "src": "NBC News",
+    "summary": "It is the second time the Tubassi family has suffered at the hands of Jewish settlers in just over a month. On Aug. 28, masked settlers attacked and injured them and an NBC News crew that was interviewing them."
+   },
+   {
+    "title": "Board of Peace unveils Gaza recovery plan, Israel reports 18 ceasefire violations Sept. 15–29",
+    "url": "https://www.longwarjournal.org/archives/2026/09/board-of-peace-unveils-gaza-recovery-plan-israel-reports-18-ceasefire-violations-sept-15-29.php",
+    "domain": "longwarjournal.org",
+    "date": "2026-09-29T20:04:39.000Z",
+    "src": "Long War Journal",
+    "summary": "The US-backed Board of Peace announced a $2.45 billion plan to rebuild Gaza over six months, but disagreements over Hamas’s disarmament and an Israeli withdrawal continue to obstruct its implementation. A day later, Israeli Prime Minister Benjamin Netanyahu spoke before the United Nations General Assembly. Meanwhile, Israeli forces continued operations against Hamas members working to rebuild the "
+   },
+   {
+    "title": "Over 100 settlers attack Occupied West Bank village, clash with Israeli forces",
+    "url": "https://www.france24.com/en/video/20260929-over-100-settlers-attack-occupied-west-bank-village-clash-with-israeli-forces",
+    "domain": "france24.com",
+    "date": "2026-09-29T14:38:06.000Z",
+    "src": "France 24",
+    "summary": "More than 100 Israeli settlers attacked a village in the north of the occupied West Bank early Tuesday, wounding three members of Israel's security forces and burning two Palestinian homes, authorities and residents said. The attack occurred while the military was attempting to accompany a Palestinian family back to their home in the village of Jalud after they had been displaced by settler attack"
+   },
+   {
+    "title": "Israeli settlers attack West Bank village and block Palestinian family's return home",
+    "url": "https://www.bbc.co.uk/news/articles/cvlylj41egxgo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-09-29T12:39:18.000Z",
+    "src": "BBC World",
+    "summary": "Two homes belonging to the al-Tubasi family were set on fire and Israeli security forces were also targeted by settlers."
+   },
    {
     "title": "Netanyahu Visits Emirati Leader After Reports on Warning About Hamas Attack",
     "url": "https://www.nytimes.com/2026/09/28/world/middleeast/netanyahu-emirati-leader-hamas-attack.html",
@@ -2067,6 +2397,22 @@
   ],
   "syria": [
    {
+    "title": "Syria’s free-market experiment",
+    "url": "https://www.ft.com/content/5313b05e-5057-48f2-aa4f-01fa9174582f?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-09-30T04:00:05.000Z",
+    "src": "Financial Times",
+    "summary": "Ahmed al-Sharaa’s Islamist government has overhauled Assad’s protectionist model and exposed businesses to foreign competition"
+   },
+   {
+    "title": "President Ahmed Al-Sharaa on Syria’s next chapter",
+    "url": "https://www.atlanticcouncil.org/commentary/podcast/president-ahmed-al-sharaa-on-syrias-next-chapter/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-09-29T20:55:36.000Z",
+    "src": "Atlantic Council",
+    "summary": "Syrian President Ahmed Al-Sharaa joins the Atlantic Council to discuss Syria’s future and his government’s priorities for reconstruction, economic recovery, and institutional reform. This episode also explores the evolving relationship between the United States and Syria, the country’s role in regional conflicts, and Al-Sharaa's vision for Syria's path forward. This conversation was recorded durin"
+   },
+   {
     "title": "What the End of Operation Inherent Resolve Means for Iraq and Syria",
     "url": "https://warontherocks.com/what-the-end-of-operation-inherent-resolve-means-for-iraq-and-syria/",
     "domain": "warontherocks.com",
@@ -2117,6 +2463,22 @@
   ],
   "afghanistan": [
    {
+    "title": "Pakistan’s Escalating Response to Cross-Border Terrorism",
+    "url": "https://thediplomat.com/2026/09/pakistans-escalating-response-to-cross-border-terrorism/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-29T14:14:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The recurring clashes represent the failure of months of diplomacy and external mediation. Where does the Afghanistan-Pakistan relationship go from here?"
+   },
+   {
+    "title": "Funding cuts put 8.3 million refugees at risk of losing vital assistance",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168486",
+    "domain": "news.un.org",
+    "date": "2026-09-29T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "Haji Mohammad Shafi spent 44 years in Pakistan before he was forced to leave. He sold everything he owned and returned to Afghanistan with his five children, arriving with almost nothing."
+   },
+   {
     "title": "Fighting between Pakistan and the Taliban persists into second week",
     "url": "https://www.longwarjournal.org/archives/2026/09/fighting-between-pakistan-and-the-taliban-persists-into-second-week.php",
     "domain": "longwarjournal.org",
@@ -2139,6 +2501,14 @@
     "date": "2026-09-26T14:27:00.000Z",
     "src": "DW",
     "summary": "The blast was claimed by the Pakistani Taliban, which has stepped up attacks on Pakistani security forces in recent years."
+   },
+   {
+    "title": "The story behind the first CIA officers in Afghanistan after 9/11",
+    "url": "https://www.cbsnews.com/news/first-cia-officers-in-afghanistan-9-11-russian-helicopter/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-26T12:14:00.000Z",
+    "src": "CBS News",
+    "summary": "Twenty-five years ago, a Soviet-designed helicopter crossed the mountains of Afghanistan with the first CIA officers sent into the country after 9/11, the opening move in what would later become America's longest war."
    },
    {
     "title": "Pakistan’s Punitive Gamble in Afghanistan: An Open War With No End in Sight",
@@ -2187,10 +2557,26 @@
     "date": "2026-09-09T23:21:12.000Z",
     "src": "Long War Journal",
     "summary": "Former US Ambassador to Afghanistan Zalmay Khalilzad met with senior Taliban officials and attended the signing of a major oil and gas agreement with a Saudi company, despite the US State Department insisting that he was acting solely “in a personal capacity.” Whatever his intentions, Khalilzad gave the Taliban something it has sought since returning to power: an appearance of American validation."
+   },
+   {
+    "title": "Afghan girls who study in secret want you to read their \"letters to the world\"",
+    "url": "https://www.cbsnews.com/news/secret-afghan-girls-school-handwritten-letters-to-the-world/",
+    "domain": "cbsnews.com",
+    "date": "2026-09-09T20:25:00.000Z",
+    "src": "CBS News",
+    "summary": "21 Afghan girls, bravely defying the Taliban by continuing to study, handed CBS News letters containing their stifled, often humble dreams \"for an ordinary life.\""
    }
   ],
   "kashmir": [],
   "pakistan": [
+   {
+    "title": "Pakistan and Terrorism: When the Tables Turn",
+    "url": "https://thediplomat.com/2026/09/pakistan-and-terrorism-when-the-tables-turn/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-29T12:12:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Islamabad cannot use its own people’s suffering to erase its record of supporting forces that have devastated lives in other countries."
+   },
    {
     "title": "The Mecca Defence Alliance: Towards a Regional Security Stabiliser",
     "url": "https://www.geopoliticalmonitor.com/mecca-defence-alliance-regional-security-stabiliser/",
@@ -2283,6 +2669,14 @@
    }
   ],
   "ecuador": [
+   {
+    "title": "William Joffre Alcívar Bautista, alias “Willy”",
+    "url": "https://insightcrime.org/ecuador-organized-crime-news/william-joffre-alcivar-bautista-alias-willy/",
+    "domain": "insightcrime.org",
+    "date": "2026-09-29T22:12:32.000Z",
+    "src": "InSight Crime",
+    "summary": "William Joffre Alcívar Bautista, alias “Willy” William Joffre Alcívar Bautista, alias \"El Negro Willy\" or just \"Willy,\" went from prison guard to founder of Ecuador's Tiguerones gang. Arrested in Spain in October 2024, Willy was released in December 2025. He remains free and is believed to be in Spain. The post William Joffre Alcívar Bautista, alias “Willy” appeared first on InSight Crime ."
+   },
    {
     "title": "US strikes on Ecuadorian fishing boats raise humanitarian concerns but Trump admin not wavering",
     "url": "https://www.theguardian.com/world/2026/sep/26/us-airstrikes-ecuador-fishers",
@@ -2391,6 +2785,14 @@
    }
   ],
   "balkans": [
+   {
+    "title": "US Prosecutor Questions Kosovo’s Failure to Mitigate Thaci Verdict Expectations",
+    "url": "https://balkaninsight.com/2026/09/30/us-prosecutor-questions-kosovos-failure-to-mitigate-thaci-verdict-expectations/btj/",
+    "domain": "balkaninsight.com",
+    "date": "2026-09-30T05:48:27.000Z",
+    "src": "Balkan Insight",
+    "summary": "Clint Williamson recalls investigating the four guerrilla commanders recently convicted of war crimes, questions Kosovo’s failure to temper public expectations of an acquittal, and ponders the future of international justice at a time of “dysfunctionality” in the UN Security Council."
+   },
    {
     "title": "Nations League: Italy rebound in Turkey as France snatch late win in Belgium",
     "url": "https://www.france24.com/en/sport/20260928-italy-rebound-in-turkey-as-france-win-late-in-belgium",
@@ -2659,6 +3061,22 @@
   "baltic": [],
   "ru-cyber": [
    {
+    "title": "Poland braces for potential confrontation as Russia tests NATO defenses",
+    "url": "https://www.pbs.org/newshour/show/poland-braces-for-potential-confrontation-as-russia-tests-nato-defenses",
+    "domain": "pbs.org",
+    "date": "2026-09-29T22:30:57.000Z",
+    "src": "PBS NewsHour",
+    "summary": "Estonia formally accused Russia of an arson attack on a robotics company this past August that it said was part of a wave of Russian sabotage across Europe. In Poland, leaders are warning that Russia is planning a major attack to test NATO. Malcolm Brabant reports from Poland's border with Russia's Baltic enclave, Kaliningrad."
+   },
+   {
+    "title": "Russian hackers Star Blizzard expand targeting, change up tactics to reach Ukraine and beyond",
+    "url": "https://cyberscoop.com/microsoft-star-blizzard-redflick-phishing-campaigns/",
+    "domain": "cyberscoop.com",
+    "date": "2026-09-29T20:01:44.000Z",
+    "src": "CyberScoop",
+    "summary": "Microsoft says the cyberespionage campaign has hit U.S. and U.K. targets, relying on sheer volume and requiring only a single victim interaction. The post Russian hackers Star Blizzard expand targeting, change up tactics to reach Ukraine and beyond appeared first on CyberScoop ."
+   },
+   {
     "title": "Learning from Ukraine’s unrivaled experience of Russian cyber warfare",
     "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/learning-from-ukraines-unrivaled-experience-of-russian-cyber-warfare/",
     "domain": "atlanticcouncil.org",
@@ -2686,12 +3104,28 @@
   "iran-cyber": [],
   "influence": [
    {
+    "title": "Hegseth orders cyber, intelligence agencies to prioritize election defense",
+    "url": "https://www.defenseone.com/threats/2026/09/hegseth-orders-cyber-intelligence-agencies-prioritize-election-defense/416295/",
+    "domain": "defenseone.com",
+    "date": "2026-09-28T22:15:00.000Z",
+    "src": "Defense One",
+    "summary": "The directive comes as the administration has dismantled or reorganized offices that tracked foreign influence and reduced civilian election security support."
+   },
+   {
     "title": "Exclusive: Hegseth directs Defense Dept. to fight foreigners who \"meddle\" in U.S. elections",
     "url": "https://www.axios.com/2026/09/28/hegseth-elections-security-order",
     "domain": "axios.com",
     "date": "2026-09-28T19:48:53.000Z",
     "src": "Axios",
     "summary": "<p>Defense Secretary <a href=\"https://www.axios.com/2026/09/15/massie-impeach-pete-hegseth-iran-war\" target=\"_blank\">Pete Hegseth</a> has assigned personnel to use \"advanced intelligence and cyber capabilities to identify, disrupt, and neutralize foreign interference\" in the upcoming elections, Axios has learned.</p><p><strong>Why it matters:</strong> The threat of foreign election interference ha"
+   },
+   {
+    "title": "Trump Doesn’t Need to Be a Prop in Xi’s Political Show",
+    "url": "https://thediplomat.com/2026/09/trump-doesnt-need-to-be-a-prop-in-xis-political-show/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-28T17:15:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Whether he means to or not, the U.S. president is feeding China’s active disinformation campaigns – especially on Taiwan."
    },
    {
     "title": "Judge tosses Trump's lawsuit against Des Moines Register",
@@ -2721,6 +3155,38 @@
    }
   ],
   "iraq": [
+   {
+    "title": "US forces leave Iraq, raising fears of Iran-backed militias amid power vacuum",
+    "url": "https://www.france24.com/en/middle-east/20260930-us-forces-leave-iraq-raising-fears-of-iran-backed-militias-amid-power-vacuum",
+    "domain": "france24.com",
+    "date": "2026-09-30T01:04:01.000Z",
+    "src": "France 24",
+    "summary": "US forces are withdrawing from their remaining bases in Iraq on Wednesday, completing a pullout agreed under former president Joe Biden as fears grow over the security vacuum it could leave. Iraqi officials and analysts warn the departure could embolden Iran-backed militias and give Islamic State group fighters room to rebuild their capabilities."
+   },
+   {
+    "title": "U.S. withdraws forces in Iraq as balance of power shifts to Iran",
+    "url": "https://www.washingtonpost.com/world/2026/09/29/us-withdraws-forces-iraq-balance-power-shifts-iran/",
+    "domain": "washingtonpost.com",
+    "date": "2026-09-30T00:04:26.000Z",
+    "src": "The Washington Post",
+    "summary": "U.S. military forces are set to depart from bases in Iraq on Wednesday, a milestone in two bloody decades of American involvement."
+   },
+   {
+    "title": "Iraq begins high-stakes security balancing act as US troops withdraw",
+    "url": "https://www.aljazeera.com/news/2026/9/29/iraq-begins-high-stakes-security-balancing-act-as-us-troops-withdraw?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-09-29T23:06:53.000Z",
+    "src": "Al Jazeera",
+    "summary": "Iraq marks national 'Sovereignty Days' as US troops depart, but must navigate risks of new security landscape."
+   },
+   {
+    "title": "Iraq: US troops withdraw from their Iraqi US-led Operation Inherent Resolve mission against ISIS after 12 years",
+    "url": "https://www.dw.com/en/iraq-us-troops-withdraw-from-their-iraqi-us-led-operation-inherent-resolve-mission-against-isis-after-12-years/a-79462926?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-09-29T11:08:00.000Z",
+    "src": "DW",
+    "summary": "As the US completes its military withdrawal from Iraq, Baghdad declares a new era of sovereignty. But as US troops leave, questions remain over militias, foreign forces and the country's future security."
+   },
    {
     "title": "After more than two decades, U.S. forces prepare to leave Iraq",
     "url": "https://www.npr.org/2026/09/27/nx-s1-5981123/after-more-than-two-decades-u-s-forces-prepare-to-leave-iraq",
@@ -2829,6 +3295,14 @@
   "yemen": [],
   "thaicam": [
    {
+    "title": "Vietnam Confirms Arrest of Viet Tan Activists Reported Missing in Cambodia",
+    "url": "https://thediplomat.com/2026/09/vietnam-confirms-arrest-of-viet-tan-activists-reported-missing-in-cambodia/",
+    "domain": "thediplomat.com",
+    "date": "2026-09-29T04:41:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Rights groups claim that Nguyen Duc Thuan and Tran Hiep were abducted in Cambodia, in line with a pattern of growing transnational repression by the Vietnamese state."
+   },
+   {
     "title": "Cambodian Beauty Pageant Acknowledges Mistaken Use of Thai Historical Photograph",
     "url": "https://thediplomat.com/2026/09/cambodian-beauty-pageant-acknowledges-mistaken-use-of-thai-historical-photograph/",
     "domain": "thediplomat.com",
@@ -2873,6 +3347,14 @@
    }
   ],
   "arctic": [
+   {
+    "title": "From Greenland to the Falklands: Where Do Europe’s Strategic Interests End?",
+    "url": "https://www.geopoliticalmonitor.com/from-greenland-to-the-falklands-where-do-europes-strategic-interests-end/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-09-29T16:39:48.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Recent developments in Greenland and the Falklands reveal the divergence in Europe’s strategic geography and the EU’s institutional geography. The post From Greenland to the Falklands: Where Do Europe’s Strategic Interests End? appeared first on Geopolitical Monitor ."
+   },
    {
     "title": "At UN, Denmark says Greenland pact benefits all parties involved",
     "url": "https://www.pbs.org/newshour/world/at-un-denmark-says-greenland-pact-benefits-all-parties-involved",
