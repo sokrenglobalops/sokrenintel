@@ -49,7 +49,7 @@ Toggle from the **Layers** dropdown on the map bar (choices are remembered per b
 |---|---|---|
 | Chokepoints | curated (12 maritime chokepoints, linked to situations) | static |
 | Cables | `cables.json` in this repo (TeleGeography Submarine Cable Map geometry, CC BY-NC-SA); falls back to TeleGeography's live API, then to curated corridors | on toggle |
-| Air Tracker | military aircraft worldwide plus all traffic within 250 nm of the selected situation, from OpenSky Network via the SOKREN relay (one shared worldwide snapshot about every 2 min; military by ICAO hex allocation); community ADS-B feeds as fallback | 60 s (data ~2 min) |
+| Air Tracker | military aircraft worldwide plus all traffic within 250 nm of the selected situation, from OpenSky Network via the SOKREN relay (one shared worldwide snapshot about every 4 min; military by ICAO hex allocation); community ADS-B feeds as fallback | 60 s (data ~4 min) |
 | Ships (AIS) | AISStream.io live AIS — waters around every chokepoint, 22 major shipping lanes, and the selected situation; every vessel drawn on the GPU. Shared with all visitors through the SOKREN relay (`sokren-relay/`, Cloudflare Worker; set `RELAY_BASE` in index.html). Without a relay: per-browser key via ⚙ on the chip | live |
 
 **Vessel filter (Layers ▾ → Vessels):** All / Military / Coast guard-LE / Tankers / Cargo / Small craft / AIS gaps.

@@ -168,9 +168,9 @@ export default {
 /* ======================= Air hub (Durable Object) =======================
    One worldwide OpenSky snapshot, shared by every visitor and every colo, refreshed at most
    every AIR_SNAP_TTL and only while someone asks. Standard account = 4000 credits/day; a
-   global /states/all costs 4, so 120 s ≈ 2900/day. /air/point is cut from the same snapshot
+   global /states/all costs 4, so 240 s ≈ 1450/day. /air/point is cut from the same snapshot
    (no extra credits). Output uses readsb's {ac:[...]} shape so the site reads it unchanged. */
-const AIR_SNAP_TTL = 120 * 1000;
+const AIR_SNAP_TTL = 240 * 1000;   // 4 min: keeps the Deno helper (free plan: 150 GiB-h memory time/month) and OpenSky credits well inside budget even with a 24/7 viewer
 const OPENSKY_TOKEN_URL = "https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token";
 // Military ICAO hex allocations — same list as MIL_HEX in index.html
 const MIL_HEX = [

@@ -110,9 +110,9 @@ cached pass-throughs (CORS locked to `ALLOWED_ORIGINS`).
   adsb.fi 403, adsb.lol 429) and OpenSky doesn't even answer it, so `air-helper/main.ts` runs on Deno Deploy
   (playground "serene-lemming-5927", Tim's Deno org; code is pasted into the Deno editor — keep the repo copy in sync)
   and logs in to OpenSky (env `OPENSKY_CLIENT_ID/SECRET`, `HELPER_KEY`). Relay var `AIR_HELPER_URL`, secret
-  `AIR_HELPER_KEY` (= Deno `HELPER_KEY`). AirHub pulls one worldwide `/states/all` (4 credits) at most every 120 s,
+  `AIR_HELPER_KEY` (= Deno `HELPER_KEY`). AirHub pulls one worldwide `/states/all` (4 credits) at most every 240 s (was 120 — Deno free plan = 150 GiB-h memory time/month, ~768 MB billed while the helper is awake; a Sep 2026 usage alert hit 90%),
   only while someone asks; `/air/mil` and `/air/point` are cut from it in readsb `{ac:[]}` shape with `source`/`age`.
-  4000 credits/day. Health + login probe: `<relay>/air/status?probe=1`. Helper returns errors as 200 `{error}`
+  4000 credits/day. The site skips aircraft polling while its tab is hidden. Keep the Deno playground editor tab closed — its preview keeps an instance loaded. Health + login probe: `<relay>/air/status?probe=1`. Helper returns errors as 200 `{error}`
   (a 5xx body gets replaced by the edge). Test creds locally: `sokren-relay/test/opensky_login_check.sh FILE.json`.
 
 ## Map engine (index.html)
