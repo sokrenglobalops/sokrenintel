@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-01T06:49:59.594Z",
+ "generatedAt": "2026-10-02T06:48:55.669Z",
  "windowDays": 30,
  "sources": [
   {
@@ -200,6 +200,134 @@
  ],
  "items": {
   "ru-ua": [
+   {
+    "title": "Live: Russia hits Kyiv’s Southern Bridge as Moscow continues to pound capital",
+    "url": "https://www.france24.com/en/europe/20261002-live-russia-hits-kyiv-s-southern-bridge-as-moscow-continues-to-pound-capital",
+    "domain": "france24.com",
+    "date": "2026-10-02T05:30:42.000Z",
+    "src": "France 24",
+    "summary": "Russian airstrikes hit Kyiv’s Southern Bridge, the city’s mayor said on Friday. Russia also targeted a school and apartment buildings in the capital, killing at least one person. Ukraine, meanwhile, launched an overnight drone attack on the Russian city of Volgograd, targeting industrial facilities. Follow our liveblog for all the latest developments on the war in Ukraine."
+   },
+   {
+    "title": "Ukraine, South Korea clash over transfer of 2 North Korean prisoners",
+    "url": "https://www.dw.com/en/ukraine-south-korea-clash-over-transfer-of-2-north-korean-prisoners/a-79508601?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-10-02T04:40:00.000Z",
+    "src": "DW",
+    "summary": "A diplomatic scandal has erupted over two North Korean prisoners of war, with South Korea demanding an apology from Ukraine. What's been the reaction in Kyiv?"
+   },
+   {
+    "title": "A Front Line at the Border: How Russia Uses Migrants as Weapons Against Europe",
+    "url": "https://www.nytimes.com/2026/10/02/world/europe/latvia-immigration-russia.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-02T04:01:10.000Z",
+    "src": "The New York Times",
+    "summary": "The scheme is part of Russia’s larger strategy for sowing discord in the West, if more subtle than other recent operations blamed on the Kremlin."
+   },
+   {
+    "title": "Russia Is Planning Its Most Powerful Blow Yet to Try to Freeze Ukraine",
+    "url": "https://www.nytimes.com/2026/10/02/world/europe/russia-ukraine-winter.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-02T04:00:49.000Z",
+    "src": "The New York Times",
+    "summary": "Ukraine showed European partners what it said were intercepted Russian plans to cut off major cities from power, heat and water this winter."
+   },
+   {
+    "title": "Seoul warns 'further action' if Ukraine does not apologise over prisoner-of-war row",
+    "url": "https://www.bbc.co.uk/news/articles/cm1dld14weero?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-02T03:09:13.000Z",
+    "src": "BBC World",
+    "summary": "President Lee Jae Myung also accused Kyiv of \"attempting to provoke a war on the Korean Peninsula\"."
+   },
+   {
+    "title": "Row between Ukraine, South Korea mounts over North Korean POWs",
+    "url": "https://www.aljazeera.com/news/2026/10/2/row-between-ukraine-south-korea-mounts-over-north-korean-pows?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T02:54:13.000Z",
+    "src": "Al Jazeera",
+    "summary": "South Korea’s ⁠President accused Ukraine of ⁠undermining him by disclosing POW transfer deal"
+   },
+   {
+    "title": "News Wrap: Supreme Court to review mandatory detention policy for migrants",
+    "url": "https://www.pbs.org/newshour/show/news-wrap-supreme-court-to-review-mandatory-detention-policy-for-migrants",
+    "domain": "pbs.org",
+    "date": "2026-10-01T22:40:39.000Z",
+    "src": "PBS NewsHour",
+    "summary": "In our news wrap Thursday, the Supreme Court agreed to review the Trump administration's mandatory detention policy for migrants, UK police arrested a British-Iranian citizen on suspicion of planning a terror attack following a security incident at an air base and a Russian drone slammed into a school in Kyiv as the capital endured yet another day of aerial attacks."
+   },
+   {
+    "title": "Trump defies Democrats, diverts aid for Europe to Latin America instead",
+    "url": "https://www.washingtonpost.com/national-security/2026/10/01/trump-defies-democrats-diverts-aid-europe-latin-america-instead/",
+    "domain": "washingtonpost.com",
+    "date": "2026-10-01T21:34:25.000Z",
+    "src": "The Washington Post",
+    "summary": "The diverted funds include tens of millions of dollars that Congress approved for countries affected by the war in Ukraine."
+   },
+   {
+    "title": "Putin aims to break Ukraine by terrorizing the civilian population",
+    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/putin-aims-to-break-ukraine-by-terrorizing-the-civilian-population/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-10-01T21:00:56.000Z",
+    "src": "Atlantic Council",
+    "summary": "With the Russian army unable to defeat Ukraine on the battlefield, Putin is turning to terror tactics and is using ballistic missiles and jet drones in a bid to bomb Ukraine's civilian population into submission, writes Peter Dickinson. The post Putin aims to break Ukraine by terrorizing the civilian population appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Putin warns West that Russia is ready to use every weapon to protect Kaliningrad",
+    "url": "https://www.bbc.co.uk/news/articles/cqg7k7v499jjo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-01T19:38:30.000Z",
+    "src": "BBC World",
+    "summary": "The Russian leader insists Moscow is \"not threatening anyone\" and is merely responding to statements by Western leaders."
+   },
+   {
+    "title": "Latvians head to the polls with Russia on their minds",
+    "url": "https://www.dw.com/en/latvians-head-to-the-polls-with-russia-on-their-minds/a-79477614?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-10-01T17:57:00.000Z",
+    "src": "DW",
+    "summary": "On October 3, Latvians will elect a new parliament with Russia looming large over the campaign. Security fears dominate the agenda, but so does a debate over the economic cost of cutting ties with Moscow."
+   },
+   {
+    "title": "Jaw-Jaw With Belarus, Revisited Amid Ukraine War",
+    "url": "https://warontherocks.com/jaw-jaw-with-belarus-revisited-amid-ukraine-war/",
+    "domain": "warontherocks.com",
+    "date": "2026-10-01T17:30:16.000Z",
+    "src": "War on the Rocks",
+    "summary": "In 2021, Michael Kimmage wrote, “Belarus and the Ukraine Trap,” where he argued the United States should adopt a realistic diplomatic relationship with Belarus that takes into account its strategic partnership with Russia and learns from overpromises made to Ukraine. Five years later, we asked Michael to revisit his arguments. Image: President of BelarusIn your 2021 article, you named Belarus as o"
+   },
+   {
+    "title": "Russia to Sharply Increase War Spending and Cut Social Programs",
+    "url": "https://www.nytimes.com/2026/10/01/world/europe/russia-war-budget.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T16:00:37.000Z",
+    "src": "The New York Times",
+    "summary": "Both sides are finding it increasingly difficult to finance the conflict in Ukraine. Russia’s 2027 budget envisions more debt, higher taxes and lower social benefits."
+   },
+   {
+    "title": "Central Asia’s Diplomatic Balancing Act on Display from Bishkek to New York",
+    "url": "https://thediplomat.com/2026/10/central-asias-diplomatic-balancing-act-on-display-from-bishkek-to-new-york/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T12:50:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Central Asia aligns rhetorically with Beijing and Moscow in regional group settings, materially with Washington in bilateral deals, and with no one in particular at the United Nations."
+   },
+   {
+    "title": "World News in Brief: Marshall Islands nuclear legacy, FlyDubai attack condemned, Ukraine update, breast cancer treatment expanded in West Bank",
+    "url": "https://news.un.org/feed/view/en/story/2026/10/1168503",
+    "domain": "news.un.org",
+    "date": "2026-10-01T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The enduring radioactive legacy of US nuclear bomb testing in the Marshall Islands took centre stage at the Human Rights Council on Thursday."
+   },
+   {
+    "title": "Drones outpace Ukrainian defenses as manufacturers race to build new interceptors",
+    "url": "https://abcnews.com/International/wireStory/jet-powered-drones-outpace-ukrainian-defenses-manufacturers-race-136910622",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T06:52:29.000Z",
+    "src": "ABC News",
+    "summary": "Jet-powered Russian drones are racing across Kyiv's skies, and Ukrainian air defenses are struggling to keep up"
+   },
    {
     "title": "Kyiv Independent editor: ‘Our readers want Russia to suffer but we can’t be propagandists’",
     "url": "https://www.theguardian.com/world/2026/oct/01/kyiv-independent-editor-olga-rudenko-readers-want-russia-suffer-cant-be-propagandists",
@@ -551,144 +679,176 @@
     "date": "2026-09-28T14:57:31.000Z",
     "src": "BBC World",
     "summary": "Last week Zelensky revealed Ukraine had sent two captured North Koreans to South Korea - which Seoul says was meant to be a secret."
-   },
-   {
-    "title": "Russian drones hammer apartments, offices and cultural landmark in Ukraine, killing 7",
-    "url": "https://abcnews.com/International/wireStory/russian-drones-pound-civilian-areas-ukraine-claims-battlefield-136816631",
-    "domain": "abcnews.com",
-    "date": "2026-09-28T13:54:54.000Z",
-    "src": "ABC News",
-    "summary": "Officials say that Russia&rsquo;s round-the-clock bombardment of targets in Ukraine killed at least six civilians and wounded 53 others from Sunday to Monday"
-   },
-   {
-    "title": "On Poland's border with Ukraine, residents brace for a possible Russian hybrid attack",
-    "url": "https://abcnews.com/International/wireStory/polands-border-ukraine-residents-brace-russian-hybrid-attack-136813873",
-    "domain": "abcnews.com",
-    "date": "2026-09-28T09:22:17.000Z",
-    "src": "ABC News",
-    "summary": "Polish Prime Minister Donald Tusk has warned of potential hybrid attacks from Russia on European countries supporting Ukraine, including Poland"
-   },
-   {
-    "title": "These teens lost parents to fighting Russia. Ukraine is training them for war.",
-    "url": "https://www.washingtonpost.com/world/2026/09/27/ukraine-boarding-schools-train-teens-replace-fallen-fathers-war/",
-    "domain": "washingtonpost.com",
-    "date": "2026-09-27T09:00:00.000Z",
-    "src": "The Washington Post",
-    "summary": "The Washington Post was granted rare access to one of five boarding schools the government has opened. They are part grief counseling and part boot camp."
-   },
-   {
-    "title": "Russian Foreign Minister Vows Russia Will See Ukraine War Through",
-    "url": "https://www.nytimes.com/2026/09/26/world/europe/russia-germany-lavrov-ukraine-war.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-27T00:49:12.000Z",
-    "src": "The New York Times",
-    "summary": "Russia’s foreign minister met with his German counterpart during the U.N. General Assembly but spent part of his address defending his country’s war on Ukraine."
-   },
-   {
-    "title": "Russia expected to intensify hybrid war on Europe",
-    "url": "https://www.dw.com/en/russia-expected-to-intensify-hybrid-war-on-europe/a-79444596?maca=en-rss-en-world-4025-rdf",
-    "domain": "dw.com",
-    "date": "2026-09-26T15:39:00.000Z",
-    "src": "DW",
-    "summary": "Drone explosions, airspace violations, arson attacks: Poland, Romania, and Moldova are now regularly targeted in Russian attacks against Ukraine. More governments are calling these attacks deliberate acts of aggression."
-   },
-   {
-    "title": "Russian Attacks Destroy Ukrainian Books",
-    "url": "https://www.nytimes.com/video/world/europe/100000011148419/russian-attacks-destroy-ukrainian-books.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-26T15:01:08.000Z",
-    "src": "The New York Times",
-    "summary": "Our reporter Kim Barker goes inside a storied Kyiv book market that was hit by an air strike. Russian attacks have damaged millions of books in Ukraine in the last few months."
-   },
-   {
-    "title": "Lavrov issues call for new Eurasian ‘security architecture’",
-    "url": "https://news.un.org/feed/view/en/story/2026/09/1168457",
-    "domain": "news.un.org",
-    "date": "2026-09-26T12:00:00.000Z",
-    "src": "UN News",
-    "summary": "Russia's Foreign Minister, Sergey Lavrov, accused Western countries of destabilising the world through “force and double standards” in his address to the UN General Assembly on Saturday, vowing that Moscow's “special military operation” in Ukraine would be “carried through to the end.”"
-   },
-   {
-    "title": "Europe frets as the Kremlin pushes the limits of its hybrid warfare",
-    "url": "https://www.nbcnews.com/world/europe/europe-frets-kremlin-pushes-limits-hybrid-warfare-rcna599351",
-    "domain": "nbcnews.com",
-    "date": "2026-09-26T09:00:40.000Z",
-    "src": "NBC News",
-    "summary": "The Kremlin is testing Europe‘s limits."
-   },
-   {
-    "title": "North Korea’s Ukraine POWs Are Now in South Korea. What Comes Next?",
-    "url": "https://thediplomat.com/2026/09/north-koreas-ukraine-pows-are-now-in-south-korea-what-comes-next/",
-    "domain": "thediplomat.com",
-    "date": "2026-09-25T16:41:00.000Z",
-    "src": "The Diplomat",
-    "summary": "Both the South Korean government and the two former soldiers face an unprecedented resettlement process."
-   },
-   {
-    "title": "What’s Behind Australia’s New $42 Million in Assistance to Ukraine?",
-    "url": "https://thediplomat.com/2026/09/whats-behind-australias-new-42-million-in-assistance-to-ukraine/",
-    "domain": "thediplomat.com",
-    "date": "2026-09-25T12:59:00.000Z",
-    "src": "The Diplomat",
-    "summary": "Canberra’s desire to learn from Kyiv is a sign of enormous respect and its pledge to ongoing support an expression of Australia's support for the Ukrainian cause."
-   },
-   {
-    "title": "Stuck on the Battlefield, Russia Wages ‘Total War’ on Ukraine’s Economy",
-    "url": "https://www.nytimes.com/2026/09/25/world/europe/ukraine-russia-economy.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-25T09:02:55.000Z",
-    "src": "The New York Times",
-    "summary": "The economic damage from Russian strikes, resulting in lost sales, disrupted workdays and logistical snarls, is in the billions of dollars."
-   },
-   {
-    "title": "Russian Attacks Destroy Millions of Books, the Heart of Ukrainian Culture",
-    "url": "https://www.nytimes.com/2026/09/25/world/europe/russia-ukraine-books-attacks.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-25T09:01:18.000Z",
-    "src": "The New York Times",
-    "summary": "A publisher whose warehouse was hit twice said Moscow “thinks that books are more dangerous for them than military equipment.”"
-   },
-   {
-    "title": "North Korea’s Irregular Warfare After Ukraine",
-    "url": "https://warontherocks.com/north-koreas-irregular-warfare-after-ukraine/",
-    "domain": "warontherocks.com",
-    "date": "2026-09-25T07:30:29.000Z",
-    "src": "War on the Rocks",
-    "summary": "Pyongyang has a long history of conducting irregular warfare and asymmetric operations: Look no further than the 1968 Blue House raid or the 1996 submarine incursion as the most pressing examples. More often than not, North Korea failed to achieve the intended objectives of its missions and lost its commandos. Despite failures, the regime pressed on, and now, over thirty years after the sub incurs"
-   },
-   {
-    "title": "Democracy Digest: Czechia Restricts Rules for Russian Diplomats Travelling",
-    "url": "https://balkaninsight.com/2026/09/25/democracy-digest-czechia-restricts-rules-for-russian-diplomats-travelling/rd/",
-    "domain": "balkaninsight.com",
-    "date": "2026-09-25T06:02:10.000Z",
-    "src": "Balkan Insight",
-    "summary": "Elsewhere, Polish foreign minister confronts Russian counterpart at UN as tensions with Kremlin rise; Hungary allowed to re-enter EU’s Erasmus+ program; Slovakia succeeds in getting Russian billionaires removed from EU sanctions list."
-   },
-   {
-    "title": "Ukraine’s defense tech sector must offer investors more than innovation",
-    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/ukraines-defense-tech-sector-must-offer-investors-more-than-innovation/",
-    "domain": "atlanticcouncil.org",
-    "date": "2026-09-24T17:59:40.000Z",
-    "src": "Atlantic Council",
-    "summary": "Since the start of Russia’s full-scale invasion in 2022, Ukraine has built one of the world’s most dynamic defense tech ecosystems under conditions few industries ever face. However, innovation alone will not be enough to win over potential investors, writes Olga Usenko. The post Ukraine’s defense tech sector must offer investors more than innovation appeared first on Atlantic Council ."
-   },
-   {
-    "title": "Zelensky: U.S. pushing energy ceasefire, trilateral talks with Russia",
-    "url": "https://www.axios.com/2026/09/24/zelensky-ukraine-russia-war-energy-ceasefire-grain",
-    "domain": "axios.com",
-    "date": "2026-09-24T03:25:01.000Z",
-    "src": "Axios",
-    "summary": "<p>The Trump administration is pushing for three immediate steps in its effort to de-escalate the war in <a href=\"https://www.axios.com/world/axios-explains-ukraine\" target=\"_blank\">Ukraine</a> and restart diplomacy with Russia, Ukrainian President Volodymyr Zelensky told Axios in an interview on Wednesday: </p><ul><li>A ceasefire on energy infrastructure.</li><li>Reopening the Black Sea grain cor"
    }
   ],
   "iran": [
    {
-    "title": "Iran says it's considering ceasefire counterproposal",
+    "title": "Trump says Iran \"ready to fold up\"",
     "url": "https://www.cbsnews.com/live-updates/iran-war-us-negotiations-strait-of-hormuz-oil/",
     "domain": "cbsnews.com",
-    "date": "2026-10-01T05:56:28.000Z",
+    "date": "2026-10-02T06:19:50.000Z",
     "src": "CBS News",
-    "summary": "Iranian state media said the regime has received a full U.S. response to its proposal for a ceasefire and the phased reopening of the Strait of Hormuz."
+    "summary": "Trump said he doesn't believe \"you could ever have peace\" with Iran, and renewed his threat to resume U.S. attacks after the midterms."
+   },
+   {
+    "title": "Oil Flows Are Up, but Iran Is Still Menacing the Strait of Hormuz",
+    "url": "https://www.nytimes.com/2026/10/02/world/middleeast/iran-strait-hormuz-attacks-oil.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-02T04:01:19.000Z",
+    "src": "The New York Times",
+    "summary": "Iran has been launching drones and missiles at commercial ships in the waterway each week, though it has often failed to strike its targets, according to a Western security official."
+   },
+   {
+    "title": "Quant hedge funds reap big gains from global bond sell-off",
+    "url": "https://www.ft.com/content/75b0ab84-a252-4ea1-9058-c9ee7ca07f4f?syn-25a6b1a6=1",
+    "domain": "ft.com",
+    "date": "2026-10-02T04:00:23.000Z",
+    "src": "Financial Times",
+    "summary": "Trend-following portfolios have latched on to sharp rise in yields this year as Iran war and strong US economic data fuel inflation fears"
+   },
+   {
+    "title": "US to send third aircraft carrier towards Iran: US official to Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/10/2/us-to-send-third-aircraft-carrier-towards-iran-us-official-to-al-jazeera?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T03:14:47.000Z",
+    "src": "Al Jazeera",
+    "summary": "Massive US military deployment to the Middle East includes 50,000 troops, F-35s and Marines to pressure Tehran."
+   },
+   {
+    "title": "Saudi-led coalition accuses Houthis of striking Medina power station",
+    "url": "https://www.france24.com/en/middle-east/20261002-saudi-led-coalition-houthis-striking-medina-power-station",
+    "domain": "france24.com",
+    "date": "2026-10-02T02:39:43.000Z",
+    "src": "France 24",
+    "summary": "Yemen’s Iran-backed Houthis struck an electricity distribution station supplying the Prophet’s Mosque in Saudi Arabia’s holy city of Medina, the Saudi-led coalition said Thursday, drawing condemnation across the Muslim world. The Houthis denied involvement in the drone attack, which came as fighting intensified between government forces and rebels in Yemen."
+   },
+   {
+    "title": "Trump launches midterms campaign blitz amid record low approval ratings",
+    "url": "https://www.aljazeera.com/news/2026/10/2/trump-launches-midterms-campaign-blitz-amidst-record-low-approval-ratings?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T01:39:08.000Z",
+    "src": "Al Jazeera",
+    "summary": "In a series of campaign-style rallies, Trump seeks to boost Republican odds amid Iran war and rising fuel costs."
+   },
+   {
+    "title": "Iran war live: US moves 2,000 Marines to Middle East, tanker hit in Hormuz",
+    "url": "https://www.aljazeera.com/news/liveblog/2026/10/2/iran-war-live-us-moves-2000-marines-to-middle-east-tanker-hit-in-hormuz?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T00:00:00.000Z",
+    "src": "Al Jazeera",
+    "summary": "US deploys Roosevelt strike group and 2,000 Marines to the Middle East as part of a wider buildup around Iran."
+   },
+   {
+    "title": "New video of hero passengers from plane attack",
+    "url": "https://www.nbcnews.com/nightly-news/video/new-video-of-hero-passengers-from-plane-attack-270879301884",
+    "domain": "nbcnews.com",
+    "date": "2026-10-01T22:48:01.000Z",
+    "src": "NBC News",
+    "summary": "New video showed the heroic Israeli passengers who subdued a co-pilot who tried to bring down their FlyDubai flight. President Trump said the co-pilot has links to Iran. NBC News’ Matt Bradley reports."
+   },
+   {
+    "title": "Investigators search for motive after alleged attack by FlyDubai co-pilot",
+    "url": "https://www.pbs.org/newshour/show/investigators-search-for-motive-after-alleged-attack-by-flydubai-co-pilot",
+    "domain": "pbs.org",
+    "date": "2026-10-01T22:45:02.000Z",
+    "src": "PBS NewsHour",
+    "summary": "Investigators across the Middle East are hunting for answers after a co-pilot stabbed his captain and allegedly attempted to crash a FlyDubai aircraft bound for Israel. President Trump claimed the attack could be linked to Iran, but did not provide evidence. Geoff Bennett discussed what we do and don't know with Juliette Kayyem, a former assistant secretary at the Department of Homeland Security."
+   },
+   {
+    "title": "Dual U.K.-Iranian national arrested over security incident at U.S.-run air base in England",
+    "url": "https://www.nbcnews.com/video/dual-u-k-iranian-national-arrested-over-security-incident-at-u-s-run-air-base-in-england-270878789712",
+    "domain": "nbcnews.com",
+    "date": "2026-10-01T22:18:24.000Z",
+    "src": "NBC News",
+    "summary": "Police arrested a dual U.K.-Iranian national on suspicion of plotting a terror attack following a security incident at a U.S.-run military air base in England that British authorities have linked to Tehran. NBC News' Tom Winter reports."
+   },
+   {
+    "title": "US presses Europe to release diesel reserves 'immediately' as Trump threatens export ban",
+    "url": "https://www.france24.com/en/europe/20261001-us-europe-diesel-reserves-fuel-prices",
+    "domain": "france24.com",
+    "date": "2026-10-01T22:08:51.000Z",
+    "src": "France 24",
+    "summary": "The United States on Thursday urged European allies to release strategic diesel reserves immediately to curb prices driven higher by the US war on Iran. EU states will discuss a coordinated response on Friday, as Washington increases pressure following US President Donald Trump's suggestion that he could ban US diesel exports."
+   },
+   {
+    "title": "Trump suggests Fly Dubai co-pilot may be linked to Iran",
+    "url": "https://www.cbsnews.com/news/trump-flydubai-pilot-linked-to-iran/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-01T20:04:38.000Z",
+    "src": "CBS News",
+    "summary": "Israeli Prime Minister Benjamin Netanyahu has said it's \"too early to say\" if Iran was involved in the thwarted attempt to crash the commercial airliner."
+   },
+   {
+    "title": "UK-Iranian Man Arrested in Connection to RAF Fairford Air Base Incident",
+    "url": "https://www.nytimes.com/2026/10/01/world/europe/uk-iran-terrorism-raf-fairford.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T19:42:50.000Z",
+    "src": "The New York Times",
+    "summary": "British police said a 25-year-old British-Iranian dual national was arrested Thursday. British officials have said they believe Iran played a part in planning the incident at R.A.F. Fairford."
+   },
+   {
+    "title": "Oil Is Again Flowing Out of Hormuz",
+    "url": "https://foreignpolicy.com/2026/10/01/oil-strait-hormuz-iran-trump-war-gulf-gas-diesel-prices/",
+    "domain": "foreignpolicy.com",
+    "date": "2026-10-01T17:48:13.000Z",
+    "src": "Foreign Policy",
+    "summary": "But the continued shortfall of refined products means little relief at the pump."
+   },
+   {
+    "title": "British Iranian arrested in U.K. terror plot probe",
+    "url": "https://www.axios.com/2026/10/01/uk-iranian-national-arrested-raf-fairford-terror-plot-probe",
+    "domain": "axios.com",
+    "date": "2026-10-01T17:27:58.000Z",
+    "src": "Axios",
+    "summary": "<p>A U.K. <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iranian</a> dual national was arrested on suspicion of preparing to carry out terrorist acts in connection with an incident at an <a href=\"https://www.axios.com/2026/09/28/uk-fairford-bomb-plot-arrests-iran-link-investigation\" target=\"_blank\">English air base</a> used by the U.S., British counterterrorism police said Thursday.</p"
+   },
+   {
+    "title": "5 takeaways from Trump's combative Time interview",
+    "url": "https://www.axios.com/2026/10/01/trump-time-interview-iran-democrats-ai-netanyahu",
+    "domain": "axios.com",
+    "date": "2026-10-01T15:58:33.000Z",
+    "src": "Axios",
+    "summary": "<p>President <a href=\"https://www.axios.com/politics-policy/donald-trump\" target=\"_blank\">Trump's</a> 75-minute interview with Time revealed his latest thinking on the <a href=\"https://www.axios.com/2026/09/29/trump-iran-war-qatar-diplomacy\" target=\"_blank\">Iran war</a>, the AI race (or in his words, SI), the media and more.</p><p><strong>Why it matters: </strong>The <a href=\"https://x.com/TIME/st"
+   },
+   {
+    "title": "Resilience has a cost. So does complacency.",
+    "url": "https://www.atlanticcouncil.org/blogs/menasource/resilience-has-a-cost-so-does-complacency/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-10-01T15:54:29.000Z",
+    "src": "Atlantic Council",
+    "summary": "Gulf countries need to work together to build resilience, as they face new stresses from the Iran War. The post Resilience has a cost. So does complacency. appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Crude oil exports from strait of Hormuz largely return to pre-war levels",
+    "url": "https://www.theguardian.com/business/2026/oct/01/crude-oil-exports-strait-of-hormuz-transport-gulf-region-diesel",
+    "domain": "theguardian.com",
+    "date": "2026-10-01T15:52:14.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Alternative ways being used to move fuel out of Gulf region, but flows of refined products such as diesel still constrained</p><p>Exports of crude from the strait of Hormuz have largely returned to levels seen before the outbreak of the Iran war, as oil producers and the shipping industry have found alternative ways of transporting crucial fuel out of the Middle East.</p><p>Pipeline exports and"
+   },
+   {
+    "title": "Investigators work to determine why a pilot apparently tried to crash a FlyDubai flight to Israel",
+    "url": "https://www.pbs.org/newshour/world/investigators-work-to-determine-why-a-pilot-apparently-tried-to-crash-a-flydubai-flight-to-israel",
+    "domain": "pbs.org",
+    "date": "2026-10-01T15:00:10.000Z",
+    "src": "PBS NewsHour",
+    "summary": "President Donald Trump said Thursday that if Iran is linked to the copilot who tried to crash an Israel-bound flight, the Islamic Republic would be struck \"very hard\" for the attempt on the lives of more than 180 people aboard the jet."
+   },
+   {
+    "title": "Iran War Highlights 2 Challenges for Japan in a Taiwan Contingency",
+    "url": "https://thediplomat.com/2026/10/iran-war-highlights-2-challenges-for-japan-in-a-taiwan-contingency/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T12:54:00.000Z",
+    "src": "The Diplomat",
+    "summary": "Japan can use the Iran war to reexamine its security framework, with particular attention to preparations for a contingency involving Taiwan."
+   },
+   {
+    "title": "UN Member States weigh latest Security Council veto, this time on Iran",
+    "url": "https://news.un.org/feed/view/en/story/2026/10/1168505",
+    "domain": "news.un.org",
+    "date": "2026-10-01T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The General Assembly met on Thursday to examine the Security Council’s latest veto, cast by China and Russia over a United States-backed sanctions panel of experts on Iran nuclear facilities."
    },
    {
     "title": "UK says Iran may be linked to alleged airbase plot, drawing angry denial",
@@ -998,169 +1158,25 @@
     "date": "2026-09-29T03:28:58.000Z",
     "src": "Financial Times",
     "summary": "Fast-fashion retailer squeezed by rising freight costs and Iran war fallout"
-   },
-   {
-    "title": "Rubio says UK air base incident involved ‘foreign actor’",
-    "url": "https://www.ft.com/content/262f5234-3d66-4187-a844-b52c29cb0e9b?syn-25a6b1a6=1",
-    "domain": "ft.com",
-    "date": "2026-09-29T03:08:11.000Z",
-    "src": "Financial Times",
-    "summary": "RAF Fairford was being used by US Air Force for strikes on Iran"
-   },
-   {
-    "title": "Iran’s Araghchi meets Qatari mediators as US calls for nuclear talks",
-    "url": "https://www.aljazeera.com/news/2026/9/29/irans-araghchi-meets-qatari-mediators-as-us-insists-on-nuclear-talks?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-29T02:36:25.000Z",
-    "src": "Al Jazeera",
-    "summary": "Tehran awaits reply on Hormuz plan as a US official says there will be no deal unless nuclear issues are addressed."
-   },
-   {
-    "title": "Trump doubles down on claims US will win war with Iran ‘one way or another’ as talks are in doubt – as it happened",
-    "url": "https://www.theguardian.com/us-news/live/2026/sep/28/donald-trump-iran-negotiations-fuel-deportations-media-china-latest-news-updates",
-    "domain": "theguardian.com",
-    "date": "2026-09-29T01:54:38.000Z",
-    "src": "The Guardian",
-    "summary": "<p>This live blog is now closed.</p><ul><li><p><a href=\"https://www.theguardian.com/news/2026/feb/17/sign-up-for-the-breaking-news-us-email-to-get-newsletter-alerts-direct-to-your-inbox?utm_medium=ACQUISITIONS_STANDFIRST&amp;utm_campaign=BN22326&amp;utm_content=signup&amp;utm_term=standfirst&amp;utm_source=GUARDIAN_WEB\">Sign up for the Breaking News US email</a></p></li></ul><p>While the lawmakers"
-   },
-   {
-    "title": "US sanctions on Iran's aviation industry make travel less predictable as countries cancel flights",
-    "url": "https://www.dw.com/en/us-sanctions-on-iran-s-aviation-industry-make-travel-less-predictable-as-countries-cancel-flights/a-79459140?maca=en-rss-en-world-4025-rdf",
-    "domain": "dw.com",
-    "date": "2026-09-29T00:01:00.000Z",
-    "src": "DW",
-    "summary": "The threat of secondary US sanctions is putting pressure on airports, fuel suppliers and aviation companies that service Iranian airlines. Some countries have already canceled flights."
-   },
-   {
-    "title": "Iran war live: Trump says he did not offer Tehran sanctions relief",
-    "url": "https://www.aljazeera.com/news/liveblog/2026/9/29/iran-war-live-trump-says-he-did-not-offer-tehran-sanctions-relief?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-29T00:00:00.000Z",
-    "src": "Al Jazeera",
-    "summary": "US President Trump rejects a news report claiming his administration offered Iran sanctions relief and frozen funds."
-   },
-   {
-    "title": "5 British terror plot suspects freed on bail",
-    "url": "https://www.cbsnews.com/video/5-british-terror-plot-suspects-freed-bail/",
-    "domain": "cbsnews.com",
-    "date": "2026-09-28T23:30:20.000Z",
-    "src": "CBS News",
-    "summary": "Five British nationals were freed on bail after a high-profile arrest over the weekend. They are suspected of planning an attack near an air base used by the U.S. military in the war with Iran. President Trump criticized their release as investigators dig into their backgrounds. Holly Williams reports."
-   },
-   {
-    "title": "What Trump's rollback of fuel economy standards means for drivers",
-    "url": "https://www.pbs.org/newshour/show/what-trumps-rollback-of-fuel-economy-standards-means-for-drivers",
-    "domain": "pbs.org",
-    "date": "2026-09-28T22:55:54.000Z",
-    "src": "PBS NewsHour",
-    "summary": "The Trump administration is rolling back federal fuel economy standards for new vehicles. The move reverses policies meant to increase fuel efficiency to encourage greater use of electric vehicles. The boost for gasoline-powered vehicles comes as the war in Iran continues to drive up oil prices. Amna Nawaz discussed the changes with David Shepardson of Reuters."
-   },
-   {
-    "title": "British men released on bail after suspected terror plot",
-    "url": "https://www.npr.org/2026/09/28/nx-s1-5983550/british-men-released-on-bail-after-suspected-terror-plot",
-    "domain": "npr.org",
-    "date": "2026-09-28T22:10:02.000Z",
-    "src": "NPR",
-    "summary": "Five British men have been released on bail after being detained near a military base for alleged terror offenses. The British base is used by the U.S. military for strikes on Iran."
-   },
-   {
-    "title": "Trump offers Iran economic relief for concrete nuclear concessions",
-    "url": "https://www.axios.com/2026/09/28/trump-iran-war-sanctions-blockade-nuclear",
-    "domain": "axios.com",
-    "date": "2026-09-28T21:58:44.000Z",
-    "src": "Axios",
-    "summary": "<p>President Trump is willing to give <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a> sanctions relief and release Iranian frozen funds in return for concrete Iranian steps regarding the nuclear program, U.S. officials say. </p><p><strong>Why it matters:</strong> The U.S. message to Iran comes as Qatari and Pakistani mediators try again this week to strike a deal between the tw"
-   },
-   {
-    "title": "Bond sell-off deepens and oil rises as Iran-US deal hopes fade",
-    "url": "https://www.ft.com/content/d751ad99-531d-4990-9a4c-ee89a9fc1b2d?syn-25a6b1a6=1",
-    "domain": "ft.com",
-    "date": "2026-09-28T21:38:05.000Z",
-    "src": "Financial Times",
-    "summary": "Brent crude jumps and 10-year Treasury yield surpasses 5.2% as hopes for US-Iran agreement fade"
-   },
-   {
-    "title": "Questions remain over Iran’s link to alleged RAF Fairford bomb plot",
-    "url": "https://www.theguardian.com/world/2026/sep/28/questions-remain-over-irans-link-to-alleged-raf-fairford-bomb-plot",
-    "domain": "theguardian.com",
-    "date": "2026-09-28T21:36:40.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Tehran has been trying to step up attacks on targets in the west but its track record has been mixed</p><p>Investigators may be some way from determining exactly what led five men with three vans to a village just outside RAF Fairford in the small hours of Sunday – but the fact they have all been <a href=\"https://www.theguardian.com/uk-news/2026/sep/28/men-arrested-raf-fairford-counter-terroris"
-   },
-   {
-    "title": "9/28: The Takeout with Major Garrett",
-    "url": "https://www.cbsnews.com/video/092826-the-takeout-with-major-garrett/",
-    "domain": "cbsnews.com",
-    "date": "2026-09-28T21:00:00.000Z",
-    "src": "CBS News",
-    "summary": "Trump to meet with AI leaders about safety; more GOP candidates bucking Trump, calling for end to Iran war."
-   },
-   {
-    "title": "Exclusive: Hegseth directs Defense Dept. to fight foreigners who \"meddle\" in U.S. elections",
-    "url": "https://www.axios.com/2026/09/28/hegseth-elections-security-order",
-    "domain": "axios.com",
-    "date": "2026-09-28T19:48:53.000Z",
-    "src": "Axios",
-    "summary": "<p>Defense Secretary <a href=\"https://www.axios.com/2026/09/15/massie-impeach-pete-hegseth-iran-war\" target=\"_blank\">Pete Hegseth</a> has assigned personnel to use \"advanced intelligence and cyber capabilities to identify, disrupt, and neutralize foreign interference\" in the upcoming elections, Axios has learned.</p><p><strong>Why it matters:</strong> The threat of foreign election interference ha"
-   },
-   {
-    "title": "Local representatives question official accounts after suspected bomb plot at RAF Fairford",
-    "url": "https://www.theguardian.com/uk-news/2026/sep/28/raf-fairford-representatives-sceptical-suspected-bomb-plot",
-    "domain": "theguardian.com",
-    "date": "2026-09-28T19:13:26.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Amid conflicting statements, local MP and councillors demand answers over how suspects were allowed to enter residential areas of nearby village</p><p>An MP and councillors representing the residents of the village near RAF Fairford who were evacuated due to a suspected terror plot have expressed scepticism and concern over the security response to threats made by Iran.</p><p>About 85 propertie"
-   },
-   {
-    "title": "Flights between Iraq’s Najaf and Iran resumed as Tehran protests US curbs",
-    "url": "https://www.aljazeera.com/news/2026/9/28/flights-between-iraqs-najaf-and-iran-resumed-as-tehran-protests-us-curbs?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T18:50:24.000Z",
-    "src": "Al Jazeera",
-    "summary": "Tehran filed a UN complaint against US sanctions forcing regional cancellations of Iran flights."
-   },
-   {
-    "title": "Trump ‘flips & flops’ with Iran between making a deal and threats to attack in ‘devastating fashion’",
-    "url": "https://www.france24.com/en/tv-shows/spotlight/20260928-saudis-furious-trump-flips-flops-between-deal-with-iran-and-attacks-in-devastating-fashion",
-    "domain": "france24.com",
-    "date": "2026-09-28T18:18:16.000Z",
-    "src": "France 24",
-    "summary": "François Picard is pleased to welcome Barbara Slavin, Distinguished Fellow at the Stimson Center. She describes the US-Iran conflict as a dangerous combination of military escalation, diplomatic ambiguity and political calculation. Slavin sees an absence of true diplomacy: The recent indirect contacts between Washington and Tehran, mediated by Qatar, has been too limited and too fragile to produce"
-   },
-   {
-    "title": "Trump made the right decision to reject Iran’s offer",
-    "url": "https://www.aljazeera.com/opinions/2026/9/28/trump-made-the-right-decision-to-reject-irans-offer?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T18:16:26.000Z",
-    "src": "Al Jazeera",
-    "summary": "The US president has denied Tehran the opportunity to use the US midterm elections as a pressure point."
-   },
-   {
-    "title": "Iran touts Hormuz attacks as oil flows increase despite tensions",
-    "url": "https://www.aljazeera.com/news/2026/9/28/iran-touts-hormuz-attacks-as-oil-flows-increase-despite-tensions?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T17:43:10.000Z",
-    "src": "Al Jazeera",
-    "summary": "Mediators are trying to facilitate more talks, but Washington signals faith in its pressure tactics."
-   },
-   {
-    "title": "Men accused of U.K. air base plot freed on bail as officials probe any Iran links",
-    "url": "https://www.washingtonpost.com/world/2026/09/28/uk-says-men-accused-terror-plot-are-british-nationals-iran-denies-links/",
-    "domain": "washingtonpost.com",
-    "date": "2026-09-28T17:39:42.000Z",
-    "src": "The Washington Post",
-    "summary": "Britain has confronted dozens of lethal plots traced to Iran in recent years, but the release of the suspects could indicate they were not seen as an imminent threat."
-   },
-   {
-    "title": "Mediators still working on U.S.-Iran deal after Trump rejected latest Tehran proposal",
-    "url": "https://www.pbs.org/newshour/world/mediators-still-working-on-u-s-iran-deal-after-trump-rejected-latest-tehran-proposal",
-    "domain": "pbs.org",
-    "date": "2026-09-28T17:23:59.000Z",
-    "src": "PBS NewsHour",
-    "summary": "Mediators are still working with Iran and the United States on brokering a deal to end the fighting and open the Strait of Hormuz — even after U.S. President Donald Trump publicly rejected Iran's latest proposal."
    }
   ],
   "taiwan": [
+   {
+    "title": "Asian Games 2026: Taiwan’s gender-row boxer Lin Yu-ting wins gold medal",
+    "url": "https://www.aljazeera.com/sports/2026/10/2/asian-games-aichi-nagoya-2026-boxing-taiwan-lin-yu-ting-gold?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T06:03:19.000Z",
+    "src": "Al Jazeera",
+    "summary": "Lin bags her second Asian Games gold medal, three years on from her success in Hangzhou in the 57kg class."
+   },
+   {
+    "title": "Taiwan Can’t Fight Beijing’s History War While Erasing Its Own ROC Legacy",
+    "url": "https://thediplomat.com/2026/10/taiwan-cant-fight-beijings-history-war-while-erasing-its-own-roc-legacy/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T13:58:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The push to emphasize Taiwanese identity is at odds with the government’s attempt to center the Republic of China in World War II history."
+   },
    {
     "title": "Triumph or Procrastination? Experts Split on the Trump-Xi Summit",
     "url": "https://warontherocks.com/triumph-or-procrastination-experts-split-on-the-trump-xi-summit/",
@@ -1445,6 +1461,14 @@
   ],
   "drc": [
    {
+    "title": "Ebola response faces setback as transit centre burns down in DR Congo camp",
+    "url": "https://news.un.org/feed/view/en/story/2026/10/1168499",
+    "domain": "news.un.org",
+    "date": "2026-10-01T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The enormous challenge of halting the spread of Ebola in the Democratic Republic of the Congo (DRC) just became even harder after a key transit centre for patients requiring treatment burned down in Ituri province."
+   },
+   {
     "title": "Mourners bury DR Congo official killed after defending Ebola response",
     "url": "https://www.aljazeera.com/news/2026/10/1/dr-congo-official-beaten-to-death-after-defending-ebola-response-is-buried?traffic_source=rss",
     "domain": "aljazeera.com",
@@ -1504,6 +1528,22 @@
    }
   ],
   "korea": [
+   {
+    "title": "North and South Korea trade accusations over landmines that injured three soldiers",
+    "url": "https://www.dw.com/en/north-and-south-korea-trade-accusations-over-landmines-that-injured-three-soldiers/a-79503854?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-10-01T13:57:00.000Z",
+    "src": "DW",
+    "summary": "A mine blast that injured three South Korean soldiers has renewed scrutiny of North Korea's actions along the border and raised questions about its strategic goals."
+   },
+   {
+    "title": "The Dangers of North Korea’s Nuclear Status Quo",
+    "url": "https://www.38north.org/2026/10/the-dangers-of-north-koreas-nuclear-status-quo/",
+    "domain": "38north.org",
+    "date": "2026-10-01T13:52:13.000Z",
+    "src": "38 North",
+    "summary": "Since President Donald Trump expressed his desire to meet with North Korean leader Kim Jong Un ... The post The Dangers of North Korea’s Nuclear Status Quo appeared first on 38 North ."
+   },
    {
     "title": "Land Clearance Could Signal Drone Base Expansion",
     "url": "https://www.38north.org/2026/09/land-clearance-could-signal-drone-base-expansion/",
@@ -1726,6 +1766,14 @@
   ],
   "ransomware": [
    {
+    "title": "Police disrupt KillSec ransomware, arrest suspected teenage leader",
+    "url": "https://therecord.media/killsec-ransomware-raas-arrests-europe",
+    "domain": "therecord.media",
+    "date": "2026-10-01T15:55:00.000Z",
+    "src": "The Record",
+    "summary": "European police said raids against the KillSec ransomware-as-a-service operation included the arrest of a high-profile teen suspect."
+   },
+   {
     "title": "Arizona Supreme Court says hackers stole residents’ personal data",
     "url": "https://therecord.media/arizona-supreme-court-says-hackers-stole-data",
     "domain": "therecord.media",
@@ -1735,6 +1783,22 @@
    }
   ],
   "scs": [
+   {
+    "title": "Ports, power, and presence: How to defend Batanes from China",
+    "url": "https://www.atlanticcouncil.org/dispatches/ports-power-and-presence-how-to-defend-batanes-from-china/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-10-01T18:22:40.000Z",
+    "src": "Atlantic Council",
+    "summary": "Manila and Washington should be proactive in preventing Chinese coercion or encroachment in the Philippines’ northern-most province. The post Ports, power, and presence: How to defend Batanes from China appeared first on Atlantic Council ."
+   },
+   {
+    "title": "The Lingering Shadow of Rodrigo Duterte’s Drug War in the Philippines",
+    "url": "https://thediplomat.com/2026/10/the-lingering-shadow-of-rodrigo-dutertes-drug-war-in-the-philippines/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T05:57:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The former Philippine president is on trial in The Hague, but the ghosts of his presidency and the system he put in place continue to haunt a deeply divided society."
+   },
    {
     "title": "Philippines’ central bank braces for ‘Godzilla’ El Niño",
     "url": "https://www.ft.com/content/390fafe6-88bf-4564-978d-4774e2b75e8d?syn-25a6b1a6=1",
@@ -1785,6 +1849,22 @@
    }
   ],
   "venezuela": [
+   {
+    "title": "The Sovereign Underwriter: How Washington Reallocates Venezuela’s Political Risk",
+    "url": "https://www.geopoliticalmonitor.com/venezuela-political-risk-washington-underwriter/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-10-01T14:53:30.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "Washington cannot order capital into Venezuela. It is changing the risk instead, and taking a stake. The post The Sovereign Underwriter: How Washington Reallocates Venezuela’s Political Risk appeared first on Geopolitical Monitor ."
+   },
+   {
+    "title": "‘It’s utter surrealism’: Venezuela’s Chavistas lament government’s embrace of Trump",
+    "url": "https://www.theguardian.com/world/2026/oct/01/venezuela-hugo-chavez-supporters-critical-delcy-rodriguez-embrace-of-trump",
+    "domain": "theguardian.com",
+    "date": "2026-10-01T09:00:34.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Diehard Hugo Chávez supporters struggle to comprehend ideological U-turn being executed by Delcy Rodríguez’s interim administration</p><p>He was one of the most passionate propagandists for Hugo Chávez’s Bolivarian revolution: a feisty leftist TV personality who spent more than two decades singing the movement’s praises on his state-funded show, The Razorblade.</p><p>Mario Silva’s devotion was "
+   },
    {
     "title": "A search for their loved ones’ remains, three months after Venezuela earthquakes",
     "url": "https://www.nbcnews.com/world/latin-america/search-loved-ones-remains-three-months-venezuela-earthquakes-rcna600302",
@@ -1859,6 +1939,46 @@
    }
   ],
   "ethiopia": [
+   {
+    "title": "Ethiopia and Eritrea cut diplomatic ties as northern conflict escalates",
+    "url": "https://www.bbc.co.uk/news/articles/crpd0d0jl0y0o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-02T05:42:07.000Z",
+    "src": "BBC World",
+    "summary": "The diplomatic fallout comes as Ethiopian forces battle rebel fighters across its northern region."
+   },
+   {
+    "title": "Eritrea severs diplomatic ties with Ethiopia in row over Tigray",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/10/2/eritrea-severs-diplomatic-ties-with-ethiopia-in-row-over-tigray?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T04:40:14.000Z",
+    "src": "Al Jazeera",
+    "summary": "Eritrea has severed diplomatic ties with Ethiopia after Addis Ababa closed its embassy in Asmara"
+   },
+   {
+    "title": "Ethiopia and Eritrea break diplomatic ties over conflict",
+    "url": "https://www.france24.com/en/ethiopia-and-eritrea-break-diplomatic-ties-over-conflict",
+    "domain": "france24.com",
+    "date": "2026-10-01T20:28:30.000Z",
+    "src": "France 24",
+    "summary": "In tonight's edition, Ethiopia and Eritrea break diplomatic ties, accusing each other of stoking internal conflicts. Also, Nigeria rolls out a digital postcode system for every building. And I speak to one of the co-founders of the he Rural Women’s Assembly as it is recognised for its work challenging power systems."
+   },
+   {
+    "title": "Ethiopia: Who could bring the warring sides to the negotiation table?",
+    "url": "https://www.dw.com/en/ethiopia-who-could-bring-the-warring-sides-to-the-negotiation-table/a-79475529?maca=en-rss-en-world-4025-rdf",
+    "domain": "dw.com",
+    "date": "2026-10-01T16:02:00.000Z",
+    "src": "DW",
+    "summary": "Ethiopia might be facing its most complex armed conflict in contemporary times. The fragile 2022 peace deal has collapsed. International mediators have failed. How will the country return to normal?"
+   },
+   {
+    "title": "Explosions heard in Ethiopia's capital after drone flights banned",
+    "url": "https://www.bbc.co.uk/news/articles/c3vgygpqky9zo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-01T15:05:36.000Z",
+    "src": "BBC World",
+    "summary": "It comes a week after fighting erupted north of the capital between the army and a new alliance of armed groups."
+   },
    {
     "title": "Ethiopia’s Return to War Threatens to Engulf the Horn of Africa",
     "url": "https://foreignpolicy.com/2026/09/30/ethiopia-return-civil-war-tigray-regional-impact-eritrea-horn-africa/",
@@ -1966,6 +2086,14 @@
   ],
   "haiti": [
    {
+    "title": "Haiti struggles with rise in kidnappings as general election looms",
+    "url": "https://abcnews.com/International/wireStory/haiti-struggles-rise-kidnappings-general-election-looms-136923483",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T16:49:11.000Z",
+    "src": "ABC News",
+    "summary": "Kidnappings are on the rise across Haiti"
+   },
+   {
     "title": "UN extends mandate of Gang Suppression Force in Haiti for six months",
     "url": "https://www.aljazeera.com/news/2026/9/29/un-extends-mandate-of-gang-suppression-force-in-haiti-for-six-months?traffic_source=rss",
     "domain": "aljazeera.com",
@@ -2013,6 +2141,30 @@
    }
   ],
   "myanmar": [
+   {
+    "title": "Former Myanmar American Chamber of Commerce board member detained in Spain",
+    "url": "https://abcnews.com/International/wireStory/former-myanmar-american-chamber-commerce-board-member-detained-136915362",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T12:07:53.000Z",
+    "src": "ABC News",
+    "summary": "A former Myanmar American Chamber of Commerce board member has been detained in Spain over alleged financial impropriety in a case he and others say was fabricated"
+   },
+   {
+    "title": "UN Refugee Agency Expresses Concerns About Malaysia’s Deportation of Asylum Seekers to Myanmar",
+    "url": "https://thediplomat.com/2026/10/un-refugee-agency-expresses-concerns-about-malaysias-deportation-of-asylum-seekers-to-myanmar/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T04:35:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The statement came as Kuala Lumpur confirmed plans to deport a further 3,500 people as part of its \"voluntary repatriation program\" with Myanmar."
+   },
+   {
+    "title": "Can Myanmar’s New Government Revive the Stalled Dawei SEZ Project?",
+    "url": "https://thediplomat.com/2026/10/can-myanmars-new-government-revive-the-stalled-dawei-sez-project/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T01:30:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The flagship project struggled even during Myanmar’s decade of opening. Attempting to revive it amid conflict and sanctions will test its economic and strategic rationale."
+   },
    {
     "title": "Malaysia: UN agency urges safeguards after refugees returned to Myanmar",
     "url": "https://news.un.org/feed/view/en/story/2026/09/1168491",
@@ -2191,8 +2343,25 @@
     "summary": "<span>Somalia Awaits a New Security Order as Mission Drawdown Looms</span> <span><span>pfranz</span></span> <span><time datetime=\"2026-09-18T21:00:36+02:00\" title=\"Friday, September 18, 2026 - 21:00\">Fri, 09/18/2026 - 21:00</time> </span> <div class=\"s-wrapper u-display-flex u-bg-white u-z-1\"> <aside class=\"js-side-nav c-side-nav\"> <ul class=\"o-list o-list--vertical c-side-nav__list u-ls-025\"> <li"
    }
   ],
-  "mexico": [],
+  "mexico": [
+   {
+    "title": "Cobalt’s Silent Cartel: China, Kinshasa and the DRC Export Quota",
+    "url": "https://www.geopoliticalmonitor.com/drc-cobalt-export-quota-china-cartel/",
+    "domain": "geopoliticalmonitor.com",
+    "date": "2026-10-01T14:04:23.000Z",
+    "src": "Geopolitical Monitor",
+    "summary": "A production problem at one Congolese mine now moves the copper price. That concentration is the story. The post Cobalt’s Silent Cartel: China, Kinshasa and the DRC Export Quota appeared first on Geopolitical Monitor ."
+   }
+  ],
   "colombia": [
+   {
+    "title": "Border Command",
+    "url": "https://insightcrime.org/colombia-organized-crime-news/border-command/",
+    "domain": "insightcrime.org",
+    "date": "2026-10-01T21:04:57.000Z",
+    "src": "InSight Crime",
+    "summary": "Border Command The Border Command (Comandos de la Frontera - CDF) who they are, where they operate, who leads them, and how they are involved in drug trafficking in Colombia. Full updated profile. The post Border Command appeared first on InSight Crime ."
+   },
    {
     "title": "Fito’s Wife and Daughter Captured in Colombia | On the Radar",
     "url": "https://insightcrime.org/news/fitos-wife-and-daughter-captured-in-colombia-on-the-radar/",
@@ -2252,6 +2421,14 @@
   ],
   "cuba": [
    {
+    "title": "The wealthy Cuban Americans ready and waiting for Havana to fall",
+    "url": "https://www.bbc.co.uk/news/articles/ckrerylrlg9vo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-01T23:00:05.000Z",
+    "src": "BBC World",
+    "summary": "Cuban exiles in Florida are increasingly hopeful that regime change in Cuba is now on the horizon."
+   },
+   {
     "title": "U.S. military lays groundwork for potential action around Cuba",
     "url": "https://www.cbsnews.com/news/u-s-groundwork-potential-action-cuba-trump/",
     "domain": "cbsnews.com",
@@ -2290,6 +2467,206 @@
   ],
   "gaza": [
    {
+    "title": "Egypt warned Israel of 'major' Hamas attack: 'No world' where Netanyahu's not aware (Vivian Salama)",
+    "url": "https://www.france24.com/en/tv-shows/spotlight/20261002-egypt-warned-israel-of-major-hamas-attack-no-world-where-netanyahu-s-not-aware-vivian-salama",
+    "domain": "france24.com",
+    "date": "2026-10-02T06:08:44.000Z",
+    "src": "France 24",
+    "summary": "François Picard is pleased to welcome Vivian Salama from Washington. An attorney and staff writer at The Atlantic, Salama has reported from more than 85 countries. Her latest investigation takes us back to September 26, 2023. As Israel's national security establishment gathered to commemorate the 50th anniversary of the Yom Kippur War and one of the country's greatest intelligence failures, Abbas "
+   },
+   {
+    "title": "Royal College of Nursing cuts ties with Israeli drug company",
+    "url": "https://www.theguardian.com/society/2026/oct/02/royal-college-of-nursing-cuts-ties-with-israeli-drug-company",
+    "domain": "theguardian.com",
+    "date": "2026-10-02T06:00:13.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Britain’s nursing union axes Teva UK as commercial partner over links to Israel’s military and corporate track record</p><p>Britain’s nursing union has cut its ties with an Israeli drug company over the firm’s links to the country’s military and track record of corporate misconduct.</p><p>The Royal College of Nursing (RCN) has axed Teva UK as a commercial partner and as sponsor of a forthcoming"
+   },
+   {
+    "title": "Investigators Seek to Establish Motive in FlyDubai Attack",
+    "url": "https://www.nytimes.com/live/2026/10/01/world/flydubai-flight-israel-plane-pilots",
+    "domain": "nytimes.com",
+    "date": "2026-10-02T05:35:03.000Z",
+    "src": "The New York Times",
+    "summary": "The United Arab Emirates said it would lead the investigation, including into possible links to terrorism. Prime Minister Benjamin Netanyahu of Israel said the attacker had undergone “Islamist radical indoctrination,” though he did not elaborate."
+   },
+   {
+    "title": "FAO official says he lost his job for criticising Israeli policies in Gaza",
+    "url": "https://www.aljazeera.com/news/2026/10/2/fao-official-says-he-lost-his-job-for-criticising-israeli-policies-in-gaza?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T04:02:44.000Z",
+    "src": "Al Jazeera",
+    "summary": "The FAO official said he was told his contract would not be renewed over an alleged breach of impartiality on Gaza."
+   },
+   {
+    "title": "$1.7 million raised in scheme for Hamas, including from U.S. donors, feds say",
+    "url": "https://www.cbsnews.com/news/hamas-fundraising-scheme-gaza/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-02T02:23:45.000Z",
+    "src": "CBS News",
+    "summary": "Saleem Alzaq, a 45-year-old Gaza man who prosecutors allege is a longtime Hamas member, was charged with helping operate the fundraising campaign claiming to provide humanitarian aid, according to an indictment."
+   },
+   {
+    "title": "Israeli drone kills Palestinian in Gaza, settlers kill another in West Bank",
+    "url": "https://www.aljazeera.com/news/2026/10/1/israeli-drone-kills-palestinian-in-gaza-settlers-kill-another-in-west-bank?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-01T23:44:39.000Z",
+    "src": "Al Jazeera",
+    "summary": "1,439 Palestinians have been killed in Gaza and 5,052 injured since the 'ceasefire' began in October 2025."
+   },
+   {
+    "title": "More details emerge about FlyDubai co-pilot who tried to crash plane",
+    "url": "https://www.cbsnews.com/news/flydubai-plane-attempted-crash-hijacking-israel-dubai-what-to-know/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-01T23:41:56.000Z",
+    "src": "CBS News",
+    "summary": "Questions about the motive of the co-pilot who tried to crash a packed flight from Dubai to Israel continue to swirl."
+   },
+   {
+    "title": "Investigators Seek Motive for FlyDubai Cockpit Attack",
+    "url": "https://www.nytimes.com/2026/10/01/world/middleeast/flydubai-attack-invesigation.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T23:24:18.000Z",
+    "src": "The New York Times",
+    "summary": "Prime Minister Benjamin Netanyahu of Israel said the co-pilot who set upon the pilot had undergone “Islamist radical indoctrination” but did not elaborate."
+   },
+   {
+    "title": "Netanyahu says Flydubai attacker had 'Islamist radical indoctrination'",
+    "url": "https://www.bbc.co.uk/news/articles/crje8edqyej9o?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-01T19:59:24.000Z",
+    "src": "BBC World",
+    "summary": "Israel's prime minister says the pilot who tried to take over the Flydubai plane clearly intended to \"down the plane\"."
+   },
+   {
+    "title": "5 Passengers on FlyDubai Flight to Receive Israel’s Award for Heroism",
+    "url": "https://www.nytimes.com/2026/10/01/world/middleeast/flydubai-flight-passengers-israel-hero-honor.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T19:43:29.000Z",
+    "src": "The New York Times",
+    "summary": "The passengers subdued an attacker in the cockpit of a FlyDubai flight carrying more than 170 people from Dubai to Tel Aviv."
+   },
+   {
+    "title": "Investigators Seek to Determine How a Weapon Entered FlyDubai Cockpit",
+    "url": "https://www.nytimes.com/2026/10/01/world/middleeast/flydubai-weapon-cockpit-stabbing-attack.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T19:35:40.000Z",
+    "src": "The New York Times",
+    "summary": "Prime Minister Benjamin Netanyahu of Israel said one possibility was that the assailant used an emergency crash ax, typically stored in the cockpit."
+   },
+   {
+    "title": "Israelis Take Pride in Bravery of Passengers Who Saved FlyDubai Flight",
+    "url": "https://www.nytimes.com/2026/10/01/world/middleeast/israel-passengers-flight-1073.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T18:00:07.000Z",
+    "src": "The New York Times",
+    "summary": "The events evoked days decades ago when Israel was widely admired for its plucky survival against the odds and for taking on hijackers."
+   },
+   {
+    "title": "NAZA film-makers say they spoke to more than 100 sources about Israeli actions in Gaza",
+    "url": "https://www.theguardian.com/film/2026/oct/01/makers-naza-film-spoke-more-than-100-sources-israeli-actions-gaza",
+    "domain": "theguardian.com",
+    "date": "2026-10-01T17:45:09.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Team behind documentary push back against IDF attempt to discredit its exposure of military systems</p><p>The team behind the award-winning film NAZA, which details the Israeli military’s targeting policies in Gaza and its alleged acceptance of high numbers of civilian deaths, have revealed they spoke to more than 100 sources with knowledge of the military systems used in the war.</p><p>The dis"
+   },
+   {
+    "title": "Netanyahu: Omani co-pilot went through Islamic radicalization",
+    "url": "https://www.axios.com/2026/10/01/netanyahu-flydubai-omani-co-pilot-islamic-radicalization",
+    "domain": "axios.com",
+    "date": "2026-10-01T17:44:42.000Z",
+    "src": "Axios",
+    "summary": "<p>The initial investigation into the attempted hijacking of the <a href=\"https://www.axios.com/2026/09/30/flydubai-israel-flight-incident-plane-questions\" target=\"_blank\">FlyDubai flight</a> from the UAE to Israel found that the co-pilot went through religious Islamic radicalization in recent months, Israeli Prime Minister Benjamin Netanyahu <a href=\"https://www.foxnews.com/video/6406028458112\" t"
+   },
+   {
+    "title": "Co-pilot who tried to crash FlyDubai jet was ‘radicalized,’ Israel says",
+    "url": "https://www.washingtonpost.com/world/2026/10/01/inquiry-into-flydubai-attack-turns-security-lapses/",
+    "domain": "washingtonpost.com",
+    "date": "2026-10-01T16:52:41.000Z",
+    "src": "The Washington Post",
+    "summary": "Authorities were trying to determine how an Omani co-pilot nearly crashed a Tel Aviv-bound jet. An Israel official said the co-pilot had “the motive to kill Jews.\""
+   },
+   {
+    "title": "Co-pilot in flight stabbing had ‘Islamic radical indoctrination’, says Netanyahu",
+    "url": "https://www.theguardian.com/world/2026/oct/01/netanyahu-flydubai-halts-all-flights-to-israel",
+    "domain": "theguardian.com",
+    "date": "2026-10-01T16:04:48.000Z",
+    "src": "The Guardian",
+    "summary": "<p>Alleged flydubai attacker interrogated by Saudi security services as investigation into apparent crash attempt opens</p><p>The Omani co-pilot who stabbed his captain in an apparent attempt to crash an Israel-bound flight from Dubai had previously undergone radical Islamist indoctrination and was suicidal, Israel’s prime minister, Benjamin Netanyahu, has claimed.</p><p>Israeli passengers interve"
+   },
+   {
+    "title": "Co-pilot stabs captain, tries to crash FlyDubai flight en route to Israel",
+    "url": "https://www.cbsnews.com/news/tel-aviv-israel-flydubai-flight-saudi-arabia-diverted-pilots/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-01T15:38:00.000Z",
+    "src": "CBS News",
+    "summary": "Israel leader Benjamin Netanyahu says the FlyDubai co-pilot who allegedly stabbed the captain and tried to crash the plane had undergone \"Islamist radical indoctrination.\""
+   },
+   {
+    "title": "Who is the 'hero' Indian pilot who was stabbed on Israel-bound flight?",
+    "url": "https://www.bbc.co.uk/news/articles/cje3r3z7g0zzo?at_medium=RSS&at_campaign=rss",
+    "domain": "bbc.co.uk",
+    "date": "2026-10-01T15:04:32.000Z",
+    "src": "BBC World",
+    "summary": "Capt Smit Machchhar was attacked by another pilot onboard the Flydubai flight bound for Tel Aviv."
+   },
+   {
+    "title": "Sheer devastation: '80 percent of Gazan infrastructure has been destroyed'",
+    "url": "https://www.france24.com/en/sheer-devastation-80-percent-of-gazan-infrastructure-has-been-destroyed",
+    "domain": "france24.com",
+    "date": "2026-10-01T14:16:41.000Z",
+    "src": "France 24",
+    "summary": "New images posted this week by Google Maps show the utter destruction in Gaza. It's been estimated that 61 tonnes of rubble need to be cleared – that's 20 times the amount of rubble generated in all wars across the world over the last 18 years."
+   },
+   {
+    "title": "What we know about the pilot hailed as a hero for averting crash of Israel-bound plane",
+    "url": "https://www.nbcnews.com/world/middle-east/smit-machchhar-pilot-hero-averting-crash-israel-plane-rcna600874",
+    "domain": "nbcnews.com",
+    "date": "2026-10-01T13:53:47.000Z",
+    "src": "NBC News",
+    "summary": "He is being hailed around the world as a hero for helping stop a passenger plane bound for Israel from plunging into the ground, despite his own severe injuries."
+   },
+   {
+    "title": "Viral Google Maps Images Shared Widely This Week Show Gaza Ruins. We Obtained More Recent Satellite Imagery",
+    "url": "https://www.bellingcat.com/news/middle-east/2026/10/01/viral-google-maps-images-shared-widely-this-week-show-gaza-ruins-we-obtained-more-recent-satellite-imagery/",
+    "domain": "bellingcat.com",
+    "date": "2026-10-01T13:46:03.000Z",
+    "src": "Bellingcat",
+    "summary": "Earlier this week, several viral social media posts and news articles stated that Google had updated satellite imagery over Gaza. The imagery shared in these posts and articles shows several areas, including the southern city of Rafah. Huge destruction is detailed in the images, including what appears to be entire neighbourhoods flattened But the imagery […] The post Viral Google Maps Images Share"
+   },
+   {
+    "title": "What we know about the cockpit stabbing on Israel-bound flight",
+    "url": "https://www.nbcnews.com/world/middle-east/know-cockpit-stabbing-israel-bound-flight-rcna600881",
+    "domain": "nbcnews.com",
+    "date": "2026-10-01T13:42:35.000Z",
+    "src": "NBC News",
+    "summary": "What we know about the potential midair disaster aboard the Flydubai flight when a pilot attacked his colleague causing the plane to plunge thousands of feet."
+   },
+   {
+    "title": "FlyDubai passenger recounts cockpit chaos: \"I hugged my two boys\"",
+    "url": "https://www.cbsnews.com/video/flydubai-passenger-recounts-cockpit-stabbing-i-hugged-my-two-boys/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-01T13:14:32.000Z",
+    "src": "CBS News",
+    "summary": "Hila Evron, one of the travelers who witnessed the mayhem on the FlyDubai flight from Dubai to Israel, tells \"CBS Mornings\" about the cockpit stabbing."
+   },
+   {
+    "title": "FlyDubai Flight to Israel Diverted After Clash Between Pilots: What We Know and Don’t Know",
+    "url": "https://www.nytimes.com/2026/09/30/world/middleeast/flydubai-dubai-israel-flight-diverted.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T12:53:13.000Z",
+    "src": "The New York Times",
+    "summary": "Prime Minister Benjamin Netanyahu of Israel said the attack might have been an attempt to crash the flight from Dubai to Tel Aviv. The plane landed safely in Saudi Arabia."
+   },
+   {
+    "title": "Screaming, panicking, blood: Passengers detail horrifying Israel-bound flight",
+    "url": "https://www.nbcnews.com/world/israel/flydubai-passengers-horrifying-israel-flight-rcna600869",
+    "domain": "nbcnews.com",
+    "date": "2026-10-01T10:25:51.000Z",
+    "src": "NBC News",
+    "summary": "It was too early to say why a pilot stabbed another on the flight from Dubai to Tel Aviv, according to Israeli Prime Minister Benjamin Netanyahu."
+   },
+   {
     "title": "Wong thanks ‘heroes’ who thwarted flydubai pilot’s alleged attack on co-pilot as Australians confirmed safe",
     "url": "https://www.theguardian.com/world/2026/oct/01/australian-couple-on-flydubai-plane-to-israel-ntwnfb",
     "domain": "theguardian.com",
@@ -2320,14 +2697,6 @@
     "date": "2026-10-01T05:04:28.000Z",
     "src": "Al Jazeera",
     "summary": "The bodies of 105 Palestinians have been recovered from the rubble of a residential block destroyed by Israel."
-   },
-   {
-    "title": "Netanyahu says too early to tell who was behind plane incident as flydubai halts all flights to Israel",
-    "url": "https://www.theguardian.com/world/2026/oct/01/netanyahu-flydubai-halts-all-flights-to-israel",
-    "domain": "theguardian.com",
-    "date": "2026-10-01T04:55:41.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Israeli prime minister cautions against early conclusions when asked if there were any signs of Iranian involvement</p><p>Benjamin Netanyahu has said it was too early to tell who was ultimately behind the apparent attempt to crash a ⁠Tel Aviv-bound flydubai flight, even as Israel’s ambassador to the United Nations called the incident a “terror attack”, without apportioning blame.</p><p>Danny Da"
    },
    {
     "title": "New Google Maps images reveal massive scale of devastation in Gaza",
@@ -2368,14 +2737,6 @@
     "date": "2026-10-01T01:56:20.000Z",
     "src": "The New York Times",
     "summary": "“I don’t deserve to die like this,” said one passenger on Flight 1073 from Dubai to Tel Aviv. The motive of the cockpit stabbing remains unknown, officials said."
-   },
-   {
-    "title": "Co-pilot stabs pilot, tries to crash passenger jet en route to Israel, Netanyahu says",
-    "url": "https://www.cbsnews.com/news/tel-aviv-israel-flydubai-flight-saudi-arabia-diverted-pilots/",
-    "domain": "cbsnews.com",
-    "date": "2026-10-01T00:34:16.000Z",
-    "src": "CBS News",
-    "summary": "Israeli officials say passengers helped thwart an \"attempted jihadist terror attack\" by a FlyDubai pilot who allegedly stabbed his fellow cockpit crew member, intent on crashing the plane."
    },
    {
     "title": "Passengers recount terrifying attempted hijack of Dubai-to-Israel flight",
@@ -2466,14 +2827,6 @@
     "summary": "The plane was traveling from Dubai to Israel when the pilot and co-pilot appear to have gotten into a fight, Israeli officials said."
    },
    {
-    "title": "FlyDubai Flight to Israel Diverted After Clash Between Pilots: What We Know and Don’t Know",
-    "url": "https://www.nytimes.com/2026/09/30/world/middleeast/flydubai-dubai-israel-flight-diverted.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-30T20:40:21.000Z",
-    "src": "The New York Times",
-    "summary": "Prime Minister Benjamin Netanyahu of Israel said one of the pilots may have been attempting to crash the flight from Dubai to Tel Aviv. The plane landed in Saudi Arabia and all passengers were safe."
-   },
-   {
     "title": "What to know about the terrifying FlyDubai flight forced to land in Saudi Arabia",
     "url": "https://www.pbs.org/newshour/world/what-to-know-about-the-terrifying-flydubai-flight-forced-to-land-in-saudi-arabia",
     "domain": "pbs.org",
@@ -2517,7 +2870,7 @@
     "title": "Israel and Saudi Arabia don’t have formal ties, but Israelis have occasionally landed there.",
     "url": "https://www.nytimes.com/live/2026/09/30/world/dubai-flight-tel-aviv-israel-pilots/israel-and-saudi-arabia-dont-have-formal-ties-but-israelis-have-occasionally-landed-there",
     "domain": "nytimes.com",
-    "date": "2026-09-30T14:18:58.000Z",
+    "date": "2026-09-30T14:18:59.000Z",
     "src": "The New York Times",
     "summary": ""
    },
@@ -2554,6 +2907,14 @@
     "summary": "UN teams are racing to protect families in Gaza from the coming rainy season, but restricted access to land and shortages of critical supplies are hampering the effort, UN Spokesperson Stéphane Dujarric said on Wednesday."
    },
    {
+    "title": "Palestinians yearn for ‘a return to normal life’, says top Middle East peace envoy",
+    "url": "https://news.un.org/feed/view/en/story/2026/09/1168497",
+    "domain": "news.un.org",
+    "date": "2026-09-30T12:00:00.000Z",
+    "src": "UN News",
+    "summary": "The UN is continuing efforts to support Palestinians in Gaza amid major challenges to humanitarian access, reconstruction and the restoration of essential services, according to Ramiz Alakbarov, Acting UN Special Coordinator for the Middle East Peace Process."
+   },
+   {
     "title": "Ireland will boycott Eurovision again because of Israel's participation, but the song contest is still expanding.",
     "url": "https://www.dw.com/en/ireland-will-boycott-eurovision-again-because-of-israel-s-participation-but-the-song-contest-is-still-expanding/a-79401752?maca=en-rss-en-world-4025-rdf",
     "domain": "dw.com",
@@ -2584,193 +2945,17 @@
     "date": "2026-09-30T04:51:01.000Z",
     "src": "Al Jazeera",
     "summary": "Opposition leader dismisses Netanyahu's warning of possible attacks during next month's general election."
-   },
-   {
-    "title": "US Senate blocks resolution seeking report on Americans killed in West Bank",
-    "url": "https://www.aljazeera.com/news/2026/9/30/us-senate-blocks-resolution-seeking-report-on-americans-killed-in-west-bank?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-30T02:26:20.000Z",
-    "src": "Al Jazeera",
-    "summary": "The resolution cites a 'lack of accountability' by Israel's government and an 'inability to secure justice' by the US."
-   },
-   {
-    "title": "Morocco’s pro-Palestine protests challenge Rabat’s deepening Israel ties",
-    "url": "https://www.aljazeera.com/news/2026/9/30/moroccos-pro-palestine-protests-challenge-rabats-deepening-israel-ties?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-30T01:46:53.000Z",
-    "src": "Al Jazeera",
-    "summary": "Protests across Morocco highlight gap between public opposition to normalisation and Rabat’s closer ties with Israel."
-   },
-   {
-    "title": "Israeli Settlers Stop Soldiers From Returning Palestinians to Their Home",
-    "url": "https://www.nytimes.com/2026/09/29/world/middleeast/west-bank-israel-settlers-attack-soldiers-palestinians.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-30T00:19:18.000Z",
-    "src": "The New York Times",
-    "summary": "The Supreme Court had ordered the military to ensure a West Bank family that fled violence could go back. But settlers blocked the effort, with the authorities accused of not doing enough to confront them."
-   },
-   {
-    "title": "US Senate blocks resolution demanding accountability over Israeli violence in West Bank",
-    "url": "https://www.theguardian.com/us-news/2026/sep/29/senate-resolution-west-bank-israel-violence",
-    "domain": "theguardian.com",
-    "date": "2026-09-30T00:16:17.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Nine American citizens have been killed by Israeli settlers or security forces in occupied West Bank since 2022</p><p>The US Senate on Tuesday evening rejected along mostly party lines a Democratic resolution that would have forced the state department to report to Congress on violence in the occupied West Bank, including the killings of nine American citizens by Israeli settlers or security fo"
-   },
-   {
-    "title": "‘Nothing is justifying this’: Qatar’s PM slams Israel’s atrocities in Gaza",
-    "url": "https://www.aljazeera.com/news/2026/9/29/nothing-is-justifying-this-qatari-pm-slams-atrocities-in-gaza?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-29T23:49:18.000Z",
-    "src": "Al Jazeera",
-    "summary": "Qatar's top diplomat says Israel has undermined Doha's efforts to broker a ceasefire in Gaza from 'day one'."
-   },
-   {
-    "title": "Jewish settlers clash with Israeli security forces to prevent Palestinian family’s return to West Bank home",
-    "url": "https://www.nbcnews.com/world/middle-east/jewish-settlers-clash-israeli-security-forces-prevent-palestinian-fami-rcna600437",
-    "domain": "nbcnews.com",
-    "date": "2026-09-29T21:05:30.000Z",
-    "src": "NBC News",
-    "summary": "It is the second time the Tubassi family has suffered at the hands of Jewish settlers in just over a month. On Aug. 28, masked settlers attacked and injured them and an NBC News crew that was interviewing them."
-   },
-   {
-    "title": "Board of Peace unveils Gaza recovery plan, Israel reports 18 ceasefire violations Sept. 15–29",
-    "url": "https://www.longwarjournal.org/archives/2026/09/board-of-peace-unveils-gaza-recovery-plan-israel-reports-18-ceasefire-violations-sept-15-29.php",
-    "domain": "longwarjournal.org",
-    "date": "2026-09-29T20:04:39.000Z",
-    "src": "Long War Journal",
-    "summary": "The US-backed Board of Peace announced a $2.45 billion plan to rebuild Gaza over six months, but disagreements over Hamas’s disarmament and an Israeli withdrawal continue to obstruct its implementation. A day later, Israeli Prime Minister Benjamin Netanyahu spoke before the United Nations General Assembly. Meanwhile, Israeli forces continued operations against Hamas members working to rebuild the "
-   },
-   {
-    "title": "Over 100 settlers attack Occupied West Bank village, clash with Israeli forces",
-    "url": "https://www.france24.com/en/video/20260929-over-100-settlers-attack-occupied-west-bank-village-clash-with-israeli-forces",
-    "domain": "france24.com",
-    "date": "2026-09-29T14:38:06.000Z",
-    "src": "France 24",
-    "summary": "More than 100 Israeli settlers attacked a village in the north of the occupied West Bank early Tuesday, wounding three members of Israel's security forces and burning two Palestinian homes, authorities and residents said. The attack occurred while the military was attempting to accompany a Palestinian family back to their home in the village of Jalud after they had been displaced by settler attack"
-   },
-   {
-    "title": "Israeli settlers attack West Bank village and block Palestinian family's return home",
-    "url": "https://www.bbc.co.uk/news/articles/cvlylj41egxgo?at_medium=RSS&at_campaign=rss",
-    "domain": "bbc.co.uk",
-    "date": "2026-09-29T12:39:18.000Z",
-    "src": "BBC World",
-    "summary": "Two homes belonging to the al-Tubasi family were set on fire and Israeli security forces were also targeted by settlers."
-   },
-   {
-    "title": "Netanyahu Visits Emirati Leader After Reports on Warning About Hamas Attack",
-    "url": "https://www.nytimes.com/2026/09/28/world/middleeast/netanyahu-emirati-leader-hamas-attack.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-29T01:27:20.000Z",
-    "src": "The New York Times",
-    "summary": "Official statements said bilateral relations were discussed. But the question of who bears responsibility for failing to prevent the Oct. 7 attack is a major election issue in Israel."
-   },
-   {
-    "title": "Slovenia’s U-turn towards Israel",
-    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/28/aje-onl-nf_slovenias-u-turn-towards-israel-280926?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T20:35:51.000Z",
-    "src": "Al Jazeera",
-    "summary": "Slovenia’s policy towards Palestine has changed sharply following a UNGA sideline meeting with Israeli PM Netanyahu."
-   },
-   {
-    "title": "Gaza’s young inventors build robots with what they have",
-    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/28/gazas-young-inventors-build-robots-with-what-they-have?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T20:34:22.000Z",
-    "src": "Al Jazeera",
-    "summary": "At a youth hackathon in Gaza City, young inventors are developing robots."
-   },
-   {
-    "title": "UAE confirms Israel PM Netanyahu’s visit to Abu Dhabi",
-    "url": "https://www.aljazeera.com/news/2026/9/28/uae-confirms-netanyahu-visit-to-abu-dhabi?traffic_source=rss",
-    "domain": "aljazeera.com",
-    "date": "2026-09-28T19:42:30.000Z",
-    "src": "Al Jazeera",
-    "summary": "The visit took place as the Israeli prime minister battles domestic turmoil ahead of October's Knesset elections."
-   },
-   {
-    "title": "Israel's opposition bloc, Netanyahu’s coalition in dead heat, election poll finds",
-    "url": "https://www.france24.com/en/video/20260928-israel-s-opposition-bloc-netanayhu-s-coalition-in-dead-heat-election-poll-finds",
-    "domain": "france24.com",
-    "date": "2026-09-28T16:55:29.000Z",
-    "src": "France 24",
-    "summary": "With a month to go until Israel goes to the polls on October 27th, a new opinion poll shows the opposition bloc led by Gadi Eisenkot's Yashar party in a dead heat with Prime Minister Benyamin Netanyahu's coalition. It comes as the leaders of the four main opposition parties pledged to work together."
-   },
-   {
-    "title": "Security Council LIVE: Ambassadors meet as West Bank tensions rise, Gaza plan stalls",
-    "url": "https://news.un.org/feed/view/en/story/2026/09/1168464",
-    "domain": "news.un.org",
-    "date": "2026-09-28T12:00:00.000Z",
-    "src": "UN News",
-    "summary": "The Security Council met Monday morning with prospects for peace in the Middle East under strain on two fronts. In the West Bank, settler violence and settlement expansion are raising fears for a two-State solution. In Gaza, a year-old peace plan has stalled while civilian suffering continues. The meeting comes as the plan’s remaining phases, including Hamas’ disarmament and Israel’s full withdraw"
-   },
-   {
-    "title": "Israel does not have right to close UK consulate in Jerusalem, Foreign Office advised",
-    "url": "https://www.theguardian.com/politics/2026/sep/28/israel-no-right-close-jerusalem-uk-consulate-foreign-office-advised",
-    "domain": "theguardian.com",
-    "date": "2026-09-28T11:28:12.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Former attorney general Dominic Grieve says Israel is not entitled to shut mission in occupied Palestinian territory</p><ul><li><p><a href=\"https://www.theguardian.com/politics/live/2026/sep/28/labour-party-conference-healey-economy-streeting-miliband-andy-burnham-latest-news-updates\">UK politics live – latest updates</a></p></li></ul><p>Israel does not have a legal right to act on its plan to "
-   },
-   {
-    "title": "‘You were right’: Ed Miliband tells critics Labour was wrong on Gaza",
-    "url": "https://www.theguardian.com/politics/2026/sep/28/ed-miliband-labour-former-stance-palestine-fell-short",
-    "domain": "theguardian.com",
-    "date": "2026-09-28T04:00:24.000Z",
-    "src": "The Guardian",
-    "summary": "<p>Foreign secretary will tell party’s conference ‘we are not here to accept the status quo but to change it’</p><p>Ed Miliband will tell campaigners and party members who raised the plight of Palestinians they were right that Labour’s approach had not been enough, saying he was heeding the calls of millions of people by imposing sanctions on Israeli settlements.</p><p>The foreign secretary will t"
-   },
-   {
-    "title": "Amid changing dynamics in the Middle East, Turkey seeks to emerge as a leader",
-    "url": "https://www.npr.org/2026/09/27/nx-s1-5949210/amid-changing-dynamics-in-the-middle-east-turkey-seeks-to-emerge-as-a-leader",
-    "domain": "npr.org",
-    "date": "2026-09-27T12:06:19.000Z",
-    "src": "NPR",
-    "summary": "Turkey's attempts at expanding its Middle East footprint has put it in a position of power, coming head-to-head with Israel."
-   },
-   {
-    "title": "Heroine or Public Enemy? The Israeli Blocking Much of Netanyahu’s Agenda.",
-    "url": "https://www.nytimes.com/2026/09/26/world/middleeast/israel-netanyahu-gali-baharav-miara-attorney-general.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-26T09:00:10.000Z",
-    "src": "The New York Times",
-    "summary": "Gali Baharav-Miara, Israel’s first female attorney general, has stopped many of the government’s efforts to remove constraints on its power."
-   },
-   {
-    "title": "U.N. Releases New List of Companies It Says Do Business With Israeli Settlements",
-    "url": "https://www.nytimes.com/2026/09/25/world/middleeast/un-companies-westbank-settlements.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-25T19:55:36.000Z",
-    "src": "The New York Times",
-    "summary": "Israel condemned the database of firms tied to activity in the occupied West Bank as a “political tool” to advance “a smear campaign.”"
-   },
-   {
-    "title": "Netanyahu Said to Have Been Warned by Emirati Leader About Hamas Attack Before Oct. 7",
-    "url": "https://www.nytimes.com/2026/09/25/world/middleeast/netanyahu-warning-oct-7-uae.html",
-    "domain": "nytimes.com",
-    "date": "2026-09-25T17:15:17.000Z",
-    "src": "The New York Times",
-    "summary": "The warning from the leader of the United Arab Emirates, which lacked specific details about the nature of an attack, never reached the chiefs of Israel’s security establishment, Israeli officials said."
-   },
-   {
-    "title": "What Arab Israelis Really Think About Israel’s Election",
-    "url": "https://foreignpolicy.com/2026/09/25/arab-israelis-election-palestine-netanyahu-abbas-jewish-state/",
-    "domain": "foreignpolicy.com",
-    "date": "2026-09-25T12:19:43.000Z",
-    "src": "Foreign Policy",
-    "summary": "Ethnic Arabs could decide Israel's coming election—and its democratic future."
-   },
-   {
-    "title": "What Lies Behind the Rise in Anti-Israel Sentiment in Thailand?",
-    "url": "https://thediplomat.com/2026/09/what-lies-behind-the-rise-in-anti-israel-sentiment-in-thailand/",
-    "domain": "thediplomat.com",
-    "date": "2026-09-25T01:07:00.000Z",
-    "src": "The Diplomat",
-    "summary": "Nationalist rabble-rousers have accused Israelis of trying to seize Thai territory, and Israeli tourists of misbehaving or disrespecting the country's culture."
    }
   ],
   "syria": [
+   {
+    "title": "Attackers open fire and kill 7 on a small passenger bus in Syria",
+    "url": "https://abcnews.com/International/wireStory/attackers-open-fire-kill-7-small-passenger-bus-136910623",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T06:50:01.000Z",
+    "src": "ABC News",
+    "summary": "At least seven people have been killed after attackers opened fire on a small passenger bus in northwestern Syria"
+   },
    {
     "title": "Greetings from Syria, where time seems to melt as a glassmaker braves scorching temps",
     "url": "https://www.npr.org/2026/09/30/nx-s1-5983516/damascus-syria-glass",
@@ -2845,6 +3030,30 @@
    }
   ],
   "afghanistan": [
+   {
+    "title": "American University of Afghanistan at Risk of Closure Amid Funding Cuts",
+    "url": "https://www.nytimes.com/2026/10/01/world/asia/american-university-kabul-usaid.html",
+    "domain": "nytimes.com",
+    "date": "2026-10-01T19:29:09.000Z",
+    "src": "The New York Times",
+    "summary": "The State Department has denied its funding for the next two years, jeopardizing the education of hundreds of female Afghan students."
+   },
+   {
+    "title": "Pakistani airstrikes kill 10 civilians in Afghanistan, U.N. mission says",
+    "url": "https://www.cbsnews.com/news/afghanistan-pakistan-airstrikes-civilians-children-killed-unama/",
+    "domain": "cbsnews.com",
+    "date": "2026-10-01T13:37:41.000Z",
+    "src": "CBS News",
+    "summary": "Pakistan says airstrikes in Afghanistan killed 22 terrorists, but Afghanistan's Taliban regime and the U.N. mission in the country say mostly children were killed."
+   },
+   {
+    "title": "Pakistani airstrikes in Afghanistan kill 10 civilians, Kabul says; Pakistan says only militants hit",
+    "url": "https://abcnews.com/International/wireStory/pakistani-airstrikes-afghanistan-kill-9-civilians-kabul-pakistan-136909974",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T11:39:11.000Z",
+    "src": "ABC News",
+    "summary": "Pakistan has carried out airstrikes in two Afghan provinces, targeting militant hideouts"
+   },
    {
     "title": "Pakistan says 22 fighters killed in air attacks on Afghanistan",
     "url": "https://www.aljazeera.com/news/2026/10/1/afghanistan-says-nine-killed-in-pakistani-air-raids-on-kunar-helmand?traffic_source=rss",
@@ -2990,7 +3199,16 @@
     "summary": "This monthly update highlights major events, statements, and bilateral interactions driving China’s relations with Afghanistan at a time when the Taliban sees China as a crucial partner. The post Update on China-Afghanistan Relations appeared first on Stimson Center ."
    }
   ],
-  "kashmir": [],
+  "kashmir": [
+   {
+    "title": "Can Kashmir Learn From India’s Gen Z Movement?",
+    "url": "https://thediplomat.com/2026/10/can-kashmir-learn-from-indias-gen-z-movement/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T15:52:00.000Z",
+    "src": "The Diplomat",
+    "summary": "J&K has lost its statehood, local governance, and even the right to protest. But there is still a way to resist."
+   }
+  ],
   "pakistan": [
    {
     "title": "India vs Pakistan live: Asian Games hockey semifinal",
@@ -3143,6 +3361,14 @@
   ],
   "lebanon": [
    {
+    "title": "On the ground with UN peacekeepers as Lebanon-Israel mission nears its end",
+    "url": "https://www.pbs.org/newshour/show/on-the-ground-with-un-peacekeepers-as-lebanon-israel-mission-nears-its-end",
+    "domain": "pbs.org",
+    "date": "2026-10-01T22:20:32.000Z",
+    "src": "PBS NewsHour",
+    "summary": "After 48 years, the United Nations peacekeeping mission in southern Lebanon is nearing the end of its mandate. Its planned withdrawal comes at a time when the Israeli military occupies around 6% of Lebanese territory. Special Correspondent Simona Foltyn and videographer Adrian Hartrick gained rare access with the peacekeepers, traveling south of Israel's \"yellow line.\""
+   },
+   {
     "title": "Syria says it thwarted Hezbollah plot; Israel likely target",
     "url": "https://www.longwarjournal.org/archives/2026/09/syria-says-it-thwarted-hezbollah-plot-israel-likely-target.php",
     "domain": "longwarjournal.org",
@@ -3240,6 +3466,38 @@
    }
   ],
   "balkans": [
+   {
+    "title": "Thousands rally in Kosovo against war crimes convictions of wartime leaders",
+    "url": "https://abcnews.com/International/wireStory/thousands-rally-kosovo-war-crimes-convictions-wartime-leaders-136923214",
+    "domain": "abcnews.com",
+    "date": "2026-10-01T16:49:14.000Z",
+    "src": "ABC News",
+    "summary": "Thousands of demonstrators are rallying in Kosovo against recent war crimes convictions for four wartime rebel leaders"
+   },
+   {
+    "title": "Thousands in Kosovo Protest Again for ‘Fair Justice’ After Hague Convictions",
+    "url": "https://balkaninsight.com/2026/10/01/thousands-in-kosovo-protest-again-for-fair-justice-after-hague-convictions/btj/",
+    "domain": "balkaninsight.com",
+    "date": "2026-10-01T16:14:11.000Z",
+    "src": "Balkan Insight",
+    "summary": "Large crowds attend rally in Pristina against Hague court verdict convicting four former Kosovo Liberation Army leaders of war crimes, with protest speaker attacking 'double standards when it comes to justice'."
+   },
+   {
+    "title": "5 questions (and expert answers) about Bosnia and Herzegovina’s election",
+    "url": "https://www.atlanticcouncil.org/content-series/eye-on-europes-elections/5-questions-and-expert-answers-about-bosnia-and-herzegovinas-election/",
+    "domain": "atlanticcouncil.org",
+    "date": "2026-10-01T11:57:28.000Z",
+    "src": "Atlantic Council",
+    "summary": "Atlantic Council experts explain the players, voting system, and implications for the EU and NATO. The post 5 questions (and expert answers) about Bosnia and Herzegovina’s election appeared first on Atlantic Council ."
+   },
+   {
+    "title": "Bosnian Serb Wartime Leader Biljana Plavsic Dies Aged 96",
+    "url": "https://balkaninsight.com/2026/10/01/bosnian-serb-wartime-leader-biljana-plavsic-dies-aged-96/btj/",
+    "domain": "balkaninsight.com",
+    "date": "2026-10-01T10:32:46.000Z",
+    "src": "Balkan Insight",
+    "summary": "Wartime vice-president of Bosnia’s Serb-dominated entity, the only woman ever convicted of war crimes by the Hague Tribunal, dies in Belgrade – to the end maintaining she had 'done nothing wrong'."
+   },
    {
     "title": "Bosnian Parties’ Election Gender Quotas Mask Failure to Empower Women",
     "url": "https://balkaninsight.com/2026/10/01/bosnian-parties-election-gender-quotas-mask-failure-to-empower-women/bi/",
@@ -3563,6 +3821,14 @@
   ],
   "baltic": [
    {
+    "title": "Marines to Support NATO Security Initiative in Baltic Sea",
+    "url": "https://www.war.gov/News/News-Stories/Article/Article/4616721/marines-to-support-nato-security-initiative-in-baltic-sea/",
+    "domain": "war.gov",
+    "date": "2026-10-01T19:32:00.000Z",
+    "src": "U.S. Department of Defense",
+    "summary": "A specialized team of Marines deployed to Europe will be redirected to the Baltic Sea region to support the NATO-led enhanced vigilance activity Baltic Sentry."
+   },
+   {
     "title": "Braw in BFBS on the importance of undersea cables",
     "url": "https://www.atlanticcouncil.org/commentary/braw-in-bfbs-on-the-importance-of-undersea-cables/",
     "domain": "atlanticcouncil.org",
@@ -3675,6 +3941,14 @@
    }
   ],
   "iraq": [
+   {
+    "title": "Iran urges Iraq to lift flight ban amid US sanctions",
+    "url": "https://www.aljazeera.com/news/2026/10/2/iran-urges-iraq-to-lift-flight-ban-amid-us-sanctions?traffic_source=rss",
+    "domain": "aljazeera.com",
+    "date": "2026-10-02T04:34:33.000Z",
+    "src": "Al Jazeera",
+    "summary": "Iran calls on Iraq to remove flight curbs after US sanctions, in a move that has strained bilateral ties."
+   },
    {
     "title": "The U.S. Departs Iraq",
     "url": "https://www.nytimes.com/2026/09/30/world/iraq-war-us-pilot-israel-flight.html",
@@ -3942,6 +4216,14 @@
   ],
   "yemen": [],
   "thaicam": [
+   {
+    "title": "China’s Military Open New Logistics and Training Facility in Laos",
+    "url": "https://thediplomat.com/2026/10/chinas-military-open-new-logistics-and-training-facility-in-laos/",
+    "domain": "thediplomat.com",
+    "date": "2026-10-01T01:08:00.000Z",
+    "src": "The Diplomat",
+    "summary": "The center north of Vientiane, a counterpart to a similar naval facility in Cambodia, marks a further extension of Beijing's security presence in mainland Southeast Asia."
+   },
    {
     "title": "Vietnam Confirms Arrest of Viet Tan Activists Reported Missing in Cambodia",
     "url": "https://thediplomat.com/2026/09/vietnam-confirms-arrest-of-viet-tan-activists-reported-missing-in-cambodia/",
